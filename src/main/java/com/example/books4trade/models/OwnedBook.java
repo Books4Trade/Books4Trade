@@ -1,10 +1,7 @@
 package com.example.books4trade.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "ownedBooks")
@@ -23,10 +20,56 @@ public class OwnedBook {
     private boolean isOwned;
 
     @NotNull
+    @AssertFalse
     private boolean isTradable;
 
+    //  need to add 1:n relationship from Users
 
+    //  need to add 1:n relationship from Types
 
+    //  need to add 1:n relationship with Books
 
+    //  CONSTRUCTORS
 
+    public OwnedBook() {}
+
+    public OwnedBook(String bookCondtion, boolean isOwned, boolean isTradable) {
+        this.bookCondtion = bookCondtion;
+        this.isOwned = isOwned;
+        this.isTradable = isTradable;
+    }
+
+    public OwnedBook(long id, String bookCondtion, boolean isOwned, boolean isTradable) {
+        this.id = id;
+        this.bookCondtion = bookCondtion;
+        this.isOwned = isOwned;
+        this.isTradable = isTradable;
+    }
+
+    //  GETTERS/SETTERS
+
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    public String getBookCondtion() {
+        return bookCondtion;
+    }
+    public void setBookCondtion(String bookCondtion) {
+        this.bookCondtion = bookCondtion;
+    }
+    public boolean isOwned() {
+        return isOwned;
+    }
+    public void setOwned(boolean owned) {
+        isOwned = owned;
+    }
+    public boolean isTradable() {
+        return isTradable;
+    }
+    public void setTradable(boolean tradable) {
+        isTradable = tradable;
+    }
 }
