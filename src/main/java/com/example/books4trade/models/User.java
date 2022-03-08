@@ -27,6 +27,9 @@ public class User {
 
     @Column(nullable = false)
     private String location;
+
+    @Column(nullable = false)
+    private long role;
     // RELATIONSHIPS
 
 
@@ -34,6 +37,7 @@ public class User {
     public User(){}
     public User(User copy){
         id = copy.id;
+        role = copy.role;
         username = copy.username;
         password = copy.password;
         email = copy.email;
@@ -42,7 +46,7 @@ public class User {
         location = copy.location;
 
     }
-    public User(long id, String username, String password, String firstName, String lastName, String email, String location) {
+    public User(long id, long role, String username, String password, String firstName, String lastName, String email, String location) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -95,5 +99,11 @@ public class User {
     }
     public void setLocation(String location) {
         this.location = location;
+    }
+    public long getRole() {
+        return role;
+    }
+    public void setRole(long role) {
+        this.role = role;
     }
 }
