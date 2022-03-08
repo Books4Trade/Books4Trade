@@ -47,6 +47,7 @@ public class BookReview {
     @JoinColumn(name = "books_id")
     private Book book;
 
+
     public BookReview() {
     }
 
@@ -58,6 +59,7 @@ public class BookReview {
         this.rating = rating;
         this.createdOn = createdOn;
     }
+
 
     public BookReview(String title, String body, String uploadPath, int rating, Date createdOn) {
         this.title = title;
