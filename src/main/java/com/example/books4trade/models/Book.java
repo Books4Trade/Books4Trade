@@ -45,7 +45,8 @@ public class Book {
 
 
     //  need to add 1:n relationship with reviews - BookReviews Model
-
+    @OneToMany(mappedBy = "book")
+    private List<BookReview> reviews;
 
     //  need to add 1:n relationship with trades - Trades Model (twice bookA / bookB)
 

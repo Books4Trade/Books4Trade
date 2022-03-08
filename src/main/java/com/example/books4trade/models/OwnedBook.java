@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
-@Table(name = "ownedBooks")
+@Table(name = "owned_books")
 public class OwnedBook {
     //  PROPERTIES
     @Id
@@ -13,7 +13,7 @@ public class OwnedBook {
 
     @NotBlank(message = "Please enter either Poor/Fair/Good/Better/New.")
     @Size(min = 3, max = 6, message = "Condition should be between 3 and 6 characters long")
-    private String bookCondtion;
+    private String bookCondition;
 
     @NotNull
     @AssertTrue
@@ -21,7 +21,7 @@ public class OwnedBook {
 
     @NotNull
     @AssertFalse
-    private boolean isTradable;
+    private boolean isTradeable;
 
     //  need to add 1:n relationship from Users
 
@@ -33,17 +33,17 @@ public class OwnedBook {
 
     public OwnedBook() {}
 
-    public OwnedBook(String bookCondtion, boolean isOwned, boolean isTradable) {
-        this.bookCondtion = bookCondtion;
+    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradable) {
+        this.bookCondition = bookCondition;
         this.isOwned = isOwned;
-        this.isTradable = isTradable;
+        this.isTradeable = isTradable;
     }
 
-    public OwnedBook(long id, String bookCondtion, boolean isOwned, boolean isTradable) {
+    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradable) {
         this.id = id;
-        this.bookCondtion = bookCondtion;
+        this.bookCondition = bookCondition;
         this.isOwned = isOwned;
-        this.isTradable = isTradable;
+        this.isTradeable = isTradable;
     }
 
     //  GETTERS/SETTERS
@@ -55,10 +55,10 @@ public class OwnedBook {
         this.id = id;
     }
     public String getBookCondtion() {
-        return bookCondtion;
+        return bookCondition;
     }
     public void setBookCondtion(String bookCondtion) {
-        this.bookCondtion = bookCondtion;
+        this.bookCondition = bookCondtion;
     }
     public boolean isOwned() {
         return isOwned;
@@ -67,9 +67,9 @@ public class OwnedBook {
         isOwned = owned;
     }
     public boolean isTradable() {
-        return isTradable;
+        return isTradeable;
     }
     public void setTradable(boolean tradable) {
-        isTradable = tradable;
+        isTradeable = tradable;
     }
 }

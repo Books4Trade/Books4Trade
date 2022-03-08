@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.awt.print.Book;
 import java.util.Date;
 import java.util.*;
 
@@ -38,13 +37,12 @@ public class BookReview {
     @Column(nullable = false)
     private Date createdOn;
 
-
     @ManyToOne
-    @JoinColumn(name = "users_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "books_id")
+    @JoinColumn(name = "book_id")
     private Book book;
 
 

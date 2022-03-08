@@ -32,14 +32,14 @@ public class User {
     @Column(nullable = false)
 
     // RELATIONSHIPS
-    @OneToMany(mappedBy = "user")
-    private List<BookReview> reviews;
-
     @JoinColumn(name = "role_id")
     private long role;
 
+    @OneToMany(mappedBy = "user")
+    private List<BookReview> reviews;
+
     @OneToMany(mappedBy = "toUser")
-    private List<Notifications> notifications;
+    private List<Notification> notifications;
 
     // CONSTRUCTORS
     public User(){}
@@ -55,7 +55,7 @@ public class User {
         reviews = copy.reviews;
         notifications = copy.notifications;
     }
-    public User(long id, long role, String username, String password, String firstName, String lastName, String email, String location, List<BookReview> reviews, List<Notifications> notifications) {
+    public User(long id, long role, String username, String password, String firstName, String lastName, String email, String location, List<BookReview> reviews, List<Notification> notifications) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -70,7 +70,7 @@ public class User {
     public List<BookReview> getReviews(){
         return reviews;
     }
-    public List<Notifications> getNotifications() {
+    public List<Notification> getNotifications() {
         return notifications;
     }
 
