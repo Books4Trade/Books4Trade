@@ -1,5 +1,6 @@
 USE booksfortrade_db;
 
+-- GRADELEVELS MODEL --
 DROP TABLE IF EXISTS gradeLevels;
 
 CREATE TABLE IF NOT EXISTS gradeLevels;
@@ -19,3 +20,15 @@ VALUES(1,1),
        (12, 12);
 
 SELECT * FROM gradeLevels;
+
+-- TYPES MODEL --
+DROP TABLE IF EXISTS types;
+
+CREATE TABLE IF NOT EXISTS types;
+
+INSERT INTO types(id, name)
+VALUES(1,'Paperback'),
+      (2, 'Hardback'),
+      (3, 'e-Book');
+
+SELECT * FROM types;
