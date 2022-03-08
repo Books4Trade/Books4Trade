@@ -13,7 +13,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "book reviews")
-public class BookReviews {
+public class BookReview {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
