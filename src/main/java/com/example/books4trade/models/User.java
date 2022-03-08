@@ -30,10 +30,14 @@ public class User {
     private String location;
 
     @Column(nullable = false)
-    private long role;
+
     // RELATIONSHIPS
     @OneToMany(mappedBy = "user")
     private List<BookReview> reviews;
+
+    @JoinColumn(name = "role_id")
+    private long role;
+
 
     // CONTSTRUCTORS
     public User(){}
