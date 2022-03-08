@@ -40,11 +40,11 @@ public class BookReview {
 
 
     @ManyToOne
-    @JoinColumn(name = "users_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "books_id")
+    @JoinColumn(name = "book_id")
     private Book book;
 
 

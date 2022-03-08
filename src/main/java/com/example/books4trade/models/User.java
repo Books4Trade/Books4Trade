@@ -32,11 +32,11 @@ public class User {
     @Column(nullable = false)
 
     // RELATIONSHIPS
-    @OneToMany(mappedBy = "user")
-    private List<BookReview> reviews;
-
     @JoinColumn(name = "role_id")
     private long role;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookReview> reviews;
 
     @OneToMany(mappedBy = "toUser")
     private List<Notification> notifications;
