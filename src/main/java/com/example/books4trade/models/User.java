@@ -1,6 +1,7 @@
 package com.example.books4trade.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -29,11 +30,18 @@ public class User {
     private String location;
 
     @Column(nullable = false)
-    private long role;
+
     // RELATIONSHIPS
+    @OneToMany(mappedBy = "user")
+    private List<BookReview> reviews;
 
+    @JoinColumn(name = "role_id")
+    private long role;
 
-    // CONTSTRUCTORS
+    @OneToMany(mappedBy = "toUser")
+    private List<Notifications> notifications;
+
+    // CONSTRUCTORS
     public User(){}
     public User(User copy){
         id = copy.id;
@@ -44,9 +52,10 @@ public class User {
         firstName = copy.firstName;
         lastName = copy.lastName;
         location = copy.location;
-
+        reviews = copy.reviews;
+        notifications = copy.notifications;
     }
-    public User(long id, long role, String username, String password, String firstName, String lastName, String email, String location) {
+    public User(long id, long role, String username, String password, String firstName, String lastName, String email, String location, List<BookReview> reviews, List<Notifications> notifications) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -54,6 +63,15 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.location = location;
+        this.reviews = reviews;
+        this.notifications = notifications;
+    }
+    // Relationship Getter/Setter Methods
+    public List<BookReview> getReviews(){
+        return reviews;
+    }
+    public List<Notifications> getNotifications() {
+        return notifications;
     }
 
 
