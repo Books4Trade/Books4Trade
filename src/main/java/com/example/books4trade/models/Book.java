@@ -3,6 +3,7 @@ package com.example.books4trade.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -32,9 +33,19 @@ public class Book {
 
     //  need to add n:m relationship between books and users -> UserBookWatchlist Model
 
-    //  need to add n:m relationship between books and categories -> BookCategory Model
+    //  need to add n:m relationship between books and categories -> BookCategory Model - @charles
+    // https://java.codeup.com/spring/fundamentals/relationships/
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "book_category",
+        joinColumns = {@JoinColumn(name = "books_id")},
+        inverseJoinColumns = {@JoinColumn(name = "categoryies_id")}
+    )
+    private List<Category> categories;
+
 
     //  need to add 1:n relationship with reviews - BookReviews Model
+
 
     //  need to add 1:n relationship with trades - Trades Model (twice bookA / bookB)
 
@@ -42,6 +53,11 @@ public class Book {
 
     //  CONSTRUCTORS
     public Book() {}
+
+
+    public Book(List<Category> categories) {     // @charles
+        this.categories = categories;
+    }
 
     public Book(String title, String summary, Double rating, String book_img) {
         this.title = title;
@@ -88,5 +104,13 @@ public class Book {
     }
     public void setBook_img(String book_img) {
         this.book_img = book_img;
+    }
+    //    @charles
+    public List<Category> getCategories() {
+    return categories;
+}
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }
