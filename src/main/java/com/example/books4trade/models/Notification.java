@@ -15,9 +15,8 @@ public class Notification {
     @Column(nullable = false)
     private String body;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User fromUser;
+    @Column
+    private long fromUser;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -25,7 +24,7 @@ public class Notification {
 
     // Constructors
     public Notification(){}
-    public Notification(long id, Boolean hasRead, String body, User fromUser, User toUser) {
+    public Notification(long id, Boolean hasRead, String body, long fromUser, User toUser) {
         this.id = id;
         this.hasRead = hasRead;
         this.body = body;
@@ -52,10 +51,10 @@ public class Notification {
     public void setBody(String body) {
         this.body = body;
     }
-    public User getFromUser() {
+    public Long getFromUser() {
         return fromUser;
     }
-    public void setFromUser(User fromUser) {
+    public void setFromUser(Long fromUser) {
         this.fromUser = fromUser;
     }
     public User getToUser() {
