@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "books")
-public class Books {
+public class Book {
     //  PROPERTIES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +39,54 @@ public class Books {
     //  need to add 1:n relationship with trades - Trades Model (twice bookA / bookB)
 
     //  need to add 1:n relationship with reads_books - ReadsBooks Model
+
+    //  CONSTRUCTORS
+    public Book() {}
+
+    public Book(String title, String summary, Double rating, String book_img) {
+        this.title = title;
+        this.summary = summary;
+        this.rating = rating;
+        this.book_img = book_img;
+    }
+
+    public Book(long id, String title, String summary, Double rating, String book_img) {
+        this.id = id;
+        this.title = title;
+        this.summary = summary;
+        this.rating = rating;
+        this.book_img = book_img;
+    }
+
+    //  GETTERS/SETTERS
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getSummary() {
+        return summary;
+    }
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+    public Double getRating() {
+        return rating;
+    }
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+    public String getBook_img() {
+        return book_img;
+    }
+    public void setBook_img(String book_img) {
+        this.book_img = book_img;
+    }
 }
