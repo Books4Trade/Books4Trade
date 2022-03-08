@@ -3,6 +3,7 @@ package com.example.books4trade.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -35,7 +36,8 @@ public class Book {
     //  need to add n:m relationship between books and categories -> BookCategory Model
 
     //  need to add 1:n relationship with reviews - BookReviews Model
-
+    @OneToMany(mappedBy = "book")
+    private List<BookReview> reviews;
     //  need to add 1:n relationship with trades - Trades Model (twice bookA / bookB)
 
     //  need to add 1:n relationship with reads_books - ReadsBooks Model
