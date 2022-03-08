@@ -38,8 +38,10 @@ public class User {
     @JoinColumn(name = "role_id")
     private long role;
 
+    @OneToMany(mappedBy = "toUser")
+    private List<Notifications> notifications;
 
-    // CONTSTRUCTORS
+    // CONSTRUCTORS
     public User(){}
     public User(User copy){
         id = copy.id;
@@ -51,8 +53,9 @@ public class User {
         lastName = copy.lastName;
         location = copy.location;
         reviews = copy.reviews;
+        notifications = copy.notifications;
     }
-    public User(long id, long role, String username, String password, String firstName, String lastName, String email, String location, List<BookReview> reviews) {
+    public User(long id, long role, String username, String password, String firstName, String lastName, String email, String location, List<BookReview> reviews, List<Notifications> notifications) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -61,11 +64,16 @@ public class User {
         this.email = email;
         this.location = location;
         this.reviews = reviews;
+        this.notifications = notifications;
     }
     // Relationship Getter/Setter Methods
     public List<BookReview> getReviews(){
         return reviews;
     }
+    public List<Notifications> getNotifications() {
+        return notifications;
+    }
+
 
     // User Field Getters & Setters
     public long getId() {
