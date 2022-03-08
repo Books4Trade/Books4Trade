@@ -11,7 +11,7 @@ public class Like {
     private long id;
 
     @Column(nullable = false)
-    boolean isLiked;
+    private boolean isLiked;
 
     @ManyToOne
     @JoinColumn (name = "users_id")
