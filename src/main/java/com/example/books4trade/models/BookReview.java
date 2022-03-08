@@ -13,7 +13,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "book_reviews")
-public class BookReviews {
+public class BookReview {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -47,10 +47,10 @@ public class BookReviews {
     @JoinColumn(name = "books_id")
     private Book book;
 
-    public BookReviews() {
+    public BookReview() {
     }
 
-    public BookReviews(int id, String title, String body, String uploadPath, int rating, Date createdOn) {
+    public BookReview(int id, String title, String body, String uploadPath, int rating, Date createdOn) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -59,7 +59,7 @@ public class BookReviews {
         this.createdOn = createdOn;
     }
 
-    public BookReviews(String title, String body, String uploadPath, int rating, Date createdOn) {
+    public BookReview(String title, String body, String uploadPath, int rating, Date createdOn) {
         this.title = title;
         this.body = body;
         this.uploadPath = uploadPath;
