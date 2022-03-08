@@ -41,11 +41,11 @@ public class User {
     @OneToMany(mappedBy = "toUser")
     private List<Notification> notifications;
 
-    @OneToMany(mappedBy = "userA")
-    private List<Trade> trades;
-
-    @OneToMany(mappedBy = "userB")
-    private List<Trade> tradesB;
+//    @OneToMany(mappedBy = "userA")
+//    private List<Trade> trades;
+//
+//    @OneToMany(mappedBy = "userB")
+//    private List<Trade> tradesB;
 
 
 
