@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="notifications")
-public class Notifications {
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -16,10 +16,14 @@ public class Notifications {
     private String body;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User fromUser;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User toUser;
+
+    public Notifications
 
 
 
