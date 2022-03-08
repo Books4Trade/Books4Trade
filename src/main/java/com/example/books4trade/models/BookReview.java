@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.awt.print.Book;
 import java.util.Date;
 import java.util.*;
 
@@ -37,7 +36,6 @@ public class BookReview {
 
     @Column(nullable = false)
     private Date createdOn;
-
 
     @ManyToOne
     @JoinColumn(name = "user_id")
