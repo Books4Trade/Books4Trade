@@ -1,6 +1,5 @@
 package com.example.books4trade;
 
-import com.codeup.springblog.services.UserDetailsLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
