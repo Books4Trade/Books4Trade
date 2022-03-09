@@ -33,6 +33,9 @@ public class Book {
     private Author author;
 
     //  need to add 1:n relationship from GradeLevels
+    @ManyToOne
+    @JoinColumn(name = "grade_id")
+    private GradeLevel grade;
 
     //  need to add n:m relationship between books and users -> UserBookWatchlist Model
     @ManyToMany(mappedBy = "watchlistBooks")
@@ -118,6 +121,27 @@ public class Book {
         this.author = author;
     }
 
+    //  GradeLevels Constructor
+
+    public Book(String title, String summary, Double rating, String book_img, Author author, GradeLevel grade) {
+        this.title = title;
+        this.summary = summary;
+        this.rating = rating;
+        this.book_img = book_img;
+        this.author = author;
+        this.grade = grade;
+    }
+
+    public Book(long id, String title, String summary, Double rating, String book_img, Author author, GradeLevel grade) {
+        this.id = id;
+        this.title = title;
+        this.summary = summary;
+        this.rating = rating;
+        this.book_img = book_img;
+        this.author = author;
+        this.grade = grade;
+    }
+
     //  GETTERS/SETTERS
     public long getId() {
         return id;
@@ -167,5 +191,11 @@ public class Book {
     }
     public void setAuthor(Author author) {
         this.author = author;
+    }
+    public GradeLevel getGrade() {
+        return grade;
+    }
+    public void setGrade(GradeLevel grade) {
+        this.grade = grade;
     }
 }
