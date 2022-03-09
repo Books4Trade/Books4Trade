@@ -2,6 +2,7 @@ package com.example.books4trade.controllers;
 
 import com.example.books4trade.models.User;
 import com.example.books4trade.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -36,7 +39,14 @@ public class UserController {
             userDao.save(user);
         }// put else Error Here if passwords do not match
 
-
         return "redirect:/login";
+    }
+
+    @GetMapping("/profile")
+    public String showProfile(Model model){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return "users/profile";
+
     }
 }
