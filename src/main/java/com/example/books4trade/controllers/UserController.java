@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping("/register")
     public String submitRegistrationForm(@ModelAttribute User user, @RequestParam(name="password-confirm") String passwordConfirm){
-        if(user.getPassword() == passwordConfirm){
+        if(user.getPassword().equals(passwordConfirm)){
             String hash = passwordEncoder.encode(user.getPassword());
             user.setPassword(hash);
             user.setRole(1);
