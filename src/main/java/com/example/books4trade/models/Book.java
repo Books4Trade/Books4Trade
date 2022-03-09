@@ -32,7 +32,8 @@ public class Book {
     //  need to add 1:n relationship from GradeLevels
 
     //  need to add n:m relationship between books and users -> UserBookWatchlist Model
-
+    @ManyToMany(mappedBy = "watchlistBooks")
+    private List <User> usersWatchlist;
     //  need to add n:m relationship between books and categories -> BookCategory Model - @charles
     // https://java.codeup.com/spring/fundamentals/relationships/
     @ManyToMany(cascade = CascadeType.ALL)
@@ -83,6 +84,22 @@ public class Book {
         this.book_img = book_img;
     }
 
+    //  Watchlist Constructor
+
+
+    public Book(long id, String title, String summary, Double rating, String book_img, List<User> usersWatchlist, List<Category> categories,
+                List<BookReview> reviews, List<User> user) {
+        this.id = id;
+        this.title = title;
+        this.summary = summary;
+        this.rating = rating;
+        this.book_img = book_img;
+        this.usersWatchlist = usersWatchlist;
+        this.categories = categories;
+        this.reviews = reviews;
+        this.user = user;
+    }
+
     //  GETTERS/SETTERS
     public long getId() {
         return id;
@@ -118,8 +135,15 @@ public class Book {
     public List<Category> getCategories() {
     return categories;
 }
-
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
+    public List<User> getUsersWatchlist() {
+        return usersWatchlist;
+    }
+    public void setUsersWatchlist(List<User> usersWatchlist) {
+        this.usersWatchlist = usersWatchlist;
+    }
+
 }
