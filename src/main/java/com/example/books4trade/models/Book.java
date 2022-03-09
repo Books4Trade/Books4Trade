@@ -124,7 +124,6 @@ public class Book {
     }
 
     //  GradeLevels Constructor
-
     public Book(String title, String summary, Double rating, String book_img, Author author, GradeLevel grade) {
         this.title = title;
         this.summary = summary;
@@ -145,7 +144,6 @@ public class Book {
     }
 
     //  OwnedBooks Constructor
-
     public Book(String title, String summary, Double rating, String book_img, Author author, GradeLevel grade, List<Category> categories, List<OwnedBook> ownedBooks) {
         this.title = title;
         this.summary = summary;
