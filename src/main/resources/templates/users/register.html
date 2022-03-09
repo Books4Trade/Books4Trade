@@ -12,27 +12,27 @@
 <form th:action="@{/register}" method="POST" th:object="${user}">
   <div class="form-group">
     <label for="username">Username</label>
-    <input class="form-control" type="text" id="username" th:field="*{username}" />
+    <input class="form-control" type="text" id="username" minlength="6" th:field="*{username}" />
   </div>
   <div class="form-group">
     <label for="email">Email</label>
-    <input class="form-control" type="text" id="email" th:field="*{email}" />
+    <input class="form-control" type="text" id="email" minlength="6" th:field="*{email}" />
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input class="form-control" id="password" type="password" th:field="*{password}" />
+    <input class="form-control" id="password" type="password" minlength="6" th:field="*{password}" />
   </div>
   <div class="form-group">
     <label for="password-confirm">Retype Password</label>
-    <input class="form-control" id="password-confirm" type="password" />
+    <input class="form-control" id="password-confirm"  type="password" />
   </div>
   <div class="form-group">
     <label for="firstname">First Name</label>
-    <input class="form-control" id="firstname" type="text" th:field="*{firstName}" />
+    <input class="form-control" id="firstname" type="text" minlength="2" th:field="*{firstName}" />
   </div>
   <div class="form-group">
     <label for="lastname">Last Name</label>
-    <input class="form-control" id="lastname" type="text" th:field="*{lastName}" />
+    <input class="form-control" id="lastname" type="text" minlength="2" th:field="*{lastName}" />
   </div>
   <div class="form-group">
     <label for="location">Location (City, State)</label>
