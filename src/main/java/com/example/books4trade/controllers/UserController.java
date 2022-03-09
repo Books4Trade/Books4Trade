@@ -44,7 +44,13 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model){
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.getById(loggedInUser.getId());
+        model.addAttribute("usersBooks", currentUser.getOwnedBooks());
+        model.addAttribute("usersReviews", currentUser.getReviews());
+        // Add Trades, Other Tab Info
+        model.addAttribute("usersNotifications", currentUser.getNotifications());
+
 
         return "users/profile";
 
