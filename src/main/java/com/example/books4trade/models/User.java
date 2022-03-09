@@ -54,6 +54,15 @@ public class User {
     )
     private List<Book> watchlistBooks;
 
+    //  n:m relation for user_fav_category table
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_fav_category",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private List<Category> favoriteCategories;
+
 
     // CONSTRUCTORS
     public User(){}
