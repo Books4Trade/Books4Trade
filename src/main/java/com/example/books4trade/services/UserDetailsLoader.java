@@ -1,6 +1,7 @@
 package com.example.books4trade.services;
 
 import com.example.books4trade.models.User;
+import com.example.books4trade.models.UserWithRoles;
 import com.example.books4trade.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
