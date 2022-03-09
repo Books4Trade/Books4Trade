@@ -63,6 +63,9 @@ public class User {
     )
     private List<Category> favoriteCategories;
 
+    //  1:n relationship with owned_books
+    @OneToMany(mappedBy = "user")
+    private List<OwnedBook> ownedBooks;
 
     // CONSTRUCTORS
     public User(){}
@@ -105,6 +108,30 @@ public class User {
         this.watchlistBooks = watchlistBooks;
     }
 
+    //  CONSTRUCTOR for OwnedBook relationship
+    public User(String username, String password, String firstName, String lastName, String email, String location, long role, List<OwnedBook> ownedBooks) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.location = location;
+        this.role = role;
+        this.ownedBooks = ownedBooks;
+    }
+    public User(long id, String username, String password, String firstName, String lastName, String email, String location, long role, List<OwnedBook> ownedBooks) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.location = location;
+        this.role = role;
+        this.ownedBooks = ownedBooks;
+    }
+
+
     // Relationship Getter/Setter Methods
     public List<BookReview> getReviews(){
         return reviews;
@@ -117,6 +144,12 @@ public class User {
     }
     public void setWatchlistBooks(List<Book> watchlistBooks) {
         this.watchlistBooks = watchlistBooks;
+    }
+    public List<OwnedBook> getOwnedBooks() {
+        return ownedBooks;
+    }
+    public void setOwnedBooks(List<OwnedBook> ownedBooks) {
+        this.ownedBooks = ownedBooks;
     }
 
     // User Field Getters & Setters
