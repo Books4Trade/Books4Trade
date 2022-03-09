@@ -32,6 +32,7 @@ public class UserController {
         if(user.getPassword() == passwordConfirm){
             String hash = passwordEncoder.encode(user.getPassword());
             user.setPassword(hash);
+            user.setRole(1);
             userDao.save(user);
         }// put else Error Here if passwords do not match
 
