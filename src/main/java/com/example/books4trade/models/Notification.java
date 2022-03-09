@@ -24,9 +24,9 @@ public class Notification {
 
     // Constructors
     public Notification(){}
-    public Notification(long id, Boolean hasRead, String body, long fromUser, User toUser) {
+    public Notification(long id, String body, long fromUser, User toUser) {
         this.id = id;
-        this.hasRead = hasRead;
+        this.hasRead = false;
         this.body = body;
         this.fromUser = fromUser;
         this.toUser = toUser;
