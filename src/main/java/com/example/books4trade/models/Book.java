@@ -27,21 +27,21 @@ public class Book {
     @Column
     private String book_img;
 
-    //  need to add 1:n relationship from Authors
+    //  1:n relationship from Authors
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
 
-    //  need to add 1:n relationship from GradeLevels
+    //  1:n relationship from GradeLevels
     @ManyToOne
     @JoinColumn(name = "grade_id")
     private GradeLevel grade;
 
-    //  need to add n:m relationship between books and users -> UserBookWatchlist Model
+    //  n:m relationship between books and users -> UserBookWatchlist Model
     @ManyToMany(mappedBy = "watchlistBooks")
     private List <User> usersWatchlist;
 
-    //  need to add n:m relationship between books and categories -> BookCategory Model - @charles
+    //  n:m relationship between books and categories -> BookCategory Model - @charles
     // https://java.codeup.com/spring/fundamentals/relationships/
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -55,8 +55,6 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<BookReview> reviews;
 
-    //  need to add 1:n relationship with trades - Trades Model (twice bookA / bookB)
-
     //  relationship with reads_books - ReadsBooks Model @charles
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -66,6 +64,10 @@ public class Book {
     )
     private List<User> user; //@charles
 
+
+    //  1:n relationship with owned_books
+    @OneToMany(mappedBy = "bookOwned")
+    private List<OwnedBook> ownedBooks;
 
     //  CONSTRUCTORS
     public Book() {}
@@ -142,6 +144,30 @@ public class Book {
         this.grade = grade;
     }
 
+    //  OwnedBooks Constructor
+
+    public Book(String title, String summary, Double rating, String book_img, Author author, GradeLevel grade, List<Category> categories, List<OwnedBook> ownedBooks) {
+        this.title = title;
+        this.summary = summary;
+        this.rating = rating;
+        this.book_img = book_img;
+        this.author = author;
+        this.grade = grade;
+        this.categories = categories;
+        this.ownedBooks = ownedBooks;
+    }
+
+    public Book(long id, String title, String summary, Double rating, String book_img, Author author, GradeLevel grade, List<OwnedBook> ownedBooks) {
+        this.id = id;
+        this.title = title;
+        this.summary = summary;
+        this.rating = rating;
+        this.book_img = book_img;
+        this.author = author;
+        this.grade = grade;
+        this.ownedBooks = ownedBooks;
+    }
+
     //  GETTERS/SETTERS
     public long getId() {
         return id;
@@ -197,5 +223,11 @@ public class Book {
     }
     public void setGrade(GradeLevel grade) {
         this.grade = grade;
+    }
+    public List<OwnedBook> getOwnedBooks() {
+        return ownedBooks;
+    }
+    public void setOwnedBooks(List<OwnedBook> ownedBooks) {
+        this.ownedBooks = ownedBooks;
     }
 }
