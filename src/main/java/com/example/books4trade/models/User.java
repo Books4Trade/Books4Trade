@@ -47,6 +47,9 @@ public class User {
     @OneToMany(mappedBy = "userB")
     private List<Trade> tradesB;
 
+    //Below is for reads_book @charles
+    @ManyToMany(mappedBy = "user")
+    private List<Book> books;
 
 
     // CONSTRUCTORS

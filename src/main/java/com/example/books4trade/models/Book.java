@@ -39,7 +39,7 @@ public class Book {
     @JoinTable(
         name = "book_category",
         joinColumns = {@JoinColumn(name = "books_id")},
-        inverseJoinColumns = {@JoinColumn(name = "categoryies_id")}
+        inverseJoinColumns = {@JoinColumn(name = "categories_id")}
     )
     private List<Category> categories;
 
@@ -50,7 +50,15 @@ public class Book {
 
     //  need to add 1:n relationship with trades - Trades Model (twice bookA / bookB)
 
-    //  need to add 1:n relationship with reads_books - ReadsBooks Model
+    //  need to add 1:n relationship with reads_books - ReadsBooks Model @charles
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "reads_book",
+        joinColumns = {@JoinColumn(name = "book_id")},
+        inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
+    private List<User> user; //@charles
+
 
     //  CONSTRUCTORS
     public Book() {}
