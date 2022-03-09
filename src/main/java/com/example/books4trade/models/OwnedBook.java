@@ -29,6 +29,9 @@ public class OwnedBook {
     private User user;
 
     //  need to add 1:n relationship from Types
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private Type type;
 
     //  need to add 1:n relationship with Books
     @ManyToOne
@@ -60,13 +63,30 @@ public class OwnedBook {
         this.bookOwned = bookOwned;
     }
 
-    //  seeder Constructor ALL
-    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradeable, User user, Book bookOwned) {
+    //  bookOwned User Constructor
+    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable, User user) {
+        this.bookCondition = bookCondition;
+        this.isOwned = isOwned;
+        this.isTradeable = isTradeable;
+        this.user = user;
+    }
+
+    //  bookOwned Type Constructor
+    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable, Type type) {
+        this.bookCondition = bookCondition;
+        this.isOwned = isOwned;
+        this.isTradeable = isTradeable;
+        this.type = type;
+    }
+
+    //  ALL CONSTRUCTOR
+    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradeable, User user, Type type, Book bookOwned) {
         this.id = id;
         this.bookCondition = bookCondition;
         this.isOwned = isOwned;
         this.isTradeable = isTradeable;
         this.user = user;
+        this.type = type;
         this.bookOwned = bookOwned;
     }
 
@@ -106,5 +126,11 @@ public class OwnedBook {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+    public Type getType() {
+        return type;
+    }
+    public void setType(Type type) {
+        this.type = type;
     }
 }
