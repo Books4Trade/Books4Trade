@@ -36,4 +36,4 @@ build/
 src/main/resources/application.properties
 
 ### API KEYS ###
-js/keys.js
+static/js/keys.js
