@@ -7,7 +7,7 @@
     <head th:include="partials :: head" />
 </head>
 <body>
-<nav th:include="partials :: navbar" />
+<nav th:replace="partials :: navbar" />
 <h2>Hello <span th:text="${#authentication.principal.username}"/>!</h2>
 <hr>
 <!-- Main Page Container Below -->
