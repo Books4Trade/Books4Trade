@@ -9,25 +9,22 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<div>
-    <div class="container">
-
-        <div class="box">
-            <div class="form">
-            <h5>Please log in</h5>
-
-                <span>Username</span><input type="text" id="username" class="username" /><br>
-
-                <span>Password</span><input type="password" id="password" class="password" /><br>
-                <button type="button" class=login-btn>Login</button>
-                <a href="">Forgot Password</a>
+<div  class="m-2 p-2">
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" />
         </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" />
         </div>
-    </div>
+        <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Log In</button>
+    </form>
 </div>
 
 
 
-
+<span th:include="partials :: scripts-bottom" />
 </body>
 </html>

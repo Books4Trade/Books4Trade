@@ -9,6 +9,7 @@
 <nav th:replace="partials :: navbar" />
 
 
+
 <h1>Here are a list of available books</h1>
 
     <div th:each="book : ${allbooks}">
@@ -26,6 +27,9 @@
 
 
 
+
+
 <footer th:replace="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" /></body>
+</body>
 </html>

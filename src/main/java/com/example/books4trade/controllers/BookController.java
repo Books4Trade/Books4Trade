@@ -1,5 +1,6 @@
 package com.example.books4trade.controllers;
 
+
 import com.example.books4trade.models.Book;
 import com.example.books4trade.models.User;
 import com.example.books4trade.repositories.BookRepository;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+
 @Controller
 public class BookController {
     private BookRepository booksDao;
@@ -20,6 +22,13 @@ public class BookController {
         this.booksDao = bookDao;
         this.usersDao = usersDao;
     }
+  
+   @GetMapping("/books")
+    public String ShowBooks(Model model){
+        model.addAttribute("allBooks", booksDao.findAll());
+        return "books/index";
+    }
+  
 //    Create
     @GetMapping("/books/create")
     private String showCreateForm(Model model){
@@ -34,15 +43,7 @@ public class BookController {
     }
 
 
-
-
-
 //    Read
-    @GetMapping("/books")
-    public String ShowBooks(Model model){
-        model.addAttribute("allBooks", booksDao.findAll());
-        return "books/index";
-    }
 
     @GetMapping("/books/{id}")
     public String individualBook(@PathVariable long id, Model model){
