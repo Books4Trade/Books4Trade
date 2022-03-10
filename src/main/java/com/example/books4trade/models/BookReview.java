@@ -14,7 +14,7 @@ import java.util.*;
 @Table(name = "book_reviews")
 public class BookReview {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(nullable = false, length = 255)
     @NotBlank(message = "Must have a title")
@@ -49,7 +49,12 @@ public class BookReview {
     public BookReview() {
     }
 
-    public BookReview(int id, String title, String body, String uploadPath, int rating, Date createdOn) {
+    public BookReview(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
+
+    public BookReview(long id, String title, String body, String uploadPath, int rating, Date createdOn) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -57,6 +62,16 @@ public class BookReview {
         this.rating = rating;
         this.createdOn = createdOn;
     }
+
+    public BookReview(long id, String title, String body, int rating) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.uploadPath = uploadPath;
+        this.rating = rating;
+    }
+
+
 
 
     public BookReview(String title, String body, String uploadPath, int rating, Date createdOn) {
@@ -67,7 +82,7 @@ public class BookReview {
         this.createdOn = createdOn;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
