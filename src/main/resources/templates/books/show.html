@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en xmlns:th=http://www.thymeleaf.org">
+
+<html lang="en xmlns:th=http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title>Books4Trade</title>
@@ -10,13 +12,14 @@
 
 
 <div>
-    <h1 th:text="${book.getTitle}">Book Title</h1>
-    <h2 >By:<span th:text="${book.getAuthor}"></span></h2>
-    <p th:text="${book.getSummary}">Summary</p>
+    <h1 th:text="${book.title}">Book Title</h1>
+<!--    <h2 >By:<span th:text="${book.getAuthor}"></span></h2>-->
+    <p th:text="${book.summary}">Summary</p>
 </div>
 
 <div>
-    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>
+<!--    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>-->  
+</div>
     <a href="">Add to Watchlist</a>
     <a href="">Add a Copy</a>
 </div>
