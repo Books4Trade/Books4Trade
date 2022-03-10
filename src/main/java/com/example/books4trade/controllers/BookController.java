@@ -64,8 +64,8 @@ public class BookController {
     @PostMapping("/books/{id}/edit")
     public String submitUpdateForm(@ModelAttribute Book book, Model model){
         booksDao.save(book);
-
         return "redirect:/books/" + book.getId();
+
     }
 
 //    Delete
