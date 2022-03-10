@@ -39,7 +39,7 @@ public class BookController {
     @PostMapping("/books/create")
     private String submitCreateBookForm(@ModelAttribute Book book){
         booksDao.save(book);
-        return "redirect: books/" + book.getId();
+        return "redirect:/books/"+book.getId();
     }
 
 
@@ -64,7 +64,7 @@ public class BookController {
     @PostMapping("/books/{id}/edit")
     public String submitUpdateForm(@ModelAttribute Book book, Model model){
         booksDao.save(book);
-        return "redirect:books/" + book.getId();
+        return "redirect:/books/" + book.getId();
 
     }
 

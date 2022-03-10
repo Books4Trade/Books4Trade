@@ -3,33 +3,18 @@
 
 /* REFACTOR BELOW */
 body {
-    margin: 0;
-    padding: 0;
-    line-height: 1.5em;
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 11px;
-    color: #ffffff;
-    background: #4b4743;
 }
-.container{
-    /*display: flex;*/
-    position: relative;
-    width: 1200px;
-    height: 300px;
-    margin: 240px;
-}
-.box{
-    position: relative;
-    width: 500px;
-    height: 500px;
-    background: grey;
-    float: right;
-    margin: 15px;
-    box-sizing: border-box;
-    overflow: hidden;
-    border-radius: 10px;
+
+.book-card{
+    padding: 1em;
+    width: 248px;
+    display: flex;
+    flex-direction: column;
 
 }
-.form{
+.book-title{
     text-align: center;
+    font-size: 24px;
+    margin: 0;
+    padding: .4em;
 }
