@@ -11,34 +11,21 @@
 
 <h1>Here are a list of available books</h1>
 
+    <div th:each="book : ${allbooks}">
+        <div class="card">
+            <h5 class="card-title" th:text="${book.getTitle}">Book Title</h5>
+            <p class="card-summary" th:text="${book.getSummary}">Summary</p>
+            <h6 class="card-author" th:text="${book.getAuthor}"></h6>
+            <h5 class="card-rating" th:text="${book.getRating}"></h5>
+<!--            <h6 class="card-img" th:text="${book.getBook_img}"></h6>-->
 
-<div class="card-body" th:each="book : ${allBooks}">
-    <h5 class="card-title" th:text="${book.getTitle}">Book Title</h5>
-    <p class="card-summary" th:text="${book.getSummary}">Summary</p>
-    <h6 class="card-author" th:text="${book.getAuthor}"></h6>
-    <h5 class="card-rating" th:text="${book.getRating}"></h5>
-    <h6 class="card-img" th:text="${book.getBook_img}"></h6>
-
-</div>
-
-
-
+        </div>
+    </div>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-</body>
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" /></body>
 </html>
