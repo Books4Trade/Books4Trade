@@ -11,19 +11,18 @@
 
 
 <h1>Here are a list of available books</h1>
-
-    <div th:each="book : ${allbooks}">
-        <div class="card">
-            <h5 class="card-title" th:text="${book.getTitle}">Book Title</h5>
-            <p class="card-summary" th:text="${book.getSummary}">Summary</p>
-            <h6 class="card-author" th:text="${book.getAuthor}"></h6>
-            <h5 class="card-rating" th:text="${book.getRating}"></h5>
-<!--            <h6 class="card-img" th:text="${book.getBook_img}"></h6>-->
-
+<div class="d-flex flex-row flex-wrap justify-content-evenly">
+    <div class="book-card" th:each="book : ${allBooks}">
+        <div class="book-title" th:text="${book.title}"/>
+        <!--<h6 class="card-author" th:text="${book.getAuthor}"></h6> -->
+        <!--<h5 class="card-rating" th:text="${book.getRating}"></h5> -->
+<!--        <h6 class="card-img" th:text="${book.getBook_img}"></h6>-->
+        <div class="card-body">
+            <a th:href="|/books/${book.getId()}|">View This Book</a>
         </div>
     </div>
 
-
+</div>
 
 
 
