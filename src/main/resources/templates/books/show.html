@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en xmlns:th=http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>git </title>
+    <title>Books4Trade</title>
+    <head th:include="partials :: head" />
 </head>
 <body>
+<nav th:replace="partials :: navbar" />
 
+
+<div>
+    <h1 th:text="${book.getTitle}">Book Title</h1>
+    <h2 >By:<span th:text="${book.getAuthor}"></span></h2>
+    <p th:text="${book.getSummary}">Summary</p>
+</div>
+
+<div>
+    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>
+    <a href="">Add to Watchlist</a>
+    <a href="">Add a Copy</a>
+</div>
+
+<div>
+    <p># Members Read/ Reviews/ Owned/ For Trade</p>
+</div>
+
+
+
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" /></body>
 </body>
 </html>
