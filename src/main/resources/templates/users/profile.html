@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar" />
+<h2>Hello <span th:text="${#authentication.principal.username}"/>!</h2>
+<hr>
+<!-- Main Panel Container Below -->
+<div class="container">
+    <nav>
+        <!-- Main Panel Container Below -->
+        <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-link active" id="mybooks-tab" data-toggle="tab" href="#profile-books" role="tab" aria-controls="profile-books" aria-selected="true">
+                My Books</a>
+            <a class="nav-link" id="myreviews-tab" data-toggle="tab" href="#profile-reviews" role="tab" aria-controls="profile-reviews" aria-selected="false">
+                My Reviews</a>
+            <a class="nav-link" id="mytrades-tab" data-toggle="tab" href="#profile-trades" role="tab" aria-controls="profile-trades" aria-selected="false">
+                My Trades</a>
+            <a class="nav-link" id="notifications-tab" data-toggle="tab" href="#profile-notifications" role="tab" aria-controls="profile-notifications" aria-selected="false">
+                My Notifications</a>
+            <a class="nav-link" id="account-tab" data-toggle="tab" href="#profile-account" role="tab" aria-controls="profile-account" aria-selected="false">
+                Account Management</a>
+        </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+        <!-- 1st TabPanel Profile-Books -->
+        <div class="tab-pane fade show active" id="profile-books" role="tabpanel" aria-labelledby="mybooks-tab">
+            <div class="container">
+                <h3>Your Books</h3>
+                <div th:each="book : ${usersBooks}">
+
+
+                </div>
+            </div>
+        </div>
+        <!-- 2nd TabPanel Profile-Reviews -->
+        <div class="tab-pane fade" id="profile-reviews" role="tabpanel" aria-labelledby="myreviews-tab">
+            <div class="container">
+                <h3>Your Reviews</h3>
+                <div th:each="review : ${usersReviews}">
+
+
+                </div>
+            </div>
+        </div>
+        <!-- 3nd TabPanel Profile-Trades-->
+        <div class="tab-pane fade" id="profile-trades" role="tabpanel" aria-labelledby="mytrades-tab">
+            <div class="container">
+                <h3>Your Trades</h3>
+                <div th:each="trade : ${userTrades}">
+
+
+                </div>
+            </div>
+        </div>
+        <!-- 4th TabPanel Profile-Notifications -->
+        <div class="tab-pane fade" id="profile-notifications" role="tabpanel" aria-labelledby="notifications-tab">
+            <div class="container">
+                <h3>Your Notifications</h3>
+                <div th:each="notification : ${userNotifications}">
+
+
+                </div>
+            </div>
+        </div>
+        <!-- 5th TabPanel Profile-Account -->
+        <div class="tab-pane fade" id="profile-account" role="tabpanel" aria-labelledby="account-tab">
+            <div class="container">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
