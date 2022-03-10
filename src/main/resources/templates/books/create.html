@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <head th:include="partials :: head" />
 </head>
 <body>
-<nav th:include="partials :: navbar" />
+<nav th:replace="partials :: navbar" />
 
 <div>
     <form th:action="@{/books/create}" th:method="POST" th:object="${book}">

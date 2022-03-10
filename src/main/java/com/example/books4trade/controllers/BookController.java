@@ -47,21 +47,21 @@ public class BookController {
 
     @GetMapping("/books/{id}")
     public String individualBook(@PathVariable long id, Model model){
-        model.addAttribute("singleBook", booksDao.getById(id));
+        model.addAttribute("book", booksDao.getById(id));
         return "/books/show";
     }
 
 //    Update
 //    show form
 
-    @GetMapping("/books/{id}/edit")
+    @GetMapping("/book/{id}/edit")
     public String showUpdateForm(@PathVariable long id, Model model){
         Book book = booksDao.getById(id);
         model.addAttribute("book", book);
         return "/books/edit";
     }
 
-    @PostMapping("/books/{id}/edit")
+    @PostMapping("/book/{id}/edit")
     public String submitUpdateForm(@ModelAttribute Book book, Model model){
         booksDao.save(book);
         return "redirect:/books/" + book.getId();
