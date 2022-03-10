@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:include="partials :: navbar" />
+
+<div>
+    <form th:action="books/create" th:method="POST" th:object="book">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" name="title" class="form-control" type="text" th:field="*{title}">
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input id="author" name="author" class="form-control" type="text" th:field="*{author}">
+        </div>
+        <div class="form-group">
+            <label for="summary">Summary</label>
+            <input id="summary" name="summary" class="form-control" type="textarea" th:field="*{summary}">
+        </div>
+        <!-- Add Select for Categories, Grade Level -->
+    </form>
+</div>
+
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
+</body>
+</html>

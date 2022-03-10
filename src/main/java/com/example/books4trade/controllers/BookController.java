@@ -32,13 +32,13 @@ public class BookController {
 //    Create
     @GetMapping("/books/create")
     private String showCreateForm(Model model){
-        model.addAttribute("newBook", new Book());
+        model.addAttribute("book", new Book());
         return "books/create";
     }
 
     @PostMapping("books/create")
-    private String submitCreateBookForm(@ModelAttribute Book newBook){
-        booksDao.save(newBook);
+    private String submitCreateBookForm(@ModelAttribute Book book){
+        booksDao.save(book);
         return "/books";
     }
 
@@ -58,7 +58,7 @@ public class BookController {
     public String showUpdateForm(@PathVariable long id, Model model){
         Book book = booksDao.getById(id);
         model.addAttribute("book", book);
-        return "books/create";
+        return "books/edit";
     }
 
     @PostMapping("/books/{id}/edit")
