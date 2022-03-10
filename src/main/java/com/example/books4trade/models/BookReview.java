@@ -32,10 +32,10 @@ public class BookReview {
     private String uploadPath;
 
     @Column(nullable = false)
-    private int rating;
+    private String rating;
 
     @Column(nullable = false)
-    private Date createdOn;
+    private String createdOn;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -49,12 +49,14 @@ public class BookReview {
     public BookReview() {
     }
 
-    public BookReview(String title, String body) {
+    public BookReview(String title, String body, String rating, String createdOn) {
         this.title = title;
         this.body = body;
+        this.rating = rating;
+        this.createdOn = createdOn;
     }
 
-    public BookReview(long id, String title, String body, String uploadPath, int rating, Date createdOn) {
+    public BookReview(long id, String title, String body, String uploadPath, String rating, String createdOn) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -63,7 +65,7 @@ public class BookReview {
         this.createdOn = createdOn;
     }
 
-    public BookReview(long id, String title, String body, int rating) {
+    public BookReview(long id, String title, String body, String rating) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -71,10 +73,7 @@ public class BookReview {
         this.rating = rating;
     }
 
-
-
-
-    public BookReview(String title, String body, String uploadPath, int rating, Date createdOn) {
+    public BookReview(String title, String body, String uploadPath, String rating, String createdOn) {
         this.title = title;
         this.body = body;
         this.uploadPath = uploadPath;
@@ -114,19 +113,19 @@ public class BookReview {
         this.uploadPath = uploadPath;
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
-    public Date getCreatedOn() {
+    public String getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
+    public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
     }
 }
