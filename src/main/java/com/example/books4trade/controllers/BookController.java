@@ -26,20 +26,20 @@ public class BookController {
    @GetMapping("/books")
     public String ShowBooks(Model model){
         model.addAttribute("allBooks", booksDao.findAll());
-        return "books/index";
+        return "/books/index";
     }
   
 //    Create
     @GetMapping("/books/create")
     private String showCreateForm(Model model){
-        model.addAttribute("newBook", new Book());
-        return "books/create";
+        model.addAttribute("book", new Book());
+        return "/books/create";
     }
 
-    @PostMapping("books/create")
-    private String submitCreateBookForm(@ModelAttribute Book newBook){
-        booksDao.save(newBook);
-        return "/books";
+    @PostMapping("/books/create")
+    private String submitCreateBookForm(@ModelAttribute Book book){
+        booksDao.save(book);
+        return "redirect: books/" + book.getId();
     }
 
 
@@ -48,7 +48,7 @@ public class BookController {
     @GetMapping("/books/{id}")
     public String individualBook(@PathVariable long id, Model model){
         model.addAttribute("singleBook", booksDao.getById(id));
-        return "books/show";
+        return "/books/show";
     }
 
 //    Update
@@ -58,13 +58,14 @@ public class BookController {
     public String showUpdateForm(@PathVariable long id, Model model){
         Book book = booksDao.getById(id);
         model.addAttribute("book", book);
-        return "books/create";
+        return "/books/edit";
     }
 
     @PostMapping("/books/{id}/edit")
     public String submitUpdateForm(@ModelAttribute Book book, Model model){
         booksDao.save(book);
         return "redirect:books/" + book.getId();
+
     }
 
 //    Delete
