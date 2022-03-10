@@ -2,11 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title></title>
+	<title>Individual Ad</title>
+	<head th:include="partials :: head" />
 </head>
 <body>
 
-<h1>Review</h1>
 
+<div class="card" style="width: 300px;">
+	<div class="card-body">
+		<h5 class="card-title" th:text="${individualReview.title}">Eiffel Tower</h5>
+		<p class="card-text" th:text="${individualReview.body}">Built in 1889 Eiffel Tower is one of the most iconic landmarks in the world.</p>
+		<p class="card-text" th:text="'Rating:' + ' ' + ${individualReview.rating}"></p>
+		<p class="card-text" th:text="'Posted:' + ' ' + ${individualReview.createdOn}"></p>
+	</div>
+</div>
+
+<footer th:replace="partials :: footer"/>
 </body>
 </html>

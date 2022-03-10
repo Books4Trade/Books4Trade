@@ -11,17 +11,17 @@
 <div class="container mt-5 mb-5">
 <div class="mb-3">
 	<label for="title" class="form-label">Title</label>
-	<input th:field="*{title}" type="text" class="form-control" id="title" name="title" placeholder="Review Title">
+	<input th:field="*{title}" type="text" class="form-control" id="title" name="title" placeholder="Review Title" minlength="3" maxlength="255">
 </div>
 
 <div class="mb-3">
 	<label for="body" class="form-label">Write a review</label>
-	<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body" placeholder="Body"></textarea>
+	<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body" placeholder="Body" minlength="3" maxlength="255"></textarea>
 </div>
 
 <div class="mb-3">
 	<label for="rating" class="form-label">Rate book (1-5)</label>
-	<input th:field="*{rating}" type="text" class="form-control" id="rating" name="rating" placeholder="Choose 1-5">
+	<input th:field="*{rating}" type="text" class="form-control" id="rating" name="rating" placeholder="Choose 1-5" minlength="1" maxlength="1">
 </div>
 
 	<div class="mb-3">
@@ -32,7 +32,6 @@
 	<button type="submit" class="btn btn-primary">Submit</button>
 </div>
 </form>
-
 
 <footer th:replace="partials :: footer"/>
 

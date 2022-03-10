@@ -63,7 +63,7 @@ public class BookReviewController {
 
     @GetMapping("reviews/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
-        model.addAttribute("review",bookReviewDao.getById(id));
+        model.addAttribute("editReview",bookReviewDao.getById(id));
         return "/reviews/edit";
     }
 
@@ -78,10 +78,10 @@ public class BookReviewController {
 //    }
 
     @PostMapping("/reviews/{id}/edit")
-        public String submitEdit(@ModelAttribute BookReview editedReview, @PathVariable long id){
-            editedReview = bookReviewDao.getById(id);
-            editedReview.setTitle(editedReview.getTitle());
-            editedReview.setBody(editedReview.getBody());
+        public String submitEdit(@ModelAttribute BookReview editedReview){
+            BookReview postToEdit = bookReviewDao.getById(editedReview.getId());
+            postToEdit.setTitle(editedReview.getTitle());
+            postToEdit.setBody(editedReview.getBody());
             bookReviewDao.save(editedReview);
             return "redirect:/reviews";
         }
