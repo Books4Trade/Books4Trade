@@ -7,75 +7,102 @@
     <head th:include="partials :: head" />
 </head>
 <body>
-<nav th:replace="partials :: navbar" />
+<nav th:include="partials :: navbar" />
 <h2>Hello <span th:text="${#authentication.principal.username}"/>!</h2>
 <hr>
-<!-- Main Panel Container Below -->
+<!-- Main Page Container Below -->
 <div class="container">
-    <nav>
-        <!-- Main Panel Container Below -->
-        <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
-            <a class="nav-link active" id="mybooks-tab" data-toggle="tab" href="#profile-books" role="tab" aria-controls="profile-books" aria-selected="true">
-                My Books</a>
-            <a class="nav-link" id="myreviews-tab" data-toggle="tab" href="#profile-reviews" role="tab" aria-controls="profile-reviews" aria-selected="false">
-                My Reviews</a>
-            <a class="nav-link" id="mytrades-tab" data-toggle="tab" href="#profile-trades" role="tab" aria-controls="profile-trades" aria-selected="false">
-                My Trades</a>
-            <a class="nav-link" id="notifications-tab" data-toggle="tab" href="#profile-notifications" role="tab" aria-controls="profile-notifications" aria-selected="false">
-                My Notifications</a>
-            <a class="nav-link" id="account-tab" data-toggle="tab" href="#profile-account" role="tab" aria-controls="profile-account" aria-selected="false">
-                Account Management</a>
-        </div>
-    </nav>
 
-    <div class="tab-content" id="nav-tabContent">
-        <!-- 1st TabPanel Profile-Books -->
-        <div class="tab-pane fade show active" id="profile-books" role="tabpanel" aria-labelledby="mybooks-tab">
-            <div class="container">
-                <h3>Your Books</h3>
-                <div th:each="book : ${usersBooks}">
+    <!-- Tab-Pill Controller -->
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-mybooks-tab" data-bs-toggle="pill" data-bs-target="#pills-mybooks" type="button" role="tab" aria-controls="pills-mybooks" aria-selected="true">
+                My Books</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-myreviews-tab" data-bs-toggle="pill" data-bs-target="#pills-myreviews" type="button" role="tab" aria-controls="pills-myreviews" aria-selected="false">
+                My Reviews</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-mytrades-tab" data-bs-toggle="pill" data-bs-target="#pills-mytrades" type="button" role="tab" aria-controls="pills-mytrades" aria-selected="false">
+                My Trades</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-mynotifications-tab" data-bs-toggle="pill" data-bs-target="#pills-mynotifications" type="button" role="tab" aria-controls="pills-mynotificatios" aria-selected="false">
+                My Notifications</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-mycategories-tab" data-bs-toggle="pill" data-bs-target="#pills-mycategories" type="button" role="tab" aria-controls="pills-mycategories" aria-selected="false">
+                My Categories</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-mywatchlist-tab" data-bs-toggle="pill" data-bs-target="#pills-mywatchlist" type="button" role="tab" aria-controls="pills-mywatchlist" aria-selected="false">
+                My Watchlist</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-myaccount-tab" data-bs-toggle="pill" data-bs-target="#pills-myaccount" type="button" role="tab" aria-controls="pills-myaccount" aria-selected="false">
+                My Account</button>
+        </li>
+    </ul>
+    <!-- Tab Content Container Below -->
+    <div class="tab-content" id="pills-tabContent">
+        <!-- 1st TabPanel pills-mybooks -->
+        <div class="tab-pane fade show active" id="pills-mybooks" role="tabpanel" aria-labelledby="pills-mybooks-tab">
+            <h3>Books</h3>
+            <div th:each="book : ${usersBooks}">
 
-
-                </div>
-            </div>
-        </div>
-        <!-- 2nd TabPanel Profile-Reviews -->
-        <div class="tab-pane fade" id="profile-reviews" role="tabpanel" aria-labelledby="myreviews-tab">
-            <div class="container">
-                <h3>Your Reviews</h3>
-                <div th:each="review : ${usersReviews}">
-
-
-                </div>
-            </div>
-        </div>
-        <!-- 3nd TabPanel Profile-Trades-->
-        <div class="tab-pane fade" id="profile-trades" role="tabpanel" aria-labelledby="mytrades-tab">
-            <div class="container">
-                <h3>Your Trades</h3>
-                <div th:each="trade : ${userTrades}">
-
-
-                </div>
-            </div>
-        </div>
-        <!-- 4th TabPanel Profile-Notifications -->
-        <div class="tab-pane fade" id="profile-notifications" role="tabpanel" aria-labelledby="notifications-tab">
-            <div class="container">
-                <h3>Your Notifications</h3>
-                <div th:each="notification : ${userNotifications}">
-
-
-                </div>
-            </div>
-        </div>
-        <!-- 5th TabPanel Profile-Account -->
-        <div class="tab-pane fade" id="profile-account" role="tabpanel" aria-labelledby="account-tab">
-            <div class="container">
 
             </div>
+            <p>stuff about the books</p>
+        </div>
+        <!-- 2nd TabPanel pills-myreviews-->
+        <div class="tab-pane fade" id="pills-myreviews" role="tabpanel" aria-labelledby="pills-myreviews-tab">
+            <h3>Reviews</h3>
+            <div th:each="review : ${usersReviews}">
+
+
+            </div>
+            <p>stuff about the reviews</p>
+        </div>
+        <!-- 3rd TabPanel pills-mytrades-->
+        <div class="tab-pane fade" id="pills-mytrades" role="tabpanel" aria-labelledby="pills-mytrades-tab">
+            <h3>Trades</h3>
+            <div th:each="trade : ${userTrades}">
+
+
+            </div>
+            <p>stuff about the trades</p>
+        </div>
+        <!-- 4th TabPanel pills-mynotifications -->
+        <div class="tab-pane fade" id="pills-mynotifications" role="tabpanel" aria-labelledby="pills-mynotificaitons-tab">
+            <h3>Notifications</h3>
+            <div th:each="notification : ${userNotifications}">
+
+
+            </div>
+            <p>stuff about the trades</p>
+        </div>
+        <!-- 5th TabPanel pills-mycategories -->
+        <div class="tab-pane fade" id="pills-mycategories" role="tabpanel" aria-labelledby="pills-mycategories-tab">
+            <h3>Favorite Categories</h3>
+
+
+        </div>
+        <!-- 6th TabPanel pills-mywatchlist -->
+        <div class="tab-pane fade" id="pills-mywatchlist" role="tabpanel" aria-labelledby="pills-mywatchlist-tab">
+            <h3>Watchlisted Books</h3>
+
+
+        </div>
+        <!-- 7th TabPanel pills-myaccount -->
+        <div class="tab-pane fade" id="pills-myaccount" role="tabpanel" aria-labelledby="pills-myaccount-tab">
+            <h3>Account Details</h3>
+
+            <p>Edit Form!</p>
         </div>
     </div>
 </div>
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
 </body>
 </html>
