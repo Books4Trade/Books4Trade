@@ -38,17 +38,17 @@ public class OwnedBook {
     //  CONSTRUCTORS
     public OwnedBook() {}
 
-    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradable) {
+    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable) {
         this.bookCondition = bookCondition;
         this.isOwned = isOwned;
-        this.isTradeable = isTradable;
+        this.isTradeable = isTradeable;
     }
 
-    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradable) {
+    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradeable) {
         this.id = id;
         this.bookCondition = bookCondition;
         this.isOwned = isOwned;
-        this.isTradeable = isTradable;
+        this.isTradeable = isTradeable;
     }
 
     //  bookOwned Book Constructor
@@ -77,7 +77,7 @@ public class OwnedBook {
     }
 
     //  ALL CONSTRUCTOR
-    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradeable, User user, Type type, Book bookOwned) {
+    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradeable, User user, Type type, Book book) {
         this.id = id;
         this.bookCondition = bookCondition;
         this.isOwned = isOwned;
@@ -100,7 +100,7 @@ public class OwnedBook {
     public void setBookCondtion(String bookCondtion) {
         this.bookCondition = bookCondtion;
     }
-    public boolean isOwned() {
+    public boolean getOwned() {
         return isOwned;
     }
     public void setOwned(boolean owned) {
@@ -112,10 +112,10 @@ public class OwnedBook {
     public void setTradable(boolean tradable) {
         isTradeable = tradable;
     }
-    public Book getBookOwned() {
+    public Book getBook() {
         return book;
     }
-    public void setBookOwned(Book bookOwned) {
+    public void setBookOwned(Book book) {
         this.book = book;
     }
     public User getUser() {
