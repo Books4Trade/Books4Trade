@@ -1,5 +1,6 @@
 package com.example.books4trade.controllers;
 
+import com.example.books4trade.models.Book;
 import com.example.books4trade.models.OwnedBook;
 import com.example.books4trade.models.Type;
 import com.example.books4trade.models.User;
@@ -32,7 +33,8 @@ public class OwnedBookController {
 
         @GetMapping("/books/{id}/copies/add")
         public String showCreateOwnedBook(@PathVariable long id, Model model) {
-                model.addAttribute("book", booksDao.findById(id));
+
+                model.addAttribute("book", booksDao.getById(id));
                 return"/owned-books/create-copy";
         }
 
