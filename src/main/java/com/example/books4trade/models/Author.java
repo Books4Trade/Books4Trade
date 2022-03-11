@@ -14,7 +14,7 @@ public class Author {
     private long id;
 
     @NotEmpty(message = "Please enter an author's name.")
-    @Size(min = 2, max = 255, message = "")
+    @Size(max = 255, message = "")
     private String fullname;
 
     //  1:n relationship with Book Model

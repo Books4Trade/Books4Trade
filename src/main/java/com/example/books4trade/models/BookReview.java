@@ -18,14 +18,13 @@ public class BookReview {
 
     @Column(nullable = false, length = 255)
     @NotBlank(message = "Must have a title")
-    @Size(min = 3, max = 255, message = "Title MINIMUM: 3, MAX: 255 characters .")
+    @Size(max = 255, message = "Title MINIMUM: 3, MAX: 255 characters .")
     private String title;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false)
     @NotBlank(message = "Must have a body")
-    @Size(min = 3, max = 255, message = "Title MINIMUM: 10, MAX: 500 characters .")
+    @Size(max = 1020, message = "Title MINIMUM: 10, MAX: 500 characters .")
     private String body;
-
 
     @Column(nullable = true)
     @Value("${file-upload-path}") //will need a file upload form
