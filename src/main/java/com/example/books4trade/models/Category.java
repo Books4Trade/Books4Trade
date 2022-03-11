@@ -12,7 +12,7 @@ public class Category {
     private long id;
 
     @Column (nullable = false, length = 255)
-    @Size(min = 2, max = 255, message = "MINIMUM: 2 characters, MAX: 255 characters.")
+    @Size(max = 255, message = "MINIMUM: 2 characters, MAX: 255 characters.")
     private String name;
 
     @ManyToMany(mappedBy = "categories")

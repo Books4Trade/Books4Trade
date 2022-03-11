@@ -14,11 +14,12 @@ public class Book {
     private long id;
 
     @NotBlank(message = "Books must have a title.")
-//    @Size(min = 2, max = 255, message = "Title should be between 2 and 255 Characters long")
+    @Size( max = 255, message = "Title should be between 2 and 255 Characters long")
     private String title;
 
     @NotBlank(message = "Summary must have some content.")
-//    @Size(min = 10, max = 500, message = "Summary should be at least 10 characters long and no more than 500 characters long.")
+    @Size( max = 500)
+
     private String summary;
 
     @Column
