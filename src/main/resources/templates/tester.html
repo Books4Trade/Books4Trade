@@ -10,18 +10,28 @@
     <script src="/static/js/keys.js"></script>
 </head>
 <body>
-<!--<div class="container pt-2">-->
-<!--    <div id="search">-->
-<!--        <form id="myform">-->
-<!--            <div class="input-field">-->
-<!--                <input type="search" id="books">-->
-<!--                <label for="search">Search Books</label>-->
-<!--            </div>-->
-<!--            <button class="btn btn-primary">Search Books</button>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
-
+<div class="container pt-2">
+    <div id="search">
+        <form id="myform">
+            <div class="input-field">
+                <input type="search" id="books">
+                <label for="search">Search Book Title</label>
+            </div>
+            <button class="btn btn-primary" id="submit">Search Book Title</button>
+        </form>
+    </div>
+</div>
+<div class="container pt-2">
+    <div id="searchAuthor">
+        <form id="myformAuthor">
+            <div class="input-field">
+                <input type="search" id="booksAuthor">
+                <label for="search">Search Book Author</label>
+            </div>
+            <button class="btn btn-primary" id="submitAuthor">Search Book Author</button>
+        </form>
+    </div>
+</div>
 
 <div id="content"></div>
 
@@ -32,7 +42,7 @@
 
 
 
-<script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter"></script>
+<!--<script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter"></script>-->
 <!--AJAX JQUERY-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- script for boostrap-->
