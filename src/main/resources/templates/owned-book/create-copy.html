@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>All reviews</title>
+	<head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+
+<h1>Add a copy of your <span th:text="${book.title}"></span></h1>
+
+<form th:action="@{/books/{id}/copy/add}" th:method="POST">
+
+<label for="bookCondition">Choose book condition:</label>
+<select name="bookCondition" id="bookCondition">
+	<option name="bookCondition" value="poor">Poor</option>
+	<option name="bookCondition" value="fair">Fair</option>
+	<option name="bookCondition" value="better">Better</option>
+	<option name="bookCondition" value="new">New</option>
+</select>
+
+<label for="isTradeable">Is the book tradeable?</label>
+<select name="isTradeable" id="isTradeable">
+	<option name="isTradeable" value="true">Yes</option>
+	<option name="isTradeable" value="false">No</option>
+</select>
+
+	<label for="bookType">Choose book type:</label>
+	<select name="bookType" id="bookType">
+		<option name="bookType" value="1">Paperback</option>
+		<option name="bookType" value="2">Hardback</option>
+		<option name="bookType" value="3">E-book</option>
+	</select>
+	<button type="submit" >Submit</button>
+
+</form>
+
+
+<footer th:replace="partials :: footer"/>
+
+<body th:include="partials :: scripts-bottom" />
+</body>
+</html>
