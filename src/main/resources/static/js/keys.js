@@ -1,1 +1,0 @@
-const GB_API = 'AIzaSyCP9vs3COwW4Eq03OjYJ1V6sZBiLgC1JDY';
