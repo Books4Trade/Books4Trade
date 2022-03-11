@@ -50,7 +50,7 @@ public class OwnedBookController {
         @GetMapping("/books/{id}/copies")
         public String showAllCopiesOfBook(@PathVariable long id, Model model){
                 model.addAttribute("book", booksDao.findById(id));
-                model.addAttribute("allBooks", ownedBooksDao.findOwnedBooksByBookId(booksDao.getById(id)));
+                model.addAttribute("allBooks", ownedBooksDao.findOwnedBooksByBook(booksDao.getById(id)));
                 return "/owned-books/copies-index";
         }
 

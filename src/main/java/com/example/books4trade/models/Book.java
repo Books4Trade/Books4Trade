@@ -67,7 +67,7 @@ public class Book {
 
 
     //  1:n relationship with owned_books
-    @OneToMany(mappedBy = "bookOwned")
+    @OneToMany(mappedBy = "book")
     private List<OwnedBook> ownedBooks;
 
     //  CONSTRUCTORS

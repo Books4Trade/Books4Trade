@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface OwnedBookRepository extends JpaRepository<OwnedBook, Long> {
-    List<OwnedBook> findOwnedBooksByBookId(Book book);
+    List<OwnedBook> findOwnedBooksByBook(Book book);
 }

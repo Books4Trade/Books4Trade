@@ -33,7 +33,7 @@ public class OwnedBook {
     //  need to add 1:n relationship with Books
     @ManyToOne
     @JoinColumn(name = "book_id")
-    private Book bookOwned;
+    private Book book;
 
     //  CONSTRUCTORS
     public OwnedBook() {}
@@ -52,12 +52,12 @@ public class OwnedBook {
     }
 
     //  bookOwned Book Constructor
-    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable, User user, Book bookOwned) {
+    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable, User user, Book book) {
         this.bookCondition = bookCondition;
         this.isOwned = isOwned;
         this.isTradeable = isTradeable;
         this.user = user;
-        this.bookOwned = bookOwned;
+        this.book = book;
     }
 
     //  bookOwned User Constructor
@@ -84,7 +84,7 @@ public class OwnedBook {
         this.isTradeable = isTradeable;
         this.user = user;
         this.type = type;
-        this.bookOwned = bookOwned;
+        this.book = book;
     }
 
     //  GETTERS/SETTERS
@@ -113,10 +113,10 @@ public class OwnedBook {
         isTradeable = tradable;
     }
     public Book getBookOwned() {
-        return bookOwned;
+        return book;
     }
     public void setBookOwned(Book bookOwned) {
-        this.bookOwned = bookOwned;
+        this.book = book;
     }
     public User getUser() {
         return user;

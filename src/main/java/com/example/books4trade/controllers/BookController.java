@@ -19,12 +19,12 @@ import java.util.ArrayList;
 public class BookController {
     private BookRepository booksDao;
     private UserRepository usersDao;
-    private OwnedBookRepository ownedBookDao;
+    private OwnedBookRepository ownedBooksDao;
 
-    public BookController(BookRepository bookDao, UserRepository usersDao, OwnedBookRepository ownedBookDao){
+    public BookController(BookRepository bookDao, UserRepository usersDao, OwnedBookRepository ownedBooksDao){
         this.booksDao = bookDao;
         this.usersDao = usersDao;
-        this.ownedBookDao = ownedBookDao;
+        this.ownedBooksDao = ownedBooksDao;
     }
   
    @GetMapping("/books")
@@ -64,7 +64,7 @@ public class BookController {
     public String showUpdateForm(@PathVariable long id, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 //        Book book = booksDao.getById(id);
-        OwnedBook ownedBook = ownedBookDao.getById(id);
+        OwnedBook ownedBook = ownedBooksDao.getById(id);
         if(user.getId() == ownedBook.getUser().getId())
         model.addAttribute("book", ownedBook);
         return "/books/edit";
