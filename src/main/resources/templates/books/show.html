@@ -13,7 +13,7 @@
 
 <div>
     <h1 th:text="${book.title}">Book Title</h1>
-<!--    <h2 >By:<span th:text="${book.getAuthor}"></span></h2>-->
+    <h2 >By:<span th:text="${book.getAuthor().getFullname()}"></span></h2>
     <p th:text="${book.summary}">Summary</p>
 </div>
 
@@ -21,9 +21,8 @@
 <!--    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>-->  
 </div>
     <a href="">Add to Watchlist</a>
-    <a href="">Add a Copy</a>
+    <a th:href="|/books/${book.getId()}/copies/add|">Add A Copy You Own</a>
 </div>
-
 <div>
     <p># Members Read/ Reviews/ Owned/ For Trade</p>
 </div>

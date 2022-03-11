@@ -1,9 +1,11 @@
 package com.example.books4trade.controllers;
 
 
+import com.example.books4trade.models.Author;
 import com.example.books4trade.models.Book;
 import com.example.books4trade.models.OwnedBook;
 import com.example.books4trade.models.User;
+import com.example.books4trade.repositories.AuthorRepository;
 import com.example.books4trade.repositories.BookRepository;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.UserRepository;
@@ -19,11 +21,13 @@ import java.util.ArrayList;
 public class BookController {
     private BookRepository booksDao;
     private UserRepository usersDao;
+    private AuthorRepository authorsDao;
     private OwnedBookRepository ownedBooksDao;
 
-    public BookController(BookRepository bookDao, UserRepository usersDao, OwnedBookRepository ownedBooksDao){
+    public BookController(BookRepository bookDao, UserRepository usersDao, AuthorRepository authorsDao, OwnedBookRepository ownedBooksDao){
         this.booksDao = bookDao;
         this.usersDao = usersDao;
+        this.authorsDao = authorsDao;
         this.ownedBooksDao = ownedBooksDao;
     }
   
@@ -41,8 +45,14 @@ public class BookController {
     }
 
     @PostMapping("/books/create")
-    private String submitCreateBookForm(@ModelAttribute Book book){
-        booksDao.save(book);
+    private String submitCreateBookForm(@ModelAttribute Book book, @RequestParam(name = "author") String author){
+
+        if(authorsDao.findAuthorByFullname(author) == null){
+            book.setAuthor(new Author(author));
+        } else {
+            book.setAuthor(authorsDao.findAuthorByFullname(author));
+        }
+        booksDao.save(book);   
         return "redirect:/books/"+book.getId();
     }
 
