@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Books4TradeApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(Books4TradeApplication.class, args);
+
     }
 
 }
