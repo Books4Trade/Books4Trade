@@ -45,10 +45,13 @@ public class BookController {
     }
 
     @PostMapping("/books/create")
-    private String submitCreateBookForm(@ModelAttribute Book book, @RequestParam(name = "author") String author){
-
+    private String submitCreateBookForm(@RequestParam(name="title") String title, @RequestParam(name="summary") String summary, @RequestParam(name = "author") String author, Model model){
+        Book book = new Book();
+        book.setTitle(title);
+        book.setSummary(summary);
         if(authorsDao.findAuthorByFullname(author) == null){
-            book.setAuthor(new Author(author));
+            Author newAuthor = authorsDao.save(new Author(author));
+            book.setAuthor(newAuthor);
         } else {
             book.setAuthor(authorsDao.findAuthorByFullname(author));
         }

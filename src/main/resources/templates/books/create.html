@@ -8,10 +8,10 @@
 <nav th:replace="partials :: navbar" />
 
 <div>
-    <form th:action="@{/books/create}" th:method="POST" th:object="${book}">
+    <form th:action="@{/books/create}" th:method="POST">
         <div class="form-group">
             <label for="title">Title</label>
-            <input id="title" name="title" class="form-control" type="text" th:field="*{title}">
+            <input id="title" name="title" class="form-control" type="text">
         </div>
         <div class="form-group">
             <label for="author">Author</label>
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label for="summary">Summary</label>
-            <input id="summary" name="summary" class="form-control" type="textarea" th:field="*{summary}">
+            <input id="summary" name="summary" class="form-control" type="textarea">
         </div>
         <!-- Add Select for Categories, Grade Level -->
         <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Add Book</button>
