@@ -30,30 +30,32 @@ public class OwnedBookController {
                 this.ownedBooksDao = ownedBooksDao;
         }
 
-        @GetMapping("/books/{id}/copy/add")
+        @GetMapping("/books/{id}/copies/add")
         public String showCreateOwnedBook(@PathVariable long id, Model model) {
                 model.addAttribute("book", booksDao.findById(id));
                 return"/owned-book/create-copy";
         }
 
-        @PostMapping("/books/{id}/copy/add")
-        public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam (name = "isTradeable") boolean isTradeable, @RequestParam (name = "bookType") Type bookType ) {
+        @PostMapping("/books/{id}/copies/add")
+        public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") Type bookType) {
                 OwnedBook ownedBook = new OwnedBook();
                 ownedBook.setBookOwned(booksDao.getById(id));
                 ownedBook.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
                 ownedBook.setBookCondtion(bookCondition);
                 ownedBook.setTradable(isTradeable);
                 ownedBook.setType(bookType);
-                return "redirect:/owned-book";
+                ownedBook = ownedBooksDao.save(ownedBook);
+                return "redirect:/books/"+id+"/copies/"+ownedBook.getId();
         }
-        @GetMapping("/books/{id}/copy")
-        public String showAllOwnedCopies(@PathVariable long id, Model model){
-                model.addAttribute("allBooks",)
-                return "books/index";
+        @GetMapping("/books/{id}/copies")
+        public String showAllCopiesOfBook(@PathVariable long id, Model model){
+                model.addAttribute("book", booksDao.findById(id));
+                model.addAttribute("allBooks", ownedBooksDao.findOwnedBooksByBookId(booksDao.getById(id)));
+                return "/owned-book/index";
         }
 
-        @GetMapping("/books/{id}/copy/{copyid}")
-        public String showOwnedBook(@PathVariable long id, @PathVariable long copyid, Model model){
+        @GetMapping("/books/{id}/copies/{copyid}")
+        public String showOneOwnedBook(@PathVariable long id, @PathVariable long copyid, Model model){
                 return "/owned-book/show";
         }
 
