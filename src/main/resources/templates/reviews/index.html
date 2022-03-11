@@ -5,7 +5,7 @@
 	<title>Reviews</title>
 	<head th:include="partials :: head" />
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
 
 <nav th:replace="partials :: navbar" />
 <div class="container">
@@ -21,7 +21,6 @@
 </div>
 </div>
 
-
-<footer th:replace="partials :: footer"/>
-</body>
+<footer th:include="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
 </html>

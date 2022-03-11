@@ -5,7 +5,7 @@
 	<title>Edit a Review</title>
 	<head th:include="partials :: head" />
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
 
 <form th:action="@{/reviews/{id}/edit (id = ${editReview.getId()})}" th:method="POST" th:object="${editReview}">
 
@@ -36,7 +36,7 @@
 	</div>
 </form>
 
-<footer th:replace="partials :: footer"/>
-
+<footer th:include="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
 </body>
 </html>
