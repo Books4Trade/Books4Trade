@@ -2,8 +2,10 @@ package com.example.books4trade.controllers;
 
 
 import com.example.books4trade.models.Book;
+import com.example.books4trade.models.OwnedBook;
 import com.example.books4trade.models.User;
 import com.example.books4trade.repositories.BookRepository;
+import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,10 +19,12 @@ import java.util.ArrayList;
 public class BookController {
     private BookRepository booksDao;
     private UserRepository usersDao;
+    private OwnedBookRepository ownedBookDao;
 
-    public BookController(BookRepository bookDao, UserRepository usersDao){
+    public BookController(BookRepository bookDao, UserRepository usersDao, OwnedBookRepository ownedBookDao){
         this.booksDao = bookDao;
         this.usersDao = usersDao;
+        this.ownedBookDao = ownedBookDao;
     }
   
    @GetMapping("/books")
@@ -52,12 +56,17 @@ public class BookController {
     }
 
 //    Update
-//    show form
+
+
+
 
     @GetMapping("/book/{id}/edit")
     public String showUpdateForm(@PathVariable long id, Model model){
-        Book book = booksDao.getById(id);
-        model.addAttribute("book", book);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+//        Book book = booksDao.getById(id);
+        OwnedBook ownedBook = ownedBookDao.getById(id);
+        if(user.getId() == ownedBook.getUser().getId())
+        model.addAttribute("book", ownedBook);
         return "/books/edit";
     }
 

@@ -19,6 +19,7 @@ public class Book {
 
     @NotBlank(message = "Summary must have some content.")
     @Size( max = 500)
+
     private String summary;
 
     @Column
