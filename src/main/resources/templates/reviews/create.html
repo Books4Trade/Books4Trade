@@ -5,7 +5,7 @@
 	<title>All reviews</title>
 	<head th:include="partials :: head" />
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <form th:action="@{/reviews/create}" th:method="POST" th:object="${bookReview}">
 <div class="container mt-5 mb-5">
