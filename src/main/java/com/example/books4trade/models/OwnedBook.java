@@ -11,16 +11,13 @@ public class OwnedBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Please enter either Poor/Fair/Good/Better/New.")
-    @Size(min = 3, max = 6, message = "Condition should be between 3 and 6 characters long")
+    @Column
     private String bookCondition;
 
-    @NotNull
-    @AssertTrue
+    @Column
     private boolean isOwned;
 
-    @NotNull
-    @AssertFalse
+    @Column
     private boolean isTradeable;
 
     //  need to add 1:n relationship from Users
