@@ -94,7 +94,7 @@ public class OwnedBook {
     public void setId(long id) {
         this.id = id;
     }
-    public String getBookCondtion() {
+    public String getBookCondition() {
         return bookCondition;
     }
     public void setBookCondtion(String bookCondtion) {

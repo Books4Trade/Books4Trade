@@ -33,7 +33,7 @@ public class OwnedBookController {
         @GetMapping("/books/{id}/copies/add")
         public String showCreateOwnedBook(@PathVariable long id, Model model) {
                 model.addAttribute("book", booksDao.findById(id));
-                return"/owned-book/create-copy";
+                return"/owned-books/create-copy";
         }
 
         @PostMapping("/books/{id}/copies/add")
@@ -51,12 +51,12 @@ public class OwnedBookController {
         public String showAllCopiesOfBook(@PathVariable long id, Model model){
                 model.addAttribute("book", booksDao.findById(id));
                 model.addAttribute("allBooks", ownedBooksDao.findOwnedBooksByBookId(booksDao.getById(id)));
-                return "/owned-book/index";
+                return "/owned-books/copies-index";
         }
 
         @GetMapping("/books/{id}/copies/{copyid}")
         public String showOneOwnedBook(@PathVariable long id, @PathVariable long copyid, Model model){
-                return "/owned-book/show";
+                return "/owned-books/show";
         }
 
 

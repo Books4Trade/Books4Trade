@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+
+<h1>Here are all copies of <span th:text="${book.getTitle()}"></span> our users own.</h1>
+
+<div class="d-flex flex-row flex-wrap justify-content-evenly">
+    <div class="book-card" th:each="ownedbook : ${allBooks}">
+        <div class="card-body">Owned By: <span th:text="${ownedbook.getUser().getUsername()}"></span> </div>
+        <div class="card-body">Condition: <span th:text="${ownedbook.getBookCondition()}"></span> </div>
+        <div class="card-body">Available for Trade:
+            <span th:if="${ownedbook.isTradable()}" class="green">Yes</span>
+            <span th:if="${!ownedbook.isTradable()}" class="red">No</span>
+        </div>
+        <div class="card-body">
+            <a th:href="|/books/${book.getId()}/copies/${ownedbook.getId()}|">View This Copy</a>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" /></body>
+</body>
+</html>
