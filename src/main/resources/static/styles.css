@@ -18,3 +18,17 @@ body {
     margin: 0;
     padding: .4em;
 }
+
+/*.featured {*/
+/*    border: 1px red solid;   */
+/*}*/
+
+.featured-col {
+    background: saddlebrown;
+    border: 1px red solid;
+}
+
+.register-col {
+    background: saddlebrown;
+    border: 1px red solid;
+}
