@@ -33,7 +33,6 @@ public class OwnedBookController {
 
         @GetMapping("/books/{id}/copies/add")
         public String showCreateOwnedBook(@PathVariable long id, Model model) {
-
                 model.addAttribute("book", booksDao.getById(id));
                 return"/owned-books/create-copy";
         }

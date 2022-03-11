@@ -10,21 +10,20 @@
 
 <h1>Add a copy of your <span th:text="${book.getTitle()}"></span></h1>
 
-<form th:action="@{/books/{id}/copy/add}" th:method="POST">
+<form th:action="|/books/${book.getId()}/copies/add|" th:method="POST">
+	<label for="bookCondition">Choose book condition:</label>
+	<select name="bookCondition" id="bookCondition">
+		<option name="bookCondition" value="poor">Poor</option>
+		<option name="bookCondition" value="fair">Fair</option>
+		<option name="bookCondition" value="better">Better</option>
+		<option name="bookCondition" value="new">New</option>
+	</select>
 
-<label for="bookCondition">Choose book condition:</label>
-<select name="bookCondition" id="bookCondition">
-	<option name="bookCondition" value="poor">Poor</option>
-	<option name="bookCondition" value="fair">Fair</option>
-	<option name="bookCondition" value="better">Better</option>
-	<option name="bookCondition" value="new">New</option>
-</select>
-
-<label for="isTradeable">Is the book tradeable?</label>
-<select name="isTradeable" id="isTradeable">
-	<option name="isTradeable" value="true">Yes</option>
-	<option name="isTradeable" value="false">No</option>
-</select>
+	<label for="isTradeable">Is the book tradeable?</label>
+	<select name="isTradeable" id="isTradeable">
+		<option name="isTradeable" value="true">Yes</option>
+		<option name="isTradeable" value="false">No</option>
+	</select>
 
 	<label for="bookType">Choose book type:</label>
 	<select name="bookType" id="bookType">
