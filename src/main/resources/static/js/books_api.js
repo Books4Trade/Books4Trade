@@ -13,13 +13,22 @@ $(document).ready(function(){
             .then(resp => resp.json())
             .then(data => {
                 console.log(data);
-                let title = data.title;
-                let content = $('#content');
-                for (var i = 0; i < data.items.length; i++) {
-                    var item = data.items[i];
-                    // in production code, item.text should have the HTML entities escaped.
-                    document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title + ", Author: " + item.volumeInfo.authors;
-                    console.log(item);
+                let content = document.getElementById("search-results");
+                // content.innerHTML = "<form>"
+                for (let i = 0; i < data.items.length; i++) {
+                    let item = data.items[i],
+                    title = item.volumeInfo.title,
+                    author = item.volumeInfo.authors,
+                    preview = item.volumeInfo.previewLink,
+                    img = item.volumeInfo.imageLinks.smallThumbnail;
+                    content.innerHTML +=
+                        "<br>"
+                        + "<img src='"+ img + "' alt='book cover'/> "
+                        + title
+                        + ", Author: " + author
+                        + " <a href=\"" + preview + "\">Preview Book</a>"
+                        + "<br>";
+                    console.log(title);
                 }
             })
             .catch(err => console.error(err));
