@@ -19,9 +19,6 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-<header>
-    <h1 class="text-center">Search Results</h1>
-</header>
 <div class="container">
     <form id="book-search">
         <div class="input-field">
@@ -31,7 +28,9 @@
         <button class="btn btn-primary" id="submit">Search Book Title</button>
     </form>
 </div>
-    
+<header>
+    <h1 class="text-center">Search Results</h1>
+</header>
 <main class="container">
     <form action="" method="">
         <ul id="search-results"></ul>

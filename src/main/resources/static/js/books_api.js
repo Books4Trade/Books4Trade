@@ -27,7 +27,7 @@ $(document).ready(function(){
                         "<h5>" + title + "</h5>" +
                         "<p>Author: " + author + "</p>" +
                         "<a href='" + preview + "'>Preview Book</a>" + " " +
-                        "<input class='form-check-input' type='radio' name='flexRadio'" +
+                        "<input class='form-check-input' type='radio' name='flexRadio'>" +
                         "</div>" +
                         "</li><br>";
                 }
@@ -61,7 +61,7 @@ $(document).ready(function(){
                         "<h5>" + title + "</h5>" +
                         "<p>Author: " + author + "</p>" +
                         "<a href='" + preview + "'>Preview Book</a>" + " " +
-                        "<input class='form-check-input' type='radio' name='flexRadio'" +
+                        "<input class='form-check-input' type='radio' name='flexRadio'>" +
                         "</div>" +
                         "</li><br>";
                 }
