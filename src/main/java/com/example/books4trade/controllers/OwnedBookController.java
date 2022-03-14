@@ -1,5 +1,6 @@
 package com.example.books4trade.controllers;
 
+import com.example.books4trade.models.Book;
 import com.example.books4trade.models.OwnedBook;
 import com.example.books4trade.models.Type;
 import com.example.books4trade.models.User;
@@ -32,18 +33,19 @@ public class OwnedBookController {
 
         @GetMapping("/books/{id}/copies/add")
         public String showCreateOwnedBook(@PathVariable long id, Model model) {
-                model.addAttribute("book", booksDao.findById(id));
+                model.addAttribute("book", booksDao.getById(id));
                 return"/owned-books/create-copy";
         }
 
         @PostMapping("/books/{id}/copies/add")
-        public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") Type bookType) {
+        public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") long bookType) {
                 OwnedBook ownedBook = new OwnedBook();
+                User currentUser = (User )SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 ownedBook.setBookOwned(booksDao.getById(id));
-                ownedBook.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+                ownedBook.setUser(currentUser);
                 ownedBook.setBookCondtion(bookCondition);
                 ownedBook.setTradable(isTradeable);
-                ownedBook.setType(bookType);
+                ownedBook.setType(typesDao.getById(bookType));
                 ownedBook = ownedBooksDao.save(ownedBook);
                 return "redirect:/books/"+id+"/copies/"+ownedBook.getId();
         }
