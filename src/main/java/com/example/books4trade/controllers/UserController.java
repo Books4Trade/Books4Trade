@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.constraints.Email;
 import java.util.List;
 
 @Controller
@@ -55,4 +56,31 @@ public class UserController {
         return "users/profile";
 
     }
+
+    @GetMapping("/forgot")
+    public String showForgotPasswordForm(){
+
+        return "users/forgot";
+    }
+
+
+
+
+    @PostMapping("/forgot")
+    public String forgotPasswordSubmit(@RequestParam(name="email") String email, @RequestParam(name="password") String password, @RequestParam(name="username") String username, @RequestParam(name="password-confirm") String passwordConfirm){
+        User user = userDao.findByEmail(email);
+
+        if (username.equals(user.getUsername()) && email.equals(user.getEmail())) {
+            String hash = passwordEncoder.encode(password);
+
+            if(password.equals(passwordConfirm)){
+                user.setPassword(hash);
+                userDao.save(user);
+            }
+
+        }
+
+        return "redirect:/login";
+    }
+
 }

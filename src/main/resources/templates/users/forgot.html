@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+
+<div>
+    <div class="container">
+
+        <div class="box">
+            <form method="POST" th:action="@{/forgot}">
+            <h5 text-align="center">Forgot Your Password?</h5>
+            <div class="form-outline">
+<!--                <label for="firstName">First Name</label>-->
+<!--                <input type="text" id="firstName" name="firstName">-->
+<!--                <label for="lastName">Last Name</label>-->
+<!--                <input type="text" id="lastName" name="lastName">-->
+                <label for="email">Email</label><input type="text" id="email" name="email" />
+            </div>
+
+                <div class="form-outline">
+                    <label for="username">Username</label><input type="text" id="username" name="username" />
+                </div>
+                <label for="password">New Password</label>
+                <input type="password" id="password" name="password">
+                <label for="password-confirm">Confirm New Password</label>
+                <input type="password" id="password-confirm" name="password-confirm">
+                <button type="submit" class=login-btn>Get new password</button>
+                <br>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+<span th:include="partials :: scripts-bottom" />
+</body>
+</html>
