@@ -1,11 +1,13 @@
+create database if not exists booksfortrade_db;
 USE booksfortrade_db;
 
+
 -- GRADELEVELS MODEL --
-DROP TABLE IF EXISTS gradeLevels;
+# DROP TABLE IF EXISTS grade_levels;
 
-CREATE TABLE IF NOT EXISTS gradeLevels;
-
-INSERT INTO gradeLevels(id, grade)
+# CREATE TABLE IF NOT EXISTS grade_levels;
+truncate grade_levels;
+INSERT INTO grade_levels(id, grade)
 VALUES(1,1),
        (2, 2),
        (3, 3),
@@ -19,12 +21,12 @@ VALUES(1,1),
        (11, 11),
        (12, 12);
 
-SELECT * FROM gradeLevels;
+SELECT * FROM grade_levels;
 
 -- TYPES MODEL --
-DROP TABLE IF EXISTS types;
+truncate types;
 
-CREATE TABLE IF NOT EXISTS types;
+
 
 INSERT INTO types(id, name)
 VALUES(1,'Paperback'),
@@ -34,9 +36,9 @@ VALUES(1,'Paperback'),
 SELECT * FROM types;
 
 
-CREATE TABLE IF NOT EXISTS roles;
-
-INSERT INTO roles(id,role)
+# CREATE TABLE IF NOT EXISTS roles;
+truncate roles;
+INSERT INTO roles(id,name)
 VALUES(1, 'User'),
        (2, 'Admin'),
        (3, 'Inactive');
