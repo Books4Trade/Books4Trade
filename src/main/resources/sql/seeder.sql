@@ -32,3 +32,12 @@ VALUES(1,'Paperback'),
       (3, 'e-Book');
 
 SELECT * FROM types;
+
+
+CREATE TABLE IF NOT EXISTS roles;
+
+INSERT INTO roles(id,role)
+VALUES(1, 'User'),
+       (2, 'Admin'),
+       (3, 'Inactive');
+

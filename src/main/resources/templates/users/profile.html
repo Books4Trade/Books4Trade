@@ -97,9 +97,17 @@
         <!-- 7th TabPanel pills-myaccount -->
         <div class="tab-pane fade" id="pills-myaccount" role="tabpanel" aria-labelledby="pills-myaccount-tab">
             <h3>Account Details</h3>
+            <p>First Name: <span th:text="${firstName}"></span></p>
+            <p>Last Name: <span th:text="${lastName}"></span></p>
+            <p>Email: <span th:text="${email}"></span></p>
+            <p>Username: <span th:text="${userName}"></span></p>
+            <p>Location: <span th:text="${location}"></span></p>
 
-            <p>Edit Form!</p>
-        </div>
+
+            <a th:href="@{/profile/edit}">Edit My Profile</a>
+
+    </div>
+
     </div>
 </div>
 <footer th:replace="partials :: footer"/>

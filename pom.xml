@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>Books4Trade</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+<!--    <packaging>war</packaging>-->
     <name>Books4Trade</name>
     <description>Books4Trade</description>
     <properties>

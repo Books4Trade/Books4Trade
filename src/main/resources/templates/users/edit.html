@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+
+<h1>Edit Your Information</h1>
+<p>All Info can be changed except Date of Birth</p>
+<!--<form th:action="@{/users/{id}/edit (id = ${editUser.getId()})"  th:method="POST" th:object="${editUser}">-->
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" placeholder="Enter New First Name">
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" placeholder="Enter New Last Name">
+
+    <label for="email">Email</label>
+    <input type="text" id="email" placeholder="Enter New Email">
+
+    <label for="password">Password</label>
+    <input type="text" id="password" placeholder="Enter New Password">
+
+    <label for="userName">Username</label>
+    <input type="text" id="userName" placeholder="Enter New Username">
+
+    <label for="location">Location</label>
+    <input type="text" id="location" placeholder="Enter New Location">
+
+    <button type="submit">Submit Changes</button>
+
+<!--</form>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
+</body>
+</html>
