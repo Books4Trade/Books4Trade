@@ -1,5 +1,6 @@
 package com.example.books4trade.controllers;
 
+import com.example.books4trade.models.OwnedBook;
 import com.example.books4trade.repositories.BookRepository;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.TradeRepository;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("/trades")
+//@RequestMapping("/books")
 public class TradeController {
     private BookRepository booksDao;
     private UserRepository usersDao;
@@ -27,8 +30,11 @@ public class TradeController {
 
     @GetMapping("/initiate/{id}")
     public String startTrade(@PathVariable long id, Model model){
-        model.addAttribute("tradeBook", booksDao.getById(id));
-        return "books/trades";
+        List<OwnedBook> owners = ownedBooksDao.findOwnedBooksByBook(booksDao.getById(id));
+        model.addAttribute("owners", owners);
+        model.addAttribute("book", booksDao.getById(id));
+
+        return "books/showBook_trade";
     }
 
 //    @GetMapping("/bookowner")
