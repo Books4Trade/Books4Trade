@@ -11,11 +11,14 @@
 <nav th:replace="partials :: navbar" />
 
 
+<h1 class="header-center title-bg" th:text="${book.title}">Book Title</h1>
+
 <div>
-    <h1 th:text="${book.title}">Book Title</h1>
-    <img th:src="${book.getBookImg()}">
-    <h3 >By: <span th:text="${book.getAuthor().getFullname()}"></span></h3>
-    <p th:text="${book.summary}">Summary</p>
+    <div class="text-center">
+        <img th:src="${book.getBookImg()}">
+    </div>
+    <h3 class="header-center">By: <span th:text="${book.getAuthor().getFullname()}"></span></h3>
+    <p class="text-center" th:text="${book.summary}">Summary</p>
 </div>
 
 <div>
