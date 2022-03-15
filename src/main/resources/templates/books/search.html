@@ -15,48 +15,26 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<h3>Search by: <span th:text="${searchedparam}" id="searchedparam"></span>, with term: <span th:text="${searchedquery}" id="searchedquery"></span>.</h3>
-<h3>Choose the result that best matches your search, or search again</h3>
-<!--    <form th:action="@{/books/search/api}" th:method="POST" class="d-flex flex-row">-->
-        <label for="param">Search By:</label>
+<!-- searchedparam and searcehdquery set the initial values passed to the api for search-->
+<h3 class="header-center">Search by: <span th:text="${searchedparam}" id="searchedparam"></span>, with term: <span th:text="${searchedquery}" id="searchedquery"></span>.</h3>
+<h3 class="header-center text-secondary">Choose the result that best matches your search, or search again</h3>
+      <!-- Below is the target for the javascript values in the search if another search is repeated-->
+       <label for="param">Search By:</label>
         <select name="param" id="param">
             <option value="title" selected>Title</option>
             <option value="author">Author</option>
         </select>
         <label for="query">Search For:</label>
         <input id="query" name="query" type="text">
+        <!-- javascript search function target is this button id -->
         <button type="submit" id="searchsubmit" class="btn btn-secondary">Search</button>
-<!--    </form>-->
 
-<!--<div class="container">-->
-<!--    <form id="book-search">-->
-<!--        <div class="input-field">-->
-<!--            <input type="search" id="books">-->
-<!--            <label for="books">Search Book Title</label>-->
-<!--        </div>-->
-<!--        <button class="btn btn-primary" id="submit">Search Book Title</button>-->
-<!--    </form>-->
-<!--</div>-->
-<!--<header>-->
-<!--    <h1 class="text-center">Search Results</h1>-->
-<!--</header>-->
-<!--<main class="container">-->
-<!--    <form action="" method="">-->
-<!--        <ul id="search-results list-style-none"></ul>-->
-<!--    </form>-->
-<!--</main> -->
-<div id="content">
-    <div id="search-results"></div>
-</div>
+<!-- Target for populating the search results through js-->
+<div id="search-results"></div>
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+
 <script th:include="partials :: scripts-bottom"/>
-<!--<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"-->
-<!--        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
-    <script th:src="@{/js/books_api_refactor.js}"></script>
-
+<script th:src="@{/js/books_api_refactor.js}"></script>
 
 </body>
 </html>
