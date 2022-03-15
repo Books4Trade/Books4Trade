@@ -196,7 +196,6 @@ public class Book {
     public void setBookImg(String book_img) {
         this.book_img = book_img;
     }
-    //    @charles
     public List<Category> getCategories() {
     return categories;
 }
