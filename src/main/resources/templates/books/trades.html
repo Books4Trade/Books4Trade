@@ -18,17 +18,21 @@
     <div class="row">
         <div class="col">
             <div class="row">
-                <div class="col d-flex flex-column justify-content-around">
-                    <h3 th:text="${tradeBook.title}">Title</h3>
-                    <h5>Author: <span th:text="${tradeBook.getAuthor().getFullname()}">Author</span></h5>
-                    <p th:text="${tradeBook.getSummary()}">Book Summary</p>
-                    <p th:text="${tradeBook.getRating()}">Book Rating</p>
-                </div>
-                <figure class="mt-3 pt-3 pb-3 figure col">
-                    <img src="/static/img/harryPotter.jpeg"
-                         th:attr="src=@{tradeBook.getBook_img()}, title=${tradeBook.getTitle()}, alt=${tradeBook.getAuthor()}"/>
-<!--                    <img class="" src="/static/img/harryPotter.jpeg" alt="Book Cover" style="width: 8rem; height: 11rem">-->
-                </figure>
+
+
+<!--NEED TO REFACTOR TO GET REDLINES TO BE REMOVED AND IMG TO SHOW UP-->
+
+<!--                <div class="col d-flex flex-column justify-content-around">-->
+<!--                    <h3 th:text="${tradeBook.title}">Title</h3>-->
+<!--                    <h5>Author: <span th:text="${tradeBook.getAuthor().getFullname()}">Author</span></h5>-->
+<!--                    <p th:text="${tradeBook.getSummary()}">Book Summary</p>-->
+<!--                    <p th:text="${tradeBook.getRating()}">Book Rating</p>-->
+<!--                </div>-->
+<!--                <figure class="mt-3 pt-3 pb-3 figure col">-->
+<!--                    <img src="/static/img/harryPotter.jpeg"-->
+<!--                         th:attr="src=@{tradeBook.getBook_img()}, title=${tradeBook.getTitle()}, alt=${tradeBook.getAuthor()}"/>-->
+<!--&lt;!&ndash;                    <img class="" src="/static/img/harryPotter.jpeg" alt="Book Cover" style="width: 8rem; height: 11rem">&ndash;&gt;-->
+<!--                </figure>-->
             </div>
         </div>
     </div>
