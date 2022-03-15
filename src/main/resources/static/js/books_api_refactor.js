@@ -39,8 +39,15 @@ $(document).ready(function() {
                 title = item.volumeInfo.title,
                 author = item.volumeInfo.authors,
                 preview = item.volumeInfo.previewLink,
-                img = item.volumeInfo.imageLinks.smallThumbnail,
-                summary = item.volumeInfo.description;
+                summary = item.volumeInfo.description,
+                img = item.volumeInfo.imageLinks.thumbnail;
+                // if(typeof(item.volumeInfo.imageLinks.smallThumbnail) != "undefined"){
+                //     img = item.volumeInfo.imageLinks.smallThumbnail;
+                // } else {
+                //     img = item.volumeInfo.imageLinks.thumbnail;
+                // }
+
+
 
             booksHTML +=
                 '<form action="/books/create" method="GET">'+

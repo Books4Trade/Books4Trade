@@ -18,6 +18,7 @@ public class Book {
     private String title;
 
     @Column
+    @Size(min = 1, max = 4000)
     private String summary;
 
     @Column
