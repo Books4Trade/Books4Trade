@@ -6,7 +6,7 @@ USE booksfortrade_db;
 # DROP TABLE IF EXISTS grade_levels;
 
 # CREATE TABLE IF NOT EXISTS grade_levels;
-truncate roles;
+truncate grade_levels;
 INSERT INTO grade_levels(id, grade)
 VALUES(1,1),
        (2, 2),

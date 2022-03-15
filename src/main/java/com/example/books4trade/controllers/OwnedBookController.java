@@ -38,7 +38,7 @@ public class OwnedBookController {
         }
 
         @PostMapping("/books/{id}/copies/add")
-        public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") long bookType) {
+        public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") long bookType){
                 OwnedBook ownedBook = new OwnedBook();
                 User currentUser = (User )SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 ownedBook.setBookOwned(booksDao.getById(id));
@@ -58,6 +58,8 @@ public class OwnedBookController {
 
         @GetMapping("/books/{id}/copies/{copyid}")
         public String showOneOwnedBook(@PathVariable long id, @PathVariable long copyid, Model model){
+                model.addAttribute("book", booksDao.getById(id));
+                model.addAttribute("showBook", ownedBooksDao.getById(copyid));
                 return "/owned-books/show";
         }
 
