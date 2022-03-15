@@ -15,10 +15,8 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<th:input type="hidden" name="searchedparam" id="searchedparam" th:value="${searchedparam}">
-<th:input type="hidden" name="searchedquery" id="searchedquery" th:value="${searchedquery}">
-
-<h2>Choose the result that best matches your search, or search again</h2>
+<h3>Search by: <span th:text="${searchedparam}" id="searchedparam"></span>, with term: <span th:text="${searchedquery}" id="searchedquery"></span>.</h3>
+<h3>Choose the result that best matches your search, or search again</h3>
 <!--    <form th:action="@{/books/search/api}" th:method="POST" class="d-flex flex-row">-->
         <label for="param">Search By:</label>
         <select name="param" id="param">

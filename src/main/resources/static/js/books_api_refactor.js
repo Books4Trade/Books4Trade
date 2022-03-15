@@ -5,8 +5,8 @@ $(document).ready(function() {
     const GB_TITLE = 'intitle:';
     const GB_AUTHOR = 'inauthor:';
 
-    let param = $('#searchedparam').val();
-    let query = $('#searchedquery').val();
+    let param = $('#searchedparam').html();
+    let query = $('#searchedquery').html();
     console.log(param);
     console.log(query);
 
@@ -60,7 +60,7 @@ $(document).ready(function() {
         booksHTML += '</div>';
         $('#search-results').html(booksHTML);
     };
-    fetchBooks();
+    fetchBooks(param, query);
 
     $('#searchsubmit').click(function(e) {
         e.preventDefault();

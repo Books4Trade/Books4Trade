@@ -99,13 +99,13 @@ public class BookController {
         return "/books/search";
     }
 //    Create
-   // @GetMapping("/books/create")
-   // private String showCreateForm(@RequestParam(name="title") String title, @RequestParam(name="author") String author, @RequestParam(name="image") String image, Model model){
-   //     model.addAttribute("title", title);
-   //     model.addAttribute("author", author);
-    //    model.addAttribute("imagesrc", image);
-    //    return "/books/create";
-   // }
+    @GetMapping("/books/create")
+    private String showCreateForm(@RequestParam(name="title") String title, @RequestParam(name="author") String author, @RequestParam(name="image") String image, Model model){
+        model.addAttribute("title", title);
+        model.addAttribute("author", author);
+        model.addAttribute("imagesrc", image);
+        return "/books/create";
+    }
 
     @PostMapping("/books/create")
     private String submitCreateBookForm(@RequestParam(name="title") String title, @RequestParam(name = "author") String author, @RequestParam(name = "imagesrc") String imagesrc, Model model){
