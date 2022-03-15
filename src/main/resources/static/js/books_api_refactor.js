@@ -39,19 +39,21 @@ $(document).ready(function() {
                 title = item.volumeInfo.title,
                 author = item.volumeInfo.authors,
                 preview = item.volumeInfo.previewLink,
-                img = item.volumeInfo.imageLinks.smallThumbnail;
+                img = item.volumeInfo.imageLinks.smallThumbnail,
+                summary = item.volumeInfo.description;
 
             booksHTML +=
-                '<form action="/books/create" method="POST">'+
+                '<form action="/books/create" method="GET">'+
                     '<div class="book d-flex align-items-center">' +
                         "<img src='" + img + "' alt='book cover'/> " +
                         "<div class='d-inline-flex flex-column justify-content-center align-items-center'>" +
                         "<h5>" + title + "</h5>" +
                         "<p>Author: " + author + "</p>" +
-                        "<a href='" + preview + "'>Preview Book</a>" +
+                        '<a href="' + preview + '" target="_blank" >Preview Book</a>' +
                         '<input type="hidden" name="title" id="title" value="'+ title +'">'+
                         '<input type="hidden" name="author" id="author" value="'+ author +'">'+
                         '<input type="hidden" name="imagesrc" id="imagesrc" value="'+ img+'">'+
+                        '<input type="hidden" name="summary" id="summary" value ="'+ summary +'">'+
                         '<button type="submit" >Add Book</button>' +
                         "</div>" +
                     '</div>'+

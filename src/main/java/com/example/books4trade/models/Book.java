@@ -17,7 +17,6 @@ public class Book {
     @Size( max = 255, message = "Title should be between 2 and 255 Characters long")
     private String title;
 
-    @NotBlank(message = "Summary must have some content.")
     @Size( max = 500)
 
     private String summary;
@@ -192,10 +191,10 @@ public class Book {
     public void setRating(Double rating) {
         this.rating = rating;
     }
-    public String getBook_img() {
+    public String getBookImg() {
         return book_img;
     }
-    public void setBook_img(String book_img) {
+    public void setBookImg(String book_img) {
         this.book_img = book_img;
     }
     //    @charles

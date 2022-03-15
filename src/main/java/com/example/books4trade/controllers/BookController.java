@@ -100,18 +100,20 @@ public class BookController {
     }
 //    Create
     @GetMapping("/books/create")
-    private String showCreateForm(@RequestParam(name="title") String title, @RequestParam(name="author") String author, @RequestParam(name="image") String image, Model model){
+    private String showCreateForm(@RequestParam(name="title") String title, @RequestParam(name="author") String author, @RequestParam(name="imagesrc") String imagesrc, @RequestParam(name="summary") String summary, Model model){
         model.addAttribute("title", title);
         model.addAttribute("author", author);
-        model.addAttribute("imagesrc", image);
+        model.addAttribute("imagesrc", imagesrc);
+        model.addAttribute("summary", summary);
         return "/books/create";
     }
 
     @PostMapping("/books/create")
-    private String submitCreateBookForm(@RequestParam(name="title") String title, @RequestParam(name = "author") String author, @RequestParam(name = "imagesrc") String imagesrc, Model model){
+    private String submitCreateBookForm(@RequestParam(name="title") String title, @RequestParam(name = "author") String author, @RequestParam(name = "image") String image, @RequestParam(name = "summary") String summary, Model model){
         Book book = new Book();
         book.setTitle(title);
-        book.setBook_img(imagesrc);
+        book.setBookImg(image);
+        book.setSummary(summary);
         if(authorsDao.findAuthorByFullname(author) == null){
             Author newAuthor = authorsDao.save(new Author(author));
             book.setAuthor(newAuthor);
