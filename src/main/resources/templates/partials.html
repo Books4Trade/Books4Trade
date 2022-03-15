@@ -39,8 +39,15 @@
 
 <!-- SEARCH BAR (TEMPORARY, MERGE INTO NAV)-->
 <div th:fragment="search" id="search-bar">
-    <form>
-
+    <form th:action="@{/books/search}" th:method="POST" class="d-flex flex-row">
+        <label for="param">Search By:</label>
+        <select name="param" id="param">
+            <option value="title" selected>Title</option>
+            <option value="author">Author</option>
+        </select>
+        <label for="query">Search For:</label>
+        <input id="query" name="query" type="text">
+        <button type="submit" class="btn btn-secondary">Search</button>
     </form>
 </div>
 
