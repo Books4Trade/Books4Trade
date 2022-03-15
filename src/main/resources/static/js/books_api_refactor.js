@@ -52,7 +52,7 @@ $(document).ready(function() {
                         '<input type="hidden" name="title" id="title" value="'+ title +'">'+
                         '<input type="hidden" name="author" id="author" value="'+ author +'">'+
                         '<input type="hidden" name="imagesrc" id="imagesrc" value="'+ img+'">'+
-                        '<button type="submit">Add Book</button>' +
+                        '<button type="submit" >Add Book</button>' +
                         "</div>" +
                     '</div>'+
                 '</form>';
