@@ -13,10 +13,11 @@
         <h2 th:text="${title}"></h2>
         <h3>By: <span th:text="${author}"></span></h3>
         <img th:src="${imagesrc}">
-
+        <p th:text="${summary}"></p>
         <input id="title" name="title" class="form-control" type="hidden" th:value="${title}">
-        <input id="author" name="author" class="form-control" type="text" th:value="${author}">
-        <input id="author" name="author" class="form-control" type="text" th:value="${imagesrc}">
+        <input id="author" name="author" class="form-control" type="hidden" th:value="${author}">
+        <input id="image" name="image" class="form-control" type="hidden" th:value="${imagesrc}">
+        <input id="summary" name="summary" class="form-control" type="hidden" th:value="${summary}">
         <!-- Add Select for Categories, Grade Level -->
         <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Add This Book</button>
     </form>
