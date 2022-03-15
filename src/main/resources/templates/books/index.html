@@ -18,7 +18,7 @@
         <div class="book-title" th:text="${book.title}"/>
         <h5 class="card-author" th:text="${book.getAuthor().getFullname()}"></h5>
         <!--<h5 class="card-rating" th:text="${book.getRating}"></h5> -->
-<!--        <h6 class="card-img" th:text="${book.getBook_img}"></h6>-->
+        <img th:src="${book.getBookImg()}"></h6>
         <div class="card-body">
             <a th:href="|/books/${book.getId()}|">View This Book</a>
         </div>

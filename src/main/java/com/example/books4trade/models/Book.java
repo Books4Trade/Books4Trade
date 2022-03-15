@@ -17,8 +17,7 @@ public class Book {
     @Size( max = 255, message = "Title should be between 2 and 255 Characters long")
     private String title;
 
-    @Size( max = 500)
-
+    @Column
     private String summary;
 
     @Column
