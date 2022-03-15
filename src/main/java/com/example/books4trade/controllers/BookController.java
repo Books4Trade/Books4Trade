@@ -33,10 +33,34 @@ public class BookController {
   
    @GetMapping("/books")
     public String ShowBooks(Model model){
+        model.addAttribute("searched", false);
         model.addAttribute("allBooks", booksDao.findAll());
         return "/books/index";
     }
-  
+
+    @PostMapping("/books/search")
+    public String searchBooks(@RequestParam(name = "query") String query, @RequestParam(name="param") String param, Model model){
+        switch (param){
+            case "title":
+                model.addAttribute("allBooks", booksDao.searchByTitleLike(query));
+                model.addAttribute("searchedBy", "Title: " + query);
+                break;
+            case "author":
+                model.addAttribute("allBooks", booksDao.searchByAuthors(authorsDao.searchByFullnameLike(query)));
+                model.addAttribute("searchedBy", "Author: " + query);
+                break;
+            default:
+                System.out.println("Switch case fallthrough on PostMapping /books/search");
+                break;
+        }
+        model.addAttribute("param", param);
+        model.addAttribute("searched", true);
+        return "/books/index";
+    }
+    @PostMapping("/books/search/api")
+    public String searchBooksByApi(@RequestParam(name="query") String query, @RequestParam(name="param") String param, Model model){
+        return "/books/search";
+    }
 //    Create
     @GetMapping("/books/create")
     private String showCreateForm(Model model){
