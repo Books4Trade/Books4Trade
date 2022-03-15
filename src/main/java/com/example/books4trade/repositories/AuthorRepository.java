@@ -11,6 +11,6 @@ import java.util.List;
 public interface AuthorRepository extends JpaRepository<Author, Long> {
     Author findAuthorByFullname(String fullname);
 
-    @Query("from Authors a where a.fullname like %:term%")
+    @Query("from Author a where a.fullname like %:term%")
     List<Author> searchByFullnameLike(@Param("term") String term);
 }

@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -46,7 +47,14 @@ public class BookController {
                 model.addAttribute("searchedBy", "Title: " + query);
                 break;
             case "author":
-                model.addAttribute("allBooks", booksDao.searchByAuthors(authorsDao.searchByFullnameLike(query)));
+                List<Author> authors = authorsDao.searchByFullnameLike(query);
+                List<Book> allBooks = new ArrayList<>();
+                for(Author author : authors){
+                    List<Book> authorBooks = booksDao.searchByAuthor(author);
+                    for(Book book : authorBooks)
+                    allBooks.add(book);
+                }
+                model.addAttribute("allBooks", allBooks);
                 model.addAttribute("searchedBy", "Author: " + query);
                 break;
             default:

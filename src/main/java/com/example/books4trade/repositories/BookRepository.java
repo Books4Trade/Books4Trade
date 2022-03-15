@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    @Query("from Books b where b.title like %:term%")
+    @Query("from Book b where b.title like %:term%")
     List<Book> searchByTitleLike(@Param("term") String term);
 
-    List<Book> searchByAuthors(List<Author> authors);
+    List<Book> searchByAuthor(Author author);
 }
