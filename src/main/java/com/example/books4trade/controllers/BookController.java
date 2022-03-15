@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -33,22 +34,84 @@ public class BookController {
   
    @GetMapping("/books")
     public String ShowBooks(Model model){
+        model.addAttribute("searched", false);
         model.addAttribute("allBooks", booksDao.findAll());
         return "/books/index";
     }
-  
+
+    @PostMapping("/books/search")
+    public String searchBooks(@RequestParam(name = "query") String query, @RequestParam(name="param") String param, Model model){
+        System.out.println(param);
+        System.out.println(query);
+        switch (param){
+            case "title":
+                model.addAttribute("allBooks", booksDao.searchByTitleLike(query));
+                model.addAttribute("searchedBy", "Title: " + query);
+                break;
+            case "author":
+                List<Author> authors = authorsDao.searchByFullnameLike(query);
+                List<Book> allBooks = new ArrayList<>();
+                for(Author author : authors){
+                    List<Book> authorBooks = booksDao.searchByAuthor(author);
+                    for(Book book : authorBooks)
+                    allBooks.add(book);
+                }
+                model.addAttribute("allBooks", allBooks);
+                model.addAttribute("searchedBy", "Author: " + query);
+                break;
+            default:
+                System.out.println("Switch case fallthrough on PostMapping /books/search");
+                break;
+        }
+        model.addAttribute("searchedparam", param);
+        model.addAttribute("searchedquery", query);
+        model.addAttribute("searched", true);
+        return "/books/index";
+    }
+    @GetMapping("/books/search/api")
+    public String searchBooksByApi(@RequestParam(name="param") String param, @RequestParam(name="query") String query, Model model){
+        System.out.println(param);
+        System.out.println(query);
+        switch (param){
+            case "title":
+                model.addAttribute("allBooks", booksDao.searchByTitleLike(query));
+                model.addAttribute("searchedBy", "Title: " + query);
+                break;
+            case "author":
+                List<Author> authors = authorsDao.searchByFullnameLike(query);
+                List<Book> allBooks = new ArrayList<>();
+                for(Author author : authors){
+                    List<Book> authorBooks = booksDao.searchByAuthor(author);
+                    for(Book book : authorBooks)
+                        allBooks.add(book);
+                }
+                model.addAttribute("allBooks", allBooks);
+                model.addAttribute("searchedBy", "Author: " + query);
+                break;
+            default:
+                System.out.println("Switch case fallthrough on PostMapping /books/search/api");
+                break;
+        }
+        model.addAttribute("searchedparam", param);
+        model.addAttribute("searchedquery", query);
+        model.addAttribute("searched", true);
+
+        return "/books/search";
+    }
 //    Create
     @GetMapping("/books/create")
-    private String showCreateForm(Model model){
-        model.addAttribute("book", new Book());
+    private String showCreateForm(@RequestParam(name="title") String title, @RequestParam(name="author") String author, @RequestParam(name="image") String image, Model model){
+        model.addAttribute("title", title);
+        model.addAttribute("author", author);
+        model.addAttribute("imagesrc", image);
         return "/books/create";
     }
 
     @PostMapping("/books/create")
-    private String submitCreateBookForm(@RequestParam(name="title") String title, @RequestParam(name="summary") String summary, @RequestParam(name = "author") String author, Model model){
+    private String submitCreateBookForm(@RequestParam(name="title") String title, @RequestParam(name = "author") String author, @RequestParam(name = "imagesrc") String imagesrc, Model model){
         Book book = new Book();
         book.setTitle(title);
-        book.setSummary(summary);
+        book.setBook_img(imagesrc);
         if(authorsDao.findAuthorByFullname(author) == null){
             Author newAuthor = authorsDao.save(new Author(author));
             book.setAuthor(newAuthor);

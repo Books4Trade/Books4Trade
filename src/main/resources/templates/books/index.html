@@ -8,9 +8,11 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
+<nav th:replace="partials :: search" />
 
+<h1 th:if="${!searched}">Here are all of our Books!</h1>
+<h1 th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h1>
 
-<h1>Here is a list of all books!</h1>
 <div class="d-flex flex-row flex-wrap justify-content-evenly">
     <div class="book-card" th:each="book : ${allBooks}">
         <div class="book-title" th:text="${book.title}"/>
@@ -23,7 +25,17 @@
     </div>
 
 </div>
-
+<div th:if="${!searched}" class="d-flex flex-row justify-content-center">
+    <h3 class="text-center">Not finding something? Try the searchbar!</h3>
+</div>
+<div th:if="${searched}" class="d-flex flex-row justify-content-center">
+    <form th:action="@{/books/search/api}" th:method="GET">
+        <input th:value="${searchedparam}" name="param" id="param"  type="hidden">
+        <input th:value="${searchedquery}" name="query" id="query" type="hidden">
+        <h3 class="text-center">Not seeing your search result? Click here to add a new book!</h3>
+        <button class="btn btn-secondary" type="submit">Add By Search</button>
+    </form>
+</div>
 
 
 
