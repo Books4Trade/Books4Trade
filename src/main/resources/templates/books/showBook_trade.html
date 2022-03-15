@@ -38,58 +38,27 @@
 
 <article class="container mt-3 d-flex flex-column">
     <h3 class="text-center">Users Who Own A Tradable Copy</h3>
-    <tr th:each="owner : ${owners}">
-        <td>
-            <span th:if="${owner.isTradable() != false}">
+    <table>
+        <tr th:each="owner : ${owners}">
+            <td>
+            <span th:if="${owner.isTradable()}">
                 <form action="" class="book d-flex justify-content-between m-1">
-                    <h6 class="align-self-center m-0">Username: tester1</h6>
-                    <p class="align-self-center m-0">Email: tester1@mail.com</p>
-                    <p class="align-self-center m-0">Type: Hardback</p>
-                    <p class="align-self-center m-0">Condition: Poor</p>
-                    <input type="hidden" name="userId" value="user_id">
+                    <h6 class="align-self-center m-0" th:text="${owner.getUser().getUsername()}">Username: tester1</h6>
+                    <p class="align-self-center m-0" th:text="${owner.getUser().getEmail()}">Email: tester1@mail.com</p>
+                    <p class="align-self-center m-0" th:text="${owner.getType().getName()}">Type: Hardback</p>
+                    <p class="align-self-center m-0" th:text="${owner.getBookCondition()}">Condition: Poor</p>
+                    <input type="hidden" name="userId" th:value="${owner.getUser().getId()}">
                     <div class="justify-content-between">
                         <button class="btn btn-primary btn-sm" type="submit">Trade</button>
                         <button class="btn btn-primary btn-sm" type="submit">View User</button>
                     </div>
                 </form>
+                <!--th:each works, not sure why redlines won't go away-->
+<!--                <li th:each="owner : ${owners}" th:text="${owner.getUser().getUsername()}"></li>-->
             </span>
-        </td>
-
-    </tr>
-
-    <form action="" class="book d-flex justify-content-between m-1">
-        <h6 class="align-self-center m-0">Username: tester2</h6>
-        <p class="align-self-center m-0">Email: tester2@mail.com</p>
-        <p class="align-self-center m-0">Type: Paperback</p>
-        <p class="align-self-center m-0">Condition: Fair</p>
-        <input type="hidden" name="userId" value="user_id">
-        <div class="justify-content-between">
-            <button class="btn btn-primary btn-sm" type="submit">Trade</button>
-            <button class="btn btn-primary btn-sm" type="submit">View User</button>
-        </div>
-    </form>
-    <form action="" class="book d-flex justify-content-between m-1">
-        <h6 class="align-self-center m-0 fluid">Username: tester3</h6>
-        <p class="align-self-center m-0 fluid">Email: tester3@mail.com</p>
-        <p class="align-self-center m-0">Type: Paperback</p>
-        <p class="align-self-center m-0">Condition: Good</p>
-        <input type="hidden" name="userId" value="user_id">
-        <div class="justify-content-between">
-            <button class="btn btn-primary btn-sm" type="submit">Trade</button>
-            <button class="btn btn-primary btn-sm" type="submit">View User</button>
-        </div>
-    </form>
-    <form action="" class="book d-flex justify-content-between m-1">
-        <h6 class="align-self-center m-0">Username: tester4</h6>
-        <p class="align-self-center m-0">Email: tester4@mail.com</p>
-        <p class="align-self-center m-0">Type: e-Book</p>
-        <p class="align-self-center m-0">Condition: NA</p>
-        <input type="hidden" name="userId" value="user_id">
-        <div class="justify-content-between">
-            <button class="btn btn-primary btn-sm" type="submit">Trade</button>
-            <button class="btn btn-primary btn-sm" type="submit">View User</button>
-        </div>
-    </form>
+            </td>
+        </tr>
+    </table>
 </article>
 
 
