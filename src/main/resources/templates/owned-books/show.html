@@ -17,11 +17,26 @@
 			<p class="card-text">Summary: <span th:text="${book.getSummary()}"></span></p>
 			<p class="card-text">Rating: <span th:text="${book.getRating()}"></span></p>
 			<p class="card-text">Condition: <span th:text="${showBook.getBookCondition()}"></span></p>
+			<p class="card-text">Type: <span th:text="${showBook.getType()}"></span></p>
 			<p class="card-text">Available for Trade:
 				<span th:if="${showBook.isTradable()}" class="green">Yes</span>
 				<span th:if="${!showBook.isTradable()}" class="red">No</span>
 			</p>
 			<p class="card-text">Owner: <span th:text="${showBook.getUser().getUsername()}"></span></p>
+
+			<div th:if=“${isOwner}”>
+			<form th:method="get" >
+				<button type="submit" th:formaction="|/books/${book.getId()}/copies/${showBook.getId()}/edit|">Edit</button>
+			</form>
+
+			<form th:method="delete">
+				<button type="submit"  th:formaction="|/books/${book.getId()}/copies/${showBook.getId()}/delete|">Delete</button>
+			</form>
+			</div>
+
+
+
+
 		</div>
 	</div>
 </div>
