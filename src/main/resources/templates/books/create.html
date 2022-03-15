@@ -7,22 +7,18 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
+<h2>Do you want to add this book?</h2>
 <div>
     <form th:action="@{/books/create}" th:method="POST">
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input id="title" name="title" class="form-control" type="text">
-        </div>
-        <div class="form-group">
-            <label for="author">Author</label>
-            <input id="author" name="author" class="form-control" type="text" minlength="2">
-        </div>
-        <div class="form-group">
-            <label for="summary">Summary</label>
-            <input id="summary" name="summary" class="form-control" type="textarea">
-        </div>
+        <h2 th:text="${title}"></h2>
+        <h3>By: <span th:text="${author}"></span></h3>
+        <img th:src="${imagesrc}">
+
+        <input id="title" name="title" class="form-control" type="hidden" th:value="${title}">
+        <input id="author" name="author" class="form-control" type="text" th:value="${author}">
+        <input id="author" name="author" class="form-control" type="text" th:value="${imagesrc}">
         <!-- Add Select for Categories, Grade Level -->
-        <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Add Book</button>
+        <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Add This Book</button>
     </form>
 </div>
 

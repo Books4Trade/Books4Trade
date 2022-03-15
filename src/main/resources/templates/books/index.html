@@ -29,9 +29,9 @@
     <h3 class="text-center">Not finding something? Try the searchbar!</h3>
 </div>
 <div th:if="${searched}" class="d-flex flex-row justify-content-center">
-    <form th:action="@{/books/search/api}" th:method="POST">
-        <input th:value="${param}" th:name="param" type="hidden">
-        <input th:value="${query}" th:name="query" type="hidden">
+    <form th:action="@{/books/search/api}" th:method="GET">
+        <input th:value="${searchedparam}" name="param" id="param"  type="hidden">
+        <input th:value="${searchedquery}" name="query" id="query" type="hidden">
         <h3 class="text-center">Not seeing your search result? Click here to add a new book!</h3>
         <button class="btn btn-secondary" type="submit">Add By Search</button>
     </form>
