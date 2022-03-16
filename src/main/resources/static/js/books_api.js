@@ -40,22 +40,27 @@ $(document).ready(function() {
                 author = item.volumeInfo.authors,
                 preview = item.volumeInfo.previewLink,
                 img = "https://imgur.com/APmD3ha",
-                description = "No Summary Available.";
+                description = item.volumeInfo.description;
                 var summary;
                 for(const key in item.volumeInfo.imageLinks){
                     img = `${item.volumeInfo.imageLinks[key]}`;
                     console.log(`${key} : ${item.volumeInfo.imageLinks[key]}`);
                 }
-                if(item.volumeInfo.hasOwnProperty(description)){
-                    description = item.volumeInfo.description;
-                    if(description.length > 500){
+                // if(item.volumeInfo.hasOwnProperty(description)) {
+                    if ((description === undefined) || (description === "undefined")) {
+                        summary = "No summary available.";
+                        console.log("summary was undefined, setting default string");
+                    } else if(description.length > 500){
                         summary = (description.substring(0,450)) + "...(more details were removed)";
                         console.log("summary trimmed, length: "+ summary.length);
-                    } else{
+                    } else if(description.length < 500){
                         summary = description;
                         console.log("summary not trimmed, length: "+summary.length);
                     }
-                }
+                    //else {
+                     //   summary = "No summary available.";
+                    //}
+           //     }
 
             booksHTML +=
                 '<form class="book-card" action="/books/create" method="GET">'+
