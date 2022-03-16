@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Make A Trade</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+<h1>Viewing All Owned Books</h1>
+
+<!--This displays ownedBook Titles in bulleted list-->
+<!--Need to add if statement to ensure duplicate titles are not listed-->
+<!--<li th:each="ownedBook : ${tradables}" th:text="${ownedBook.getBook().getTitle()}"></li>-->
+<ul th:each="tradableBook : ${tradables}">
+    <li th:text="${tradableBook.getTitle()}"></li>
+</ul>
+<!--<p>The greatest <span th:text="${#arrays.length(tradables)}"></span> continents.</p>-->
+
+<!--<p>Europe is a continent: <span th:text="${#arrays.contains(tradables, 'Harry Potter')}"></span>.</p>-->
+
+<!--<p>Array of continents is empty <span th:text="${#arrays.isEmpty(tradables)}"></span>.</p>-->
+<!--<table>-->
+<!--    <tr th:each="ownedBook : ${tradables}">-->
+<!--        <td>-->
+<!--            <span th:if="${ownedBook.getBook().getId() == ownedBook.getBook().getId()}">-->
+<!--                <form action="" class="book d-flex justify-content-between m-1">-->
+<!--                    <h6 class="align-self-center m-0" th:text="${ownedBook.getBook().getTitle()}">Username: tester1</h6>-->
+<!--&lt;!&ndash;                    <p class="align-self-center m-0" th:text="${owner.getUser().getEmail()}">Email: tester1@mail.com</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p class="align-self-center m-0" th:text="${owner.getType().getName()}">Type: Hardback</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p class="align-self-center m-0" th:text="${owner.getBookCondition()}">Condition: Poor</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input type="hidden" name="userId" th:value="${owner.getUser().getId()}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="justify-content-between">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="submit" class="btn btn-primary btn-sm" value="Trade" th:formaction="'/profile'">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="submit" class="btn btn-primary btn-sm" value="View User" th:formaction="'/profile/{id}'">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                </form>-->
+<!--            </span>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+
+<script th:include="partials :: scripts-bottom"/>
+</body>
+</html>
