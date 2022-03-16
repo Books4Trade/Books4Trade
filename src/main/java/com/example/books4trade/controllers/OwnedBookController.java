@@ -11,10 +11,7 @@ import com.example.books4trade.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class OwnedBookController {
@@ -31,6 +28,19 @@ public class OwnedBookController {
                 this.ownedBooksDao = ownedBooksDao;
         }
 
+        @GetMapping("/books/copies")
+        public String showAllCopies(Model model){
+                model.addAttribute("allBooks", ownedBooksDao.findAll());
+                return "/owned-books/copies-index";
+        }
+
+        @GetMapping("/books/{id}/copies")
+        public String showAllCopiesOfBook(@PathVariable long id, Model model){
+                model.addAttribute("book", booksDao.getById(id));
+                model.addAttribute("allBooks", ownedBooksDao.findOwnedBooksByBook(booksDao.getById(id)));
+                return "/owned-books/copies-index";
+        }
+
         @GetMapping("/books/{id}/copies/add")
         public String showCreateOwnedBook(@PathVariable long id, Model model) {
                 model.addAttribute("book", booksDao.getById(id));
@@ -38,9 +48,9 @@ public class OwnedBookController {
         }
 
         @PostMapping("/books/{id}/copies/add")
-        public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") long bookType){
+        public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") long bookType, Model model){
                 OwnedBook ownedBook = new OwnedBook();
-                User currentUser = (User )SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 ownedBook.setBookOwned(booksDao.getById(id));
                 ownedBook.setUser(currentUser);
                 ownedBook.setBookCondtion(bookCondition);
@@ -49,18 +59,33 @@ public class OwnedBookController {
                 ownedBook = ownedBooksDao.save(ownedBook);
                 return "redirect:/books/"+id+"/copies/"+ownedBook.getId();
         }
-        @GetMapping("/books/{id}/copies")
-        public String showAllCopiesOfBook(@PathVariable long id, Model model){
-                model.addAttribute("book", booksDao.findById(id));
-                model.addAttribute("allBooks", ownedBooksDao.findOwnedBooksByBook(booksDao.getById(id)));
-                return "/owned-books/copies-index";
-        }
+
 
         @GetMapping("/books/{id}/copies/{copyid}")
         public String showOneOwnedBook(@PathVariable long id, @PathVariable long copyid, Model model){
+                User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                OwnedBook showBook = ownedBooksDao.getById(copyid);
+                boolean isOwner = false;
+                if(showBook.getUser().getId() == currentUser.getId()){
+                        isOwner = true;
+                }
+                model.addAttribute("isOwner", isOwner);
                 model.addAttribute("book", booksDao.getById(id));
-                model.addAttribute("showBook", ownedBooksDao.getById(copyid));
+                model.addAttribute("showBook", showBook);
                 return "/owned-books/show";
+        }
+
+//        @GetMapping("/")
+
+
+        @DeleteMapping("/books/{id}/copies/{copyid}/delete")
+        public String deletePost(@PathVariable long id, @PathVariable long copyid){
+                User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                OwnedBook copyToDelete = ownedBooksDao.getById(copyid);
+                if(copyToDelete.getUser().getId() == currentUser.getId()) {
+                        ownedBooksDao.delete(copyToDelete);
+                }
+                return "redirect:/books/copies";
         }
 
 

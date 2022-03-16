@@ -43,14 +43,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/", "/books", "/register",
-                        "/books/search", "/books/search/api") // anyone can see the home and the Post-Index pages
+                        "/books/search", "/books/search/api",
+                        "/books/{id}/copies") // anyone can see the home and the Post-Index pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
                         "/profile",
-                        "/books/create"
+                        "/books/create",
+                        "/reviews/create", "/reviews/edit",
+                        "/books/{id}/copies/add", "/books/{id}/copies/{copyid}", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit"
                 )
                 .authenticated();
     }

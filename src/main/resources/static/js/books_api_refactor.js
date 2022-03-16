@@ -33,29 +33,39 @@ $(document).ready(function() {
 
     const renderBooks = (data) => {
         let booksHTML = "";
-        booksHTML = '<div>';
+        booksHTML = '<div class="d-flex flex-row flex-wrap justify-content-evenly">';
         for (let i = 0; i < data.items.length; i++){
             let item = data.items[i],
                 title = item.volumeInfo.title,
                 author = item.volumeInfo.authors,
                 preview = item.volumeInfo.previewLink,
-                img = item.volumeInfo.imageLinks.smallThumbnail,
-                summary = item.volumeInfo.description;
+                summary = item.volumeInfo.description,
+                img = item.volumeInfo.imageLinks.thumbnail;
+                // if(typeof(item.volumeInfo.imageLinks.smallThumbnail) != "undefined"){
+                //     img = item.volumeInfo.imageLinks.smallThumbnail;
+                // } else {
+                //     img = item.volumeInfo.imageLinks.thumbnail;
+                // }
+
+
 
             booksHTML +=
                 '<form action="/books/create" method="GET">'+
-                    '<div class="book d-flex align-items-center">' +
-                        "<img src='" + img + "' alt='book cover'/> " +
-                        "<div class='d-inline-flex flex-column justify-content-center align-items-center'>" +
-                        "<h5>" + title + "</h5>" +
-                        "<p>Author: " + author + "</p>" +
-                        '<a href="' + preview + '" target="_blank" >Preview Book</a>' +
-                        '<input type="hidden" name="title" id="title" value="'+ title +'">'+
-                        '<input type="hidden" name="author" id="author" value="'+ author +'">'+
-                        '<input type="hidden" name="imagesrc" id="imagesrc" value="'+ img+'">'+
-                        '<input type="hidden" name="summary" id="summary" value ="'+ summary +'">'+
-                        '<button type="submit" >Add Book</button>' +
-                        "</div>" +
+                    '<div class="book-card d-flex align-items-center">' +
+                        '<h3 class="book-headers title-bg">' + title + '</h3>' +
+                        '<h4 class="book-headers">Author:' + author + '</h4>' +
+                        '<div class="text-center">'+
+                            '<img src="' + img + '" alt="book cover"/>' +
+                        '</div>'+
+                        '<div class="text-center">' +
+                            '<a href="' + preview + '" target="_blank" >Preview Book</a>' +
+                            '<input type="hidden" name="title" id="title" value="'+ title +'">'+
+                            '<input type="hidden" name="author" id="author" value="'+ author +'">'+
+                            '<input type="hidden" name="imagesrc" id="imagesrc" value="'+ img+'">'+
+                            '<input type="hidden" name="summary" id="summary" value ="'+ summary +'">'+
+                            '<br>'+
+                            '<button type="submit" class="btn btn-primary">Add Book</button>' +
+                        '</div>' +
                     '</div>'+
                 '</form>';
         }

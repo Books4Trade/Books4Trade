@@ -1,20 +1,29 @@
 
 
 
-/* REFACTOR BELOW */
+
+
+
 body {
 }
-
+.header-center {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+.title-bg{
+    padding: .2em;
+    background-color: lightgray;
+    width: 100%;
+}
 .book-card{
-    padding: 1em;
-    width: 248px;
+    width: 20%;
     display: flex;
     flex-direction: column;
-
+    border: 2px solid black;
 }
-.book-title{
+.book-headers{
     text-align: center;
-    font-size: 24px;
     margin: 0;
     padding: .4em;
 }

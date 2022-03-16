@@ -9,31 +9,38 @@
 <nav th:replace="partials :: navbar" />
 
 <nav th:replace="partials :: search" />
+<br>
+    <h2 class="header-center" th:if="${!searched}">Here are all of our Books!</h2>
+    <h2 class="header-center" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h2>
+    <h3 th:if="${!searched}" class="header-center text-muted">Not finding something? Try the searchbar!</h3>
+<br>
 
-<h1 th:if="${!searched}">Here are all of our Books!</h1>
-<h1 th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h1>
 
 <div class="d-flex flex-row flex-wrap justify-content-evenly">
     <div class="book-card" th:each="book : ${allBooks}">
-        <div class="book-title" th:text="${book.title}"/>
-        <h5 class="card-author" th:text="${book.getAuthor().getFullname()}"></h5>
+        <h3 class="book-headers title-bg" th:text="${book.title}"/>
+        <h4 class="book-headers" th:text="${book.getAuthor().getFullname()}"></h4>
+        <div class="text-center">
+            <img th:src="${book.getBookImg()}">
+        </div>
         <!--<h5 class="card-rating" th:text="${book.getRating}"></h5> -->
-        <img th:src="${book.getBookImg()}"></h6>
-        <div class="card-body">
+
+        <div class="text-center">
             <a th:href="|/books/${book.getId()}|">View This Book</a>
         </div>
     </div>
 
 </div>
-<div th:if="${!searched}" class="d-flex flex-row justify-content-center">
-    <h3 class="text-center">Not finding something? Try the searchbar!</h3>
-</div>
+
 <div th:if="${searched}" class="d-flex flex-row justify-content-center">
     <form th:action="@{/books/search/api}" th:method="GET">
         <input th:value="${searchedparam}" name="param" id="param"  type="hidden">
         <input th:value="${searchedquery}" name="query" id="query" type="hidden">
         <h3 class="text-center">Not seeing your search result? Click here to add a new book!</h3>
-        <button class="btn btn-secondary" type="submit">Add By Search</button>
+        <div class="text-center">
+            <button class="btn btn-secondary" type="submit">Add By Search</button>
+        </div>
+        <br>
     </form>
 </div>
 
