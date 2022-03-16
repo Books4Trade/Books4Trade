@@ -27,7 +27,7 @@ public class BookReview {
     private long rating;
 
     @Column(nullable = false)
-    private String createdOn;
+    private Date createdDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -39,33 +39,33 @@ public class BookReview {
 
     public BookReview() {
     }
-    public BookReview(String title, String body, long rating, String createdOn){
+    public BookReview(String title, String body, long rating, Date createdDate){
         this.title = title;
         this.body = body;
         this.rating = rating;
-        this.createdOn = createdOn;
+        this.createdDate = createdDate;
     }
-    public BookReview(long id, String title, String body, long rating, String createdOn){
+    public BookReview(long id, String title, String body, long rating, Date createdDate){
         this.id = id;
         this.title = title;
         this.body = body;
         this.rating = rating;
-        this.createdOn = createdOn;
+        this.createdDate = createdDate;
     }
-    public BookReview(long id, String title, String body, long rating, String createdOn, Book book){
+    public BookReview(long id, String title, String body, long rating, Date createdDate, Book book){
         this.id = id;
         this.title = title;
         this.body = body;
         this.rating = rating;
-        this.createdOn = createdOn;
+        this.createdDate = createdDate;
         this.book = book;
     }
-    public BookReview(long id, String title, String body, long rating, String createdOn, Book book, User user){
+    public BookReview(long id, String title, String body, long rating, Date createdDate, Book book, User user){
         this.id = id;
         this.title = title;
         this.body = body;
         this.rating = rating;
-        this.createdOn = createdOn;
+        this.createdDate = createdDate;
         this.user = user;
         this.book = book;
     }
@@ -75,7 +75,7 @@ public class BookReview {
     public void setBook(Book book){ this.book = book;}
     public Book getBook(){return book;}
 
-
+    // Basic Field Getters and Setters
     public long getId() {
         return id;
     }
@@ -100,10 +100,8 @@ public class BookReview {
     public void setRating(long rating) {
         this.rating = rating;
     }
-    public String getCreatedOn() {
-        return createdOn;
-    }
-    public void setCreatedOn(String createdOn) {
-        this.createdOn = createdOn;
+    public Date getCreatedDate() {return createdDate;}
+    public void setCreatedDate(String createdOn) {
+        this.createdDate = createdDate;
     }
 }
