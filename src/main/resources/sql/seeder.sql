@@ -6,7 +6,8 @@
 -- DROP ALL TABLES AND RESTART THE APPLICATION BEFORE RUNNING --
 -- TRUNCATE AND DROP OPTIONS HAVE BEEN REMOVED FOR MODEL-FOREIGN KEY CONSTRAINTS --
 
-USE booksfortrade_db;
+#USE booksfortrade_db;
+USE swapabook_db;
 
 -- ROLE MODEL --
 # Roles table- Connected to SecurityConfig for Granted Authorities ;
@@ -50,9 +51,7 @@ VALUES(1, true,'admin', '$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8e
         (2, true,'Julian1830','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Julian','Martinez','JulianMartinez1830@gmail.com','San Antonio, TX'),
         (3,true,'achap86','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Adam','Chappell','adam.chappell00@gmail.com','San Antonio, TX'),
         (4,true,'charlesjazper','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Charles','Aggasid','charlesaggasid01@gmail.com','San Antonio, TX'),
-        (5, true,'MichaelG1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Michael','Galimore','michaelgalimore1@gmail.com','San Antonio, TX'),
-        (6, true, 'HappyUser1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Billy','Smith','billsmith@gmail.com','Austin, TX'),
-        (7,true, 'SadUser4', '$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Doctor','No','JamesBond007@gmail.com','Waco, TX');
+        (5, true,'MichaelG1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Michael','Galimore','michaelgalimore1@gmail.com','San Antonio, TX');
 SELECT * FROM users;
 
 INSERT INTO users_roles(user_id, role_id)
@@ -60,7 +59,5 @@ VALUES(1,1),
        (2,1),
        (3,1),
        (4,1),
-       (5,1),
-       (6,3),
-       (7,4);
+       (5,1);
 SELECT * from users_roles;
