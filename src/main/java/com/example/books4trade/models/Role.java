@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-public class UserRole {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -14,8 +14,8 @@ public class UserRole {
     @Column(nullable = false)
     private String name;
 
-    public UserRole(){}
-    public UserRole(long id, String name){
+    public Role(){}
+    public Role(long id, String name){
         this.id = id;
         this.name = name;
     }
