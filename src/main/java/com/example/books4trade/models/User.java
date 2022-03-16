@@ -33,7 +33,7 @@ public class User {
     private boolean enabled;
 
     // RELATIONSHIPS
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -90,7 +90,8 @@ public class User {
         booksread = copy.booksread;
         watchlistBooks = copy.watchlistBooks;
     }
-    public User(String username, String password, String firstName, String lastName, String email, String location) {
+    public User(boolean enabled, String username, String password, String firstName, String lastName, String email, String location) {
+        this.enabled = enabled;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -98,8 +99,9 @@ public class User {
         this.email = email;
         this.location = location;
     }
-    public User(long id, String username, String password, String firstName, String lastName, String email, String location) {
+    public User(long id, boolean enabled, String username, String password, String firstName, String lastName, String email, String location) {
         this.id = id;
+        this.enabled = enabled;
         this.username = username;
         this.password = password;
         this.firstName = firstName;

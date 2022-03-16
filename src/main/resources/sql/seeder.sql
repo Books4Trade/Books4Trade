@@ -11,12 +11,11 @@ USE booksfortrade_db;
 -- ROLE MODEL --
 # Roles table- Connected to SecurityConfig for Granted Authorities ;
 INSERT INTO roles(id,name)
-VALUES(1, 'Admin'),
-      (2, 'Editor'),
-      (3, 'User'),
-      (4,'Basic'),
-      (5,'Banned'),
-      (6, 'Inactive');
+VALUES(1, 'ADMIN'),
+      (2, 'EDITOR'),
+      (3, 'USER'),
+      (4,'BANNED'),
+      (5, 'INACTIVE');
 SELECT * FROM roles;
 
 -- TYPE MODEL --
@@ -46,11 +45,22 @@ SELECT * FROM grade_levels;
 
 -- INITIAL ADMIN SETUP --
 # Add the First 4 Users and Roles
-INSERT INTO users(username, password, first_name, last_name, email, location)
-VALUES('Julian1830','password', 'Julian','Martinez','JulianMartinez1830@gmail.com','San Antonio, TX'),
-      ('achap86','password', 'Adam','Chappell','adam.chappell00@gmail.com','San Antonio, TX'),
-      ('charlesjazper','password', 'Charles','Aggasid','charlesaggasid01@gmail.com','San Antonio, TX'),
-      ('MichaelG1','password', 'Michael','Galimore','michaelgalimore1@gmail.com','San Antonio, TX');
+INSERT INTO users(id, enabled, username, password, first_name, last_name, email, location)
+VALUES(1, true,'admin', '$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G','Administrator','Regulus','achap86@gmail.com', 'San Antonio, TX'),
+        (2, true,'Julian1830','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Julian','Martinez','JulianMartinez1830@gmail.com','San Antonio, TX'),
+        (3,true,'achap86','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Adam','Chappell','adam.chappell00@gmail.com','San Antonio, TX'),
+        (4,true,'charlesjazper','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Charles','Aggasid','charlesaggasid01@gmail.com','San Antonio, TX'),
+        (5, true,'MichaelG1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Michael','Galimore','michaelgalimore1@gmail.com','San Antonio, TX'),
+        (6, true, 'HappyUser1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Billy','Smith','billsmith@gmail.com','Austin, TX'),
+        (7,true, 'SadUser4', '$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Doctor','No','JamesBond007@gmail.com','Waco, TX');
+SELECT * FROM users;
 
 INSERT INTO users_roles(user_id, role_id)
-VALUES();
+VALUES(1,1),
+       (2,1),
+       (3,1),
+       (4,1),
+       (5,1),
+       (6,3),
+       (7,4);
+SELECT * from users_roles;

@@ -36,16 +36,18 @@ public class UserController {
 
     @PostMapping("/register")
     public String submitRegistrationForm(@ModelAttribute User user, @RequestParam(name="password-confirm") String passwordConfirm){
+
+        // add username check for unique username
         if(user.getPassword().equals(passwordConfirm)){
             List<Role> defaultRoles = new ArrayList<>();
             defaultRoles.add(rolesDao.getById(3L));
-            defaultRoles.add(rolesDao.getById(4L));
             String hash = passwordEncoder.encode(user.getPassword());
             user.setPassword(hash);
             user.setRoles(defaultRoles);
+            user.setEnabled(true);
             userDao.save(user);
         }// put else Error Here if passwords do not match
-        // add registration error for username exists
+
         return "redirect:/login";
     }
 
@@ -53,17 +55,17 @@ public class UserController {
     public String showProfile(Model model){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.getById(loggedInUser.getId());
-        model.addAttribute("usersBooks", currentUser.getOwnedBooks());
-        model.addAttribute("usersReviews", currentUser.getReviews());
+  //      model.addAttribute("usersBooks", currentUser.getOwnedBooks());
+   //     model.addAttribute("usersReviews", currentUser.getReviews());
         // Add Trades, Other Tab Info
-        model.addAttribute("usersNotifications", currentUser.getNotifications());
+    //    model.addAttribute("usersNotifications", currentUser.getNotifications());
 
 //        User Information
-        model.addAttribute("firstName", currentUser.getFirstName());
-        model.addAttribute("lastName", currentUser.getLastName());
-        model.addAttribute("userName", currentUser.getUsername());
-        model.addAttribute("email", currentUser.getEmail());
-        model.addAttribute("location", currentUser.getLocation());
+   //     model.addAttribute("firstName", currentUser.getFirstName());
+   //     model.addAttribute("lastName", currentUser.getLastName());
+   //     model.addAttribute("userName", currentUser.getUsername());
+    //    model.addAttribute("email", currentUser.getEmail());
+    //    model.addAttribute("location", currentUser.getLocation());
 
 
 

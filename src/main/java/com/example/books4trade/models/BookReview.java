@@ -1,7 +1,5 @@
 package com.example.books4trade.models;
 
-
-
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -37,8 +35,8 @@ public class BookReview {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    public BookReview() {
-    }
+    public BookReview() {}
+
     public BookReview(String title, String body, long rating, Date createdDate){
         this.title = title;
         this.body = body;
