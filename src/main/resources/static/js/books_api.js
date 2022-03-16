@@ -39,36 +39,47 @@ $(document).ready(function() {
                 title = item.volumeInfo.title,
                 author = item.volumeInfo.authors,
                 preview = item.volumeInfo.previewLink,
-                img = item.volumeInfo.imageLinks.smallThumbnail,
+                img = "https://imgur.com/APmD3ha",
                 description = item.volumeInfo.description;
-                console.log("desc length: "+description.length);
-                let summary = "None";
-                if(description.length > 500){
-                    summary = (description.substring(0,450)) + "...(more details were removed)";
-                    console.log("summary trimmed, length: "+ summary.length);
-                } else{
-                    summary = description;
-                    console.log("summary not trimmed, length: "+summary.length);
+                var summary;
+                for(const key in item.volumeInfo.imageLinks){
+                    img = `${item.volumeInfo.imageLinks[key]}`;
+                    console.log(`${key} : ${item.volumeInfo.imageLinks[key]}`);
                 }
+                // if(item.volumeInfo.hasOwnProperty(description)) {
+                    if ((description === undefined) || (description === "undefined")) {
+                        summary = "No summary available.";
+                        console.log("summary was undefined, setting default string");
+                    } else if(description.length > 500){
+                        summary = (description.substring(0,450)) + "...(more details were removed)";
+                        console.log("summary trimmed, length: "+ summary.length);
+                    } else if(description.length < 500){
+                        summary = description;
+                        console.log("summary not trimmed, length: "+summary.length);
+                    }
+                    //else {
+                     //   summary = "No summary available.";
+                    //}
+           //     }
 
             booksHTML +=
-                '<form action="/books/create" method="GET">'+
-                '<div class="book-card d-flex align-items-center">' +
-                '<h3 class="book-headers title-bg">' + title + '</h3>' +
-                '<h4 class="book-headers">Author:' + author + '</h4>' +
-                '<div class="text-center">'+
-                '<img src="' + img + '" alt="book cover"/>' +
-                '</div>'+
-                '<div class="text-center">' +
-                '<a href="' + preview + '" target="_blank" >Preview Book</a>' +
-                '<input type="hidden" name="title" id="title" value="'+ title +'">'+
-                '<input type="hidden" name="author" id="author" value="'+ author +'">'+
-                '<input type="hidden" name="imagesrc" id="imagesrc" value="'+ img+'">'+
-                '<input type="hidden" name="summary" id="summary" value ="'+ summary +'">'+
-                '<br>'+
-                '<button type="submit" class="btn btn-primary">Add Book</button>' +
-                '</div>' +
-                '</div>'+
+                '<form class="book-card" action="/books/create" method="GET">'+
+                    '<h3 class="book-headers title-bg">' + title + '</h3>' +
+                    '<h4 class="book-headers">Author:' + author + '</h4>' +
+                    '<div class="text-center">'+
+                        '<img src="' + img + '" alt="book cover"/>' +
+                    '</div>'+
+                    '<div class="text-center">' +
+                        '<a href="' + preview + '" target="_blank" >Preview Book</a>' +
+                    '</div>' +
+                    '<input type="hidden" name="title" id="title" value="'+ title +'">'+
+                    '<input type="hidden" name="author" id="author" value="'+ author +'">'+
+                    '<input type="hidden" name="imagesrc" id="imagesrc" value="'+ img+'">'+
+                    '<input type="hidden" name="summary" id="summary" value ="'+ summary +'">'+
+                    '<br>'+
+                    '<div class="text-center">'+
+                        '<button type="submit" class="btn btn-primary">Add Book</button>' +
+                    '</div>' +
                 '</form>';
         }
         booksHTML += '</div>';

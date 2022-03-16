@@ -8,10 +8,7 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-
-<!-- searchedparam and searcehdquery set the initial values passed to the api for search-->
-<h3 class="header-center">Search by: <span th:text="${searchedparam}" id="searchedparam"></span>, with term: <span th:text="${searchedquery}" id="searchedquery"></span>.</h3>
-<h3 class="header-center text-secondary">Choose the result that best matches your search, or search again</h3>
+    <br>
       <!-- Below is the target for the javascript values in the search if another search is repeated-->
        <label for="param">Search By:</label>
         <select name="param" id="param">
@@ -22,7 +19,11 @@
         <input id="query" name="query" type="text">
         <!-- javascript search function target is this button id -->
         <button type="submit" id="searchsubmit" class="btn btn-secondary">Search</button>
-
+    <br>
+<!-- searchedparam and searcehdquery set the initial values passed to the api for search-->
+    <h3 class="header-center">Search by: <span th:text="${searchedparam}" id="searchedparam"></span>, with term: <span th:text="${searchedquery}" id="searchedquery"></span>.</h3>
+    <h3 class="header-center text-secondary">Choose the result that best matches your search, or search again</h3>
+    <br>
 <!-- Target for populating the search results through js-->
 <div id="search-results"></div>
 

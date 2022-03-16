@@ -24,19 +24,15 @@
 			</p>
 			<p class="card-text">Owner: <span th:text="${showBook.getUser().getUsername()}"></span></p>
 
-			<div th:if=“${isOwner}”>
-			<form th:method="get" >
-				<button type="submit" th:formaction="|/books/${book.getId()}/copies/${showBook.getId()}/edit|">Edit</button>
-			</form>
+			<div th:if="${isOwner}">
+				<form th:method="get" >
+					<button type="submit" th:formaction="|/books/${book.getId()}/copies/${showBook.getId()}/edit|">Edit</button>
+				</form>
 
-			<form th:method="delete">
-				<button type="submit"  th:formaction="|/books/${book.getId()}/copies/${showBook.getId()}/delete|">Delete</button>
-			</form>
+				<form th:method="delete">
+					<button type="submit"  th:formaction="|/books/${book.getId()}/copies/${showBook.getId()}/delete|">Delete</button>
+				</form>
 			</div>
-
-
-
-
 		</div>
 	</div>
 </div>

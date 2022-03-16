@@ -9,10 +9,11 @@
 <nav th:replace="partials :: navbar" />
 
 <nav th:replace="partials :: search" />
-
-<h2 class="header-center" th:if="${!searched}">Here are all of our Books!</h2>
-<h2 class="header-center" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h2>
-<h3 th:if="${!searched}" class="header-center text-muted">Not finding something? Try the searchbar!</h3>
+<br>
+    <h2 class="header-center" th:if="${!searched}">Here are all of our Books!</h2>
+    <h2 class="header-center" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h2>
+    <h3 th:if="${!searched}" class="header-center text-muted">Not finding something? Try the searchbar!</h3>
+<br>
 
 
 <div class="d-flex flex-row flex-wrap justify-content-evenly">
@@ -39,6 +40,7 @@
         <div class="text-center">
             <button class="btn btn-secondary" type="submit">Add By Search</button>
         </div>
+        <br>
     </form>
 </div>
 
