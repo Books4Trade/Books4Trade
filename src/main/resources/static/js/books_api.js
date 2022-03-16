@@ -39,16 +39,22 @@ $(document).ready(function() {
                 title = item.volumeInfo.title,
                 author = item.volumeInfo.authors,
                 preview = item.volumeInfo.previewLink,
-                img = item.volumeInfo.imageLinks.smallThumbnail,
-                description = item.volumeInfo.description;
-                console.log("desc length: "+description.length);
-                let summary = "None";
-                if(description.length > 500){
-                    summary = (description.substring(0,450)) + "...(more details were removed)";
-                    console.log("summary trimmed, length: "+ summary.length);
-                } else{
-                    summary = description;
-                    console.log("summary not trimmed, length: "+summary.length);
+                img = "https://imgur.com/APmD3ha",
+                description = "No Summary Available.";
+                var summary;
+                for(const key in item.volumeInfo.imageLinks){
+                    img = `${item.volumeInfo.imageLinks[key]}`;
+                    console.log(`${key} : ${item.volumeInfo.imageLinks[key]}`);
+                }
+                if(item.volumeInfo.hasOwnProperty(description)){
+                    description = item.volumeInfo.description;
+                    if(description.length > 500){
+                        summary = (description.substring(0,450)) + "...(more details were removed)";
+                        console.log("summary trimmed, length: "+ summary.length);
+                    } else{
+                        summary = description;
+                        console.log("summary not trimmed, length: "+summary.length);
+                    }
                 }
 
             booksHTML +=

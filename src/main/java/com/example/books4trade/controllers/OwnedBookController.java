@@ -82,8 +82,8 @@ public class OwnedBookController {
         public String deletePost(@PathVariable long id, @PathVariable long copyid){
                 User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 OwnedBook copyToDelete = ownedBooksDao.getById(copyid);
-                if(copyToDelete.getUser() == currentUser) {
-                ownedBooksDao.delete(copyToDelete);
+                if(copyToDelete.getUser().getId() == currentUser.getId()) {
+                        ownedBooksDao.delete(copyToDelete);
                 }
                 return "redirect:/books/copies";
         }

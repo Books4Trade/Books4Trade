@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/profile",
                         "/books/create",
                         "/reviews/create", "/reviews/edit",
-                        "/books/{id}/copies/add", "/books/{id}/copies/{copyid}"
+                        "/books/{id}/copies/add", "/books/{id}/copies/{copyid}", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit"
                 )
                 .authenticated();
     }
