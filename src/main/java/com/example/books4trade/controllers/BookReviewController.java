@@ -2,11 +2,13 @@ package com.example.books4trade.controllers;
 
 
 import com.example.books4trade.models.BookReview;
+import com.example.books4trade.models.OwnedBook;
 import com.example.books4trade.models.User;
 import com.example.books4trade.repositories.BookRepository;
 import com.example.books4trade.repositories.BookReviewRepository;
 import com.example.books4trade.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +21,13 @@ import java.util.List;
 public class BookReviewController {
 
     private final BookReviewRepository bookReviewDao;
-    private final BookRepository bookDao;
-    private final UserRepository userDao;
+    private final BookRepository booksDao;
+    private final UserRepository usersDao;
 
     public BookReviewController(BookReviewRepository bookReviewDao, BookRepository bookDao, UserRepository userDao) {
         this.bookReviewDao = bookReviewDao;
-        this.bookDao = bookDao;
-        this.userDao = userDao;
+        this.booksDao = bookDao;
+        this.usersDao = userDao;
     }
 
     @GetMapping("/reviews")
@@ -40,6 +42,7 @@ public class BookReviewController {
         return "reviews/index";
     }
 
+//
     @GetMapping("/reviews/{id}")
     public String showIndividualReview (@PathVariable long id, Model model) {
         BookReview individualReview = bookReviewDao.getById(id);
@@ -47,6 +50,9 @@ public class BookReviewController {
         model.addAttribute("individualReview",individualReview);
         return "reviews/individual-review";
     }
+//
+
+
 
     @GetMapping("/reviews/create")
     public String showReviewForm(Model model) {
@@ -54,12 +60,33 @@ public class BookReviewController {
         return "/reviews/create";
     }
 
+//
+
+
+
+//    edited by mike
     @PostMapping("/reviews/create")
-    public String createReview (@ModelAttribute BookReview bookReview) {
-//        bookReview.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-         bookReviewDao.save(bookReview);
-         return "redirect:/reviews";
+    public String createReview (@RequestParam(name= "rating") String rating) {
+        BookReview bookReview = new BookReview();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        bookReview.setBody();
+        bookReview.setTitle();
+        bookReview.setRating(rating);
+        bookReview.setUser(currentUser);
+
+
+        //        bookReview.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
+         bookReview = bookReviewDao.save(bookReview);
+         return "redirect:/reviews/" +bookReview.getId();
     }
+
+    @GetMapping("/reviews/{id}")
+    public String showReview(@PathVariable String id, Model model){
+        return "/reviews/individual-review";
+    }
+//
+
 
     @GetMapping("reviews/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
@@ -77,18 +104,28 @@ public class BookReviewController {
 //        }
 //    }
 
-    @PostMapping("/reviews/{id}/edit")
-        public String submitEdit(@ModelAttribute BookReview editedReview){
-            BookReview postToEdit = bookReviewDao.getById(editedReview.getId());
-            postToEdit.setTitle(editedReview.getTitle());
-            postToEdit.setBody(editedReview.getBody());
-            bookReviewDao.save(editedReview);
-            return "redirect:/reviews";
+    @PostMapping("/reviews/{id}/user/{reviewid}/edit")
+        public String submitEdit(@PathVariable long id, @PathVariable long reviewid, @ModelAttribute BookReview editedReview){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            BookReview reviewToEdit = bookReviewDao.getById(editedReview.getId());
+            reviewToEdit.setUser(currentUser);
+            reviewToEdit.setTitle(editedReview.getTitle());
+            reviewToEdit.setBody(editedReview.getBody());
+            reviewToEdit.setRating(editedReview.getRating());
+            reviewToEdit = bookReviewDao.save(editedReview);
+            return "redirect:/reviews" + id + "/user/" + reviewToEdit.getId();
         }
 
-     @PostMapping("/reviews/{id}/delete")
-     public String deleteReview(@PathVariable long id) {
-        bookReviewDao.deleteById(id);
+
+    //    mike
+     @PostMapping("/reviews/{id}/user/{reviewid}delete")
+     public String deleteReview(@PathVariable long id, @PathVariable long reviewid) {
+         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+         BookReview reviewToDelete = bookReviewDao.getById(reviewid);
+         if(reviewToDelete.getUser().getId() == currentUser.getId()){
+             bookReviewDao.deleteById(reviewid);
+         }
+
         return "redirect:/reviews";
      }
 
@@ -96,6 +133,27 @@ public class BookReviewController {
 
 
 
+    @GetMapping("/reviews/{id}/user/{reviewid}")
+    public String showUserReview(@PathVariable long id, @PathVariable long reviewid, Model model){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        BookReview showReview = bookReviewDao.getById(reviewid);
+        boolean isOwner = false;
+        if(showReview.getUser().getId() == currentUser.getId()){
+            isOwner = true;
+        }
+        model.addAttribute("isOwner", isOwner);
+        model.addAttribute("review", bookReviewDao.getById(id));
+        model.addAttribute("showBook", showReview);
+        return "/reviews/individual-review";
+    }
+//
+    @GetMapping("reviews/{id}/user/{reviewid}/edit")
+    public String editReview(@PathVariable long id, @PathVariable long reviewid, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        BookReview reviewToEdit = bookReviewDao.getById(reviewid);
+        model.addAttribute("editReview",bookReviewDao.getById(id));
+        return "/reviews/edit";
+    }
 
 
 }

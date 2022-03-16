@@ -80,6 +80,8 @@ public class BookReview {
         this.createdOn = createdOn;
     }
 
+
+
     public long getId() {
         return id;
     }
@@ -126,5 +128,13 @@ public class BookReview {
 
     public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
+    }
+
+//    mike
+    public User getUser(){
+        return user;
+    }
+    public void setUser(User user){
+        this.user = user;
     }
 }
