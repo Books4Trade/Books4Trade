@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Make A Trade</title>
+    <head th:include="partials :: head"/>
+    <style>
+        .book-cover{
+            width: 8rem !important;
+            height: 10rem !important;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="partials :: navbar"/>
+<main class="mt-3 container align-content-center">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col d-flex flex-column justify-content-around">
+                    <h3 th:text="${book.title}">Title</h3>
+                    <h5>Author: <span th:text="${book.getAuthor().getFullname()}">Author</span></h5>
+                    <p th:text="${book.getSummary()}">Book Summary</p>
+                    <p th:text="${book.getRating()}">Book Rating</p>
+                </div>
+                <div class="mt-3 pt-3 pb-3 col">
+                    <img class="book-cover" th:src="${book.getBookImg()}">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<article class="container mt-3 d-flex flex-column">
+    <h3 class="text-center">Users Who Own A Tradable Copy</h3>
+    <table>
+        <tr th:each="owner : ${owners}">
+            <td>
+            <span th:if="${owner.isTradable()}">
+                <form action="" class="book d-flex justify-content-between m-1">
+                    <h6 class="align-self-center m-0" th:text="${owner.getUser().getUsername()}">Username: tester1</h6>
+                    <p class="align-self-center m-0" th:text="${owner.getUser().getEmail()}">Email: tester1@mail.com</p>
+                    <p class="align-self-center m-0" th:text="${owner.getType().getName()}">Type: Hardback</p>
+                    <p class="align-self-center m-0" th:text="${owner.getBookCondition()}">Condition: Poor</p>
+                    <input type="hidden" name="userId" th:value="${owner.getUser().getId()}">
+                    <div class="justify-content-between">
+                        <input type="submit" class="btn btn-primary btn-sm" value="Trade" th:formaction="'/profile'">
+                        <input type="submit" class="btn btn-primary btn-sm" value="View User" th:formaction="'/profile/{id}'">
+                    </div>
+                </form>
+            </span>
+            </td>
+        </tr>
+    </table>
+</article>
+<script th:include="partials :: scripts-bottom"/>
+</body>
+</html>
