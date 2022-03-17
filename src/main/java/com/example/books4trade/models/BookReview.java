@@ -1,7 +1,5 @@
 package com.example.books4trade.models;
 
-
-
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -17,24 +15,17 @@ public class BookReview {
     private long id;
 
     @Column(nullable = false, length = 255)
-    @NotBlank(message = "Must have a title")
-    @Size(max = 255, message = "Title MINIMUM: 3, MAX: 255 characters .")
     private String title;
 
     @Column(nullable = false)
-    @NotBlank(message = "Must have a body")
-    @Size(max = 1020, message = "Title MINIMUM: 10, MAX: 500 characters .")
+    @Size(max = 2000, message = "MAX: 2000 characters .")
     private String body;
 
-    @Column(nullable = true)
-    @Value("${file-upload-path}") //will need a file upload form
-    private String uploadPath;
+    @Column(nullable = false)
+    private long rating;
 
     @Column(nullable = false)
-    private String rating;
-
-    @Column(nullable = false)
-    private String createdOn;
+    private Date createdDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -44,87 +35,71 @@ public class BookReview {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    public BookReview() {}
 
-    public BookReview() {
-    }
-
-    public BookReview(String title, String body, String rating, String createdOn) {
+    public BookReview(String title, String body, long rating, Date createdDate){
         this.title = title;
         this.body = body;
         this.rating = rating;
-        this.createdOn = createdOn;
+        this.createdDate = createdDate;
     }
-
-    public BookReview(long id, String title, String body, String uploadPath, String rating, String createdOn) {
+    public BookReview(long id, String title, String body, long rating, Date createdDate){
         this.id = id;
         this.title = title;
         this.body = body;
-        this.uploadPath = uploadPath;
         this.rating = rating;
-        this.createdOn = createdOn;
+        this.createdDate = createdDate;
     }
-
-    public BookReview(long id, String title, String body, String rating) {
+    public BookReview(long id, String title, String body, long rating, Date createdDate, Book book){
         this.id = id;
         this.title = title;
         this.body = body;
-        this.uploadPath = uploadPath;
         this.rating = rating;
+        this.createdDate = createdDate;
+        this.book = book;
     }
-
-    public BookReview(String title, String body, String uploadPath, String rating, String createdOn) {
+    public BookReview(long id, String title, String body, long rating, Date createdDate, Book book, User user){
+        this.id = id;
         this.title = title;
         this.body = body;
-        this.uploadPath = uploadPath;
         this.rating = rating;
-        this.createdOn = createdOn;
+        this.createdDate = createdDate;
+        this.user = user;
+        this.book = book;
     }
+    // Relationship Getters and Setters
+    public void setUser(User user){ this.user = user;}
+    public User getUser(){return user;}
+    public void setBook(Book book){ this.book = book;}
+    public Book getBook(){return book;}
 
+    // Basic Field Getters and Setters
     public long getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getBody() {
         return body;
     }
-
     public void setBody(String body) {
         this.body = body;
     }
-
-    public String getUploadPath() {
-        return uploadPath;
-    }
-
-    public void setUploadPath(String uploadPath) {
-        this.uploadPath = uploadPath;
-    }
-
-    public String getRating() {
+    public long getRating() {
         return rating;
     }
-
-    public void setRating(String rating) {
+    public void setRating(long rating) {
         this.rating = rating;
     }
-
-    public String getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(String createdOn) {
-        this.createdOn = createdOn;
+    public Date getCreatedDate() {return createdDate;}
+    public void setCreatedDate(String createdOn) {
+        this.createdDate = createdDate;
     }
 }

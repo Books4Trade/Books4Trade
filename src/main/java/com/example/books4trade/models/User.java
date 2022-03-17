@@ -30,10 +30,16 @@ public class User {
     private String location;
 
     @Column(nullable = false)
+    private boolean enabled;
 
     // RELATIONSHIPS
-    @JoinColumn(name = "role_id")
-    private long role;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    private List<Role> roles;
 
     @OneToMany(mappedBy = "user")
     private List<BookReview> reviews;
@@ -43,7 +49,7 @@ public class User {
 
     //Below is for reads_book @charles
     @ManyToMany(mappedBy = "user")
-    private List<Book> books;
+    private List<Book> booksread;
 
     //  n:m relation for watchlist table
     @ManyToMany(cascade = CascadeType.ALL)
@@ -71,7 +77,8 @@ public class User {
     public User(){}
     public User(User copy){
         id = copy.id;
-        role = copy.role;
+        enabled = copy.enabled;
+        roles = copy.roles;
         username = copy.username;
         password = copy.password;
         email = copy.email;
@@ -80,8 +87,30 @@ public class User {
         location = copy.location;
         reviews = copy.reviews;
         notifications = copy.notifications;
+        booksread = copy.booksread;
+        watchlistBooks = copy.watchlistBooks;
     }
-    public User(long id, long role, String username, String password, String firstName, String lastName, String email, String location, List<BookReview> reviews, List<Notification> notifications) {
+    public User(boolean enabled, String username, String password, String firstName, String lastName, String email, String location) {
+        this.enabled = enabled;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.location = location;
+    }
+    public User(long id, boolean enabled, String username, String password, String firstName, String lastName, String email, String location) {
+        this.id = id;
+        this.enabled = enabled;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.location = location;
+    }
+    //  CONSTRUCTOR for All relationships
+    public User(long id, String username, String password, String firstName, String lastName, String email, String location, List<Role> roles, List<BookReview> reviews, List<Notification> notifications, List<Book> booksread, List<Book> watchlistBooks) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -89,56 +118,22 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.location = location;
+        this.roles = roles;
         this.reviews = reviews;
         this.notifications = notifications;
-    }
-    //  CONSTRUCTOR for Watchlist relationship
-    public User(long id, String username, String password, String firstName, String lastName, String email, String location, long role, List<BookReview> reviews, List<Notification> notifications, List<Book> books, List<Book> watchlistBooks) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.location = location;
-        this.role = role;
-        this.reviews = reviews;
-        this.notifications = notifications;
-        this.books = books;
+        this.booksread = booksread;
         this.watchlistBooks = watchlistBooks;
     }
-
-    //  CONSTRUCTOR for OwnedBook relationship
-    public User(String username, String password, String firstName, String lastName, String email, String location, long role, List<OwnedBook> ownedBooks) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.location = location;
-        this.role = role;
-        this.ownedBooks = ownedBooks;
-    }
-    public User(long id, String username, String password, String firstName, String lastName, String email, String location, long role, List<OwnedBook> ownedBooks) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.location = location;
-        this.role = role;
-        this.ownedBooks = ownedBooks;
-    }
-
 
     // Relationship Getter/Setter Methods
     public List<BookReview> getReviews(){
         return reviews;
     }
+    public void setReviews(List<BookReview> reviews){ this.reviews = reviews;}
     public List<Notification> getNotifications() {
         return notifications;
     }
+    public void setNotifications(List<Notification> notifications){ this.notifications = notifications;}
     public List<Book> getWatchlistBooks() {
         return watchlistBooks;
     }
@@ -150,6 +145,14 @@ public class User {
     }
     public void setOwnedBooks(List<OwnedBook> ownedBooks) {
         this.ownedBooks = ownedBooks;
+    }
+    public List<Book> getBooksread(){ return booksread;}
+    public void setBooksread(List<Book> booksread){ this.booksread = booksread;}
+    public List<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     // User Field Getters & Setters
@@ -195,10 +198,6 @@ public class User {
     public void setLocation(String location) {
         this.location = location;
     }
-    public long getRole() {
-        return role;
-    }
-    public void setRole(long role) {
-        this.role = role;
-    }
+    public Boolean getEnabled(){ return enabled;}
+    public void setEnabled(Boolean enabled){ this.enabled = enabled;}
 }
