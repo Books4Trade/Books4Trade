@@ -73,7 +73,6 @@ public class BookReview {
     public void setBook(Book book){ this.book = book;}
     public Book getBook(){return book;}
 
-    // Basic Field Getters and Setters
     public long getId() {
         return id;
     }
@@ -101,5 +100,13 @@ public class BookReview {
     public Date getCreatedDate() {return createdDate;}
     public void setCreatedDate(String createdOn) {
         this.createdDate = createdDate;
+    }
+
+//    mike
+    public User getUser(){
+        return user;
+    }
+    public void setUser(User user){
+        this.user = user;
     }
 }
