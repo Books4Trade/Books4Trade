@@ -7,37 +7,39 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<div>
-    <form th:action="@{/books/{id}/edit (id = ${book.getId()})}" th:method="POST" th:object="${book}">
+<div class="container">
+    <form th:action="@{/books/{id}/edit (id = ${editBook.getId()})}" th:method="POST" th:object="${editBook}">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input id="title" name="title" class="form-control" type="text" th:field="*{title}">
+            <label for="title"><h2>Title</h2></label>
+            <input id="title" name="title" class="form-control" type="text" th:field="*{title}" th:value="${editBook.getTitle()}">
         </div>
 
-        <!-- <div class="form-group">
-             <label for="author">Author</label>
-             <input id="author" name="author" class="form-control" type="text" th:field="*{author}">
-         </div> -->
+<!--         <div class="form-group">-->
+<!--             <label for="author">Author</label>-->
+<!--             <input id="author" name="author" class="form-control" type="number" th:field="*{author}" th:value="${editBook.getAuthor().getId()}">-->
+<!--         </div>-->
 
         <div class="form-group">
-            <label for="summary">Summary</label>
-            <input id="summary" name="summary" class="form-control" type="textarea" th:field="*{summary}">
+            <label for="summary"><h2>Summary</h2></label>
+            <input id="summary" name="summary" class="form-control" type="textarea" th:field="*{summary}" th:value="${editBook.getSummary()}">
         </div>
 
-        <div class="form-group">
-            <label for="rating">Rating</label>
-            <input id="rating" name="rating" class="form-control" type="textarea" th:field="*{rating}">
-        </div>
+	    <div class="form-group">
+		    <label for="summary">Summary</label>
+		    <input id="summary" name="summary" class="form-control" type="text" th:field="*{bookImg}" th:value="${editBook.getBookImg()}">
+	    </div>
+
+<!--        <div class="form-group">-->
+<!--            <label for="rating">Rating</label>-->
+<!--            <input id="rating" name="rating" class="form-control" type="textarea" th:field="*{rating}" th:value="">-->
+<!--        </div>-->
         <!-- Add Select for Categories, Grade Level -->
-        <div class="form-group">
-            <label for="categories">Categories</label>
-            <input id="categories" name="categories" class="form-control" type="textarea" th:field="*{categories}">
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="categories">Categories</label>-->
+<!--            <input id="categories" name="categories" class="form-control" type="textarea" th:field="*{categories}">-->
+<!--        </div>-->
 
-
-
-
-        <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Edit Book</button>
+        <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Save</button>
     </form>
 </div>
 

@@ -138,18 +138,16 @@ public class BookController {
 
 
 
-    @GetMapping("/book/{id}/edit")
-    public String showUpdateForm(@PathVariable long id, Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-//        Book book = booksDao.getById(id);
-        OwnedBook ownedBook = ownedBooksDao.getById(id);
-        if(user.getId() == ownedBook.getUser().getId())
-        model.addAttribute("book", ownedBook);
+    @GetMapping("/books/{id}/edit")
+    public String showUpdateForm(@PathVariable long id, Model model,@ModelAttribute Book book){
+        Book editBook = booksDao.getById(id);
+        model.addAttribute("editBook", editBook);
         return "/books/edit";
     }
 
-    @PostMapping("/book/{id}/edit")
-    public String submitUpdateForm(@ModelAttribute Book book, Model model){
+    @PostMapping("/books/{id}/edit")
+    public String submitUpdateForm(@PathVariable long id,@ModelAttribute Book book, Model model){
+        book.setAuthor(booksDao.getById(id).getAuthor());
         booksDao.save(book);
         return "redirect:/books/" + book.getId();
 
@@ -161,6 +159,5 @@ public class BookController {
             booksDao.deleteById(id);
             return "redirect:/books";
     }
-
 
 }
