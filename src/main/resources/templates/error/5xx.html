@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="|Oopps, ${error}|"></title>
+	<head th:include="partials :: head" />
+</head>
+
+<body>
+
+<div class="container" style="margin-top: 200px; text-align: center">
+
+	<th:block th:switch="${error}">
+		<div th:case="'Internal Server Error'">
+			<h1>Internal Server Error</h1>
+		</div>
+	</th:block>
+	<hr>
+	<h4><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">Click here for more information</a></h4>
+	<p style="margin-top: 50px; text-decoration: underline">Watch a video instead</p>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/m2ua3O_fdCY" title="YouTube video player"
+	        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+	        allowfullscreen>
+	</iframe>
+
+</div>
+
+<body th:include="partials :: scripts-bottom" />
+
+</body>
+</html>
