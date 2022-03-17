@@ -2,21 +2,20 @@ package com.example.books4trade.controllers;
 
 import com.example.books4trade.models.Book;
 import com.example.books4trade.models.OwnedBook;
+import com.example.books4trade.models.User;
 import com.example.books4trade.repositories.BookRepository;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.TradeRepository;
 import com.example.books4trade.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/books")
+@RequestMapping("/books")   //  this gives every mapping to follow a /books to start for uniformity
 public class TradeController {
     private BookRepository booksDao;
     private UserRepository usersDao;
@@ -30,16 +29,15 @@ public class TradeController {
         this.tradesDao = tradesDao;
     }
 
-    //  NEED TO WORK ON VIEW OF ALL TRADABLE BOOKS
-
-    @GetMapping("/trades")
+    @GetMapping("/trades")      //  will display all books available for trade
+    // TODO: need to add button to NAVBAR to be redirected to trades index page
     public String viewTradables(Model model){
         List<Book> tradableBooks = ownedBooksDao.findAllTradable();
         model.addAttribute("tradables", tradableBooks);
         return "books/tradesIndex";
     }
 
-    @GetMapping("/trade/{id}")
+    @GetMapping("/trade/{id}")  //  will display single tradable book with list of owners to trade with
     public String startTrade(@PathVariable long id, Model model){
         List<OwnedBook> owners = ownedBooksDao.findOwnedBooksByBook(booksDao.getById(id));
         model.addAttribute("owners", owners);
@@ -47,4 +45,43 @@ public class TradeController {
 
         return "books/showBook_trade";
     }
+
+    //  TODO: add mapping to initiate trade; need a GET and POST
+    @GetMapping("/trade/{id}/initiate")
+    public String initiateTrade(
+            @PathVariable long bookTT_id,
+            @RequestParam(name = "bookCover") String bookImg,
+            @RequestParam(name = "tradeBuddy") long owner_id,
+            @RequestParam(name = "title") String title,
+            Model model)
+    {
+        model.addAttribute("bookCover", bookImg);
+        model.addAttribute("bookTTitle", title);
+        model.addAttribute("tradeBuddy", owner_id);
+
+        return "trades/create";
+    }
+
+    //  TODO: POST mapping to create tradeItem
+    @PostMapping("/trade/{id}/initiate")    //  {id} = represents initial book being requested to trade
+    public String createTrade(
+            @PathVariable long book_id,
+            @RequestParam(name = "userInit_id") long user_id,
+            @RequestParam(name = "bookCover") String bookImg,
+
+            Model model)
+    {
+//        Book book = booksDao.getById(book_id);
+//        User tradeInit = usersDao.getById(user_id);
+//        List<OwnedBook> owner = ownedBooksDao.findOwnedBooksByBook(book);
+//
+//        model.addAttribute("userInit", tradeInit);
+//        model.addAttribute("bookTT", book);
+//        model.addAttribute("tradeBuddy", owner);
+
+        return "redirect: /profile";
+    }
+
+
+
 }
