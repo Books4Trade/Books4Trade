@@ -53,20 +53,20 @@
         <tr th:each="owner : ${owners}">
                 <span th:if="${owner.isTradable()}">
                     <form action="">
-                    <td class="align-middle" th:text="${owner.getUser().getUsername()}">Username</td>
-                    <td class="align-middle" th:text="${owner.getUser().getEmail()}">Email</td>
-                    <td class="align-middle" th:text="${owner.getType().getName()}">Type</td>
-                    <td class="align-middle" th:text="${owner.getBookCondition()}">Condition</td>
-                    <td class="align-middle">
-                        <!--CREATING HIDDEN FIELDS TO GRAB INFO-->
-<!--                        <input id="title" name="bookTitle" class="form-control" type="hidden" th:value="${book.getTitle()}">-->
-<!--                        <input id="author" name="author" class="form-control" type="hidden" th:value="${author}">-->
-<!--                        <input id="bookCover" name="bookCover" class="form-control" type="hidden" th:value="${book.getBookImg()}">-->
-<!--                        <input id="tradeBuddy" name="tradeBuddy" class="form-control" type="hidden" th:value="${owner.getUser().getId()}">-->
-                        <input type="submit" class="btn btn-primary btn-sm" value="View" th:formaction="'#'" th:formtarget="_blank">
-                        <input type="submit" class="btn btn-primary btn-sm" value="Trade" th:formaction="'#'" th:formtarget="_blank">
-                    </td>
-                </form>
+                        <td class="align-middle" th:text="${owner.getUser().getUsername()}">Username</td>
+                        <td class="align-middle" th:text="${owner.getUser().getEmail()}">Email</td>
+                        <td class="align-middle" th:text="${owner.getType().getName()}">Type</td>
+                        <td class="align-middle" th:text="${owner.getBookCondition()}">Condition</td>
+                        <td class="align-middle">
+                            <!--CREATING HIDDEN FIELDS TO GRAB INFO-->
+                            <input id="title" name="bookTitle" class="form-control" type="hidden" th:value="${book.getTitle()}">
+<!--                            <input id="author" name="author" class="form-control" type="hidden" th:value="${book.getAuthor().getFullname()}">-->
+                            <input id="bookCover" name="bookCover" class="form-control" type="hidden" th:value="${book.getBookImg()}">
+                            <input id="tradeBuddy" name="tradeBuddy" class="form-control" type="hidden" th:value="${owner.getUser().getId()}">
+                            <input type="submit" class="btn btn-primary btn-sm" value="View" th:formaction="'#'" th:formtarget="_blank">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Trade" th:formaction="'#'" th:formtarget="_blank">
+                        </td>
+                    </form>
                 </span>
         </tr>
         </tbody>
