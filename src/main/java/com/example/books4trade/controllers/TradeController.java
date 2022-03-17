@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,13 +32,12 @@ public class TradeController {
 
     //  NEED TO WORK ON VIEW OF ALL TRADABLE BOOKS
 
-//    @GetMapping("/trades")
-//    public String viewTradables(Model model){
-//        List<OwnedBook> tradableBooks = ownedBooksDao.findAll();
-//        model.addAttribute("tradables", tradableBooks);
-//
-//        return "books/trades";
-//    }
+    @GetMapping("/trades")
+    public String viewTradables(Model model){
+        List<Book> tradableBooks = ownedBooksDao.findAllTradable();
+        model.addAttribute("tradables", tradableBooks);
+        return "books/tradesIndex";
+    }
 
     @GetMapping("/trade/{id}")
     public String startTrade(@PathVariable long id, Model model){
