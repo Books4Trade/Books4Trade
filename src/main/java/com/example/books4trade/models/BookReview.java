@@ -101,12 +101,4 @@ public class BookReview {
     public void setCreatedDate(String createdOn) {
         this.createdDate = createdDate;
     }
-
-//    mike
-    public User getUser(){
-        return user;
-    }
-    public void setUser(User user){
-        this.user = user;
-    }
 }
