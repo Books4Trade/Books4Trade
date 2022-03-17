@@ -19,12 +19,12 @@
 
 <th:block th:switch="${error}">
 	<div th:case="'Not Found'">
-		<h1>404 Not Found</h1>
+		<h1>HTTP 404 Not Found</h1>
 		<hr>
 		<h2>Page not found!!</h2>
 	</div>
 	<div th:case="'Forbidden'">
-		<h1>403 Forbidden</h1>
+		<h1>HTTP 403 Forbidden</h1>
 		<hr>
 		<h2>You don't have permission to view this page.</h2>
 	</div>
@@ -32,13 +32,12 @@
 		<h1>HTTP 405 Method Not Allowed</h1>
 		<hr>
 	</div>
+	<div th:case="'Bad Request'">
+		<h1>HTTP 400 Bad Request</h1>
+		<hr>
+	</div>
 </th:block>
 <h4><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">Click here for more information</a></h4>
-<p style="margin-top: 50px; text-decoration: underline">Watch a video instead</p>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/m2ua3O_fdCY" title="YouTube video player"
-	frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-	allowfullscreen>
-	</iframe>
 
 </div>
 
