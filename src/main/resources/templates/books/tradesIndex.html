@@ -33,7 +33,6 @@
                     <td class="align-middle" th:text="${tradableBook.getTitle()}"></td>
                     <td class="align-middle" th:text="${tradableBook.getAuthor().getFullname()}"></td>
                     <td class="align-middle justify-content-between">
-<!--                        <input id="book_id" name="book_id" class="form-control" type="hidden" th:value="${tradableBook.getId()}">-->
                         <input type="submit" class="btn btn-primary btn-sm" value="View"
                                th:formaction="@{/books/trade/{id}(id=${tradableBook.getId()})}"
                                th:formtarget="_blank">
