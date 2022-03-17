@@ -81,7 +81,7 @@ public class BookReviewController {
     @GetMapping("/reviews/{id}")
     public String showAllReviewsOfBook(@PathVariable long id, Model model){
         model.addAttribute("review", bookReviewDao.getById(id));
-        model.addAttribute("allReviews", bookReviewDao.findBookReviewsBy(booksDao.getById(id));
+        model.addAttribute("allReviews", bookReviewDao.findBookReviewsBy(booksDao.getById(id)));
         return "/reviews/individual-review";
     }
 //
