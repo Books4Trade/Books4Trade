@@ -11,4 +11,9 @@ public class HomeController {
         return "homepage";
     }
 
+    @GetMapping("/about")
+    public String aboutUs(){
+        return "about";
+    }
+
 }
