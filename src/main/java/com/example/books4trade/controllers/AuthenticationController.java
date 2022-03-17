@@ -10,6 +10,4 @@ public class AuthenticationController {
         return "/users/login";
     }
 
-    @GetMapping("")
-    public String showLoggedOut()
 }
