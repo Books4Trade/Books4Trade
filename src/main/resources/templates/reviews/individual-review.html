@@ -10,10 +10,10 @@
 
 <div class="card" style="width: 300px;">
 	<div class="card-body">
-		<h5 class="card-title" th:text="${individualReview.title}">Eiffel Tower</h5>
-		<p class="card-text" th:text="${individualReview.body}">Built in 1889 Eiffel Tower is one of the most iconic landmarks in the world.</p>
-		<p class="card-text" th:text="'Rating:' + ' ' + ${individualReview.rating}"></p>
-		<p class="card-text" th:text="'Posted:' + ' ' + ${individualReview.createdOn}"></p>
+		<h5 class="card-title" th:text="${individualReview.getTitle()}"></h5>
+		<p class="card-text" th:text="${individualReview.getBody()}"></p>
+		<p class="card-text">Rating: <span th:text="${individualReview.getRating()}"></span></p>
+		<p class="card-text">Posted: <span th:text="${individualReview.getCreatedDate()}"></span></p>
 	</div>
 </div>
 

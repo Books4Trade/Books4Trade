@@ -6,31 +6,28 @@
 	<head th:include="partials :: head" />
 </head>
 <body>
+<nav th:replace="partials :: navbar" />
+<h2 class="header-center">Creating a New Review of <span th:text="${book.getTitle()}"></span></h2>
 
-<form th:action="@{/reviews/create}" th:method="POST" th:object="${bookReview}">
-<div class="container mt-5 mb-5">
-<div class="mb-3">
-	<label for="title" class="form-label">Title</label>
-	<input th:field="*{title}" type="text" class="form-control" id="title" name="title" placeholder="Review Title" minlength="3" maxlength="255">
-</div>
+<form th:action="|/books/${book.getId()}/createreview|" th:method="POST" th:object="${bookReview}">
+	<div class="container mt-5 mb-5">
+		<div class="mb-3">
+			<label for="title" class="form-label">Title</label>
+			<input th:field="*{title}" type="text" class="form-control" id="title" name="title" placeholder="Your Review Title" minlength="3" maxlength="255">
+		</div>
 
-<div class="mb-3">
-	<label for="body" class="form-label">Write a review</label>
-	<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body" placeholder="Body" minlength="3" maxlength="255"></textarea>
-</div>
+		<div class="mb-3">
+			<label for="body" class="form-label">Write a review</label>
+			<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body" placeholder="Your Detailed Review Goes Here" minlength="3"></textarea>
+		</div>
 
-<div class="mb-3">
-	<label for="rating" class="form-label">Rate book (1-5)</label>
-	<input th:field="*{rating}" type="text" class="form-control" id="rating" name="rating" placeholder="Choose 1-5" minlength="1" maxlength="1">
-</div>
+		<div class="mb-3">
+			<label for="rating" class="form-label">Rate book (1-5)</label>
+			<input th:field="*{rating}" type="number" class="form-control" id="rating" name="rating" min="1" max="5">
+		</div>
 
-	<div class="mb-3">
-		<label for="title" class="form-label">Enter today's date</label>
-		<input th:field="*{createdOn}" type="text" class="form-control" id="createdOn" name="createdOn" placeholder="month day, year">
+		<button type="submit" class="btn btn-primary">Submit</button>
 	</div>
-
-	<button type="submit" class="btn btn-primary">Submit</button>
-</div>
 </form>
 
 <footer th:replace="partials :: footer"/>

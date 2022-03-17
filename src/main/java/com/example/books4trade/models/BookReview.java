@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class BookReview {
     private long rating;
 
     @Column(nullable = false)
-    private Date createdDate;
+    private LocalDate createdDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -37,20 +38,20 @@ public class BookReview {
 
     public BookReview() {}
 
-    public BookReview(String title, String body, long rating, Date createdDate){
+    public BookReview(String title, String body, long rating, LocalDate createdDate){
         this.title = title;
         this.body = body;
         this.rating = rating;
         this.createdDate = createdDate;
     }
-    public BookReview(long id, String title, String body, long rating, Date createdDate){
+    public BookReview(long id, String title, String body, long rating, LocalDate createdDate){
         this.id = id;
         this.title = title;
         this.body = body;
         this.rating = rating;
         this.createdDate = createdDate;
     }
-    public BookReview(long id, String title, String body, long rating, Date createdDate, Book book){
+    public BookReview(long id, String title, String body, long rating, LocalDate createdDate, Book book){
         this.id = id;
         this.title = title;
         this.body = body;
@@ -58,7 +59,7 @@ public class BookReview {
         this.createdDate = createdDate;
         this.book = book;
     }
-    public BookReview(long id, String title, String body, long rating, Date createdDate, Book book, User user){
+    public BookReview(long id, String title, String body, long rating, LocalDate createdDate, Book book, User user){
         this.id = id;
         this.title = title;
         this.body = body;
@@ -97,8 +98,8 @@ public class BookReview {
     public void setRating(long rating) {
         this.rating = rating;
     }
-    public Date getCreatedDate() {return createdDate;}
-    public void setCreatedDate(String createdOn) {
+    public LocalDate getCreatedDate() {return createdDate;}
+    public void setCreatedDate(LocalDate createdOn) {
         this.createdDate = createdDate;
     }
 }

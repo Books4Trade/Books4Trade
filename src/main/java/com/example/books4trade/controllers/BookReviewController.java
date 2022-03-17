@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,98 +30,76 @@ public class BookReviewController {
         this.booksDao = bookDao;
         this.usersDao = userDao;
     }
-
+// Index of All Reviews
     @GetMapping("/reviews")
     public String showReviews (Model model) {
         List<BookReview> allReviews = bookReviewDao.findAll();
         model.addAttribute("allReviews", allReviews);
         return "reviews/index";
     }
+//  BookReviews must be based on a book in the DB, Hence the creation of a review uses
+//  /BOOKS/{ID} referencing the work to be reviewed
+    @GetMapping("/books/{id}/createreview")
+    public String showReviewForm(@PathVariable long id, Model model) {
+        model.addAttribute("book", booksDao.getById(id));
+        model.addAttribute("bookReview", new BookReview());
+        return "/reviews/create";
+    }
+    @PostMapping("/books/{id}/createreview")
+    public String createReview(@ModelAttribute BookReview bookreview, @PathVariable long id){
+        BookReview bookReview = bookreview;
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        bookReview.setUser(currentUser);
+        bookReview.setBook(booksDao.getById(id));
+        bookReview.setCreatedDate(LocalDate.now());
+        bookReview = bookReviewDao.save(bookReview);
+        return "redirect:/reviews/" + bookReview.getId();
+    }
 
-//
-    @GetMapping("/reviews/show/{id}")
-    public String showIndividualReview (@PathVariable long id, Model model) {
+    // View a Single BookReview by BookReview_Id
+    @GetMapping("/reviews/{id}")
+    public String showIndividualReview(@PathVariable long id, Model model) {
         BookReview individualReview = bookReviewDao.getById(id);
-        model.addAttribute("reviewId", id);
         model.addAttribute("individualReview", individualReview);
         return "reviews/individual-review";
     }
 
-    @GetMapping("/reviews/{id}/create")
-    public String showReviewForm(@ModelAttribute BookReview bookReview, @PathVariable long id, Model model) {
+    // View all Reviews of a Specific Book_Id
+    @GetMapping("/reviews/book/{id}")
+    public String showAllReviewsOfBook(@PathVariable long id, Model model){
+        model.addAttribute("allReviews", bookReviewDao.findByBook(booksDao.getById(id)));
         model.addAttribute("book", booksDao.getById(id));
-        return "/reviews/create";
+        return "/reviews/reviewsofbook";
     }
 
-//    edited by mike
-    @PostMapping("/reviews/{id}/create")
-    public String createReview (@RequestParam(name= "rating") long rating, @RequestParam(name="body") String body, @RequestParam (name= "title") String title, @PathVariable long id) {
-        BookReview bookReview = new BookReview();
-        bookReview.setBook(booksDao.getById(id));
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        bookReview.setBody(body);
-        bookReview.setTitle(title);
-        bookReview.setRating(rating);
-        bookReview.setUser(currentUser);
-        //        bookReview.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-
-         bookReview = bookReviewDao.save(bookReview);
-         return "redirect:/reviews/" +bookReview.getId();
-    }
-
-//    this one change url
-//    @GetMapping("/reviews/{id}")
-//    public String showReviewOfBook(@PathVariable long id, Model model){
-//        model.addAttribute("review", bookReviewDao.getById(id));
-//        model.addAttribute("allReviews", bookReviewDao.findBookReviewsBy(booksDao.getById(id)));
-//        return "/reviews/individual-review";
-//    }
-//
-
-
+    // Edit an Individual Book Review
     @GetMapping("reviews/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
-        model.addAttribute("editReview",bookReviewDao.getById(id));
-        return "/reviews/edit";
+        // Add a Check and Redirect if not the owner of the review
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        BookReview bookReview = bookReviewDao.getById(id);
+        if(bookReview.getUser().getId() == currentUser.getId()){
+            // If the Auth User is the owner, add the bookReview to the model and return the form
+            model.addAttribute("bookReview", bookReview);
+            return"reviews/edit";
+        } else {
+            // Otherwise, redirect to the review index
+            return "redirect:/reviews";
+        }
     }
 
-
     @PostMapping("/reviews/{id}/edit")
-        public String submitEdit(@PathVariable long id, @RequestParam (name="rating") long rating, @RequestParam (name="body") String body, @RequestParam(name="title") String title,@ModelAttribute BookReview editedReview){
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            BookReview reviewToEdit = bookReviewDao.getById(editedReview.getId());
-            if(reviewToEdit.getUser().getId() == currentUser.getId()){
-                reviewToEdit.setUser(currentUser);
-                reviewToEdit.setTitle(title);
-                reviewToEdit.setBody(body);
-                reviewToEdit.setRating(rating);
-                reviewToEdit = bookReviewDao.save(reviewToEdit);
+        public String submitEdit(@PathVariable long id, @ModelAttribute BookReview editedReview){
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if( editedReview.getUser().getId() == currentUser.getId()){
+                editedReview.setUser(currentUser);
+                editedReview.setBook(bookReviewDao.getById(id).getBook());
+                editedReview.setCreatedDate(bookReviewDao.getById(id).getCreatedDate());
+                editedReview = bookReviewDao.save(editedReview);
             }
-
-            return "redirect:/reviews" + id + "/user/" + reviewToEdit.getId();
+            return "redirect:/reviews/"+ editedReview.getId();
         }
 
-//        @PostMapping("/reviews/{id}/edit"){
-//        public String submitEdit(@ModelAttribute BookReview editedReview, @PathVariable long id) {
-//            BookReview bookToEdit = bookReviewDao.getById(id);
-//            bookToEdit.setTitle(bookToEdit.getTitle());
-//            bookToEdit.setBody(bookToEdit.getBody());
-//            bookReviewDao.save(bookToEdit);
-//            return "redirect:/reviews";
-//        }
-//    }
-
-
-//    @GetMapping("reviews/{id}/user/{reviewid}/edit")
-//    public String editReview(@PathVariable long id, @PathVariable long reviewid, Model model) {
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        BookReview reviewToEdit = bookReviewDao.getById(reviewid);
-//        model.addAttribute("editReview",bookReviewDao.getById(id));
-//        return "/reviews/edit";
-//    }
-
-
-    //    mike
      @PostMapping("/reviews/{id}/delete")
      public String deleteReview(@PathVariable long id) {
          User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -128,30 +107,6 @@ public class BookReviewController {
          if(reviewToDelete.getUser().getId() == currentUser.getId()){
              bookReviewDao.deleteById(id);
          }
-
         return "redirect:/reviews";
      }
-
-
-
-
-// this one
-//    @GetMapping("/reviews/{id}")
-//    public String showUserReview(@PathVariable long id, Model model){
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        BookReview showReview = bookReviewDao.getById(id);
-//        boolean isOwner = false;
-//        if(showReview.getUser().getId() == currentUser.getId()){
-//            isOwner = true;
-//        }
-//        model.addAttribute("isOwner", isOwner);
-//        model.addAttribute("review", bookReviewDao.getById(id));
-//        model.addAttribute("showBook", showReview);
-//        return "/reviews/individual-review";
-//    }
-
-
-
-
 }
-
