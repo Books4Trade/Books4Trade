@@ -93,17 +93,8 @@ public class BookReviewController {
         return "/reviews/edit";
     }
 
-//    @PostMapping("/reviews/{id}/edit"){
-//        public String submitEdit(@ModelAttribute BookReview editedReview, @PathVariable long id) {
-//            BookReview bookToEdit = bookReviewDao.getById(id);
-//            bookToEdit.setTitle(bookToEdit.getTitle());
-//            bookToEdit.setBody(bookToEdit.getBody());
-//            bookReviewDao.save(bookToEdit);
-//            return "redirect:/reviews";
-//        }
-//    }
 
-    @PostMapping("/reviews/{id}/user/{reviewid}/edit")
+    @PostMapping("/reviews/{id}/edit")
         public String submitEdit(@PathVariable long id, @PathVariable long reviewid, @ModelAttribute BookReview editedReview){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             BookReview reviewToEdit = bookReviewDao.getById(editedReview.getId());
@@ -114,6 +105,17 @@ public class BookReviewController {
             reviewToEdit = bookReviewDao.save(editedReview);
             return "redirect:/reviews" + id + "/user/" + reviewToEdit.getId();
         }
+
+    //    @PostMapping("/reviews/{id}/edit"){
+//        public String submitEdit(@ModelAttribute BookReview editedReview, @PathVariable long id) {
+//            BookReview bookToEdit = bookReviewDao.getById(id);
+//            bookToEdit.setTitle(bookToEdit.getTitle());
+//            bookToEdit.setBody(bookToEdit.getBody());
+//            bookReviewDao.save(bookToEdit);
+//            return "redirect:/reviews";
+//        }
+//    }
+
 
     @GetMapping("reviews/{id}/user/{reviewid}/edit")
     public String editReview(@PathVariable long id, @PathVariable long reviewid, Model model) {
