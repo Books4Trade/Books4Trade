@@ -62,27 +62,26 @@ public class BookReviewController {
 
 //
 
-
-
 //    edited by mike
     @PostMapping("/reviews/create")
-    public String createReview (@RequestParam(name= "rating") String rating) {
+    public String createReview (@RequestParam(name= "rating") String rating, @RequestParam(name="body") String body, @RequestParam (name= "title") String title) {
         BookReview bookReview = new BookReview();
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        bookReview.setBody();
-        bookReview.setTitle();
+        bookReview.setBody(body);
+        bookReview.setTitle(title);
         bookReview.setRating(rating);
         bookReview.setUser(currentUser);
-
-
         //        bookReview.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
          bookReview = bookReviewDao.save(bookReview);
          return "redirect:/reviews/" +bookReview.getId();
     }
 
+//    today
     @GetMapping("/reviews/{id}")
-    public String showReview(@PathVariable String id, Model model){
+    public String showAllReviewsOfBook(@PathVariable long id, Model model){
+        model.addAttribute("review", bookReviewDao.getById(id));
+        model.addAttribute("allReviews", bookReviewDao.findBookReviewsBy(booksDao.getById(id));
         return "/reviews/individual-review";
     }
 //
@@ -116,14 +115,22 @@ public class BookReviewController {
             return "redirect:/reviews" + id + "/user/" + reviewToEdit.getId();
         }
 
+    @GetMapping("reviews/{id}/user/{reviewid}/edit")
+    public String editReview(@PathVariable long id, @PathVariable long reviewid, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        BookReview reviewToEdit = bookReviewDao.getById(reviewid);
+        model.addAttribute("editReview",bookReviewDao.getById(id));
+        return "/reviews/edit";
+    }
+
 
     //    mike
-     @PostMapping("/reviews/{id}/user/{reviewid}delete")
-     public String deleteReview(@PathVariable long id, @PathVariable long reviewid) {
+     @PostMapping("/reviews/{id}/delete")
+     public String deleteReview(@PathVariable long id) {
          User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-         BookReview reviewToDelete = bookReviewDao.getById(reviewid);
+         BookReview reviewToDelete = bookReviewDao.getById(id);
          if(reviewToDelete.getUser().getId() == currentUser.getId()){
-             bookReviewDao.deleteById(reviewid);
+             bookReviewDao.deleteById(id);
          }
 
         return "redirect:/reviews";
@@ -133,10 +140,10 @@ public class BookReviewController {
 
 
 
-    @GetMapping("/reviews/{id}/user/{reviewid}")
-    public String showUserReview(@PathVariable long id, @PathVariable long reviewid, Model model){
+    @GetMapping("/reviews/{id}")
+    public String showUserReview(@PathVariable long id, Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        BookReview showReview = bookReviewDao.getById(reviewid);
+        BookReview showReview = bookReviewDao.getById(id);
         boolean isOwner = false;
         if(showReview.getUser().getId() == currentUser.getId()){
             isOwner = true;
@@ -147,13 +154,7 @@ public class BookReviewController {
         return "/reviews/individual-review";
     }
 //
-    @GetMapping("reviews/{id}/user/{reviewid}/edit")
-    public String editReview(@PathVariable long id, @PathVariable long reviewid, Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        BookReview reviewToEdit = bookReviewDao.getById(reviewid);
-        model.addAttribute("editReview",bookReviewDao.getById(id));
-        return "/reviews/edit";
-    }
+
 
 
 }
