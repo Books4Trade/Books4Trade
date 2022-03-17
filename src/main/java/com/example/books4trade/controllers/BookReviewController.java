@@ -32,38 +32,25 @@ public class BookReviewController {
 
     @GetMapping("/reviews")
     public String showReviews (Model model) {
-//        List <BookReview> bookReview = new ArrayList<>();
-//        BookReview review1 = new BookReview(1,"Awesome book.", "Must read.", 1 );
-//        bookReview.add(review1);
-//        model.addAttribute("allReviews", bookReview);
-
         List<BookReview> allReviews = bookReviewDao.findAll();
         model.addAttribute("allReviews", allReviews);
         return "reviews/index";
     }
 
-
-
 //
-    @GetMapping("/reviews/{id}")
+    @GetMapping("/reviews/show/{id}")
     public String showIndividualReview (@PathVariable long id, Model model) {
         BookReview individualReview = bookReviewDao.getById(id);
         model.addAttribute("reviewId", id);
-        model.addAttribute("individualReview",individualReview);
+        model.addAttribute("individualReview", individualReview);
         return "reviews/individual-review";
     }
 
-
-
-
     @GetMapping("/reviews/{id}/create")
-    public String showReviewForm(Model model, @PathVariable long id) {
+    public String showReviewForm(@ModelAttribute BookReview bookReview, @PathVariable long id, Model model) {
         model.addAttribute("book", booksDao.getById(id));
-
         return "/reviews/create";
     }
-
-//
 
 //    edited by mike
     @PostMapping("/reviews/{id}/create")
