@@ -99,7 +99,7 @@ public class BookReviewController {
 
 
     @PostMapping("/reviews/{id}/edit")
-        public String submitEdit(@PathVariable long id, @RequestParam (name="rating") String rating, @RequestParam (name="body") String body, @RequestParam(name="title") String title,@ModelAttribute BookReview editedReview){
+        public String submitEdit(@PathVariable long id, @RequestParam (name="rating") long rating, @RequestParam (name="body") String body, @RequestParam(name="title") String title,@ModelAttribute BookReview editedReview){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             BookReview reviewToEdit = bookReviewDao.getById(editedReview.getId());
             if(reviewToEdit.getUser().getId() == currentUser.getId()){

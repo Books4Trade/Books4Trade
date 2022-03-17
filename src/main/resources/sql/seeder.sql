@@ -2,11 +2,13 @@
 # This section runs all of the default value tables to which only we are currently adding values
 # Users and other controllers do not add values to these tables
 
--- DO NOT RUN THIS MORE THAN ONCE --
--- DROP ALL TABLES AND RESTART THE APPLICATION BEFORE RUNNING --
+-- DO NOT RUN THIS MORE THAN ONCE , FOLLOW THE ORDER BELOW--
+-- 1 - DROP ALL TABLES FROM YOUR DATABASE (MANUAL, NOT WITHIN THIS SCRIPT)
 -- TRUNCATE AND DROP OPTIONS HAVE BEEN REMOVED FOR MODEL-FOREIGN KEY CONSTRAINTS --
+-- 2 - RESTART THE APPLICATION IN ORDER TO CREATE THE TABLES --
+-- 3 - RUN THIS SCRIPT --
+-- 4 - RUN THE MIGRATION SCRIPT --
 
-#USE booksfortrade_db;
 USE swapabook_db;
 
 -- ROLE MODEL --
