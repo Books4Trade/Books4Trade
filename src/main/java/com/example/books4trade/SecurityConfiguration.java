@@ -42,9 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutSuccessUrl("/login?logout")
                 /* VISITORS - Pages that can be viewed without having to log in */
                 .and().authorizeRequests()
-                .antMatchers("/", "/books", "/register",
-                        "/books/search", "/books/search/api",
-                        "/books/{id}/copies") // anyone can see the home and the Post-Index pages
+                // Static File Paths
+                .antMatchers( "/js/**","/img/**", "/css/**",
+                        // Register and Root-Index Mappings
+                        "/", "/register","/books", "/reviews","/trades",
+                        "/books/{id}", "/books/{id}/copies", "/reviews/{id}",
+                        "/books/search", "/books/search/api"
+                        ) // anyone can see the home and the Post-Index pages
                 .permitAll()
                 /* USERS - Pages that require authentication */
                 .and().authorizeRequests()
