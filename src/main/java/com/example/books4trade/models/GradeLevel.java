@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "gradeLevels")
+@Table(name = "grade_levels")
 public class GradeLevel {
     //  PROPERTIES
     @Id
