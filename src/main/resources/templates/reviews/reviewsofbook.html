@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Reviews</title>
+	<head th:include="partials :: head" />
+</head>
+<body>
+
+<h1 class="header-center">List of all reviews for <span th:text="${book.getTitle()}"></span></h1>
+
+<nav th:replace="partials :: navbar" />
+<div class="container">
+	<div class="card-body" th:each="review : ${allReviews}">
+		<h3 class="card-title" th:text="${review.title}"></h3>
+		<h4 class="card-title"> Review By: <span th:text="${review.getUser().getUsername()}"></span></h4>
+		<h6>Rating: <span th:text="${review.getRating()}"></span> of 5</h6>
+		<h6>Created On: <span th:text="${review.getCreatedDate()}"></span></h6>
+		<a th:href="|/reviews/${review.getId()}|">See this Review</a>
+	</div>
+</div>
+
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
+</body>
+</html>
