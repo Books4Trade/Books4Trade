@@ -57,7 +57,7 @@ public class OwnedBookController {
         }
 
 
-        @GetMapping("/books/{id}/copies/{copyid}")
+        @GetMapping("/books/{id}/copy/{copyid}")
         public String showOneOwnedBook(@PathVariable long id, @PathVariable long copyid, Model model){
                 User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 OwnedBook showBook = ownedBooksDao.getById(copyid);
@@ -74,7 +74,7 @@ public class OwnedBookController {
 //        @GetMapping("/")
 
 
-        @DeleteMapping("/books/{id}/copies/{copyid}/delete")
+        @DeleteMapping("/books/{id}/copy/{copyid}/delete")
         public String deletePost(@PathVariable long id, @PathVariable long copyid){
                 User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 OwnedBook copyToDelete = ownedBooksDao.getById(copyid);
