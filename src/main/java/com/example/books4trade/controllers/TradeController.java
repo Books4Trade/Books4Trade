@@ -2,11 +2,13 @@ package com.example.books4trade.controllers;
 
 import com.example.books4trade.models.Book;
 import com.example.books4trade.models.OwnedBook;
+import com.example.books4trade.models.TradeItem;
 import com.example.books4trade.models.User;
 import com.example.books4trade.repositories.BookRepository;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.TradeRepository;
 import com.example.books4trade.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +57,7 @@ public class TradeController {
             @RequestParam(name = "title") String title,
             Model model)
     {
+        //  need to work on getting logged in user info
         model.addAttribute("bookCover", bookImg);
         model.addAttribute("bookTTitle", title);
         model.addAttribute("tradeBuddy", owner_id);
@@ -68,9 +71,13 @@ public class TradeController {
             @PathVariable long book_id,
             @RequestParam(name = "userInit_id") long user_id,
             @RequestParam(name = "bookCover") String bookImg,
-
             Model model)
     {
+        //  need to redesign TradeItem and Trade Models
+        //  TradeItem is missing info for
+        //  receiver, 2nd book
+//        TradeItem trade = new TradeItem();
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        Book book = booksDao.getById(book_id);
 //        User tradeInit = usersDao.getById(user_id);
 //        List<OwnedBook> owner = ownedBooksDao.findOwnedBooksByBook(book);
