@@ -2,6 +2,7 @@ package com.example.books4trade.controllers;
 
 import com.example.books4trade.models.Role;
 import com.example.books4trade.models.User;
+import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.RoleRepository;
 import com.example.books4trade.repositories.UserRepository;
 import com.example.books4trade.services.EmailService;
@@ -20,12 +21,14 @@ import java.util.List;
 public class UserController {
     private UserRepository usersDao;
     private RoleRepository rolesDao;
+    private OwnedBookRepository ownedBooksDao;
     private PasswordEncoder passwordEncoder;
     private EmailService emailService;
 
-    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, EmailService emailService) {
         this.usersDao = usersDao;
         this.rolesDao = rolesDao;
+        this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
     }
@@ -63,10 +66,11 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model){
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", usersDao.findByUsername(loggedInUser.getUsername()));
-
-    //      model.addAttribute("usersBooks", currentUser.getOwnedBooks());
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findByUsername(currentUser.getUsername());
+        model.addAttribute("user", user);
+        model.addAttribute("usersBooks", user.getOwnedBooks());
+        model.addAttribute("usersReviews", user.getReviews());
     //      model.addAttribute("usersReviews", currentUser.getReviews());
     //      Add Trades, Other Tab Info
     //      model.addAttribute("usersNotifications", currentUser.getNotifications());
