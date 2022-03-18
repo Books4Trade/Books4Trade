@@ -49,15 +49,11 @@ public class OwnedBookController {
 
         @PostMapping("/books/{id}/copies/add")
         public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") long bookType, Model model){
-                OwnedBook ownedBook = new OwnedBook();
                 User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-                ownedBook.setBookOwned(booksDao.getById(id));
-                ownedBook.setUser(currentUser);
-                ownedBook.setBookCondtion(bookCondition);
-                ownedBook.setTradable(isTradeable);
-                ownedBook.setType(typesDao.getById(bookType));
-                ownedBook = ownedBooksDao.save(ownedBook);
-                return "redirect:/books/"+id+"/copies/"+ownedBook.getId();
+                User user = usersDao.findByUsername(currentUser.getUsername());
+                OwnedBook newCopy = new OwnedBook(bookCondition, isTradeable, typesDao.getById(bookType), user, booksDao.getById(id));
+                OwnedBook createdCopy = ownedBooksDao.save(newCopy);
+                return "redirect:/books/"+id+"/copies/"+createdCopy.getId();
         }
 
 
