@@ -47,7 +47,7 @@ public class TradeController {
     }
 
     //  TODO: add mapping to initiate trade; need a GET and POST
-    @GetMapping("/trade/{id}/initiate")
+    @GetMapping("/trade/{id}/initiate")     //  {id} = represents initial book being requested to trade
     public String initiateTrade(
             @PathVariable long bookTT_id,
             @RequestParam(name = "bookCover") String bookImg,
