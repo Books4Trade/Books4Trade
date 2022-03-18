@@ -23,9 +23,8 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     private EmailService emailService;
 
-    public UserController(UserRepository userDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, EmailService emailService) {
-        this.userDao = userDao;
-
+    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+        this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
@@ -48,7 +47,7 @@ public class UserController {
             user.setPassword(hash);
             user.setRoles(defaultRoles);
             user.setEnabled(true);
-            userDao.save(user);
+            usersDao.save(user);
             emailService.accountRegistration(user);
 
         }// put else Error Here if passwords do not match
