@@ -49,25 +49,27 @@
         <!-- 1st TabPanel pills-mybooks -->
         <div class="tab-pane fade show active" id="pills-mybooks" role="tabpanel" aria-labelledby="pills-mybooks-tab">
             <h3>Books</h3>
-                <!--<div class="book-card" th:each="book : ${usersBooks}">
-                    <h3 class="book-headers title-bg" th:text="${book.title}"/>
-                    <h4 class="book-headers" th:text="${book.getAuthor().getFullname()}"></h4>
+            <div>
+                <div class="book-card" th:each="ownedBook : ${usersBooks}">
+                    <h3 class="book-headers title-bg" th:text="${ownedBook.getBook().getTitle()}"/>
+                    <h4 class="book-headers" th:text="${ownedBook.getBook().getAuthor().getFullname()}"></h4>
                     <div class="text-center">
-                            <img th:src="${book.getBookImg()}">
-                    </div>-->
+                            <img th:src="${ownedBook.getBook().getBookImg()}">
+                    </div>
+<!--                    <a th:href="|/reviews/@{}|"></a>-->
                         <!--<h5 class="card-rating" th:text="${book.getRating}"></h5> -->
 
-<!--                </div>-->
-            <!--<p>stuff about the books</p>-->
+              </div>
+            </div>
         </div>
         <!-- 2nd TabPanel pills-myreviews-->
         <div class="tab-pane fade" id="pills-myreviews" role="tabpanel" aria-labelledby="pills-myreviews-tab">
             <h3>Reviews</h3>
-          <!--  <div th:each="review : ${usersReviews}">
+            <!--<div th:each="review : ${usersReviews}">
 
+                    <a th:href="|/reviews/@{review.getId()}|"></a>
+            </div> -->
 
-            </div>-->
-            <p>stuff about the reviews</p>
         </div>
         <!-- 3rd TabPanel pills-mytrades-->
         <div class="tab-pane fade" id="pills-mytrades" role="tabpanel" aria-labelledby="pills-mytrades-tab">
