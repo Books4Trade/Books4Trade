@@ -3,36 +3,62 @@
 <head th:include="partials :: head">
     <meta charset="UTF-8">
     <title>Initiate Trade</title>
+    <!--    <head th:include="partials :: head"/>-->
+    <style>
+        .book-cover {
+            width: 15rem !important;
+            height: 17rem !important;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/836472cbff.js" crossorigin="anonymous"></script>
+    <script th:src="@{/js/keys2.js}"></script>
 </head>
 <body>
 <!--<nav th:replace="partials :: navbar"></nav>-->
-
-<h2 class="header-center">Let's Make a Trade</h2>
+<header class="p-4">
+    <h2 class="text-center">Let's Make a Trade</h2>
+</header>
 
 <main class="container">
+    <div class="text-center">
+        <img th:src="${bookCover}" class="rounded book-cover" alt="...">
+        <figcaption class="figure-caption text-center" th:text="${bookTTitle}">A caption for the above image.</figcaption>
+    </div>
     <form>
+        <div class="mb-3 row">
+            <label for="book_id" class="col-sm-2 col-form-label">Enter Book Id:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="book_id" placeholder="ID of book you're sending to your Trade Buddy">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-sm-12">
+                <input class="form-control text-center" type="text" value="Username of Trade Buddy" aria-label="Username of Trade Buddy" disabled
+                       readonly>
+            </div>
+        </div>
+
 <!--    <form action="" th:method="POST">-->
+<!--        <select class="form-select" th:field="*{percentage}">-->
+<!--            <option selected disabled>Select Book To Trade</option>-->
+<!--            <option th:each="ownedBook : ${}" th:value="${ownedBook.getId()}" th:text="${ownedBook}">-->
+<!--            </option>-->
+<!--        </select>-->
     </form>
 </main>
 
-<!--<div>-->
-<!--    <form th:action="@{/books/create}" th:method="POST">-->
-<!--        <h2 class="header-center" th:text="${title}"></h2>-->
-<!--        <h3 class="header-center">By: <span th:text="${author}"></span></h3>-->
-<!--        <div class="text-center">-->
-<!--            <img th:src="${imagesrc}">-->
-<!--        </div>-->
-<!--        <p class="text-center" th:text="${summary}"></p>-->
-<!--        <input id="title" name="title" class="form-control" type="hidden" th:value="${title}">-->
-<!--        <input id="author" name="author" class="form-control" type="hidden" th:value="${author}">-->
-<!--        <input id="image" name="image" class="form-control" type="hidden" th:value="${imagesrc}">-->
-<!--        <input id="summary" name="summary" class="form-control" type="hidden" th:value="${summary}">-->
-<!--        &lt;!&ndash; Add Select for Categories, Grade Level &ndash;&gt;-->
-<!--        <div class="text-center">-->
-<!--            <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Add This Book</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
+<!--<script th:include="partials :: scripts-bottom"/>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!--    <script th:src="@{/js/books_api.js}"></script>-->
+<!--    <script th:src="@{/js/books_api_refactor.js}"></script>-->
+<script th:src="@{/js/scripts.js}"></script>
 
 </body>
 </html>
