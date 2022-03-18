@@ -36,7 +36,7 @@ public class TradeController {
     public String viewTradables(Model model){
         List<Book> tradableBooks = ownedBooksDao.findAllTradable();
         model.addAttribute("tradables", tradableBooks);
-        return "books/tradesIndex";
+        return "trades/index";
     }
 
     @GetMapping("/trade/{id}")  //  will display single tradable book with list of owners to trade with
@@ -45,7 +45,7 @@ public class TradeController {
         model.addAttribute("owners", owners);
         model.addAttribute("book", booksDao.getById(id));
 
-        return "books/showBook_trade";
+        return "trades/show";
     }
 
     //  TODO: add mapping to initiate trade; need a GET and POST
