@@ -5,34 +5,41 @@
 	<title>All reviews</title>
 	<head th:include="partials :: head" />
 </head>
-<body>
+<body class="card-bg">
 <nav th:replace="partials :: navbar" />
 
-<h1>Add a copy of your <span th:text="${book.getTitle()}"></span></h1>
+<h1 class="text-center">Add a copy of your <span th:text="${book.getTitle()}"></span></h1>
 
-<form th:action="|/books/${book.getId()}/addcopy|" th:method="POST">
-	<label for="bookCondition">Choose book condition:</label>
-	<select name="bookCondition" id="bookCondition">
-		<option name="bookCondition" value="poor">Poor</option>
-		<option name="bookCondition" value="fair">Fair</option>
-		<option name="bookCondition" value="better">Better</option>
-		<option name="bookCondition" value="new">New</option>
-	</select>
+<form th:action="|/books/${book.getId()}/addcopy|" th:method="POST" style="margin: auto; height: 300px;width: 750px;">
+	<div class="text-center">
+		<label for="bookCondition" class="label-styles text-center">Choose book condition:</label><br>
+		<select name="bookCondition" id="bookCondition">
+			<option name="bookCondition" value="poor">Poor</option>
+			<option name="bookCondition" value="fair">Fair</option>
+			<option name="bookCondition" value="better">Better</option>
+			<option name="bookCondition" value="new">New</option>
+		</select>
+	</div>
 
-	<br><label for="isTradeable">Is the book tradeable?</label>
-	<select name="isTradeable" id="isTradeable">
-		<option name="isTradeable" value="true">Yes</option>
-		<option name="isTradeable" value="false">No</option>
-	</select>
+	<div class="text-center">
+		<label for="isTradeable" class="label-styles text-center">Is the book tradeable?</label><br>
+		<select name="isTradeable" id="isTradeable">
+			<option name="isTradeable" value="true">Yes</option>
+			<option name="isTradeable" value="false">No</option>
+		</select>
+	</div>
 
-	<br><label for="bookType">Choose book type:</label>
-	<select name="bookType" id="bookType">
-		<option name="bookType" value="1">Paperback</option>
-		<option name="bookType" value="2">Hardback</option>
-		<option name="bookType" value="3">e-Book</option>
-	</select>
-	<button type="submit" >Submit</button>
-
+	<div class="text-center">
+		<label for="bookType" class="label-styles text-center">Choose book type:</label><br>
+		<select name="bookType" id="bookType">
+			<option name="bookType" value="1">Paperback</option>
+			<option name="bookType" value="2">Hardback</option>
+			<option name="bookType" value="3">e-Book</option>
+		</select>
+	</div>
+	<div class="text-center">
+		<button type="submit" class="button-style">Submit</button>
+	</div>
 </form>
 
 
