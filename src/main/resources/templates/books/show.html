@@ -21,7 +21,6 @@
         <p class="text-center" th:text="${book.summary}">Summary</p>
         <!--    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>-->
         <p>Read by X Users, owned by X users, Reviewed by X Users</p>
-    </div>
     <div>
         <p>See Reviews / See Owned Copies For Trade/ See Users that have read this Book</p>
     </div>
@@ -32,6 +31,7 @@
     </form>
 <br>
 
+    
 <footer th:replace="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" /></body>
 </body>

@@ -44,3 +44,8 @@ body {
 .list-style-none{
     list-style: none !important;
 }
+
+.img-circle {
+    border-radius: 100%;
+    border: 4px solid black;
+}

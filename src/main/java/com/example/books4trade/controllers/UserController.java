@@ -4,6 +4,7 @@ import com.example.books4trade.models.Role;
 import com.example.books4trade.models.User;
 import com.example.books4trade.repositories.RoleRepository;
 import com.example.books4trade.repositories.UserRepository;
+import com.example.books4trade.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,12 +21,14 @@ public class UserController {
     private UserRepository usersDao;
     private RoleRepository rolesDao;
     private PasswordEncoder passwordEncoder;
+    private EmailService emailService;
 
+    public UserController(UserRepository userDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+        this.userDao = userDao;
 
-    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder) {
-        this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
     @GetMapping("/register")
@@ -45,10 +48,18 @@ public class UserController {
             user.setPassword(hash);
             user.setRoles(defaultRoles);
             user.setEnabled(true);
-            usersDao.save(user);
+            userDao.save(user);
+            emailService.accountRegistration(user);
+
         }// put else Error Here if passwords do not match
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/send-email")
+    public String sendEmail() {
+        emailService.prepareAndSend("Testing", "Did this work");
+        return "redirect:/";
     }
 
     @GetMapping("/profile")
