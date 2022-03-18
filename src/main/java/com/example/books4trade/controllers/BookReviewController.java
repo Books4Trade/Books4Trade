@@ -59,8 +59,8 @@ public class BookReviewController {
     // View a Single BookReview by BookReview_Id
     @GetMapping("/reviews/{id}")
     public String showIndividualReview(@PathVariable long id, Model model) {
-        BookReview individualReview = bookReviewsDao.getById(id);
-        model.addAttribute("individualReview", individualReview);
+        BookReview review = bookReviewsDao.getById(id);
+        model.addAttribute("review", review);
         return "reviews/individual-review";
     }
 

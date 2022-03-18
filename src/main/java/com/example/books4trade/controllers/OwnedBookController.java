@@ -28,7 +28,7 @@ public class OwnedBookController {
                 this.ownedBooksDao = ownedBooksDao;
         }
 
-        @GetMapping("/books/copies")
+        @GetMapping("/books/all/copies")
         public String showAllCopies(Model model){
                 model.addAttribute("allBooks", ownedBooksDao.findAll());
                 return "/owned-books/copies-index";
@@ -41,13 +41,13 @@ public class OwnedBookController {
                 return "/owned-books/copies-index";
         }
 
-        @GetMapping("/books/{id}/copies/add")
+        @GetMapping("/books/{id}/addcopy")
         public String showCreateOwnedBook(@PathVariable long id, Model model) {
                 model.addAttribute("book", booksDao.getById(id));
                 return"/owned-books/create-copy";
         }
 
-        @PostMapping("/books/{id}/copies/add")
+        @PostMapping("/books/{id}/addcopy")
         public String submitCreateOwnedBook(@PathVariable long id, @RequestParam(name = "bookCondition") String bookCondition, @RequestParam(name = "isTradeable") boolean isTradeable, @RequestParam(name = "bookType") long bookType, Model model){
                 User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 User user = usersDao.findByUsername(currentUser.getUsername());

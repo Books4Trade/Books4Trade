@@ -8,17 +8,19 @@
 <body>
 
 <nav th:replace="partials :: navbar" />
-<h1>List of all reviews</h1>
-<div class="container">
-	<div class="card-body" th:each="review : ${allReviews}">
-		<h4 class="card-title"> Book <span th:text="${review.getBook().getTitle()}"></span></h4>
-		<h3 class="card-title"> Title <span th:text="${review.getTitle()}"></span></h3>
-		<h3 class="card-title"> By User: <span th:text="${review.getUser().getUsername()}"></span></h3>
-		<h5 class="card-title"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</h5>
-		<p class="card-title"> Reviewed On: <span th:text="${review.getCreatedDate()}"></span></p>
+<h1 class="mb-3 header-center title-bg">List of all reviews</h1>
 
-		<a th:href="|/reviews/${review.getId()}|"></a>
-
+<div class="d-flex flex-row flex-wrap justify-content-evenly">
+	<div class="book-card" th:each="review : ${allReviews}">
+		<h3 class="book-headers title-bg" th:text="${review.getTitle()}"/>
+		<h5 class="book-headers"> By User: <span th:text="${review.getUser().getUsername()}"></span></h5>
+		<p class="text-center"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p>
+		<p class="text-center"> Written On: <span th:text="${review.getCreatedDate()}"></span></p>
+		<p class="text-center">
+			Book Reviewed: <span th:text="${review.getBook().getTitle()}"></span>
+			, by:<span th:text="${review.getBook().getAuthor().getFullname()}"></span>
+			</p>
+		<a class="text-center" th:href="|/reviews/${review.getId()}|">See this Review</a>
 	</div>
 </div>
 
