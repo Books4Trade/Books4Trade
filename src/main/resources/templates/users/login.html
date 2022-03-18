@@ -2,28 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <head th:include="partials :: head" />
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<head th:include="partials :: head" />
+	<style>
+		.container {
+			width: 50%;
+			border: 3px solid #f1f1f1;
+		}
+		body {
+			background: rgb(242,238,203);
+			background: linear-gradient(90deg, rgba(242,238,203,1) 2%, rgba(255,252,222,1) 46%, rgba(246,242,197,0.989233193277311) 100%);
+		}
+	</style>
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
 
-<div  class="m-2 p-2">
-    <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input id="username" name="username" type="text" />
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" />
-        </div>
-        <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Log In</button>
-    </form>
+<div class="container mt-5" style="background-color: white">
+<form class="" th:action="@{/login}" method="post">
+	<h1 class="text-center">Swap-A-Book</h1>
+	<p class="text-center">Add book, look at books, trade books, find your book.</p>
+	<div class="mb-3 mt-3">
+		<label for="username" class="form-label">Username</label>
+		<input type="username" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
+	</div>
+	<div class="mb-3">
+		<label for="password" class="form-label">Password</label>
+		<input type="password" name="password"  class="form-control" id="password">
+	</div>
+	<button type="submit" class="btn btn-primary mb-3">Login</button>
+</form>
 </div>
-
-
 
 <span th:include="partials :: scripts-bottom" />
 </body>

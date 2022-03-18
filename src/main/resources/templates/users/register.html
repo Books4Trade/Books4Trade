@@ -4,11 +4,27 @@
   <meta charset="UTF-8" />
   <title>Register</title>
   <head th:include="partials :: head" />
+	<style>
+		.container {
+			width: 40%;
+			border: 3px solid #f1f1f1;
+			background-color: white;
+			}
+		body {
+			background: rgb(242,238,203);
+			background: linear-gradient(90deg, rgba(242,238,203,1) 2%, rgba(255,252,222,1) 46%, rgba(246,242,197,0.989233193277311) 100%);
+			}
+
+		label {
+			font-weight: bold;
+			margin-top: 10px;
+		}
+	</style>
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
 
-<div class="container">
+<div class="container mt-5">
 <h1>Create an account</h1>
 <form th:action="@{/register}" method="POST" th:object="${user}">
   <div class="form-group">
@@ -39,7 +55,7 @@
     <label for="location">Location (City, State)</label>
     <input class="form-control" id="location" type="text" th:field="*{location}" />
   </div>
-  <input value="Sign me up!" type="submit" />
+  <input class="mt-3 mb-3" value="Sign me up!" type="submit" />
 </form>
 </div>
 
