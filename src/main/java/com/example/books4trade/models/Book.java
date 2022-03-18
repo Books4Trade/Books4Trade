@@ -27,6 +27,14 @@ public class Book {
     @Column
     private String book_img;
 
+    //  1:n relationship with reviews - BookReviews Model
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
+    private List<BookReview> reviews;
+
+    //  1:n relationship with owned_books
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
+    private List<OwnedBook> ownedBooks;
+
     //  1:n relationship from Authors
     @ManyToOne
     @JoinColumn(name = "author_id")
@@ -51,9 +59,7 @@ public class Book {
     )
     private List<Category> categories;
 
-    //  1:n relationship with reviews - BookReviews Model
-    @OneToMany(mappedBy = "book")
-    private List<BookReview> reviews;
+
 
     //  relationship with reads_books - ReadsBooks Model @charles
     @ManyToMany(cascade = CascadeType.ALL)
@@ -63,11 +69,6 @@ public class Book {
         inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
     private List<User> user; //@charles
-
-
-    //  1:n relationship with owned_books
-    @OneToMany(mappedBy = "book")
-    private List<OwnedBook> ownedBooks;
 
     //  CONSTRUCTORS
     public Book() {}

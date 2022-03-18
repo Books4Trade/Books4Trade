@@ -13,28 +13,25 @@
 
 <h1 class="header-center title-bg" th:text="${book.title}">Book Title</h1>
 
-<div>
-    <div class="text-center">
-        <img th:src="${book.getBookImg()}">
+    <div>
+        <div class="text-center">
+            <img th:src="${book.getBookImg()}">
+        </div>
+        <h3 class="header-center">By: <span th:text="${book.getAuthor().getFullname()}"></span></h3>
+        <p class="text-center" th:text="${book.summary}">Summary</p>
+        <!--    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>-->
+        <p>Read by X Users, owned by X users, Reviewed by X Users</p>
+    <div>
+        <p>See Reviews / See Owned Copies For Trade/ See Users that have read this Book</p>
     </div>
-    <h3 class="header-center">By: <span th:text="${book.getAuthor().getFullname()}"></span></h3>
-    <p class="text-center" th:text="${book.summary}">Summary</p>
-</div>
+    <form class="text-center" th:method="GET">
+        <!-- <button th:formaction="">Add to Watchlist</button><br> -->
+        <button class="btn btn-secondary m-2" type="submit" th:formaction="|/books/${book.getId()}/addcopy|">Add A Copy You Own</button>
+        <button class="btn btn-secondary m-2" type="submit" th:formaction="|/books/${book.getId()}/createreview|">Add Your Review</button>
+    </form>
+<br>
 
-<div>
-<!--    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>-->  
-</div>
-    <a href="">Add to Watchlist</a><br>
-    <a th:href="|/books/${book.getId()}/copies/add|">Add A Copy That You Own</a>
-    <a th:href="|/books/${book.getId()}/createreview|">Add A Review</a>
-    <a th:href="|/trade/${book.getId()}/|">Find Copies For Trade</a>
-</div>
-<div>
-    <p># Members Read/ Reviews/ Owned/ For Trade</p>
-</div>
-
-
-
+    
 <footer th:replace="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" /></body>
 </body>

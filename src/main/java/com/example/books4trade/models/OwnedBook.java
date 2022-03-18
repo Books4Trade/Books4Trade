@@ -14,73 +14,42 @@ public class OwnedBook {
     @Column
     private String bookCondition;
 
-    @Column
-    private boolean isOwned;
-
-    @Column
+    @Column(nullable = false)
     private boolean isTradeable;
 
     //  need to add 1:n relationship from Users
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private User user;
+
+    //  need to add 1:n relationship with Books
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     //  need to add 1:n relationship from Types
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
 
-    //  need to add 1:n relationship with Books
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
+
 
     //  CONSTRUCTORS
     public OwnedBook() {}
 
-    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable) {
+    //  ALL Except ID
+    public OwnedBook(String bookCondition, boolean isTradeable, Type type, User user, Book book) {
         this.bookCondition = bookCondition;
-        this.isOwned = isOwned;
         this.isTradeable = isTradeable;
-    }
-
-    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradeable) {
-        this.id = id;
-        this.bookCondition = bookCondition;
-        this.isOwned = isOwned;
-        this.isTradeable = isTradeable;
-    }
-
-    //  bookOwned Book Constructor
-    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable, User user, Book book) {
-        this.bookCondition = bookCondition;
-        this.isOwned = isOwned;
-        this.isTradeable = isTradeable;
+        this.type = type;
         this.user = user;
         this.book = book;
     }
 
-    //  bookOwned User Constructor
-    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable, User user) {
-        this.bookCondition = bookCondition;
-        this.isOwned = isOwned;
-        this.isTradeable = isTradeable;
-        this.user = user;
-    }
-
-    //  bookOwned Type Constructor
-    public OwnedBook(String bookCondition, boolean isOwned, boolean isTradeable, Type type) {
-        this.bookCondition = bookCondition;
-        this.isOwned = isOwned;
-        this.isTradeable = isTradeable;
-        this.type = type;
-    }
-
     //  ALL CONSTRUCTOR
-    public OwnedBook(long id, String bookCondition, boolean isOwned, boolean isTradeable, User user, Type type, Book book) {
+    public OwnedBook(long id, String bookCondition, boolean isTradeable, User user, Type type, Book book) {
         this.id = id;
         this.bookCondition = bookCondition;
-        this.isOwned = isOwned;
         this.isTradeable = isTradeable;
         this.user = user;
         this.type = type;
@@ -99,12 +68,6 @@ public class OwnedBook {
     }
     public void setBookCondtion(String bookCondtion) {
         this.bookCondition = bookCondtion;
-    }
-    public boolean getOwned() {
-        return isOwned;
-    }
-    public void setOwned(boolean owned) {
-        isOwned = owned;
     }
     public boolean isTradable() {
         return isTradeable;

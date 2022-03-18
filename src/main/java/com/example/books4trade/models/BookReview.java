@@ -12,7 +12,8 @@ import java.util.*;
 @Entity
 @Table(name = "book_reviews")
 public class BookReview {
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false, length = 255)
@@ -22,44 +23,32 @@ public class BookReview {
     @Size(max = 2000, message = "MAX: 2000 characters .")
     private String body;
 
-    @Column(nullable = false)
+    @Column
     private long rating;
 
-    @Column(nullable = false)
-    private LocalDate createdDate;
+    @Column
+    private String createdDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
     public BookReview() {}
 
-    public BookReview(String title, String body, long rating, LocalDate createdDate){
+    public BookReview(String title, String body, long rating, String createdDate, User user, Book book){
         this.title = title;
         this.body = body;
         this.rating = rating;
         this.createdDate = createdDate;
-    }
-    public BookReview(long id, String title, String body, long rating, LocalDate createdDate){
-        this.id = id;
-        this.title = title;
-        this.body = body;
-        this.rating = rating;
-        this.createdDate = createdDate;
-    }
-    public BookReview(long id, String title, String body, long rating, LocalDate createdDate, Book book){
-        this.id = id;
-        this.title = title;
-        this.body = body;
-        this.rating = rating;
-        this.createdDate = createdDate;
+        this.user = user;
         this.book = book;
     }
-    public BookReview(long id, String title, String body, long rating, LocalDate createdDate, Book book, User user){
+
+    public BookReview(long id, String title, String body, long rating, String createdDate, Book book, User user){
         this.id = id;
         this.title = title;
         this.body = body;
@@ -98,8 +87,8 @@ public class BookReview {
     public void setRating(long rating) {
         this.rating = rating;
     }
-    public LocalDate getCreatedDate() {return createdDate;}
-    public void setCreatedDate(LocalDate createdOn) {
+    public String getCreatedDate() {return createdDate;}
+    public void setCreatedDate(String createdOn) {
         this.createdDate = createdDate;
     }
 }

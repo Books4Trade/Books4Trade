@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-<h2>Hello <span th:text="${#authentication.principal.username}"/>!</h2>
+<h2>Hello <span th:text="${user.getUsername()}"/>!</h2>
 <hr>
 <!-- Main Page Container Below -->
 <div class="container">
@@ -63,28 +63,28 @@
         <!-- 2nd TabPanel pills-myreviews-->
         <div class="tab-pane fade" id="pills-myreviews" role="tabpanel" aria-labelledby="pills-myreviews-tab">
             <h3>Reviews</h3>
-            <div th:each="review : ${usersReviews}">
+          <!--  <div th:each="review : ${usersReviews}">
 
 
-            </div>
+            </div>-->
             <p>stuff about the reviews</p>
         </div>
         <!-- 3rd TabPanel pills-mytrades-->
         <div class="tab-pane fade" id="pills-mytrades" role="tabpanel" aria-labelledby="pills-mytrades-tab">
             <h3>Trades</h3>
-            <div th:each="trade : ${userTrades}">
+         <!--   <div th:each="trade : ${userTrades}">
 
 
-            </div>
+            </div> -->
             <p>stuff about the trades</p>
         </div>
         <!-- 4th TabPanel pills-mynotifications -->
         <div class="tab-pane fade" id="pills-mynotifications" role="tabpanel" aria-labelledby="pills-mynotificaitons-tab">
             <h3>Notifications</h3>
-            <div th:each="notification : ${userNotifications}">
+         <!--   <div th:each="notification : ${userNotifications}">
 
 
-            </div>
+            </div> -->
             <p>stuff about the trades</p>
         </div>
         <!-- 5th TabPanel pills-mycategories -->
@@ -102,15 +102,14 @@
         <!-- 7th TabPanel pills-myaccount -->
         <div class="tab-pane fade" id="pills-myaccount" role="tabpanel" aria-labelledby="pills-myaccount-tab">
             <h3>Account Details</h3>
-            <p>First Name: <span th:text="${firstName}"></span></p>
-            <p>Last Name: <span th:text="${lastName}"></span></p>
-            <p>Email: <span th:text="${email}"></span></p>
-            <p>Username: <span th:text="${userName}"></span></p>
-            <p>Location: <span th:text="${location}"></span></p>
-
-
-            <a th:href="@{/profile/edit}">Edit My Profile</a>
-
+            <p>Username: <span th:text="${user.getUsername()}"></span></p>
+            <p>First Name: <span th:text="${user.getFirstName()}"></span></p>
+            <p>Last Name: <span th:text="${user.getLastName()}"></span></p>
+            <p>Email: <span th:text="${user.getEmail()}"></span></p>
+            <p>Location: <span th:text="${user.getLocation()}"></span></p>
+            <form class="text-center" th:action="@{/profile/edit}" th:method="GET">
+                <button type="submit">Edit My Profile</button>
+            </form>
     </div>
 
     </div>

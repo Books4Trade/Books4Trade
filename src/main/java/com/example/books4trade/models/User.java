@@ -11,28 +11,42 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Column( unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private String firstName;
 
-    @Column(nullable = false)
+    @Column
     private String lastName;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String location;
 
-    @Column(nullable = false)
+    @Column
     private boolean enabled;
 
     // RELATIONSHIPS
+    //  1:n relationship with owned_books
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<OwnedBook> ownedBooks;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="user")
+    private List<BookReview> reviews;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="toUser")
+    private List<Notification> notifications;
+
+    //Below is for reads_book @charles
+    @ManyToMany(mappedBy = "user")
+    private List<Book> booksread;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -40,16 +54,6 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private List<Role> roles;
-
-    @OneToMany(mappedBy = "user")
-    private List<BookReview> reviews;
-
-    @OneToMany(mappedBy = "toUser")
-    private List<Notification> notifications;
-
-    //Below is for reads_book @charles
-    @ManyToMany(mappedBy = "user")
-    private List<Book> booksread;
 
     //  n:m relation for watchlist table
     @ManyToMany(cascade = CascadeType.ALL)
@@ -68,10 +72,6 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
     private List<Category> favoriteCategories;
-
-    //  1:n relationship with owned_books
-    @OneToMany(mappedBy = "user")
-    private List<OwnedBook> ownedBooks;
 
     // CONSTRUCTORS
     public User(){}

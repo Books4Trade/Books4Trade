@@ -47,7 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/js/**","/img/**", "/css/**",
                         // Register and Root-Index Mappings
                         "/", "/register","/books", "/reviews","/trades",
-                        "/books/{id}", "/books/{id}/copies", "/reviews/{id}",
+                        "/books/{id}", "/books/{id}/copies",
+                        "/reviews/{id}",
                         "/books/search", "/books/search/api"
                         ) // anyone can see the home and the Post-Index pages
                 .permitAll()
@@ -55,8 +56,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 .antMatchers(
                         "/profile",
-                        "/books/create",
-                        "/reviews/create", "/reviews/edit",
+                        "/books/create","/books/{id}/copies/add",
+                        "/books/{id}/createreview",
                         "/books/{id}/copies/add", "/books/{id}/copies/{copyid}", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit"
                 ).authenticated()
                 .and().authorizeRequests().anyRequest().hasAuthority("ADMIN");

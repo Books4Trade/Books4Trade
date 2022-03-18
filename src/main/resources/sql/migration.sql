@@ -43,3 +43,11 @@ VALUES(1, 'http://books.google.com/books/content?id=87eqoAEACAAJ&printsec=frontc
     (11,'http://books.google.com/books/content?id=9ZU7PgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api','Young wizard-in-training Harry Potter prepares for a competition between Hogwarts School of Magic and two rival schools, develops a crush on Cho Chang, and wishes above all to be a normal fourteen-year-old.','Harry Potter and the Goblet of Fire',2),
     (12,'http://books.google.com/books/content?id=zRQrMQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api','Heart of Darkness a novella by Polish-British novelist Joseph Conrad, about a voyage up the Congo River into the Congo Free State, in the heart of Africa, by the storys narrator Marlow. Marlow tells his story to friends aboard a boat anchored on the River Thames, London, England. This setting provides the frame for Marlows story of his obsession with the ivory trader Kurtz, which enables Conrad to create a parallel between London and Africa as ...(more details were removed)','Heart of Darkness',10);
 SELECT * from books;
+
+INSERT INTO owned_books(id, book_condition,  is_tradeable , book_id, type_id, user_id)
+VALUES(1, 'Good', true, 1, 1, 3);
+SELECT * FROM owned_books;
+
+INSERT INTO book_reviews(id, body, created_date, rating, title, book_id, user_id)
+VALUES(1,'This book was amazing','2022-03-15',5,'LOVE!!!',1,3);
+SELECT * FROM book_reviews;
