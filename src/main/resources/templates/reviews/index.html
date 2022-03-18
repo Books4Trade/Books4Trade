@@ -17,9 +17,9 @@
 		<p class="text-center"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p>
 		<p class="text-center"> Written On: <span th:text="${review.getCreatedDate()}"></span></p>
 		<p class="text-center">
-			Book Reviewed: <span th:text="${review.getBook().getTitle()}"></span>
-			, by:<span th:text="${review.getBook().getAuthor().getFullname()}"></span>
-			</p>
+			Book Reviewed: <span th:text="${review.getBook().getTitle()}"></span>, by:<span th:text="${review.getBook().getAuthor().getFullname()}"></span>
+		</p>
+		<p class="text-center"> <img th:src="${review.getBook.getBookImg()}"></p>
 		<a class="text-center" th:href="|/reviews/${review.getId()}|">See this Review</a>
 	</div>
 </div>

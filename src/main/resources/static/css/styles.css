@@ -49,3 +49,11 @@ body {
     border-radius: 100%;
     border: 4px solid black;
 }
+
+.label-styles{
+    font-size: xx-large;
+
+}
+.card-bg {
+background: chocolate;
+}
