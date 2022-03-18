@@ -9,6 +9,7 @@ import com.example.books4trade.repositories.AuthorRepository;
 import com.example.books4trade.repositories.BookRepository;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +21,15 @@ import java.util.List;
 
 @Controller
 public class BookController {
+    @Value("${GB_API}")
+    private String GBKey;
+
     private BookRepository booksDao;
     private UserRepository usersDao;
     private AuthorRepository authorsDao;
     private OwnedBookRepository ownedBooksDao;
+
+
 
     public BookController(BookRepository bookDao, UserRepository usersDao, AuthorRepository authorsDao, OwnedBookRepository ownedBooksDao){
         this.booksDao = bookDao;
@@ -92,6 +98,7 @@ public class BookController {
                 System.out.println("Switch case fallthrough on PostMapping /books/search/api");
                 break;
         }
+        model.addAttribute("key1", GBKey);
         model.addAttribute("searchedparam", param);
         model.addAttribute("searchedquery", query);
         model.addAttribute("searched", true);
@@ -123,28 +130,19 @@ public class BookController {
         booksDao.save(book);   
         return "redirect:/books/"+book.getId();
     }
-
-
 //    Read
-
     @GetMapping("/books/{id}")
     public String individualBook(@PathVariable long id, Model model){
         model.addAttribute("book", booksDao.getById(id));
         return "/books/show";
     }
-
 //    Update
-
-
-
-
     @GetMapping("/books/{id}/edit")
     public String showUpdateForm(@PathVariable long id, Model model,@ModelAttribute Book book){
         Book editBook = booksDao.getById(id);
         model.addAttribute("editBook", editBook);
         return "/books/edit";
     }
-
     @PostMapping("/books/{id}/edit")
     public String submitUpdateForm(@PathVariable long id,@ModelAttribute Book book, Model model){
         book.setAuthor(booksDao.getById(id).getAuthor());
@@ -159,5 +157,4 @@ public class BookController {
             booksDao.deleteById(id);
             return "redirect:/books";
     }
-
 }

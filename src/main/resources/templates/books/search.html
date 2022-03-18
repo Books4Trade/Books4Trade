@@ -27,7 +27,10 @@
 <!-- Target for populating the search results through js-->
 <div id="search-results"></div>
 
-
+<input id="key1" name="key1" type="hidden" th:value="${key1}">
+<script th:inline="javascript">
+    var GB_API = [[${key1}]];
+</script>
 <script th:include="partials :: scripts-bottom"/>
 <script th:src="@{/js/books_api.js}"></script>
 </body>
