@@ -11,9 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.net.http.HttpRequest;
+import java.util.*;
 
 @Component
 public class SecurityHandler implements AuthenticationSuccessHandler {
@@ -33,7 +32,7 @@ public class SecurityHandler implements AuthenticationSuccessHandler {
         String redirectURL = request.getContextPath();
 
         if(roles.contains("BANNED")){
-            redirectURL="/logout";
+            redirectURL="/banned";
         } else if(roles.contains("ADMIN")){
             redirectURL = "/profile";
             //redirectURL="/admin";  UNCOMMENT THIS AND DELETE PREVIOUS LINE ONCE MAPPING/VIEW IS MADE

@@ -45,6 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 // Static File Paths
                 .antMatchers( "/js/**","/img/**", "/css/**",
+                        "/banned",
                         // Register and Root-Index Mappings
                         "/", "/register","/books", "/reviews","/trades",
                         "/books/{id}", "/books/{id}/copies",
