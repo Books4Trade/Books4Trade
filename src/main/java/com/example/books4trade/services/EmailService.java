@@ -32,19 +32,49 @@ public class EmailService {
             }
         }
 
-    public void prepareAndSend(String subject, String body) {
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(from);
-        msg.setTo("admin@codeup.com");
-        msg.setSubject(subject);
-        msg.setText(body);
+        public void accountRegistration(User user) {
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setFrom(from);
+            msg.setTo(user.getEmail());
+            msg.setSubject("Account created");
+            msg.setText("Thank you for registering to Swap-a-Book" + " " + user.getFirstName() + ".");
 
-        try{
-            this.emailSender.send(msg);
+            try{
+                this.emailSender.send(msg);
+            }
+            catch (MailException ex) {
+                // simply log it and go on...
+                System.err.println(ex.getMessage());
+            }
         }
-        catch (MailException ex) {
-            // simply log it and go on...
-            System.err.println(ex.getMessage());
+
+        public void bannedUser(User user) {
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setFrom(from);
+            msg.setTo(user.getEmail());
+            msg.setSubject("Your Account Is Banned.");
+            msg.setText("Please contact swapabook@xyz.com.");
+            try{
+                this.emailSender.send(msg);
+            }
+            catch (MailException ex) {
+                // simply log it and go on...
+                System.err.println(ex.getMessage());
+            }
         }
-    }
+
+        public void prepareAndSend(String subject, String body) {
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setFrom(from);
+            msg.setTo("admin@codeup.com");
+            msg.setSubject(subject);
+            msg.setText(body);
+            try{
+                this.emailSender.send(msg);
+            }
+            catch (MailException ex) {
+                // simply log it and go on...
+                System.err.println(ex.getMessage());
+            }
+        }
     }

@@ -49,7 +49,7 @@ public class UserController {
             user.setRoles(defaultRoles);
             user.setEnabled(true);
             userDao.save(user);
-            emailService.prepareAndSend(user,"Thank you for registering!", "Welcome to Swap-A-Book!");
+            emailService.accountRegistration(user);
         }// put else Error Here if passwords do not match
 
         return "redirect:/login";
