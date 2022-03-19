@@ -10,46 +10,50 @@
 <nav th:replace="partials :: navbar" />
 <h2 class="header-center">Hello <span th:text="${user.getUsername()}"/>!</h2>
 <hr>
+
 <h4 class="header-center">Admin Dashboard</h4>
-<div>
-    <div>
-        <form action="/users/edit" th:method="GET">
-            <label for="book-id">Book ID</label>
-            <input name="book-id" id="book-id" type="number">
-            <button>Edit Book</button>
-        </form>
-        <form action="/users/delete" th:method="POST">
-            <label for="book-id">Book ID</label>
-            <input name="book-id" id="book-id" type="number">
-            <button>Delete Book</button>
-        </form>
-    </div>
-    <div>
-        <form action="/reviews/edit" th:method="GET">
-            <label for="review-id">Review ID</label>
-            <input name="review-id" id="review-id" type="number">
-            <button>Edit Review</button>
-        </form>
-        <form action="/reviews/delete" th:method="POST">
-            <label for="review-id">Review ID</label>
-            <input name="review-id" id="review-id" type="number">
-            <button>Delete Review</button>
-        </form>
-    </div>
-    <div>
-        <form action="/users/edit" th:method="GET">
-            <label for="user-id">User ID</label>
-            <input name="user-id" id="user-id" type="number">
-            <button>Edit User</button>
-        </form>
-        <form action="/users/ban" th:method="POST">
-            <label for="user-id">User ID</label>
-            <input name="user-id" id="user-id" type="number">
-            <button>Ban User</button>
-        </form>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="/users/edit" th:method="GET">
+                <label for="bookedit">Book ID</label>
+                <input name="bookedit" id="bookedit" type="number">
+                <button>Edit Book</button>
+            </form>
+            <form action="/users/delete" th:method="POST">
+                <label for="bookdelete">Book ID</label>
+                <input name="bookdelete" id="bookdelete" type="number">
+                <button>Delete Book</button>
+            </form>
+        </div>
+        <div class="col">
+            <form action="/reviews/edit" th:method="GET">
+                <label for="reviewedit">Review ID</label>
+                <input name="reviewedit" id="reviewedit" type="number">
+                <button>Edit Review</button>
+            </form>
+            <form action="/reviews/delete" th:method="POST">
+                <label for="reviewdelete">Review ID</label>
+                <input name="reviewdelete" id="reviewdelete" type="number">
+                <button>Delete Review</button>
+            </form>
+        </div>
+        <div class="col">
+            <form action="/users/edit" th:method="GET">
+                <label for="useredit">User ID</label>
+                <input name="useredit" id="useredit" type="number">
+                <button>Edit User</button>
+            </form>
+            <form action="/users/ban" th:method="POST">
+                <label for="userdelete">User ID</label>
+                <input name="userdelete" id="userdelete" type="number">
+                <button>Ban User</button>
+            </form>
+        </div>
     </div>
 </div>
-
+<br>
 
 
 

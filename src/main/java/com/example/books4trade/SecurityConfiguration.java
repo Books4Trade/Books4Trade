@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/books/create","/books/{id}/copies/add",
                         "/books/{id}/createreview",
                         "/books/{id}/copies/add", "/books/{id}/copies/{copyid}", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit"
-                ).authenticated()
+                ).hasAuthority("USER")
                 .and().authorizeRequests().anyRequest().hasAuthority("ADMIN");
     }
 }
