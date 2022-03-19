@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/books/search", "/books/search/api"
                         ) // anyone can see the home and the Post-Index pages
                 .permitAll()
-                /* USERS - Pages that require authentication */
+                /* USERS - Pages that require authentication with Authority-Role "USER"*/
                 .and().authorizeRequests()
                 .antMatchers(
                         "/profile",
