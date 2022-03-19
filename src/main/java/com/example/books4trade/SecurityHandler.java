@@ -34,8 +34,7 @@ public class SecurityHandler implements AuthenticationSuccessHandler {
         if(roles.contains("BANNED")){
             redirectURL="/banned";
         } else if(roles.contains("ADMIN")){
-            redirectURL = "/profile";
-            //redirectURL="/admin";  UNCOMMENT THIS AND DELETE PREVIOUS LINE ONCE MAPPING/VIEW IS MADE
+            redirectURL = "/admin";
         } else if (roles.contains("USER")){
             redirectURL="/profile";
         }
