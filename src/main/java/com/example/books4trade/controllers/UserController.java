@@ -13,9 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -71,7 +71,6 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("usersBooks", user.getOwnedBooks());
         model.addAttribute("usersReviews", user.getReviews());
-    //      model.addAttribute("usersReviews", currentUser.getReviews());
     //      Add Trades, Other Tab Info
     //      model.addAttribute("usersNotifications", currentUser.getNotifications());
         return "users/profile";
@@ -115,5 +114,11 @@ public class UserController {
         user.setLocation(userEdited.getLocation());
 
         return "redirect:/profile";
+    }
+
+    @GetMapping("/users/{id}")
+    public String showUser(@PathVariable long id, Model model){
+        model.addAttribute("user", usersDao.getById(id));
+        return "users/show";
     }
 }
