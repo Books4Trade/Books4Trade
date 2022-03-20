@@ -6,20 +6,14 @@
 	<title>Login</title>
 	<head th:include="partials :: head" />
 	<style>
-		.container {
-			width: 50%;
-			border: 3px solid #f1f1f1;
-		}
-		body {
-			background: rgb(242,238,203);
-			background: linear-gradient(90deg, rgba(242,238,203,1) 2%, rgba(255,252,222,1) 46%, rgba(246,242,197,0.989233193277311) 100%);
-		}
+
+
 	</style>
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
 
-<div class="container mt-5" style="background-color: white">
+<div class="container subcontainer bg-white mt-5">
 <form class="" th:action="@{/login}" method="post">
 	<h1 class="text-center">Swap-A-Book</h1>
 	<p class="text-center">Add book, look at books, trade books, find your book.</p>

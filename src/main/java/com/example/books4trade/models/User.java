@@ -1,9 +1,12 @@
 package com.example.books4trade.models;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@DynamicUpdate
 @Table(name="users")
 public class User {
     // FIELDS
@@ -148,12 +151,21 @@ public class User {
     }
     public List<Book> getBooksread(){ return booksread;}
     public void setBooksread(List<Book> booksread){ this.booksread = booksread;}
+
     public List<Role> getRoles() {
         return roles;
     }
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+    /*public void addRole(Role role){
+        this.roles = getRoles();
+        this.roles.add(role);
+    }
+    public void removeRole(Role role){
+        this.roles = getRoles();
+        this.roles.remove(role);
+    }*/
 
     // User Field Getters & Setters
     public long getId() {
