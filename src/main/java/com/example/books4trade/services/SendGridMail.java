@@ -2,10 +2,7 @@ package com.example.books4trade.services;
 
 import com.example.books4trade.models.User;
 
-import com.sendgrid.Method;
-import com.sendgrid.Request;
-import com.sendgrid.Response;
-import com.sendgrid.SendGrid;
+import com.sendgrid.*;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.sendgrid.helpers.mail.objects.Personalization;
@@ -29,7 +26,6 @@ public class SendGridMail {
 
     public void accountRegistrationSG(long id, String username, String toEmail) throws IOException {
 
-
         Mail mail = new Mail();
         Email from = new Email();
         from.setName("Auto");
@@ -40,11 +36,11 @@ public class SendGridMail {
         Email to = new Email(toEmail);
         personalization.addTo(to);
         personalization.addDynamicTemplateData("unique_user", username);
-        personalization.addDynamicTemplateData("activate_link", "swapabook.xyz/useractivate?user=" + id);
+        personalization.addDynamicTemplateData("activate_link", "swapabook.xyz/users/activate?user=" + id);
         mail.addPersonalization(personalization);
         mail.setTemplateId(registrationtemplate);
 
-        SendGrid sendgrid = new SendGrid("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");
+        SendGrid sendgrid = new SendGrid(SENDGRID_API_KEY);
         Request request = new Request();
         try{
             request.setMethod(Method.POST);

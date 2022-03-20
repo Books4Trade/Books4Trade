@@ -37,6 +37,8 @@ public class UserWithRoles extends User implements UserDetails {
     }
 
     @Override
+    public long getId(){return user.getId(); }
+    @Override
     public String getPassword(){
         return user.getPassword();
     }

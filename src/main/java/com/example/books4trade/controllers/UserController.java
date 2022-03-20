@@ -45,7 +45,7 @@ public class UserController {
         // add username check for unique username
         if(user.getPassword().equals(passwordConfirm)){
             List<Role> defaultRoles = new ArrayList<>();
-            defaultRoles.add(rolesDao.getById(3L));
+            defaultRoles.add(rolesDao.getById(5L));
             String hash = passwordEncoder.encode(user.getPassword());
             user.setPassword(hash);
             user.setRoles(defaultRoles);
@@ -80,8 +80,9 @@ public class UserController {
     public String showForgotPasswordForm(){
         return "users/forgot";
     }
-    // REFACTOR THIS TO INCLUDE INFORMATION OTHER USERS CANNOT ACCESS
 
+
+    // REFACTOR THIS TO INCLUDE INFORMATION OTHER USERS CANNOT ACCESS
     @PostMapping("/forgot")
     public String forgotPasswordSubmit(@RequestParam(name="email") String email, @RequestParam(name="password") String password, @RequestParam(name="username") String username, @RequestParam(name="password-confirm") String passwordConfirm){
         User user = usersDao.findByEmail(email);
@@ -116,9 +117,24 @@ public class UserController {
         return "redirect:/profile";
     }
 
+    @GetMapping("/users/activate")
+    public String activateUserShow(@RequestParam(name="user") long userid, Model model) {
+        System.out.println("User Activation-Get for: " + userid);
+        User userToActivate = usersDao.getById(userid);
+        model.addAttribute("activate-id",userid);
+        model.addAttribute("useractivate", userToActivate);
+        return "/users/activate";
+    }
+
+    @PostMapping("/users/activate")
+    public String activateUserSubmit(){
+
+        return "redirect:/login";
+    }
+
     @GetMapping("/users/{id}")
     public String showUser(@PathVariable long id, Model model){
-        model.addAttribute("user", usersDao.getById(id));
+        model.addAttribute("usershown", usersDao.getById(id));
         return "users/show";
     }
 }
