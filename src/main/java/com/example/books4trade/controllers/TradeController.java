@@ -1,13 +1,7 @@
 package com.example.books4trade.controllers;
 
-import com.example.books4trade.models.Book;
-import com.example.books4trade.models.OwnedBook;
-import com.example.books4trade.models.TradeItem;
-import com.example.books4trade.models.User;
-import com.example.books4trade.repositories.BookRepository;
-import com.example.books4trade.repositories.OwnedBookRepository;
-import com.example.books4trade.repositories.TradeRepository;
-import com.example.books4trade.repositories.UserRepository;
+import com.example.books4trade.models.*;
+import com.example.books4trade.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/books")   //  this gives every mapping to follow a /books to start for uniformity
@@ -23,12 +18,14 @@ public class TradeController {
     private UserRepository usersDao;
     private OwnedBookRepository ownedBooksDao;
     private TradeRepository tradesDao;
+    private TradeItemsRepository tradeItemsDao;
 
-    public TradeController(BookRepository booksDao, UserRepository usersDao, OwnedBookRepository ownedBooksDao, TradeRepository tradesDao) {
+    public TradeController(BookRepository booksDao, UserRepository usersDao, OwnedBookRepository ownedBooksDao, TradeRepository tradesDao, TradeItemsRepository tradeItemsDao) {
         this.booksDao = booksDao;
         this.usersDao = usersDao;
         this.ownedBooksDao = ownedBooksDao;
         this.tradesDao = tradesDao;
+        this.tradeItemsDao = tradeItemsDao;
     }
 
     @GetMapping("/trades")      //  will display all books available for trade
@@ -69,22 +66,26 @@ public class TradeController {
     @PostMapping("/trade/{id}/initiate")    //  {id} = represents initial book being requested to trade
     public String createTrade(
             @PathVariable long book_id,
-            @RequestParam(name = "userInit_id") long user_id,
-            @RequestParam(name = "bookCover") String bookImg,
-            Model model)
+            @RequestParam(name = "bookBuddy_id") long bookBuddy_id,
+            @RequestParam(name = "userBook_id") long userBook_id)
     {
-        //  need to redesign TradeItem and Trade Models
-        //  TradeItem is missing info for
-        //  receiver, 2nd book
-//        TradeItem trade = new TradeItem();
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Book book = booksDao.getById(book_id);
-//        User tradeInit = usersDao.getById(user_id);
-//        List<OwnedBook> owner = ownedBooksDao.findOwnedBooksByBook(book);
-//
-//        model.addAttribute("userInit", tradeInit);
-//        model.addAttribute("bookTT", book);
-//        model.addAttribute("tradeBuddy", owner);
+
+        //  creating a new trade
+        Trade newTrade = new Trade();
+        tradesDao.save(newTrade);
+        //  TradeItem_1
+        //  logged in user and their book to trade
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        OwnedBook userBook = ownedBooksDao.getById(userBook_id);
+        TradeItem trade1 = new TradeItem(userBook, currentUser, newTrade);
+        //  TradeItem_2
+        //  BookBuddy trading with (assuming email and agreement was made prior to initiating trade)
+        User bookBuddy = usersDao.getById(bookBuddy_id);
+        OwnedBook buddyBook = ownedBooksDao.getById(book_id);
+        TradeItem trade2 = new TradeItem(buddyBook, bookBuddy, newTrade);
+
+        tradeItemsDao.save(trade1);
+        tradeItemsDao.save(trade2);
 
         return "redirect: /profile";
     }
