@@ -1,18 +1,25 @@
 package com.example.books4trade.services;
 
 import com.example.books4trade.models.User;
-import com.sendgrid.*;
+
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Email;
+import com.sendgrid.helpers.mail.objects.Personalization;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-
-public class EmailService2 {
+@Service
+public class SendGridMail {
 
     @Value("${SG_API}")
-    private static  String SENDGRID_API_KEY;
+    private String SENDGRID_API_KEY;
 
     @Value("${SG_FROM}")
     private String From;
@@ -20,17 +27,21 @@ public class EmailService2 {
     @Value("${SG_REG_TEMP_ID}")
     private String registrationtemplate;
 
-    public void accountRegistration(User user) throws IOException {
+    public void accountRegistrationSG(long id, String username, String toEmail) throws IOException {
 
+
+        Mail mail = new Mail();
         Email from = new Email();
         from.setName("Auto");
         from.setEmail(From);
-        Email to = new Email(user.getEmail());
-        String subject = "SwapABook Account Created";
-        Content content = new Content("text/plain", "and easy to do with Java");
-        Mail mail = new Mail(from, subject, to, content);
-        mail.personalization.get(0).addSubstitution("weblink","swapabook.xyz/useractivate?user="+user.getId());
-        mail.personalization.get(0).addSubstitution("unique_name", user.getUsername());
+        mail.setFrom(from);
+
+        Personalization personalization = new Personalization();
+        Email to = new Email(toEmail);
+        personalization.addTo(to);
+        personalization.addDynamicTemplateData("unique_user", username);
+        personalization.addDynamicTemplateData("activate_link", "swapabook.xyz/useractivate?user=" + id);
+        mail.addPersonalization(personalization);
         mail.setTemplateId(registrationtemplate);
 
         SendGrid sendgrid = new SendGrid("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");
