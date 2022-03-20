@@ -118,16 +118,19 @@ public class UserController {
     }
 
     @GetMapping("/users/activate")
-    public String activateUserShow(@RequestParam(name="user") long userid, Model model) {
-        System.out.println("User Activation-Get for: " + userid);
-        User userToActivate = usersDao.getById(userid);
-        model.addAttribute("activate-id",userid);
-        model.addAttribute("useractivate", userToActivate);
+    public String activateUserShow(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findByUsername(loggedInUser.getUsername());
+        System.out.println("User Activation-Get for: " + user.getId());
+        model.addAttribute("activateid", user.getId());
+        model.addAttribute("useractivate", user);
         return "/users/activate";
     }
 
     @PostMapping("/users/activate")
-    public String activateUserSubmit(){
+    public String activateUserSubmit(Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findByUsername(loggedInUser.getUsername());
 
         return "redirect:/login";
     }

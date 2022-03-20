@@ -46,8 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 // Static File Paths
                 .antMatchers( "/js/**","/img/**", "/css/**",
-                        // Registration, Activation Pages - Public
-                        "/", "/banned", "/users/activate", "/register",
+                        // Registration, Banned Pages - Public
+                        "/", "/banned", "/register",
                         // Book Mappings, Inc Search - Public
                         "/books", "/books/{id}", "/books/search", "/books/search/api",
                         // Reviews Mappings - Views- Public
@@ -58,6 +58,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/users","/users/{id}","/trades"
                         ) // anyone can see the home and the Post-Index pages
                 .permitAll()
+                .and().authorizeRequests()
+                .antMatchers(  "/users/activate")
+                .authenticated()
                 /* USERS - Pages that require authentication with Authority-Role "USER"*/
                 .and().authorizeRequests()
                 .antMatchers(
