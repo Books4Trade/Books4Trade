@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>You Were Banned</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+<h3 class="header-center title-bg">User Activation</h3>
+<br>
+<div>
+    <form class="text-center" th:action="@{/users/activate}" th:method="POST">
+        <h4 class="header-center">User: <span th:text="${useractivate.getUsername()}"></span></h4>
+        <input name="id" id="id" type="hidden" th:value="${activateid}">
+        <button class="btn btn-primary" type="submit">Activate</button>
+    </form>
+</div>
+<br>
+
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
+</body>
+</html>

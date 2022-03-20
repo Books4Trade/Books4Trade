@@ -19,7 +19,13 @@ SELECT * FROM users;
 
 INSERT INTO users_roles(user_id, role_id)
 VALUES (6,3),
-       (7,4);
+        (7,4),
+        (8,3),
+        (9,3),
+        (10,3),
+        (11,3),
+        (12,3),
+        (13,3);
 SELECT * FROM users_roles;
 
 INSERT INTO authors(id, fullname)

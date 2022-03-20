@@ -8,38 +8,38 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-<h2>Hello <span th:text="${user.getUsername()}"/>!</h2>
+<h2 class="header-center title-bg mb-2">Hello <span th:text="${user.getUsername()}"/>!</h2>
 <hr>
 <!-- Main Page Container Below -->
-<div class="container">
+<div class="content">
 
     <!-- Tab-Pill Controller -->
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
+    <ul class="nav nav-pills m-2" id="pills-tab" role="tablist">
+        <li class="nav-item m-2 p-3" role="presentation">
             <button class="nav-link active" id="pills-mybooks-tab" data-bs-toggle="pill" data-bs-target="#pills-mybooks" type="button" role="tab" aria-controls="pills-mybooks" aria-selected="true">
                 My Books</button>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class="nav-item m-2 p-3" role="presentation">
             <button class="nav-link" id="pills-myreviews-tab" data-bs-toggle="pill" data-bs-target="#pills-myreviews" type="button" role="tab" aria-controls="pills-myreviews" aria-selected="false">
                 My Reviews</button>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class="nav-item m-2 p-3" role="presentation">
+            <button class="nav-link" id="pills-myreads-tab" data-bs-toggle="pill" data-bs-target="#pills-myreads" type="button" role="tab" aria-controls="pills-myreads" aria-selected="false">
+                My Reads</button>
+        </li>
+        <li class="nav-item m-2 p-3" role="presentation">
             <button class="nav-link" id="pills-mytrades-tab" data-bs-toggle="pill" data-bs-target="#pills-mytrades" type="button" role="tab" aria-controls="pills-mytrades" aria-selected="false">
                 My Trades</button>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class="nav-item m-2 p-3" role="presentation">
             <button class="nav-link" id="pills-mynotifications-tab" data-bs-toggle="pill" data-bs-target="#pills-mynotifications" type="button" role="tab" aria-controls="pills-mynotificatios" aria-selected="false">
                 My Notifications</button>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-mycategories-tab" data-bs-toggle="pill" data-bs-target="#pills-mycategories" type="button" role="tab" aria-controls="pills-mycategories" aria-selected="false">
-                My Categories</button>
-        </li>
-        <li class="nav-item" role="presentation">
+        <li class="nav-item m-2 p-3" role="presentation">
             <button class="nav-link" id="pills-mywatchlist-tab" data-bs-toggle="pill" data-bs-target="#pills-mywatchlist" type="button" role="tab" aria-controls="pills-mywatchlist" aria-selected="false">
                 My Watchlist</button>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class="nav-item m-2 p-3" role="presentation">
             <button class="nav-link" id="pills-myaccount-tab" data-bs-toggle="pill" data-bs-target="#pills-myaccount" type="button" role="tab" aria-controls="pills-myaccount" aria-selected="false">
                 My Account</button>
         </li>
@@ -48,30 +48,42 @@
     <div class="tab-content" id="pills-tabContent">
         <!-- 1st TabPanel pills-mybooks -->
         <div class="tab-pane fade show active" id="pills-mybooks" role="tabpanel" aria-labelledby="pills-mybooks-tab">
-            <h3>Books</h3>
-            <div>
+            <div class="d-flex flex-row flex-wrap justify-content-evenly">
                 <div class="book-card" th:each="ownedBook : ${usersBooks}">
                     <h3 class="book-headers title-bg" th:text="${ownedBook.getBook().getTitle()}"/>
                     <h4 class="book-headers" th:text="${ownedBook.getBook().getAuthor().getFullname()}"></h4>
                     <div class="text-center">
                             <img th:src="${ownedBook.getBook().getBookImg()}">
                     </div>
-<!--                    <a th:href="|/reviews/@{}|"></a>-->
-                        <!--<h5 class="card-rating" th:text="${book.getRating}"></h5> -->
-
+                    <p class="text-center">
+                        <a th:href="|/books/${ownedBook.getBook.getId()}/copy/${ownedBook.getId()}|">View this Copy</a>
+                    </p>
               </div>
             </div>
+            <br>
         </div>
         <!-- 2nd TabPanel pills-myreviews-->
         <div class="tab-pane fade" id="pills-myreviews" role="tabpanel" aria-labelledby="pills-myreviews-tab">
-            <h3>Reviews</h3>
-            <!--<div th:each="review : ${usersReviews}">
-
-                    <a th:href="|/reviews/@{review.getId()}|"></a>
-            </div> -->
-
+            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                <div th:each="review : ${usersReviews}">
+                    <h3 class="book-headers title-bg" th:text="${review.getTitle()}"/>
+                    <p class="text-center"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p>
+                    <p class="text-center"> Written On: <span th:text="${review.getCreatedDate()}"></span></p>
+                    <p class="text-center">
+                        Book Reviewed: <span th:text="${review.getBook().getTitle()}"></span>, by:<span th:text="${review.getBook().getAuthor().getFullname()}"></span>
+                    </p>
+                    <p class="text-center"> <img th:src="${review.getBook.getBookImg()}"></p>
+                    <p class="text-center"><a th:href="|/reviews/${review.getId()}|">See this Review</a>
+                </div>
+            </div>
         </div>
-        <!-- 3rd TabPanel pills-mytrades-->
+        <!-- 3rd TabPanel pills-myreads -->
+         <div class="tab-pane fade" id="pills-myreads" role="tabpanel" aria-labelledby="pills-myreads-tab">
+             <h4 class="header-center text-muted">What You've Read</h4>
+
+
+         </div>
+        <!-- 4th TabPanel pills-mytrades-->
         <div class="tab-pane fade" id="pills-mytrades" role="tabpanel" aria-labelledby="pills-mytrades-tab">
             <h3>Trades</h3>
          <!--   <div th:each="trade : ${userTrades}">
@@ -80,7 +92,7 @@
             </div> -->
             <p>stuff about the trades</p>
         </div>
-        <!-- 4th TabPanel pills-mynotifications -->
+        <!-- 5th TabPanel pills-mynotifications -->
         <div class="tab-pane fade" id="pills-mynotifications" role="tabpanel" aria-labelledby="pills-mynotificaitons-tab">
             <h3>Notifications</h3>
          <!--   <div th:each="notification : ${userNotifications}">
@@ -88,12 +100,6 @@
 
             </div> -->
             <p>stuff about the trades</p>
-        </div>
-        <!-- 5th TabPanel pills-mycategories -->
-        <div class="tab-pane fade" id="pills-mycategories" role="tabpanel" aria-labelledby="pills-mycategories-tab">
-            <h3>Favorite Categories</h3>
-
-
         </div>
         <!-- 6th TabPanel pills-mywatchlist -->
         <div class="tab-pane fade" id="pills-mywatchlist" role="tabpanel" aria-labelledby="pills-mywatchlist-tab">
@@ -112,7 +118,8 @@
             <form class="text-center" th:action="@{/profile/edit}" th:method="GET">
                 <button type="submit">Edit My Profile</button>
             </form>
-    </div>
+            <br>
+        </div>
 
     </div>
 </div>

@@ -12,7 +12,7 @@
 USE swapabook_db;
 
 -- ROLE MODEL --
-# Roles table- Connected to SecurityConfig for Granted Authorities ;
+# Roles table- Connected to SecurityConfig for Granted Authorities;
 INSERT INTO roles(id,name)
 VALUES(1, 'ADMIN'),
       (2, 'EDITOR'),
@@ -49,17 +49,20 @@ SELECT * FROM grade_levels;
 -- INITIAL ADMIN SETUP --
 # Add the First 4 Users and Roles
 INSERT INTO users(id, enabled, username, password, first_name, last_name, email, location)
-VALUES(1, true,'admin', '$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G','Administrator','Regulus','achap86@gmail.com', 'San Antonio, TX'),
+VALUES(1, true,'admin', '$2a$10$09yXSl0D4rYdH.SzIFu1hutEkvYHOL0.3YKoDKGkHIjCpl9ewpZBq','Administrator','Regulus','achap86@gmail.com', 'San Antonio, TX'),
+       # JULIAN, REMOVE THIS COMMENT AFTER REPLACING YOUR NEW HASHED PASSWORD AND USERNAME, THEN COMMIT+PUSH
         (2, true,'Julian1830','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Julian','Martinez','JulianMartinez1830@gmail.com','San Antonio, TX'),
-        (3,true,'achap86','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Adam','Chappell','adam.chappell00@gmail.com','San Antonio, TX'),
+       (3,true,'achap86','$2a$10$pa8ahbQ6nvboLO9BEO04KOPYIEBGFHQwQI6ti1Jwdnpnc3q1lXdU.', 'Adam','Chappell','adam.chappell00@gmail.com','San Antonio, TX'),
+      # CHARLES, REMOVE THIS COMMENT AFTER REPLACING YOUR NEW HASHED PASSWORD AND USERNAME, THEN COMMIT+PUSH
         (4,true,'charlesjazper','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Charles','Aggasid','charlesaggasid01@gmail.com','San Antonio, TX'),
-        (5, true,'MichaelG1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Michael','Galimore','michaelgalimore1@gmail.com','San Antonio, TX');
+      # MICHAEL, REMOVE THIS COMMENT AFTER REPLACING YOUR NEW HASHED PASSWORD AND USERNAME, THEN COMMIT+PUSH
+       (5, true,'MichaelG1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Michael','Galimore','michaelgalimore1@gmail.com','San Antonio, TX');
 SELECT * FROM users;
-
+# Add Role ID 1, 2, & 3 (ADMIN,EDITOR, USER)to all Admins
 INSERT INTO users_roles(user_id, role_id)
-VALUES(1,1),
-       (2,1),
-       (3,1),
-       (4,1),
-       (5,1);
+VALUES(1,1), (1,2),(1,3),
+       (2,1), (2,2),(2,3),
+       (3,1), (3,2),(3,3),
+       (4,1), (4,2),(4,3),
+       (5,1), (5,2),(5,3);
 SELECT * from users_roles;

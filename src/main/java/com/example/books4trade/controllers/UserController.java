@@ -13,9 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -45,7 +45,7 @@ public class UserController {
         // add username check for unique username
         if(user.getPassword().equals(passwordConfirm)){
             List<Role> defaultRoles = new ArrayList<>();
-            defaultRoles.add(rolesDao.getById(3L));
+            defaultRoles.add(rolesDao.getById(5L));
             String hash = passwordEncoder.encode(user.getPassword());
             user.setPassword(hash);
             user.setRoles(defaultRoles);
@@ -71,7 +71,6 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("usersBooks", user.getOwnedBooks());
         model.addAttribute("usersReviews", user.getReviews());
-    //      model.addAttribute("usersReviews", currentUser.getReviews());
     //      Add Trades, Other Tab Info
     //      model.addAttribute("usersNotifications", currentUser.getNotifications());
         return "users/profile";
@@ -81,8 +80,9 @@ public class UserController {
     public String showForgotPasswordForm(){
         return "users/forgot";
     }
-    // REFACTOR THIS TO INCLUDE INFORMATION OTHER USERS CANNOT ACCESS
 
+
+    // REFACTOR THIS TO INCLUDE INFORMATION OTHER USERS CANNOT ACCESS
     @PostMapping("/forgot")
     public String forgotPasswordSubmit(@RequestParam(name="email") String email, @RequestParam(name="password") String password, @RequestParam(name="username") String username, @RequestParam(name="password-confirm") String passwordConfirm){
         User user = usersDao.findByEmail(email);
@@ -115,5 +115,29 @@ public class UserController {
         user.setLocation(userEdited.getLocation());
 
         return "redirect:/profile";
+    }
+
+    @GetMapping("/users/activate")
+    public String activateUserShow(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findByUsername(loggedInUser.getUsername());
+        System.out.println("User Activation-Get for: " + user.getId());
+        model.addAttribute("activateid", user.getId());
+        model.addAttribute("useractivate", user);
+        return "/users/activate";
+    }
+
+    @PostMapping("/users/activate")
+    public String activateUserSubmit(Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findByUsername(loggedInUser.getUsername());
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("/users/{id}")
+    public String showUser(@PathVariable long id, Model model){
+        model.addAttribute("usershown", usersDao.getById(id));
+        return "users/show";
     }
 }

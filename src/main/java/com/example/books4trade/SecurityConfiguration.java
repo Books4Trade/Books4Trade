@@ -1,5 +1,6 @@
 package com.example.books4trade;
 
+import com.example.books4trade.services.SecurityHandler;
 import com.example.books4trade.services.UserDetailsLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,13 +9,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private UserDetailsLoader usersLoader;
     private SecurityHandler authSuccessHandler;
+
     public SecurityConfiguration(UserDetailsLoader usersLoader, SecurityHandler authSuccessHandler){
         this.usersLoader = usersLoader;
         this.authSuccessHandler = authSuccessHandler;
@@ -45,21 +46,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 // Static File Paths
                 .antMatchers( "/js/**","/img/**", "/css/**",
-                        // Register and Root-Index Mappings
-                        "/", "/register","/books", "/reviews","/trades",
-                        "/books/{id}", "/books/{id}/copies",
-                        "/reviews/{id}",
-                        "/books/search", "/books/search/api"
+                        // Registration, Banned Pages - Public
+                        "/", "/banned", "/register",
+                        // Book Mappings, Inc Search - Public
+                        "/books", "/books/{id}", "/books/search", "/books/search/api",
+                        // Reviews Mappings - Views- Public
+                        "/reviews", "/reviews/search", "/reviews/{id}", "/reviews/book/{id}",
+                        // Owned Books Mappings - Views - Public
+                        "/books/{id}/copies", "/books/{id}/copies/{id}",
+                        // Users and Trades - Views - Public
+                        "/users","/users/{id}","/trades"
                         ) // anyone can see the home and the Post-Index pages
                 .permitAll()
-                /* USERS - Pages that require authentication */
+                .and().authorizeRequests()
+                .antMatchers(  "/users/activate")
+                .authenticated()
+                /* USERS - Pages that require authentication with Authority-Role "USER"*/
                 .and().authorizeRequests()
                 .antMatchers(
                         "/profile",
-                        "/books/create","/books/{id}/copies/add",
-                        "/books/{id}/createreview",
-                        "/books/{id}/copies/add", "/books/{id}/copies/{copyid}", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit"
-                ).authenticated()
+                        "/books/create",
+
+                        // Add, Edit, Delete an Owned Book - Users Only
+                        "/books/{id}/addcopy", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit",
+                        // Add, Edit, Delete a Review - Users Only
+                        "/books/{id}/createreview","/reviews/{id}/edit", "/reviews/{id}/delete"
+
+                ).hasAuthority("USER")
+                // Any Unspecified Mapping is available to ADMIN
                 .and().authorizeRequests().anyRequest().hasAuthority("ADMIN");
     }
 }
