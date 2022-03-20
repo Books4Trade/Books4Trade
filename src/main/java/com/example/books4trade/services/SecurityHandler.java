@@ -31,12 +31,12 @@ public class SecurityHandler implements AuthenticationSuccessHandler {
 
         if(roles.contains("BANNED")){
             redirectURL="/banned";
-        } else if(roles.contains("INACTIVE")){
-            redirectURL="/users/activate?user=" + id;
         } else if(roles.contains("ADMIN")){
             redirectURL = "/admin";
-        } else if (roles.contains("USER")){
-            redirectURL="/profile";
+        } else if(roles.contains("USER")) {
+            redirectURL = "/profile";
+        } else if(roles.contains("INACTIVE")){
+            redirectURL="/users/activate";
         }
         response.sendRedirect(redirectURL);
     }

@@ -49,7 +49,7 @@ public class AdminController {
 
         User user = usersDao.findByUsername(currentUser.getUsername());
         System.out.println("User Id"+user.getId());
-        sendGridMail.accountRegistrationSG( user.getId(), user.getUsername(), user.getEmail());
+        sendGridMail.accountRegistrationSG( user.getId(), user.getUsername(), user.getEmail(), "test");
         return "redirect:/books";
     }
 }

@@ -24,7 +24,7 @@ public class SendGridMail {
     @Value("${SG_REG_TEMP_ID}")
     private String registrationtemplate;
 
-    public void accountRegistrationSG(long id, String username, String toEmail) throws IOException {
+    public void accountRegistrationSG(long id, String username, String toEmail, String temp) throws IOException {
 
         Mail mail = new Mail();
         Email from = new Email();
@@ -36,7 +36,8 @@ public class SendGridMail {
         Email to = new Email(toEmail);
         personalization.addTo(to);
         personalization.addDynamicTemplateData("unique_user", username);
-        personalization.addDynamicTemplateData("activate_link", "swapabook.xyz/users/activate?user=" + id);
+        personalization.addDynamicTemplateData("temp_pass", temp);
+        personalization.addDynamicTemplateData("login_link", "swapabook.xyz/login");
         mail.addPersonalization(personalization);
         mail.setTemplateId(registrationtemplate);
 
