@@ -41,6 +41,7 @@ public class SendGridMail {
         mail.addPersonalization(personalization);
         mail.setTemplateId(registrationtemplate);
 
+        // Fixed
         SendGrid sendgrid = new SendGrid(SENDGRID_API_KEY);
         Request request = new Request();
         try{
