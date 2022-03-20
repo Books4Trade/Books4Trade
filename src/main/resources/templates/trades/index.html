@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Make A Trade</title>
+    <head th:include="partials :: head"></head>
+    <style>
+        .book-cover{
+            width: 3rem !important;
+            height: 5rem !important;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="partials :: navbar"></nav>
+<main class="container">
+    <h1 class="text-center">Viewing All Owned Books</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Book Cover</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tradableBook : ${tradables}">
+                <form action="">
+                    <td>
+                        <img class="align-middle book-cover" th:src="${tradableBook.getBookImg()}" th:alt="${tradableBook.getTitle()}">
+                    </td>
+                    <td class="align-middle" th:text="${tradableBook.getTitle()}"></td>
+                    <td class="align-middle" th:text="${tradableBook.getAuthor().getFullname()}"></td>
+                    <td class="align-middle justify-content-between">
+                        <input type="submit" class="btn btn-primary btn-sm" value="View"
+                               th:formaction="@{/books/trade/{id}(id=${tradableBook.getId()})}"
+                               th:formtarget="_blank">
+                    </td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<script th:include="partials :: scripts-bottom"></script>
+</body>
+</html>

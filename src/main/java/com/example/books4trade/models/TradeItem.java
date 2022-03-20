@@ -28,6 +28,13 @@ public class TradeItem {
     public TradeItem() {
     }
 
+    public TradeItem(OwnedBook ownedBook, User user, Trade trade) {
+        this.ownedBook = ownedBook;
+        this.user = user;
+        this.trade = trade;
+        this.confirm_sent = false;
+    }
+
     public TradeItem(long id, boolean confirm_sent, OwnedBook ownedBook, User user, Trade trade) {
         this.id = id;
         this.confirm_sent = confirm_sent;
