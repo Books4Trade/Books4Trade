@@ -8,7 +8,7 @@ public class Utils {
     private static String[] words = {"bookshelf","life","books","library","hardcover","pages","shakespeare","hemingway","twain","seuss","hugo"};
     private static String[] letters = {"a","b","c","d","f","g","l","k","x","y","o"};
 
-    public String buildRandomString(){
+    public static String buildRandomString(){
         String string;
         String word = words[randomInt(words.length)];
         String letter1 = letters[randomInt(letters.length)];
@@ -37,12 +37,12 @@ public class Utils {
         return string;
     }
 
-    public boolean randomDecision(){
+    public static boolean randomDecision(){
         boolean decision = (randomInt(100) > 50);
         return decision;
     }
 
-    public int randomInt(int max){
+    public static int randomInt(int max){
         int randomNum = (int) (Math.random() * max);
         return randomNum;
     }

@@ -1,11 +1,11 @@
 
 
-
-
-
-
-body {
+:root {
+    --main-bg-color: linear-gradient(90deg, rgba(242,238,203,1) 2%, rgba(255,252,222,1) 46%, rgba(246,242,197,0.989233193277311) 100%);
 }
+body {
+    background: rgb(242,238,203);
+    background: var(--main-bg-color)}
 .header-center {
     margin: 0;
     width: 100%;
@@ -15,6 +15,13 @@ body {
     max-width: 92%;
     margin-left: auto;
     margin-right: auto;
+}
+.subcontainer {
+    width: 50%;
+    border: 3px solid #f1f1f1;
+}
+.bg-white{
+    background-color: white;
 }
 .title-bg{
     padding: .2em;

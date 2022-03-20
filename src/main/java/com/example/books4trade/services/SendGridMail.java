@@ -6,7 +6,6 @@ import com.sendgrid.*;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.sendgrid.helpers.mail.objects.Personalization;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,7 @@ public class SendGridMail {
     @Value("${SG_REG_TEMP_ID}")
     private String registrationtemplate;
 
-    public void accountRegistrationSG(long id, String username, String toEmail, String temp) throws IOException {
+    public void accountRegistrationSG(String username, String toEmail, String temp) throws IOException {
 
         Mail mail = new Mail();
         Email from = new Email();

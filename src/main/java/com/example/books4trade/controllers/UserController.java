@@ -2,6 +2,8 @@ package com.example.books4trade.controllers;
 
 import com.example.books4trade.models.Role;
 import com.example.books4trade.models.User;
+import com.example.books4trade.services.SendGridMail;
+import com.example.books4trade.services.Utils;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.RoleRepository;
 import com.example.books4trade.repositories.UserRepository;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,13 +27,15 @@ public class UserController {
     private OwnedBookRepository ownedBooksDao;
     private PasswordEncoder passwordEncoder;
     private EmailService emailService;
+    private SendGridMail sendGridMail;
 
-    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, EmailService emailService) {
+    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, EmailService emailService, SendGridMail sendGridMail) {
         this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
+        this.sendGridMail = sendGridMail;
     }
 
     @GetMapping("/register")
@@ -40,21 +45,24 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String submitRegistrationForm(@ModelAttribute User user, @RequestParam(name="password-confirm") String passwordConfirm){
+    public String submitRegistrationForm(@ModelAttribute User user) throws IOException {
 
         // add username check for unique username
-        if(user.getPassword().equals(passwordConfirm)){
+        //if(user.getPassword().equals(passwordConfirm)){
+        User submittedUser = user;
             List<Role> defaultRoles = new ArrayList<>();
             defaultRoles.add(rolesDao.getById(5L));
-            String hash = passwordEncoder.encode(user.getPassword());
-            user.setPassword(hash);
-            user.setRoles(defaultRoles);
-            user.setEnabled(true);
-            usersDao.save(user);
-            emailService.accountRegistration(user);
+            String random = Utils.buildRandomString();
+            String hash = passwordEncoder.encode(random);
+            submittedUser.setPassword(hash);
+            submittedUser.setRoles(defaultRoles);
+            submittedUser.setEnabled(true);
+            User newUser = usersDao.save(submittedUser);
+            sendGridMail.accountRegistrationSG(newUser.getUsername(), newUser.getEmail(), random);
+           // emailService.accountRegistration(user);
 
-        }// put else Error Here if passwords do not match
-
+        //}// put else Error Here if passwords do not match
+        // add attribute to inform user of success and direct them to their email for temp pass
         return "redirect:/login";
     }
 
@@ -122,16 +130,26 @@ public class UserController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(loggedInUser.getUsername());
         System.out.println("User Activation-Get for: " + user.getId());
-        model.addAttribute("activateid", user.getId());
         model.addAttribute("useractivate", user);
         return "/users/activate";
     }
 
     @PostMapping("/users/activate")
-    public String activateUserSubmit(Model model){
+    public String activateUserSubmit(@RequestParam(name="password") String password,@RequestParam(name="password-confirm") String passwordconfirm, Model model){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(loggedInUser.getUsername());
+        if(password.equals(passwordconfirm)){
+            String hash = passwordEncoder.encode(password);
+            List<Role> UserRoles = new ArrayList<>();
+            UserRoles.add(rolesDao.getById(3L));
+            user.setPassword(hash);
+            user.setRoles(UserRoles);
+            System.out.println("Save Attempt For User Activation");
+            User saved = usersDao.save(user);
+            System.out.println("Saved user with ID:" + saved.getId());
+           // User saved = usersDao.save(user);
 
+        }
         return "redirect:/login";
     }
 
