@@ -4,10 +4,8 @@
     --main-bg-color: linear-gradient(90deg, rgba(242,238,203,1) 2%, rgba(255,252,222,1) 46%, rgba(246,242,197,0.989233193277311) 100%);
     --home-bg-color: antiquewhite;
 }
-body {
 
-}
-.main-bg{
+body{
     background: rgb(242,238,203);
     background: var(--main-bg-color)
 }
@@ -51,36 +49,23 @@ body {
     padding: .4em;
 }
 
-/*.featured {*/
-/*    border: 1px red solid;   */
-/*}*/
-
-
-/*not in use*/
-.featured-col {
-    background: saddlebrown;
-    border: 1px red solid;
-}
-/*not in use*/
-.register-col {
-    background: saddlebrown;
-    border: 1px red solid;
-}
-/*not in use*/
-.list-style-none{
-    list-style: none !important;
-}
 /*used in about html for pictures*/
 .img-circle {
     border-radius: 100%;
-    border: 4px solid black;
+    border: 2px solid black;
 }
 /*text sizing for label on create-copy html*/
-.label-styles{
+.xx-large font{
     font-size: xx-large;
 
 }
-/*background color for card on create-copy html*/
-.card-bg {
-background: chocolate;
+
+
+.bold-text{
+    font-weight: bold;
+}
+
+.icon-logo {
+    width: 24px;
+    height: 24px;
 }

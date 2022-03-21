@@ -5,35 +5,20 @@
   <meta charset="UTF-8" />
   <title>Register</title>
   <head th:include="partials :: head" />
-	<style>
-		.container {
-			width: 40%;
-			border: 3px solid #f1f1f1;
-			background-color: white;
-			}
-		body {
-			background: rgb(242,238,203);
-			background: linear-gradient(90deg, rgba(242,238,203,1) 2%, rgba(255,252,222,1) 46%, rgba(246,242,197,0.989233193277311) 100%);
-			}
 
-		label {
-			font-weight: bold;
-			margin-top: 10px;
-		}
-	</style>
 </head>
 <body class="main-bg">
 <nav th:replace="partials :: navbar" />
 
-<div class="container mt-5">
+<div class="container shadow p-3 mb-5 bg-body rounded mt-5">
 <h1>Create an account</h1>
   <form th:action="@{/register}" method="POST" th:object="${user}">
     <div class="form-group">
-        <label for="username">Username</label>
+        <label class=fw-bold" for="username">Username</label>
         <input class="form-control" type="text" id="username" minlength="6" maxlength="25" th:field="*{username}" />
     </div>
     <div class="form-group">
-        <label for="email">Email</label>
+        <label class=fw-bold" for="email">Email</label>
         <input class="form-control" type="text" id="email" minlength="6" th:field="*{email}" />
     </div>
  <!-- <div class="form-group">
@@ -45,15 +30,15 @@
     <input class="form-control" id="password-confirm" name="password-confirm" type="password" />
   </div>-->
     <div class="form-group">
-        <label for="firstname">First Name</label>
+        <label class=fw-bold" for="firstname">First Name</label>
         <input class="form-control" id="firstname" type="text" minlength="2" maxlength="25" th:field="*{firstName}" />
     </div>
     <div class="form-group">
-        <label for="lastname">Last Name</label>
+        <label class=fw-bold" for="lastname">Last Name</label>
         <input class="form-control" id="lastname" type="text" minlength="2" maxlength="25" th:field="*{lastName}" />
     </div>
     <div class="form-group">
-        <label for="location">Location (City, State)</label>
+        <label class=fw-bold" for="location">Location (City, State)</label>
         <input class="form-control" id="location" type="text" th:field="*{location}" />
     </div>
   <input class="mt-3 mb-3" value="Sign me up!" type="submit" />
