@@ -12,7 +12,7 @@ public class TemplateResolverConfig {
     @Bean
     public SpringResourceTemplateResolver userTemplateResolver(){
         SpringResourceTemplateResolver userTemplateResolver = new SpringResourceTemplateResolver();
-        userTemplateResolver.setPrefix("users/");
+        userTemplateResolver.setPrefix("classpath:/templates/users/");
         userTemplateResolver.setSuffix(".html");
         userTemplateResolver.setTemplateMode(TemplateMode.HTML);
         userTemplateResolver.setOrder(0);
@@ -23,7 +23,7 @@ public class TemplateResolverConfig {
     @Bean
     public SpringResourceTemplateResolver booksTemplateResolver(){
         SpringResourceTemplateResolver bookTemplateResolver = new SpringResourceTemplateResolver();
-        bookTemplateResolver.setPrefix("books/");
+        bookTemplateResolver.setPrefix("classpath:/templates/books/");
         bookTemplateResolver.setSuffix(".html");
         bookTemplateResolver.setTemplateMode(TemplateMode.HTML);
         bookTemplateResolver.setOrder(1);
@@ -33,7 +33,7 @@ public class TemplateResolverConfig {
     @Bean
     public SpringResourceTemplateResolver reviewsTemplateResolver(){
         SpringResourceTemplateResolver reviewsTemplateResolver = new SpringResourceTemplateResolver();
-        reviewsTemplateResolver.setPrefix("reviews/");
+        reviewsTemplateResolver.setPrefix("classpath:/templates/reviews/");
         reviewsTemplateResolver.setSuffix(".html");
         reviewsTemplateResolver.setTemplateMode(TemplateMode.HTML);
         reviewsTemplateResolver.setOrder(2);
@@ -43,7 +43,7 @@ public class TemplateResolverConfig {
     @Bean
     public SpringResourceTemplateResolver ownedBooksTemplateResolver(){
         SpringResourceTemplateResolver ownedBooksTemplateResolver = new SpringResourceTemplateResolver();
-        ownedBooksTemplateResolver.setPrefix("owned-books/");
+        ownedBooksTemplateResolver.setPrefix("classpath:/templates/owned-books/");
         ownedBooksTemplateResolver.setSuffix(".html");
         ownedBooksTemplateResolver.setTemplateMode(TemplateMode.HTML);
         ownedBooksTemplateResolver.setCharacterEncoding("UTF-8");
@@ -54,7 +54,7 @@ public class TemplateResolverConfig {
     @Bean
     public SpringResourceTemplateResolver errorTemplateResolver(){
         SpringResourceTemplateResolver errorTemplateResolver = new SpringResourceTemplateResolver();
-        errorTemplateResolver.setPrefix("error/");
+        errorTemplateResolver.setPrefix("classpath:/templates/error/");
         errorTemplateResolver.setSuffix(".html");
         errorTemplateResolver.setTemplateMode(TemplateMode.HTML);
         errorTemplateResolver.setOrder(4);
@@ -64,7 +64,7 @@ public class TemplateResolverConfig {
     @Bean
     public SpringResourceTemplateResolver tradesTemplateResolver(){
         SpringResourceTemplateResolver tradesTemplateResolver = new SpringResourceTemplateResolver();
-        tradesTemplateResolver.setPrefix("trades/");
+        tradesTemplateResolver.setPrefix("classpath:/templates/trades/");
         tradesTemplateResolver.setSuffix(".html");
         tradesTemplateResolver.setTemplateMode(TemplateMode.HTML);
         tradesTemplateResolver.setOrder(5);
