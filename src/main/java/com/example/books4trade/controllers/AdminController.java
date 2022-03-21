@@ -39,7 +39,7 @@ public class AdminController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(currentUser.getUsername());
         model.addAttribute("user", user);
-        return"/users/dashboard";
+        return"admin/dashboard";
     }
 
     @GetMapping("/test/email")
