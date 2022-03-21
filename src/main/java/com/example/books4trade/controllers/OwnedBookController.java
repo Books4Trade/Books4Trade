@@ -53,7 +53,7 @@ public class OwnedBookController {
                 User user = usersDao.findByUsername(currentUser.getUsername());
                 OwnedBook newCopy = new OwnedBook(bookCondition, isTradeable, typesDao.getById(bookType), user, booksDao.getById(id));
                 OwnedBook createdCopy = ownedBooksDao.save(newCopy);
-                return "redirect:/books/"+id+"/copies/"+createdCopy.getId();
+                return "redirect:/books/"+id+"/copy/"+createdCopy.getId();
         }
 
 
