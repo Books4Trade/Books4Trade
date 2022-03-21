@@ -105,9 +105,29 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/profile/passwordreset")
+    public String showPasswordReset(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", usersDao.findById(user.getId()));
+        return "/users/password";
+    }
+
+    @PostMapping("/profile/passwordreset")
+    public String submitPasswordReset(@RequestParam(name="password") String password, @RequestParam(name = "newpassword") String newpassword, @RequestParam(name="passwordconfirm") String passwordconfirm){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findByUsername(currentUser.getUsername());
+        if(passwordEncoder.matches(password, user.getPassword()) && newpassword.equals(passwordconfirm)){
+            String hash = passwordEncoder.encode(newpassword);
+            user.setPassword(hash);
+            usersDao.save(user);
+        }
+
+        return "redirect:/session-invalidate";
+    }
+
 //    For Edit Profile
     @GetMapping("/profile/edit")
-    public String showEditForm( Model model){
+    public String showEditForm(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", usersDao.findById(user.getId()));
         return "/users/edit";

@@ -10,41 +10,36 @@
 <nav th:replace="partials :: navbar" />
 
 <h1>Edit Your Information</h1>
-<p>All Info can be changed except Date of Birth</p>
-<!--<form th:action="@{/users/{id}/edit (id = ${editUser.getId()})"  th:method="POST" th:object="${editUser}">-->
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" placeholder="Enter New First Name">
+<!--<form th:action="|/users/${user.getId()}/edit|"  th:method="POST">-->
+<form th:action="@{/profile/edit}" th:method="POST">
+    <div class="mb-3 mt-3">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstname" name="firstname" th:value="${user.getFirstName()}">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastname" name="lastname" th:value="${user.getLastName()}">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" th:value="${user.getLocation}">
+    </div>
+    <!--<div class="mb-3 mt-3">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" th:value="">
+    </div>-->
 
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" placeholder="Enter New Last Name">
 
-    <label for="email">Email</label>
-    <input type="text" id="email" placeholder="Enter New Email">
+    <!--<label for="password">Password</label>
+    <input type="text" id="password" placeholder="Enter New Password">-->
 
-    <label for="password">Password</label>
-    <input type="text" id="password" placeholder="Enter New Password">
+    <!--<label for="userName">Username</label>
+    <input type="text" id="userName" placeholder="Enter New Username">-->
 
-    <label for="userName">Username</label>
-    <input type="text" id="userName" placeholder="Enter New Username">
 
-    <label for="location">Location</label>
-    <input type="text" id="location" placeholder="Enter New Location">
 
     <button type="submit">Submit Changes</button>
-
-<!--</form>-->
-
-
-
-
-
-
-
-
-
-
-
-
+</form>
 
 <footer th:replace="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" />
