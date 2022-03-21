@@ -29,6 +29,9 @@ public class BookReview {
     @Column
     private String createdDate;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviews")
+    private List<Like> likes;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -44,6 +47,16 @@ public class BookReview {
         this.body = body;
         this.rating = rating;
         this.createdDate = createdDate;
+        this.user = user;
+        this.book = book;
+    }
+
+    public BookReview(String title, String body, long rating, String createdDate, List<Like> likes, User user, Book book) {
+        this.title = title;
+        this.body = body;
+        this.rating = rating;
+        this.createdDate = createdDate;
+        this.likes = likes;
         this.user = user;
         this.book = book;
     }
@@ -66,7 +79,7 @@ public class BookReview {
     public long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getTitle() {
@@ -90,5 +103,11 @@ public class BookReview {
     public String getCreatedDate() {return createdDate;}
     public void setCreatedDate(String createdOn) {
         this.createdDate = createdDate;
+    }
+    public List<Like> getLikes() {
+        return likes;
+    }
+    public void setLikes(List<Like> likes) {
+        this.likes = likes;
     }
 }
