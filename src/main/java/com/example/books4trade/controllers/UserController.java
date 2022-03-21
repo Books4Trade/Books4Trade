@@ -94,7 +94,7 @@ public class UserController {
     @PostMapping("/forgot")
     public String forgotPasswordSubmit(@RequestParam(name="email") String email, @RequestParam(name="password") String password, @RequestParam(name="username") String username, @RequestParam(name="password-confirm") String passwordConfirm){
         User user = usersDao.findByEmail(email);
-        if (username.equals(user.getLastName()) && email.equals(user.getEmail())) {
+        if (username.equals(user.getUsername()) && email.equals(user.getEmail())) {
             String hash = passwordEncoder.encode(password);
 
             if(password.equals(passwordConfirm)){
