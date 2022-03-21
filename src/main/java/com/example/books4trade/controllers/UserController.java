@@ -7,7 +7,6 @@ import com.example.books4trade.services.Utils;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.RoleRepository;
 import com.example.books4trade.repositories.UserRepository;
-import com.example.books4trade.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,22 +25,22 @@ public class UserController {
     private RoleRepository rolesDao;
     private OwnedBookRepository ownedBooksDao;
     private PasswordEncoder passwordEncoder;
-    private EmailService emailService;
+   // private EmailService emailService;
     private SendGridMail sendGridMail;
 
-    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, EmailService emailService, SendGridMail sendGridMail) {
+    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, SendGridMail sendGridMail) {
         this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
-        this.emailService = emailService;
+    //    this.emailService = emailService;
         this.sendGridMail = sendGridMail;
     }
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         model.addAttribute("user", new User());
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -64,12 +63,6 @@ public class UserController {
         //}// put else Error Here if passwords do not match
         // add attribute to inform user of success and direct them to their email for temp pass
         return "redirect:/login";
-    }
-
-    @GetMapping("/send-email")
-    public String sendEmail() {
-        emailService.prepareAndSend("Testing", "Did this work");
-        return "redirect:/";
     }
 
     @GetMapping("/profile")
@@ -109,7 +102,7 @@ public class UserController {
     public String showPasswordReset(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", usersDao.findById(user.getId()));
-        return "/users/password";
+        return "users/password";
     }
 
     @PostMapping("/profile/passwordreset")
@@ -130,7 +123,7 @@ public class UserController {
     public String showEditForm(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", usersDao.findById(user.getId()));
-        return "/users/edit";
+        return "users/edit";
     }
 
     @PostMapping("/profile/edit")
@@ -151,7 +144,7 @@ public class UserController {
         User user = usersDao.findByUsername(loggedInUser.getUsername());
         System.out.println("User Activation-Get for: " + user.getId());
         model.addAttribute("useractivate", user);
-        return "/users/activate";
+        return "users/activate";
     }
 
     @PostMapping("/users/activate")

@@ -6,28 +6,6 @@
 
 USE swapabook_db;
 
-INSERT INTO users(id, enabled, username, password, first_name, last_name, email, location)
-VALUES  (6, true, 'HappyUser1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Billy','Smith','billsmith@gmail.com','Austin, TX'),
-        (7,true, 'SadUser4', '$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Doctor','No','JamesBond007@gmail.com','Waco, TX'),
-        (8,true, 'StarryNight32', '$2a$10$1ZFULxTVdic.FC56pezntO6Ou9DkQ8LAAVc6N8CpZcCzZBFSKSDrK','Kate','Sharp','vangogh-ing32@gmail.com','Pheonix, AZ'),
-        (9, true, 'NanettLs', '$2a$10$FMBZ7JAnhgYTahsKApMkHeOgwVukh4jUz4Ngqcez7cLmvLUX5Y78.','Nana','Smith', 'booklover1942@gmail.com', 'Dallas, TX'),
-        (10, true, 'Jynell7', '$2a$10$ACyYpCLUodvaDeqFa5IdCunIdMQMgw8qc7tGF1VIf4QlbFeL08gWq', 'Jynell', 'Peterson', 'Jyn07@gmail.com', 'Waco, TX'),
-        (11, true, 'DrFizzy9', '$2a$10$D2nZSjn1KY/9a99R4JxzwOUKDx79q7tvEPTCjhu2jW1U/xw6hCno6', 'Phil', 'Stevens', 'Fizzenator99@gmail.com', 'San Antonio, TX'),
-        (12, true, 'booklover1995', '$2a$10$WqFq9UZptL3Xvhuw5qaOHurhwcvFpkz3lobjqURKItjwtm9iiiQEG','Janey', 'McAusten', 'ilovebooks95@gmail.com', 'Austin, TX'),
-        (13, true, 'Margaritaville84', '$2a$10$YqMkXrjMfMPH6ImlEF0VousTQ7rQ358tL9KTM8AcVgxxMPEjahbnO', 'Gary', 'Smith', 'Buffet84@gmail.com', 'San Antonio, TX');
-SELECT * FROM users;
-
-INSERT INTO users_roles(user_id, role_id)
-VALUES (6,3),
-        (7,4),
-        (8,3),
-        (9,3),
-        (10,3),
-        (11,3),
-        (12,3),
-        (13,3);
-SELECT * FROM users_roles;
-
 INSERT INTO authors(id, fullname)
 VALUES(1,'Suzanne Collins'),
     (2,'J. K. Rowling'),
@@ -101,3 +79,27 @@ SELECT * FROM owned_books;
 INSERT INTO book_reviews(id, body, created_date, rating, title, book_id, user_id)
 VALUES(1,'This book was amazing','2022-03-15',5,'LOVE!!!',1,3);
 SELECT * FROM book_reviews;
+
+# BELOW THIS LINE NOT INJECTED INTO LIVE DB
+
+INSERT INTO users(id, enabled, username, password, first_name, last_name, email, location)
+VALUES  (6, true, 'HappyUser1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Billy','Smith','billsmith@gmail.com','Austin, TX'),
+        (7,true, 'SadUser4', '$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Doctor','No','JamesBond007@gmail.com','Waco, TX'),
+        (8,true, 'StarryNight32', '$2a$10$1ZFULxTVdic.FC56pezntO6Ou9DkQ8LAAVc6N8CpZcCzZBFSKSDrK','Kate','Sharp','vangogh-ing32@gmail.com','Pheonix, AZ'),
+        (9, true, 'NanettLs', '$2a$10$FMBZ7JAnhgYTahsKApMkHeOgwVukh4jUz4Ngqcez7cLmvLUX5Y78.','Nana','Smith', 'booklover1942@gmail.com', 'Dallas, TX'),
+        (10, true, 'Jynell7', '$2a$10$ACyYpCLUodvaDeqFa5IdCunIdMQMgw8qc7tGF1VIf4QlbFeL08gWq', 'Jynell', 'Peterson', 'Jyn07@gmail.com', 'Waco, TX'),
+        (11, true, 'DrFizzy9', '$2a$10$D2nZSjn1KY/9a99R4JxzwOUKDx79q7tvEPTCjhu2jW1U/xw6hCno6', 'Phil', 'Stevens', 'Fizzenator99@gmail.com', 'San Antonio, TX'),
+        (12, true, 'booklover1995', '$2a$10$WqFq9UZptL3Xvhuw5qaOHurhwcvFpkz3lobjqURKItjwtm9iiiQEG','Janey', 'McAusten', 'ilovebooks95@gmail.com', 'Austin, TX'),
+        (13, true, 'Margaritaville84', '$2a$10$YqMkXrjMfMPH6ImlEF0VousTQ7rQ358tL9KTM8AcVgxxMPEjahbnO', 'Gary', 'Smith', 'Buffet84@gmail.com', 'San Antonio, TX');
+SELECT * FROM users;
+
+INSERT INTO users_roles(user_id, role_id)
+VALUES (6,3),
+       (7,4),
+       (8,3),
+       (9,3),
+       (10,3),
+       (11,3),
+       (12,3),
+       (13,3);
+SELECT * FROM users_roles;

@@ -31,20 +31,20 @@ public class OwnedBookController {
         @GetMapping("/books/all/copies")
         public String showAllCopies(Model model){
                 model.addAttribute("allBooks", ownedBooksDao.findAll());
-                return "/owned-books/copies-index";
+                return "owned-books/copies-index";
         }
 
         @GetMapping("/books/{id}/copies")
         public String showAllCopiesOfBook(@PathVariable long id, Model model){
                 model.addAttribute("book", booksDao.getById(id));
                 model.addAttribute("allBooks", ownedBooksDao.findOwnedBooksByBook(booksDao.getById(id)));
-                return "/owned-books/copies-index";
+                return "owned-books/copies-index";
         }
 
         @GetMapping("/books/{id}/addcopy")
         public String showCreateOwnedBook(@PathVariable long id, Model model) {
                 model.addAttribute("book", booksDao.getById(id));
-                return"/owned-books/create-copy";
+                return"owned-books/create-copy";
         }
 
         @PostMapping("/books/{id}/addcopy")
@@ -53,7 +53,7 @@ public class OwnedBookController {
                 User user = usersDao.findByUsername(currentUser.getUsername());
                 OwnedBook newCopy = new OwnedBook(bookCondition, isTradeable, typesDao.getById(bookType), user, booksDao.getById(id));
                 OwnedBook createdCopy = ownedBooksDao.save(newCopy);
-                return "redirect:/books/"+id+"/copies/"+createdCopy.getId();
+                return "redirect:/books/"+id+"/copy/"+createdCopy.getId();
         }
 
 
@@ -68,11 +68,17 @@ public class OwnedBookController {
                 model.addAttribute("isOwner", isOwner);
                 model.addAttribute("book", booksDao.getById(id));
                 model.addAttribute("showBook", showBook);
-                return "/owned-books/show";
+                return "owned-books/show";
         }
 
 //        @GetMapping("/")
-
+        @GetMapping("/books/{id}/copies/{copyid}/edit")
+        public String showReviewEditForm(@PathVariable(name="id") long id, @PathVariable(name="copyid") long copyid, Model model){
+                User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                OwnedBook ownedBook = ownedBooksDao.getById(copyid);
+                model.addAttribute("ownedbook", ownedBook);
+                return "owned-books/edit";
+        }
 
         @DeleteMapping("/books/{id}/copy/{copyid}/delete")
         public String deletePost(@PathVariable long id, @PathVariable long copyid){
