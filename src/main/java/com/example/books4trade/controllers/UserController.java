@@ -7,7 +7,6 @@ import com.example.books4trade.services.Utils;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.RoleRepository;
 import com.example.books4trade.repositories.UserRepository;
-import com.example.books4trade.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,15 +25,15 @@ public class UserController {
     private RoleRepository rolesDao;
     private OwnedBookRepository ownedBooksDao;
     private PasswordEncoder passwordEncoder;
-    private EmailService emailService;
+   // private EmailService emailService;
     private SendGridMail sendGridMail;
 
-    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, EmailService emailService, SendGridMail sendGridMail) {
+    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, SendGridMail sendGridMail) {
         this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
-        this.emailService = emailService;
+    //    this.emailService = emailService;
         this.sendGridMail = sendGridMail;
     }
 
@@ -64,12 +63,6 @@ public class UserController {
         //}// put else Error Here if passwords do not match
         // add attribute to inform user of success and direct them to their email for temp pass
         return "redirect:/login";
-    }
-
-    @GetMapping("/send-email")
-    public String sendEmail() {
-        emailService.prepareAndSend("Testing", "Did this work");
-        return "redirect:/";
     }
 
     @GetMapping("/profile")
