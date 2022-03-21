@@ -17,4 +17,10 @@ public class AuthenticationController {
         session.invalidate();
         return "users/banned";
     }
+
+    @GetMapping("/session-invalidate")
+    public String invalidateSession(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
+    }
 }

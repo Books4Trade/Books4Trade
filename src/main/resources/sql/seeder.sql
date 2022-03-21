@@ -47,7 +47,7 @@ VALUES(1,1),
 SELECT * FROM grade_levels;
 
 -- INITIAL ADMIN SETUP --
-# Add the First 4 Users and Roles
+# Add the First 5 Users and Roles
 INSERT INTO users(id, enabled, username, password, first_name, last_name, email, location)
 VALUES(1, true,'admin', '$2a$10$eJr5yk/DDxloW8S2vfkoyeVTd8A7tKEFHtJo2H8ZzuyiAVB9oXGIi','Administrator','Regulus','swapabook.contact@gmail.com', 'San Antonio, TX'),
        # JULIAN, REMOVE THIS COMMENT AFTER REPLACING YOUR NEW HASHED PASSWORD AND USERNAME, THEN COMMIT+PUSH
