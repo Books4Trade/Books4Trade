@@ -42,7 +42,7 @@ public class BookReviewController {
     @GetMapping("/books/{id}/createreview")
     public String showReviewForm(@PathVariable long id, Model model) {
         model.addAttribute("book", booksDao.getById(id));
-        return "/reviews/create";
+        return "reviews/create";
     }
     @PostMapping("/books/{id}/createreview")
     public String createReview(@PathVariable long id, @RequestParam(name="title") String title, @RequestParam(name="body") String body, @RequestParam(name="rating") long rating){
@@ -69,7 +69,7 @@ public class BookReviewController {
     public String showAllReviewsOfBook(@PathVariable long id, Model model){
         model.addAttribute("allReviews", bookReviewsDao.findByBook(booksDao.getById(id)));
         model.addAttribute("book", booksDao.getById(id));
-        return "/reviews/reviewsofbook";
+        return "reviews/reviewsofbook";
     }
 
     // Edit an Individual Book Review

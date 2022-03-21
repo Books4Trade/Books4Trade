@@ -40,7 +40,7 @@ public class UserController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         model.addAttribute("user", new User());
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -102,7 +102,7 @@ public class UserController {
     public String showPasswordReset(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", usersDao.findById(user.getId()));
-        return "/users/password";
+        return "users/password";
     }
 
     @PostMapping("/profile/passwordreset")
@@ -123,7 +123,7 @@ public class UserController {
     public String showEditForm(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", usersDao.findById(user.getId()));
-        return "/users/edit";
+        return "users/edit";
     }
 
     @PostMapping("/profile/edit")
@@ -144,7 +144,7 @@ public class UserController {
         User user = usersDao.findByUsername(loggedInUser.getUsername());
         System.out.println("User Activation-Get for: " + user.getId());
         model.addAttribute("useractivate", user);
-        return "/users/activate";
+        return "users/activate";
     }
 
     @PostMapping("/users/activate")
