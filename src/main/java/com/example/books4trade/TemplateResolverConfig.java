@@ -2,71 +2,72 @@ package com.example.books4trade;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
 
 @Configuration
 public class TemplateResolverConfig {
 
     @Bean
-    public ClassLoaderTemplateResolver userTemplateResolver(){
-        ClassLoaderTemplateResolver userTemplateResolver = new ClassLoaderTemplateResolver();
+    public SpringResourceTemplateResolver userTemplateResolver(){
+        SpringResourceTemplateResolver userTemplateResolver = new SpringResourceTemplateResolver();
         userTemplateResolver.setPrefix("users/");
         userTemplateResolver.setSuffix(".html");
         userTemplateResolver.setTemplateMode(TemplateMode.HTML);
-        userTemplateResolver.setOrder(1);
+        userTemplateResolver.setOrder(0);
         userTemplateResolver.setCheckExistence(true);
         return userTemplateResolver;
     }
 
     @Bean
-    public ClassLoaderTemplateResolver booksTemplateResolver(){
-        ClassLoaderTemplateResolver bookTemplateResolver = new ClassLoaderTemplateResolver();
+    public SpringResourceTemplateResolver booksTemplateResolver(){
+        SpringResourceTemplateResolver bookTemplateResolver = new SpringResourceTemplateResolver();
         bookTemplateResolver.setPrefix("books/");
         bookTemplateResolver.setSuffix(".html");
         bookTemplateResolver.setTemplateMode(TemplateMode.HTML);
-        bookTemplateResolver.setOrder(2);
+        bookTemplateResolver.setOrder(1);
         bookTemplateResolver.setCheckExistence(true);
         return bookTemplateResolver;
     }
     @Bean
-    public ClassLoaderTemplateResolver reviewsTemplateResolver(){
-        ClassLoaderTemplateResolver reviewsTemplateResolver = new ClassLoaderTemplateResolver();
+    public SpringResourceTemplateResolver reviewsTemplateResolver(){
+        SpringResourceTemplateResolver reviewsTemplateResolver = new SpringResourceTemplateResolver();
         reviewsTemplateResolver.setPrefix("reviews/");
         reviewsTemplateResolver.setSuffix(".html");
         reviewsTemplateResolver.setTemplateMode(TemplateMode.HTML);
-        reviewsTemplateResolver.setOrder(3);
+        reviewsTemplateResolver.setOrder(2);
         reviewsTemplateResolver.setCheckExistence(true);
         return reviewsTemplateResolver;
     }
     @Bean
-    public ClassLoaderTemplateResolver ownedBooksTemplateResolver(){
-        ClassLoaderTemplateResolver ownedBooksTemplateResolver = new ClassLoaderTemplateResolver();
+    public SpringResourceTemplateResolver ownedBooksTemplateResolver(){
+        SpringResourceTemplateResolver ownedBooksTemplateResolver = new SpringResourceTemplateResolver();
         ownedBooksTemplateResolver.setPrefix("owned-books/");
         ownedBooksTemplateResolver.setSuffix(".html");
         ownedBooksTemplateResolver.setTemplateMode(TemplateMode.HTML);
         ownedBooksTemplateResolver.setCharacterEncoding("UTF-8");
-        ownedBooksTemplateResolver.setOrder(4);
+        ownedBooksTemplateResolver.setOrder(3);
         ownedBooksTemplateResolver.setCheckExistence(true);
         return ownedBooksTemplateResolver;
     }
     @Bean
-    public ClassLoaderTemplateResolver errorTemplateResolver(){
-        ClassLoaderTemplateResolver errorTemplateResolver = new ClassLoaderTemplateResolver();
+    public SpringResourceTemplateResolver errorTemplateResolver(){
+        SpringResourceTemplateResolver errorTemplateResolver = new SpringResourceTemplateResolver();
         errorTemplateResolver.setPrefix("error/");
         errorTemplateResolver.setSuffix(".html");
         errorTemplateResolver.setTemplateMode(TemplateMode.HTML);
-        errorTemplateResolver.setOrder(5);
+        errorTemplateResolver.setOrder(4);
         errorTemplateResolver.setCheckExistence(true);
         return errorTemplateResolver;
     }
     @Bean
-    public ClassLoaderTemplateResolver tradesTemplateResolver(){
-        ClassLoaderTemplateResolver tradesTemplateResolver = new ClassLoaderTemplateResolver();
+    public SpringResourceTemplateResolver tradesTemplateResolver(){
+        SpringResourceTemplateResolver tradesTemplateResolver = new SpringResourceTemplateResolver();
         tradesTemplateResolver.setPrefix("trades/");
         tradesTemplateResolver.setSuffix(".html");
         tradesTemplateResolver.setTemplateMode(TemplateMode.HTML);
-        tradesTemplateResolver.setOrder(6);
+        tradesTemplateResolver.setOrder(5);
         tradesTemplateResolver.setCheckExistence(true);
         return tradesTemplateResolver;
     }
