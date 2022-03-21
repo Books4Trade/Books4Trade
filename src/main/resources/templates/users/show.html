@@ -10,8 +10,8 @@
 <nav th:replace="partials :: navbar" />
 
 <div class="content">
-    <h2 class="header-center">User Information for <span th:text="${user.getUsername()}"></span></h2>
-    <h5 class="header-center text-muted">Email: <span th:text="${user.getEmail()}"></span></h5>
+    <h2 class="header-center">User Information for <span th:text="${usershown.getUsername()}"></span></h2>
+    <h5 class="header-center text-muted">Email: <span th:text="${usershown.getEmail()}"></span></h5>
     <br>
     <!-- Tab-Pill Controller -->
     <ul class="nav nav-pills m-2 d-flex justify-content-evenly" id="pills-tab" role="tablist">
@@ -33,7 +33,7 @@
         <!-- 1st TabPanel pills-usersbooks -->
         <div class="tab-pane fade show active" id="pills-usersbooks" role="tabpanel" aria-labelledby="pills-usersbooks-tab">
             <div class="d-flex flex-row flex-wrap justify-content-evenly">
-                <div class="book-card" th:each="ownedBook : ${user.getOwnedBooks()}">
+                <div class="book-card" th:each="ownedBook : ${usershown.getOwnedBooks()}">
                     <h3 class="book-headers title-bg" th:text="${ownedBook.getBook().getTitle()}"/>
                     <h4 class="book-headers" th:text="${ownedBook.getBook().getAuthor().getFullname()}"></h4>
                     <div class="text-center">
@@ -49,7 +49,7 @@
         <!-- 2nd TabPanel pills-usersreviews-->
         <div class="tab-pane fade" id="pills-usersreviews" role="tabpanel" aria-labelledby="pills-usersreviews-tab">
             <div class="d-flex flex-row flex-wrap justify-content-evenly">
-                <div th:each="review : ${user.getReviews()}">
+                <div th:each="review : ${usershown.getReviews()}">
                     <h3 class="book-headers title-bg" th:text="${review.getTitle()}"/>
                     <p class="text-center"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p>
                     <p class="text-center"> Written On: <span th:text="${review.getCreatedDate()}"></span></p>
@@ -63,9 +63,17 @@
         </div>
         <!-- 3rd TabPanel pills-usersreads -->
         <div class="tab-pane fade" id="pills-usersreads" role="tabpanel" aria-labelledby="pills-usersreads-tab">
-            <h4 class="header-center text-muted">What They've Read</h4>
+            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                <h4 class="text-muted header-center">What They've Read</h4>
+                <div class="book-card" th:each="book : ${usershown.getBooksread()}">
 
-
+                    <h3 class="book-headers title-bg" th:text="${book.getTitle()}"/>
+                    <h4 class="book-headers" th:text="${book.getAuthor().getFullname()}"></h4>
+                    <div class="text-center">
+                        <img th:src="${book.getBookImg()}">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -21,14 +21,21 @@
         <p class="text-center" th:text="${book.summary}">Summary</p>
         <!--    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>-->
         <p>Read by X Users, owned by X users, Reviewed by X Users</p>
-    <div>
-        <p>See Reviews / See Owned Copies For Trade/ See Users that have read this Book</p>
     </div>
-        <form class="text-center" th:method="GET">
-            <!-- <button th:formaction="">Add to Watchlist</button><br> -->
-            <button class="btn btn-secondary m-2" type="submit" th:formaction="|/trade/${book.getId()}|">See Copies Available</button>
-            <button class="btn btn-secondary m-2" type="submit" th:formaction="|/reviews/book/${book.getId()}|">See Reviews</button>
-        </form>
+
+        <p>See Reviews / See Owned Copies For Trade/ See Users that have read this Book</p>
+    <div>
+        <div class="text-center">
+            <form th:action="|/books/read/${book.getId()}|" th:method="POST">
+                <button class="btn btn-secondary m-2" type="submit" >Read this Book</button>
+            </form>
+            <form th:method="GET">
+                <!-- <button th:formaction="">Add to Watchlist</button><br> -->
+                <button class="btn btn-secondary m-2" type="submit" th:formaction="|/trade/${book.getId()}|">See Copies Available</button>
+                <button class="btn btn-secondary m-2" type="submit" th:formaction="|/reviews/book/${book.getId()}|">See Reviews</button>
+            </form>
+        </div>
+
         <form class="text-center" th:method="GET">
             <!-- <button th:formaction="">Add to Watchlist</button><br> -->
             <button class="btn btn-secondary m-2" type="submit" th:formaction="|/books/${book.getId()}/addcopy|">Add A Copy You Own</button>

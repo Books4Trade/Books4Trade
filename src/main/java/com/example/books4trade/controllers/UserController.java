@@ -72,6 +72,7 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("usersBooks", user.getOwnedBooks());
         model.addAttribute("usersReviews", user.getReviews());
+        model.addAttribute("usersReads", user.getBooksread());
     //      Add Trades, Other Tab Info
     //      model.addAttribute("usersNotifications", currentUser.getNotifications());
         return "users/profile";
