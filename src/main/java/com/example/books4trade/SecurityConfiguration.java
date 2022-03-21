@@ -64,8 +64,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* USERS - Pages that require authentication with Authority-Role "USER"*/
                 .and().authorizeRequests()
                 .antMatchers(
-                        "/profile",
-                        "/books/create",
+                        // The Default Pages (Matching the Permit All Matchers Above
+                        "/", "/banned", "/register", "/about", "/books", "/books/{id}", "/books/search", "/books/search/api",
+                        "/reviews", "/reviews/search", "/reviews/{id}", "/reviews/book/{id}",  "/books/{id}/copies", "/books/{id}/copies/{id}",
+                        "/users","/users/{id}","/trades",
+                        // Adding the following - Profile, Edit Profile, Reset Password
+                        "/profile", "/profile/edit", "/profile/passwordreset",
+                        // Book Creation, Reading
+                        "/books/create", "/books/read/{id}",
 
                         // Add, Edit, Delete an Owned Book - Users Only
                         "/books/{id}/addcopy", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit",

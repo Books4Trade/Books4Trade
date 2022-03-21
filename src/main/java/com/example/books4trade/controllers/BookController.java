@@ -136,6 +136,22 @@ public class BookController {
         model.addAttribute("book", booksDao.getById(id));
         return "books/show";
     }
+
+    @PostMapping("/books/read/{id}")
+    public String readThisBook(@PathVariable long id, Model model){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findByUsername(currentUser.getUsername());
+        System.out.println("User:"+user.getUsername());
+        Book book = booksDao.findById(id);
+        System.out.println("Book:"+book.getTitle());
+        List<User> usersRead = book.getReaders();
+        usersRead.add(user);
+        book.setReaders(usersRead);
+        Book saved = booksDao.save(book);
+        return "redirect:/books/" + saved.getId();
+    }
+
+
 //    Update
     @GetMapping("/books/{id}/edit")
     public String showUpdateForm(@PathVariable long id, Model model,@ModelAttribute Book book){

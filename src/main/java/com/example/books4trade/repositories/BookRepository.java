@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+    Book findById(long id);
+
     @Query("from Book b where b.title like %:term%")
     List<Book> searchByTitleLike(@Param("term") String term);
 
