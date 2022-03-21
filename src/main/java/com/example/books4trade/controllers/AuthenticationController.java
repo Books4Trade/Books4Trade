@@ -9,12 +9,18 @@ import javax.servlet.http.HttpSession;
 public class AuthenticationController {
     @GetMapping("/login")
     public String showLoginForm() {
-        return "/users/login";
+        return "users/login";
     }
 
     @GetMapping("/banned")
     public String youWereBanned(HttpSession session) {
         session.invalidate();
         return "users/banned";
+    }
+
+    @GetMapping("/session-invalidate")
+    public String invalidateSession(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
     }
 }
