@@ -10,7 +10,7 @@ public class TradeItem {
     private long id;
 
 
-    @Column(nullable = false)
+    @Column
     private boolean confirm_sent;
 
     @ManyToOne
@@ -21,8 +21,7 @@ public class TradeItem {
     @JoinColumn(name = "users_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "trade_id", nullable = false)
+    @OneToOne
     private Trade trade;
 
     public TradeItem() {
