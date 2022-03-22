@@ -62,17 +62,18 @@ public class BookReviewController {
         List<Like> likes = likesDao.findLikesByReviews(review);
         //  pulling logged in user for conditional
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findById(currentUser.getId());
         model.addAttribute("review", review);
         model.addAttribute("likes", likes);
-        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentUser", user);
         return "reviews/individual-review";
     }
 
     // View all Reviews of a Specific Book_Id
     @GetMapping("/reviews/book/{id}")
     public String showAllReviewsOfBook(@PathVariable long id, Model model){
-        model.addAttribute("allReviews", bookReviewsDao.findByBook(booksDao.getById(id)));
-        model.addAttribute("book", booksDao.getById(id));
+        model.addAttribute("allReviews", bookReviewsDao.findByBook(booksDao.findById(id)));
+        model.addAttribute("book", booksDao.findById(id));
         return "reviews/reviewsofbook";
     }
 
@@ -81,7 +82,7 @@ public class BookReviewController {
     public String editForm(@PathVariable long id, Model model) {
         // Add a Check and Redirect if not the owner of the review
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        BookReview bookReview = bookReviewsDao.getById(id);
+        BookReview bookReview = bookReviewsDao.findById(id);
         if(bookReview.getUser().getId() == currentUser.getId()){
             // If the Auth User is the owner, add the bookReview to the model and return the form
             model.addAttribute("bookReview", bookReview);
@@ -95,12 +96,12 @@ public class BookReviewController {
     @PostMapping("/reviews/{id}/edit")
         public String submitEdit(@PathVariable long id, @ModelAttribute BookReview editedReview){
             User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User user = usersDao.getById(currentUser.getId());
-            BookReview thisReview = editedReview;
-            if( thisReview.getUser().getId() == user.getId()){
-                thisReview.setUser(user);
-                thisReview.setBook(bookReviewsDao.getById(id).getBook());
-                thisReview.setCreatedDate(bookReviewsDao.getById(id).getCreatedDate());
+            User user = usersDao.findById(currentUser.getId());
+            BookReview thisReview = bookReviewsDao.findById(id);
+            if(thisReview.getUser().getId() == user.getId()){
+                thisReview.setTitle(editedReview.getTitle());
+                thisReview.setBody(editedReview.getBody());
+                thisReview.setRating(editedReview.getRating());
                 editedReview = bookReviewsDao.save(thisReview);
             }
             return "redirect:/reviews/"+ editedReview.getId();

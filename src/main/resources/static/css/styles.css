@@ -6,9 +6,9 @@
 }
 
 .main-bg{
-    /*background: rgb(242,238,203);*/
+    background: rgb(242,238,203);
     /*background: var(--main-bg-color)*/
-    background-color: #f9f7f4;
+    //background-color: #f9f7f4;
 }
 
 .header-center {

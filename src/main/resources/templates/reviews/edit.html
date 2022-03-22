@@ -6,8 +6,8 @@
 	<head th:include="partials :: head" />
 </head>
 <body>
-
-<form th:action="@{/reviews/{id}/edit (id = ${bookReview.getId()})}" th:method="POST" th:object="${bookReview}">
+<nav th:replace="partials :: navbar" />
+<form th:action="|/reviews/${bookReview.getId()}/edit|" th:method="POST" th:object="${bookReview}">
 
 	<div class="container mt-5 mb-5">
 		<h2 class="mb-3">Edit review</h2>
@@ -24,12 +24,7 @@
 
 		<div class="mb-3">
 			<label for="rating" class="form-label">Rate book (1-5)</label>
-			<input th:field="*{rating}" type="text" class="form-control" id="rating" name="rating" th:value="${bookReview.getRating()}" minlength="1" maxlength="1">
-		</div>
-
-		<div class="mb-3">
-			<label for="title" class="form-label">Enter today's date</label>
-			<input th:field="*{createdOn}" type="text" class="form-control" id="createdOn" name="createdOn" placeholder="month day, year" th:value="${editReview.createdOn}">
+			<input th:field="*{rating}" type="number" class="form-control" id="rating" name="rating" th:value="${bookReview.getRating()}" min="1" max="5">
 		</div>
 
 		<button type="submit" class="btn btn-primary">Submit</button>

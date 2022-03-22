@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface BookReviewRepository extends JpaRepository<BookReview, Long> {
+    BookReview findById(long id);
     List<BookReview> findByBook(Book book);
     List<BookReview> findByUser(User user);
 }

@@ -8,33 +8,33 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<h1 class="text-center">Edit a copy of your <span th:text="${book.getTitle()}"></span></h1>
+<h1 class="text-center">Edit Your Copy of <span th:text="${ownedbook.getBook().getTitle()}"></span></h1>
 
-<form th:action="|/books/${book.getId()}/edit|" th:method="POST" style="margin: auto; height: 300px;width: 750px;">
+<form th:action="|/books/${ownedbook.getBook().getId()}/copies/${ownedbook.getId()}/edit|" th:method="POST" style="margin: auto; height: 300px;width: 750px;">
 	<div class="text-center">
-		<label for="bookCondition" class="xx-large text-center">Choose book condition:</label><br>
-		<select name="bookCondition" id="bookCondition">
-			<option name="bookCondition" value="poor">Poor</option>
-			<option name="bookCondition" value="fair">Fair</option>
-			<option name="bookCondition" value="better">Better</option>
-			<option name="bookCondition" value="new">New</option>
+		<label for="bookcondition" class="xx-large text-center">Choose book condition:</label><br>
+		<select name="bookcondition" id="bookcondition">
+			<option name="bookcondition" value="poor">Poor</option>
+			<option name="bookcondition" value="fair">Fair</option>
+			<option name="bookcondition" value="better">Better</option>
+			<option name="bookcondition" value="new">New</option>
 		</select>
 	</div>
 
 	<div class="text-center">
-		<label for="isTradeable" class="xx-large text-center">Is the book tradeable?</label><br>
-		<select name="isTradeable" id="isTradeable">
-			<option name="isTradeable" value="true">Yes</option>
-			<option name="isTradeable" value="false">No</option>
+		<label for="istradeable" class="xx-large text-center">Is the book tradeable?</label><br>
+		<select name="istradeable" id="istradeable">
+			<option name="istradeable" value="true">Yes</option>
+			<option name="istradeable" value="false">No</option>
 		</select>
 	</div>
 
 	<div class="text-center">
-		<label for="bookType" class="xx-large text-center">Choose book type:</label><br>
-		<select name="bookType" id="bookType">
-			<option name="bookType" value="1">Paperback</option>
-			<option name="bookType" value="2">Hardback</option>
-			<option name="bookType" value="3">e-Book</option>
+		<label for="booktype" class="xx-large text-center">Choose book type:</label><br>
+		<select name="booktype" id="booktype">
+			<option name="booktype" value="1">Paperback</option>
+			<option name="booktype" value="2">Hardback</option>
+			<option name="booktype" value="3">e-Book</option>
 		</select>
 	</div>
 	<div class="text-center">
