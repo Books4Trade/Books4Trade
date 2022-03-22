@@ -71,6 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                         // Add, Edit, Delete an Owned Book - Users Only
                         "/books/{id}/addcopy", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit",
+                        "/books/{id}/copies/{copyid}/delete",
                         // Add, Edit, Delete a Review - Users Only
                         "/books/{id}/createreview","/reviews/{id}/edit", "/reviews/{id}/delete"
 
