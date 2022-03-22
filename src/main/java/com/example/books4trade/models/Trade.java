@@ -14,30 +14,43 @@ public class Trade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "trade")
-    private List<TradeItem> tradeItems;
+    @OneToOne
+    private TradeItem item1;
 
+    @OneToOne
+    private TradeItem item2;
+
+    //  CONSTRUCTORS
     public Trade() {
     }
 
-    public Trade(long id, List<TradeItem> tradeItems) {
+    public Trade(long id) {
         this.id = id;
-        this.tradeItems = tradeItems;
     }
 
+    public Trade(long id, TradeItem item1, TradeItem item2) {
+        this.id = id;
+        this.item1 = item1;
+        this.item2 = item2;
+    }
+
+    //  GETTERS/SETTERS
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
-
-    public List<TradeItem> getTradeItems() {
-        return tradeItems;
+    public TradeItem getItem1() {
+        return item1;
     }
-
-    public void setTradeItems(List<TradeItem> tradeItems) {
-        this.tradeItems = tradeItems;
+    public void setItem1(TradeItem item1) {
+        this.item1 = item1;
+    }
+    public TradeItem getItem2() {
+        return item2;
+    }
+    public void setItem2(TradeItem item2) {
+        this.item2 = item2;
     }
 }
