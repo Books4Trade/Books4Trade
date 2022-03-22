@@ -30,6 +30,11 @@
     <form th:action="@{/books/trade/initiate}" th:method="post">
         <div class="mb-3 row">
             <label for="yourbookid" class="col-sm-2 col-form-label">Enter Book Id:</label>
+<!--                    <select class="form-select" th:field="*{percentage}">-->
+<!--                        <option selected disabled>Select Book To Trade</option>-->
+<!--                        <option th:each="ownedBook : ${}" th:value="${ownedBook.getId()}" th:text="${ownedBook}">-->
+<!--                        </option>-->
+<!--                    </select>-->
             <div class="col-sm-10">
                 <input type="hidden" name="theirbookid" id="theirbookid" th:value="${ownedbook.getId()}">
                 <input type="text" class="form-control" name="yourbookid" id="yourbookid" placeholder="ID of book you're sending to your Trade Buddy">
@@ -44,12 +49,7 @@
         </div>
         <input type="submit" th:value="Submit">
 
-<!--    <form action="" th:method="POST">-->
-<!--        <select class="form-select" th:field="*{percentage}">-->
-<!--            <option selected disabled>Select Book To Trade</option>-->
-<!--            <option th:each="ownedBook : ${}" th:value="${ownedBook.getId()}" th:text="${ownedBook}">-->
-<!--            </option>-->
-<!--        </select>-->
+
     </form>
 </main>
 

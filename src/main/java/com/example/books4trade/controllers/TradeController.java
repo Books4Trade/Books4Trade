@@ -52,9 +52,16 @@ public class TradeController {
             @RequestParam(name = "ownedbookid") long ownedBookId,
             Model model)
     {
+        //  grabbing all tradables and will use condition on front end
+        List<Book> ownedBooks = ownedBooksDao.findAllTradable();
+        //  need user for conditional
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findById(currentUser.getId());
         //  need to work on getting logged in user info
         model.addAttribute("ownedbook", ownedBooksDao.findById(ownedBookId));
         model.addAttribute("tradebuddy", usersDao.findById(owner_id));
+        model.addAttribute("mytradables", ownedBooks);
+        model.addAttribute("loggedinuser", user);
         System.out.println("Attempting to create trade items" + ownedBookId);
         return "trades/create";
     }
