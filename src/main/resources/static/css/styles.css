@@ -53,6 +53,9 @@
 .img-circle {
     border-radius: 50%;
     border: 2px solid black;
+    height: auto;
+    width: 60%;
+    margin: 20px auto auto;
 }
 /*text sizing for label on create-copy html*/
 .xx-large font{
