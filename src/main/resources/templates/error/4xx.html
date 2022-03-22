@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title th:text="|Oopps, ${error}|"></title>
+	<title th:text="|Oops, ${error}|"></title>
 	<head th:include="partials :: head" />
 
 	<style>
@@ -38,6 +38,7 @@
 	</div>
 </th:block>
 <h4><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">Click here for more information</a></h4>
+<h5><a th:href="@{/}">Back to Safety</a></h5>
 
 </div>
 
