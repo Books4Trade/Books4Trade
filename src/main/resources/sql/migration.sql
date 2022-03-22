@@ -80,8 +80,6 @@ INSERT INTO book_reviews(id, body, created_date, rating, title, book_id, user_id
 VALUES(1,'This book was amazing','2022-03-15',5,'LOVE!!!',1,3);
 SELECT * FROM book_reviews;
 
-# BELOW THIS LINE NOT INJECTED INTO LIVE DB
-
 INSERT INTO users(id, enabled, username, password, first_name, last_name, email, location)
 VALUES  (6, true, 'HappyUser1','$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Billy','Smith','billsmith@gmail.com','Austin, TX'),
         (7,true, 'SadUser4', '$2a$10$B6Y0tSaiGWc4CGmELUiMU.R8K./Dj7clhQPrCqswLrFKya8eaRi9G', 'Doctor','No','JamesBond007@gmail.com','Waco, TX'),
@@ -99,7 +97,7 @@ VALUES (6,3),
        (10,3);
 SELECT * FROM users_roles;
 
-INSERT INTO book_reviews(id, title, body,created_date,rating, book_id, user_id)
+INSERT INTO book_reviews(id, title, body, created_date ,rating, book_id, user_id)
 VALUES(2,'Story time with My Granddaughter','First let me say I love Dr. Seuss. I just finished reading Green Eggs And Ham with my granddaughter and we really enjoyed it. In short, the book teaches children to try something first before they decide they do not like something. The illustrations are great! I believe we can all take a lesson from this one.','2022-03-21',5,13,8),
 (3, 'How to Categorize...','This is a tough one to categorize. Maybe magical realism, maybe historical? I was very glad I ignored the reviews comparing it to Lincoln in the Bardo (which I strongly disliked). Inland encompasses two stories (an abandoned - maybe - wife in a hostile environment in the late 1800s and a young camel rider in the same area, but a somewhat different time). Ghosts, spirits, untrustworthy (and trustworthy) companions encompass the events as the two protagonists make their way in the world.. The environment and many of the characters are harsh and demanding. Ultimately it is a strong story, well-written and well-told. So in the end, I was very glad I stuck with it and I do recommend it if you go in knowing it is not a typical historical/western piece. I had not read the previous work by this author but may just need to.
 ','2022-03-21',5,14,9),
@@ -126,3 +124,6 @@ Definitely some sadness involved but not too overwhelming. This is an interestin
 (18,'2nd time is a charm','I gave this a slow re-read, sticking to just a couple chapters a day. This pace really helped me take the time to appreciate the majesty of the prose... truly the Great American Novel.','2022-03-21',5,28,5),
 (19,'Favorites','One of my favorites. I may not be a member of Long Islands wealthy society in the 1920s, but there is a lot of universal emotional depth in this story, especially relating to the way some of us romanticize memories and develop longings that nothing in this world can really fulfill.','2022-03-21',5,29,4);
 SELECT * FROM book_reviews;
+
+# ABOVE THIS LINE INJECTED INTO LIVE DB
+# BELOW THIS LINE NOT INJECTED INTO LIVE DB

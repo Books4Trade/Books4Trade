@@ -134,6 +134,7 @@ public class BookController {
     @GetMapping("/books/{id}")
     public String individualBook(@PathVariable long id, Model model){
         model.addAttribute("book", booksDao.getById(id));
+        System.out.println("Showing Individual Book ID:" + id);
         return "books/show";
     }
 
@@ -141,13 +142,14 @@ public class BookController {
     public String readThisBook(@PathVariable long id, Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(currentUser.getUsername());
-        System.out.println("User:"+user.getUsername());
+        System.out.println("Reading Book from User:"+user.getUsername());
         Book book = booksDao.findById(id);
-        System.out.println("Book:"+book.getTitle());
+        System.out.println("Book That was Read:"+book.getTitle());
         List<User> usersRead = book.getReaders();
         usersRead.add(user);
         book.setReaders(usersRead);
         Book saved = booksDao.save(book);
+        System.out.println("Book added this User to the list of readers:"+saved.getId());
         return "redirect:/books/" + saved.getId();
     }
 
