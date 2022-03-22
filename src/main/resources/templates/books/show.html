@@ -26,8 +26,8 @@
         <p>See Reviews / See Owned Copies For Trade/ See Users that have read this Book</p>
     <div>
         <div class="text-center">
-            <form th:action="|/books/read/${book.getId()}|" th:method="POST">
-                <button class="btn btn-secondary m-2" type="submit" >Read this Book</button>
+            <form th:action="|books/read/${book.getId()}|" th:method="POST">
+                <button class="btn btn-secondary m-2" type="submit" >I Have Read This</button>
             </form>
             <form th:method="GET">
                 <!-- <button th:formaction="">Add to Watchlist</button><br> -->
