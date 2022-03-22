@@ -92,17 +92,19 @@ public class OwnedBookController {
                         editedBook.setTradable(istradeable);
                         editedBook.setType(typesDao.findById(typeid));
                         OwnedBook saved = ownedBooksDao.save(editedBook);
-                        return "redirect:/books"+id;
+                        return "redirect:/books/"+id+"/copy/"+saved.getId();
                 }
-                return "";
+                return "redirect:/books/"+id+"/copies";
         }
 
-        @DeleteMapping("/books/{id}/copy/{copyid}/delete")
+        @DeleteMapping("/books/{id}/copies/{copyid}/delete")
         public String deletePost(@PathVariable long id, @PathVariable long copyid){
                 User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-                OwnedBook copyToDelete = ownedBooksDao.getById(copyid);
-                if(copyToDelete.getUser().getId() == currentUser.getId()) {
+                User user = usersDao.findById(currentUser.getId());
+                OwnedBook copyToDelete = ownedBooksDao.findById(copyid);
+                if(copyToDelete.getUser().getId() == user.getId()) {
                         ownedBooksDao.delete(copyToDelete);
+                        return "redirect:/books/copies";
                 }
                 return "redirect:/books/copies";
         }
