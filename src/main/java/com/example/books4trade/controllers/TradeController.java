@@ -38,56 +38,66 @@ public class TradeController {
 
     @GetMapping("/trade/{id}")  //  will display single tradable book with list of owners to trade with
     public String startTrade(@PathVariable long id, Model model){
-        List<OwnedBook> owners = ownedBooksDao.findOwnedBooksByBook(booksDao.getById(id));
-        model.addAttribute("owners", owners);
+        List<OwnedBook> ownedCopies = ownedBooksDao.findOwnedBooksByBook(booksDao.getById(id));
+        model.addAttribute("ownedCopies", ownedCopies);
         model.addAttribute("book", booksDao.getById(id));
 
         return "trades/show";
     }
 
     //  TODO: add mapping to initiate trade; need a GET and POST
-    @GetMapping("/trade/{id}/initiate")     //  {id} = represents initial book being requested to trade
+    @GetMapping("/trade/start")     //  {id} = represents initial book being requested to trade
     public String initiateTrade(
-            @PathVariable long bookTT_id,
-            @RequestParam(name = "bookCover") String bookImg,
             @RequestParam(name = "tradeBuddy") long owner_id,
-            @RequestParam(name = "title") String title,
+            @RequestParam(name = "ownedbookid") long ownedBookId,
             Model model)
     {
         //  need to work on getting logged in user info
-        model.addAttribute("bookCover", bookImg);
-        model.addAttribute("bookTTitle", title);
-        model.addAttribute("tradeBuddy", owner_id);
-
+        model.addAttribute("ownedbook", ownedBooksDao.findById(ownedBookId));
+        model.addAttribute("tradebuddy", usersDao.findById(owner_id));
+        System.out.println("Attempting to create trade items" + ownedBookId);
         return "trades/create";
     }
 
     //  TODO: POST mapping to create tradeItem
-    @PostMapping("/trade/{id}/initiate")    //  {id} = represents initial book being requested to trade
+    @PostMapping("/trade/initiate")    //  {id} = represents initial book being requested to trade
     public String createTrade(
-            @PathVariable long book_id,
-            @RequestParam(name = "bookBuddy_id") long bookBuddy_id,
-            @RequestParam(name = "userBook_id") long userBook_id)
+            //  yourbookid -> logged in users book id that they are trading
+            @RequestParam(name = "yourbookid") long yourbookid,
+            //  bookbuddyid -> user you are trading book with
+            @RequestParam(name = "buddyid") long buddyid,
+            //  tradebookid -> tradebuddy's book id
+            @RequestParam(name = "theirbookid") long theirbookid)
     {
-
+        System.out.println("Postmapping/trade/initiate - start");
         //  creating a new trade
         Trade newTrade = new Trade();
-        tradesDao.save(newTrade);
+        Trade createdTrade = tradesDao.save(newTrade);
+        System.out.println("trade: " + createdTrade.getId());
+
         //  TradeItem_1
         //  logged in user and their book to trade
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        OwnedBook userBook = ownedBooksDao.getById(userBook_id);
-        TradeItem trade1 = new TradeItem(userBook, currentUser, newTrade);
+        User user = usersDao.findById(currentUser.getId());
+        OwnedBook userBook = ownedBooksDao.findById(yourbookid);
+        TradeItem trade1 = new TradeItem(userBook, user, createdTrade);
         //  TradeItem_2
         //  BookBuddy trading with (assuming email and agreement was made prior to initiating trade)
-        User bookBuddy = usersDao.getById(bookBuddy_id);
-        OwnedBook buddyBook = ownedBooksDao.getById(book_id);
-        TradeItem trade2 = new TradeItem(buddyBook, bookBuddy, newTrade);
+        User bookBuddy = usersDao.findById(buddyid);
+        OwnedBook buddyBook = ownedBooksDao.findById(theirbookid);
+        TradeItem trade2 = new TradeItem(buddyBook, bookBuddy, createdTrade);
 
-        tradeItemsDao.save(trade1);
-        tradeItemsDao.save(trade2);
+        TradeItem item1 = tradeItemsDao.save(trade1);
+        TradeItem item2 = tradeItemsDao.save(trade2);
 
-        return "redirect: /profile";
+        createdTrade.setItem1(item1);
+        createdTrade.setItem2(item2);
+        Trade saved = tradesDao.save(newTrade);
+
+
+        System.out.println("Attempting to create trade items " + item1);
+
+        return "redirect:/profile";
     }
 
 

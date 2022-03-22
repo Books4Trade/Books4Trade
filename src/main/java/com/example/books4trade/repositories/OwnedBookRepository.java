@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface OwnedBookRepository extends JpaRepository<OwnedBook, Long> {
+    OwnedBook findById(long id);
+
     List<OwnedBook> findOwnedBooksByBook(Book book);
 
     //  custom query to get distinct(single, no duplicates) tradable books
