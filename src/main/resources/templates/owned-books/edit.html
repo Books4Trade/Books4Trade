@@ -8,7 +8,39 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
+<h1 class="text-center">Edit a copy of your <span th:text="${book.getTitle()}"></span></h1>
 
+<form th:action="|/books/${book.getId()}/edit|" th:method="POST" style="margin: auto; height: 300px;width: 750px;">
+	<div class="text-center">
+		<label for="bookCondition" class="xx-large text-center">Choose book condition:</label><br>
+		<select name="bookCondition" id="bookCondition">
+			<option name="bookCondition" value="poor">Poor</option>
+			<option name="bookCondition" value="fair">Fair</option>
+			<option name="bookCondition" value="better">Better</option>
+			<option name="bookCondition" value="new">New</option>
+		</select>
+	</div>
+
+	<div class="text-center">
+		<label for="isTradeable" class="xx-large text-center">Is the book tradeable?</label><br>
+		<select name="isTradeable" id="isTradeable">
+			<option name="isTradeable" value="true">Yes</option>
+			<option name="isTradeable" value="false">No</option>
+		</select>
+	</div>
+
+	<div class="text-center">
+		<label for="bookType" class="xx-large text-center">Choose book type:</label><br>
+		<select name="bookType" id="bookType">
+			<option name="bookType" value="1">Paperback</option>
+			<option name="bookType" value="2">Hardback</option>
+			<option name="bookType" value="3">e-Book</option>
+		</select>
+	</div>
+	<div class="text-center">
+		<button type="submit" class="button-style">Submit Changes</button>
+	</div>
+</form>
 
 
 <footer th:replace="partials :: footer"/>
