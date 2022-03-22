@@ -18,9 +18,17 @@
 	<div class="text-center">
 		<img th:src="${review.getBook().getBookImg()}">
 	</div>
-	<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post">
-		<input type="submit" th:value="Like">
-	</form>
+			<!--like and dislike work but need to add conditionals-->
+			<!--liking a review-->
+			<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post">
+				<input type="submit" th:value="Like">
+			</form>
+			<!--disliking a review-->
+			<form th:action="@{/reviews/{id}/dislike (id=${review.getId()})}" th:method="post">
+				<input type="submit" th:value="Dislike">
+			</form>
+	</div>
+
 	<!-- See more reviews of this book-->
 	<!-- See more reviews by this user-->
 </div>
