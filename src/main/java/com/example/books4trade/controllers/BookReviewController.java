@@ -58,7 +58,13 @@ public class BookReviewController {
     @GetMapping("/reviews/{id}")
     public String showIndividualReview(@PathVariable long id, Model model) {
         BookReview review = bookReviewsDao.getById(id);
+        //  need to get likes for conditional
+        List<Like> likes = likesDao.findLikesByReviews(review);
+        //  pulling logged in user for conditional
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("review", review);
+        model.addAttribute("likes", likes);
+        model.addAttribute("currentUser", currentUser);
         return "reviews/individual-review";
     }
 
@@ -110,6 +116,8 @@ public class BookReviewController {
         return "redirect:/reviews";
      }
 
+    //  Liking a review
+    //  Need to set count;
     @PostMapping("/reviews/{id}/like")
     public String likeReview(@PathVariable long id){
          User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -120,4 +128,18 @@ public class BookReviewController {
          likesDao.save(newLike);
         return "redirect:/reviews/" + id;
      }
+
+    //  Disliking a review
+    //  Need to set count;
+    @PostMapping("/reviews/{id}/dislike")
+    public  String dislikeReview(@PathVariable long id){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.getById(currentUser.getId());
+        BookReview bookReview = bookReviewsDao.getById(id);
+        //  create a new like
+        Like newDislike = new Like(false, user, bookReview);
+        likesDao.save(newDislike);
+
+        return "redirect:/reviews/" + id;
+    }
 }

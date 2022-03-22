@@ -18,9 +18,34 @@
 	<div class="text-center">
 		<img th:src="${review.getBook().getBookImg()}">
 	</div>
-	<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post">
-		<input type="submit" th:value="Like">
-	</form>
+	<div th:each="like, likeStat : ${likes}">
+		<div th:if="${like.getUser().getId() == currentUser.getId()}">
+		<div th:text="${likeStat.count}"></div>
+			<!--like and dislike work but need to add conditionals-->
+			<!--liking a review-->
+			<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post">
+				<input type="submit" th:value="Like" disabled>
+			</form>
+			<!--disliking a review-->
+			<form th:action="@{/reviews/{id}/dislike (id=${review.getId()})}" th:method="post">
+				<input type="submit" th:value="Dislike">
+			</form>
+		</div>
+
+		<div th:if="${like.getUser().getId() != currentUser.getId()}">
+			<div th:text="${likeStat.count}"></div>
+			<!--liking a review-->
+			<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post">
+				<input type="submit" th:value="Like" >
+			</form>
+			<!--disliking a review-->
+			<form th:action="@{/reviews/{id}/dislike (id=${review.getId()})}" th:method="post">
+				<input type="submit" th:value="Dislike" disabled>
+			</form>
+		</div>
+
+	</div>
+
 	<!-- See more reviews of this book-->
 	<!-- See more reviews by this user-->
 </div>
