@@ -66,9 +66,9 @@ public class Book {
     @JoinTable(
         name = "reads_book",
         joinColumns = {@JoinColumn(name = "book_id")},
-        inverseJoinColumns = {@JoinColumn(name = "user_id")}
+        inverseJoinColumns = {@JoinColumn(name = "readers_id")}
     )
-    private List<User> user; //@charles
+    private List<User> readers; //@charles
 
     //  CONSTRUCTORS
     public Book() {}
@@ -94,7 +94,7 @@ public class Book {
 
     //  Watchlist Constructor
     public Book(long id, String title, String summary, Double rating, String book_img, List<User> usersWatchlist, List<Category> categories,
-                List<BookReview> reviews, List<User> user) {
+                List<BookReview> reviews, List<User> readers) {
         this.id = id;
         this.title = title;
         this.summary = summary;
@@ -103,7 +103,7 @@ public class Book {
         this.usersWatchlist = usersWatchlist;
         this.categories = categories;
         this.reviews = reviews;
-        this.user = user;
+        this.readers = readers;
     }
 
     //  Authors Constructors
@@ -222,6 +222,15 @@ public class Book {
     public void setGrade(GradeLevel grade) {
         this.grade = grade;
     }
+
+    public List<User> getReaders() {
+        return readers;
+    }
+
+    public void setReaders(List<User> readers) {
+        this.readers = readers;
+    }
+
     public List<OwnedBook> getOwnedBooks() {
         return ownedBooks;
     }

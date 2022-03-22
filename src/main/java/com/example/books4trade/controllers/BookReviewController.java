@@ -1,21 +1,17 @@
 package com.example.books4trade.controllers;
 
 
-import com.example.books4trade.models.BookReview;
-import com.example.books4trade.models.OwnedBook;
-import com.example.books4trade.models.User;
+import com.example.books4trade.models.*;
 import com.example.books4trade.repositories.BookRepository;
 import com.example.books4trade.repositories.BookReviewRepository;
+import com.example.books4trade.repositories.LikeRepository;
 import com.example.books4trade.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,11 +20,13 @@ public class BookReviewController {
     private final BookReviewRepository bookReviewsDao;
     private final BookRepository booksDao;
     private final UserRepository usersDao;
+    private LikeRepository likesDao;
 
-    public BookReviewController(BookReviewRepository bookReviewsDao, BookRepository bookDao, UserRepository userDao) {
+    public BookReviewController(BookReviewRepository bookReviewsDao, BookRepository bookDao, UserRepository userDao, LikeRepository likesDao) {
         this.bookReviewsDao = bookReviewsDao;
         this.booksDao = bookDao;
         this.usersDao = userDao;
+        this.likesDao = likesDao;
     }
 // Index of All Reviews
     @GetMapping("/reviews")
@@ -42,7 +40,7 @@ public class BookReviewController {
     @GetMapping("/books/{id}/createreview")
     public String showReviewForm(@PathVariable long id, Model model) {
         model.addAttribute("book", booksDao.getById(id));
-        return "/reviews/create";
+        return "reviews/create";
     }
     @PostMapping("/books/{id}/createreview")
     public String createReview(@PathVariable long id, @RequestParam(name="title") String title, @RequestParam(name="body") String body, @RequestParam(name="rating") long rating){
@@ -69,7 +67,7 @@ public class BookReviewController {
     public String showAllReviewsOfBook(@PathVariable long id, Model model){
         model.addAttribute("allReviews", bookReviewsDao.findByBook(booksDao.getById(id)));
         model.addAttribute("book", booksDao.getById(id));
-        return "/reviews/reviewsofbook";
+        return "reviews/reviewsofbook";
     }
 
     // Edit an Individual Book Review
@@ -110,5 +108,16 @@ public class BookReviewController {
              bookReviewsDao.deleteById(id);
          }
         return "redirect:/reviews";
+     }
+
+    @PostMapping("/reviews/{id}/like")
+    public String likeReview(@PathVariable long id){
+         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+         User user = usersDao.getById(currentUser.getId());
+         BookReview bookReview = bookReviewsDao.getById(id);
+        //  create a new like
+         Like newLike = new Like(true, user, bookReview);
+         likesDao.save(newLike);
+        return "redirect:/reviews/" + id;
      }
 }

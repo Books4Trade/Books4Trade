@@ -7,7 +7,6 @@ import com.example.books4trade.services.Utils;
 import com.example.books4trade.repositories.OwnedBookRepository;
 import com.example.books4trade.repositories.RoleRepository;
 import com.example.books4trade.repositories.UserRepository;
-import com.example.books4trade.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,22 +25,22 @@ public class UserController {
     private RoleRepository rolesDao;
     private OwnedBookRepository ownedBooksDao;
     private PasswordEncoder passwordEncoder;
-    private EmailService emailService;
+   // private EmailService emailService;
     private SendGridMail sendGridMail;
 
-    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, EmailService emailService, SendGridMail sendGridMail) {
+    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, SendGridMail sendGridMail) {
         this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
-        this.emailService = emailService;
+    //    this.emailService = emailService;
         this.sendGridMail = sendGridMail;
     }
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         model.addAttribute("user", new User());
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -66,12 +65,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/send-email")
-    public String sendEmail() {
-        emailService.prepareAndSend("Testing", "Did this work");
-        return "redirect:/";
-    }
-
     @GetMapping("/profile")
     public String showProfile(Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -79,6 +72,7 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("usersBooks", user.getOwnedBooks());
         model.addAttribute("usersReviews", user.getReviews());
+        model.addAttribute("usersReads", user.getBooksread());
     //      Add Trades, Other Tab Info
     //      model.addAttribute("usersNotifications", currentUser.getNotifications());
         return "users/profile";
@@ -105,12 +99,32 @@ public class UserController {
         return "redirect:/login";
     }
 
-//    For Edit Profile
-    @GetMapping("/profile/edit")
-    public String showEditForm( Model model){
+    @GetMapping("/profile/passwordreset")
+    public String showPasswordReset(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", usersDao.findById(user.getId()));
-        return "/users/edit";
+        return "users/password";
+    }
+
+    @PostMapping("/profile/passwordreset")
+    public String submitPasswordReset(@RequestParam(name="password") String password, @RequestParam(name = "newpassword") String newpassword, @RequestParam(name="passwordconfirm") String passwordconfirm){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findByUsername(currentUser.getUsername());
+        if(passwordEncoder.matches(password, user.getPassword()) && newpassword.equals(passwordconfirm)){
+            String hash = passwordEncoder.encode(newpassword);
+            user.setPassword(hash);
+            usersDao.save(user);
+        }
+
+        return "redirect:/session-invalidate";
+    }
+
+//    For Edit Profile
+    @GetMapping("/profile/edit")
+    public String showEditForm(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", usersDao.findById(user.getId()));
+        return "users/edit";
     }
 
     @PostMapping("/profile/edit")
@@ -131,7 +145,7 @@ public class UserController {
         User user = usersDao.findByUsername(loggedInUser.getUsername());
         System.out.println("User Activation-Get for: " + user.getId());
         model.addAttribute("useractivate", user);
-        return "/users/activate";
+        return "users/activate";
     }
 
     @PostMapping("/users/activate")

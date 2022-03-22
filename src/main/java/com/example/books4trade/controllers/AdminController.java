@@ -2,7 +2,6 @@ package com.example.books4trade.controllers;
 
 import com.example.books4trade.models.User;
 import com.example.books4trade.repositories.*;
-import com.example.books4trade.services.EmailService;
 import com.example.books4trade.services.SendGridMail;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,17 +20,17 @@ public class AdminController {
     private BookReviewRepository reviewsDao;
     private OwnedBookRepository ownedBooksDao;
     private PasswordEncoder passwordEncoder;
-    private EmailService emailService;
+  //  private EmailService emailService;
     private SendGridMail sendGridMail;
 
-    public AdminController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, BookRepository booksDao, BookReviewRepository reviewsDao, OwnedBookRepository ownedBooksDao, EmailService emailService, SendGridMail sendGridMail) {
+    public AdminController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, BookRepository booksDao, BookReviewRepository reviewsDao, OwnedBookRepository ownedBooksDao, SendGridMail sendGridMail) {
         this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.booksDao = booksDao;
         this.reviewsDao = reviewsDao;
         this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
-        this.emailService = emailService;
+      //  this.emailService = emailService;
         this.sendGridMail = sendGridMail;
     }
 
@@ -40,7 +39,7 @@ public class AdminController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(currentUser.getUsername());
         model.addAttribute("user", user);
-        return"/admin/dashboard";
+        return"admin/dashboard";
     }
 
     @GetMapping("/test/email")

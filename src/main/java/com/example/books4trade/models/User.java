@@ -47,7 +47,7 @@ public class User {
     private List<Notification> notifications;
 
     //Below is for reads_book @charles
-    @ManyToMany(mappedBy = "user")
+    @ManyToMany(mappedBy = "readers")
     private List<Book> booksread;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

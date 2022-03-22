@@ -5,14 +5,14 @@
 	<title>All reviews</title>
 	<head th:include="partials :: head" />
 </head>
-<body class="card-bg">
+<body class="">
 <nav th:replace="partials :: navbar" />
 
 <h1 class="text-center">Add a copy of your <span th:text="${book.getTitle()}"></span></h1>
 
 <form th:action="|/books/${book.getId()}/addcopy|" th:method="POST" style="margin: auto; height: 300px;width: 750px;">
 	<div class="text-center">
-		<label for="bookCondition" class="label-styles text-center">Choose book condition:</label><br>
+		<label for="bookCondition" class="xx-large text-center">Choose book condition:</label><br>
 		<select name="bookCondition" id="bookCondition">
 			<option name="bookCondition" value="poor">Poor</option>
 			<option name="bookCondition" value="fair">Fair</option>
@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="text-center">
-		<label for="isTradeable" class="label-styles text-center">Is the book tradeable?</label><br>
+		<label for="isTradeable" class="xx-large text-center">Is the book tradeable?</label><br>
 		<select name="isTradeable" id="isTradeable">
 			<option name="isTradeable" value="true">Yes</option>
 			<option name="isTradeable" value="false">No</option>
@@ -30,7 +30,7 @@
 	</div>
 
 	<div class="text-center">
-		<label for="bookType" class="label-styles text-center">Choose book type:</label><br>
+		<label for="bookType" class="xx-large text-center">Choose book type:</label><br>
 		<select name="bookType" id="bookType">
 			<option name="bookType" value="1">Paperback</option>
 			<option name="bookType" value="2">Hardback</option>

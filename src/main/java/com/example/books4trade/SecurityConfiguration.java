@@ -47,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // Static File Paths
                 .antMatchers( "/js/**","/img/**", "/css/**",
                         // Registration, Banned Pages - Public
-                        "/", "/banned", "/register",
+                        "/", "/banned", "/register", "/about",
                         // Book Mappings, Inc Search - Public
                         "/books", "/books/{id}", "/books/search", "/books/search/api",
                         // Reviews Mappings - Views- Public
@@ -56,16 +56,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/books/{id}/copies", "/books/{id}/copies/{id}",
                         // Users and Trades - Views - Public
                         "/users","/users/{id}","/trades"
-                        ) // anyone can see the home and the Post-Index pages
+                        )
                 .permitAll()
                 .and().authorizeRequests()
                 .antMatchers(  "/users/activate")
                 .authenticated()
-                /* USERS - Pages that require authentication with Authority-Role "USER"*/
+                /* USERS - Pages that require authentication with Authority-Role "USER" */
                 .and().authorizeRequests()
                 .antMatchers(
-                        "/profile",
-                        "/books/create",
+                        //  Profile, Edit Profile, Reset Password
+                        "/profile", "/profile/edit", "/profile/passwordreset",
+                        // Book Creation, Reading
+                        "/books/create", "/books/read/{id}",
 
                         // Add, Edit, Delete an Owned Book - Users Only
                         "/books/{id}/addcopy", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit",

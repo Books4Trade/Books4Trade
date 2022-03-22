@@ -1,0 +1,60 @@
+<footer th:fragment="footer" class="text-center text-lg-start bg-secondary text-white" >
+    <div class="container-fluid">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-lg-between p-4 border-bottom">
+            <div class="me-5 d-lg-block w-50 text-center">
+                <span>Connect with us!</span>
+            </div>
+            <div class="d-flex me-5 w-50 justify-content-evenly">
+                <a href="" class="me-4 text-reset"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="" class="me-4 text-reset"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="" class="me-4 text-reset"><i class="fab fa-instagram-square fa-lg"></i></a>
+                <a href="" class="me-4 text-reset"><i class="fab fa-github fa-lg"></i></a>
+            </div>
+        </section>
+        <!-- Section: Links & Information  -->
+        <section class="">
+            <div class="container text-center mt-5">
+                <div class="row mt-3">
+                    <!-- Column 1 of 4-->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Regulus
+                        </h6>
+                        <p>Here is some stuff about us. It is much better than the typical placeholder text.</p>
+                    </div>
+                    <!-- Column 2 of 4-->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+                        <p><a href="" class="text-reset">Things</a></p>
+                        <p><a href="" class="text-reset">More Things</a></p>
+                        <p><a href="" class="text-reset">Still More</a></p>
+                        <p><a href="" class="text-reset">Last Thing</a></p>
+                    </div>
+                    <!-- Column 3 of 4 -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+                        <p><a th:href="@{/about}" class="text-reset">About Us</a></p>
+                        <p><a href="https://github.com/Books4Trade/Books4Trade" class="text-reset">Swap A Book Project</a></p>
+                        <p><a href="https://codeup.com/" class="text-reset">CodeUp</a></p>
+                        <p><a href="" class="text-reset">Useful4</a></p>
+                    </div>
+                    <!-- Column 4 of 4 -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Contact Us
+                        </h6>
+                        <p><i class="fas fa-house fa-lg m-2"></i> San Antonio, TX 78205, US</p>
+                        <p><i class="fas fa-envelope fa-lg m-2"></i>regulus@example.com</p>
+                        <p><i class="fas fa-square-phone fa-lg m-2"></i>(210) 867-5309</p>
+                        <p><i class="fas fa-print fa-lg m-2"></i>(210) 867-5310</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Copyright Bottom Footer-->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2022 Copyright:
+            <a class="text-reset fw-bold">OurProject.com</a>
+        </div>
+    </div>
+</footer>

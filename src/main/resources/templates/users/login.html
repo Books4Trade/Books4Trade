@@ -10,11 +10,12 @@
 
 	</style>
 </head>
-<body>
+<body class="main-bg">
 <nav th:replace="partials :: navbar" />
 
-<div class="container subcontainer bg-white mt-5 shadow p-3 mb-5 bg-body rounded">
-<form class="" th:action="@{/login}" method="post">
+<div class="container subcontainer bg-white mt-5">
+<form class="" th:action="@{/login}" method="POST">
+
 	<h1 class="text-center">Swap-A-Book</h1>
 	<p class="text-center">Add book, look at books, trade books, find your book.</p>
 	<div class="mb-3 mt-3">
