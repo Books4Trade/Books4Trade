@@ -24,22 +24,25 @@
 
 <main class="container">
     <div class="text-center">
-        <img th:src="${bookCover}" class="rounded book-cover" alt="...">
-        <figcaption class="figure-caption text-center" th:text="${bookTTitle}">A caption for the above image.</figcaption>
+        <img th:src="${ownedbook.getBook().getBookImg()}" class="rounded book-cover" alt="...">
+        <figcaption class="figure-caption text-center" th:text="${ownedbook.getBook().getTitle()}">A caption for the above image.</figcaption>
     </div>
-    <form>
+    <form th:action="@{/books/trade/initiate}" th:method="post">
         <div class="mb-3 row">
-            <label for="book_id" class="col-sm-2 col-form-label">Enter Book Id:</label>
+            <label for="yourbookid" class="col-sm-2 col-form-label">Enter Book Id:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="book_id" placeholder="ID of book you're sending to your Trade Buddy">
+                <input type="hidden" name="theirbookid" id="theirbookid" th:value="${ownedbook.getId()}">
+                <input type="text" class="form-control" name="yourbookid" id="yourbookid" placeholder="ID of book you're sending to your Trade Buddy">
             </div>
         </div>
         <div class="mb-3 row">
             <div class="col-sm-12">
-                <input class="form-control text-center" type="text" value="Username of Trade Buddy" aria-label="Username of Trade Buddy" disabled
-                       readonly>
+                <input type="hidden" name="buddyid" id="buddyid" th:value="${tradebuddy.getId()}">
+                <p>TradeBuddy Username: <span th:text="${tradebuddy.getUsername()}"></span>
+                </p>
             </div>
         </div>
+        <input type="submit" th:value="Submit">
 
 <!--    <form action="" th:method="POST">-->
 <!--        <select class="form-select" th:field="*{percentage}">-->
