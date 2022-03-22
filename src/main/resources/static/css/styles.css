@@ -5,7 +5,7 @@
     --home-bg-color: antiquewhite;
 }
 
-body{
+.main-bg{
     background: rgb(242,238,203);
     background: var(--main-bg-color)
 }
@@ -51,7 +51,7 @@ body{
 
 /*used in about html for pictures*/
 .img-circle {
-    border-radius: 100%;
+    border-radius: 50%;
     border: 2px solid black;
 }
 /*text sizing for label on create-copy html*/
