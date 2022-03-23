@@ -73,7 +73,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/books/{id}/addcopy", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit",
                         "/books/{id}/copies/{copyid}/delete",
                         // Add, Edit, Delete a Review - Users Only
-                        "/books/{id}/createreview","/reviews/{id}/edit", "/reviews/{id}/delete"
+                        "/books/{id}/createreview","/books/{id}/addreview","/reviews/{id}/edit", "/reviews/{id}/delete"
 
                 ).hasAuthority("USER")
                 // Any Unspecified Mapping is available to ADMIN

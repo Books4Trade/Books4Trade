@@ -104,7 +104,6 @@ public class OwnedBookController {
                 OwnedBook copyToDelete = ownedBooksDao.findById(copyid);
                 if(copyToDelete.getUser().getId() == user.getId()) {
                         ownedBooksDao.delete(copyToDelete);
-                        return "redirect:/books/copies";
                 }
                 return "redirect:/books/copies";
         }

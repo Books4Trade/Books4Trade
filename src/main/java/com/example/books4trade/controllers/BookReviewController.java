@@ -37,7 +37,7 @@ public class BookReviewController {
     }
 //  BookReviews must be based on a book in the DB, Hence the creation of a review uses
 //  /BOOKS/{ID} referencing the work to be reviewed
-    @GetMapping("/books/{id}/createreview")
+    @GetMapping("/books/{id}/addreview")
     public String showReviewForm(@PathVariable long id, Model model) {
         model.addAttribute("book", booksDao.getById(id));
         return "reviews/create";
