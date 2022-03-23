@@ -12,164 +12,135 @@
 <nav th:replace="partials :: navbar"></nav>
 
 
-
+<div>
 <!--register/login start-->
-<div class="container px-3 py-0">
-	<div class="row justify-content-evenly py-0">
-		<div class="col-lg-6 text-center text-lg-start px-4 pt-5">
-			<h1 class="header-center display-4 fw-bold lh-1 mb-2 p-2">Swap-a-Book</h1>
-			<p class="col-lg-12 fs-4 register-paragraph mr-0 text-center">Swap-a-Book has been created for users to connect with other readers. Enjoy reading user reviews and trade with like-minded readers who enjoy picking up a book to pass the time.</p>
-		</div>
-		<div class="col-lg-6  p-4">
-			<form class="px-5 px-md-5 pt-4 pb-3 border rounded-3 bg-light" th:action="@{/login}" method="post">
-				<div class="form-floating mb-2">
-					<input type="username" name="username" class="form-control" id="floatingInput username" placeholder="name@example.com" required>
-					<label for="floatingInput username" class="form-label">Username</label>
-				</div>
-				<div class="form-floating mb-2">
-					<input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-					<label for="floatingPassword">Password</label>
-				</div>
-				<button class="w-100 btn btn-lg btn-primary" type="submit">SIGN IN</button>
-				<hr>
-				<p>Not a member? <a th:href="@{/register}">Register</a></p>
-			</form>
-		</div>
-	</div>
-</div>
-<!--register/login end-->
-
-
-
-<!--Carousel start-->
-<div class="container carousel carousel-container">
-	<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-		</div>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img th:src="@{~/img/carousel-book1.jpg}" class="d-block w-100" alt="bookshelf">
-
-				<div class="carousel-caption d-none d-md-block bg-secondary p-2 text-dark bg-opacity-25 text-white">
-					<h5>Read books</h5>
-				</div>
+	<div class="container px-3 py-0">
+		<div class="row justify-content-evenly py-0">
+			<div class="col-lg-6 text-center text-lg-start px-4 pt-5">
+				<h1 class="header-center display-4 fw-bold lh-1 mb-2 p-2">Swap-a-Book</h1>
+				<p class="col-lg-12 fs-4 register-paragraph mr-0 text-center">Swap-a-Book has been created for users to connect with other readers. Enjoy reading user reviews and trade with like-minded readers who enjoy picking up a book to pass the time.</p>
 			</div>
-			<div class="carousel-item">
-				<img th:src="@{~/img/carousel-book2.jpg}" class="d-block w-100" alt="bookshelf">
-				<div class="carousel-caption d-none d-md-block bg-secondary p-2 text-dark bg-opacity-25 text-white">
-					<h5>Trade Books</h5>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img th:src="@{~/img/carousel-book3.jpg}" class="d-block w-100" alt="books">
-				<div class="carousel-caption d-none d-md-block bg-secondary p-2 text-dark bg-opacity-25 text-white">
-					<h5>Connect with people</h5>
-				</div>
+			<div class="col-lg-6  p-4">
+				<form class="px-5 px-md-5 pt-4 pb-3 border rounded-3 bg-light" th:action="@{/login}" method="post">
+					<div class="form-floating mb-2">
+						<input type="username" name="username" class="form-control" id="floatingInput username" placeholder="name@example.com" required>
+						<label for="floatingInput username" class="form-label">Username</label>
+					</div>
+					<div class="form-floating mb-2">
+						<input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+						<label for="floatingPassword">Password</label>
+					</div>
+					<button class="w-100 btn btn-lg btn-primary" type="submit">SIGN IN</button>
+					<hr>
+					<p>Not a member? <a th:href="@{/register}">Register</a></p>
+				</form>
 			</div>
 		</div>
-		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		</button>
 	</div>
-</div>
-<!--Carousel end-->
+	<!--register/login end-->
 
-<hr>
+	<!--Carousel start-->
+	<div class="container carousel carousel-container">
+		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img th:src="@{~/img/carousel-book1.jpg}" class="d-block w-100" alt="bookshelf">
 
-<!-- START THE FEATURETTES -->
-<div class="container marketing">
-
-	<div class="row featurette">
-		<div class="col-4">
-			<h2 class="featurette-heading mt-2 text-center">Explore</h2>
-		</div>
-		<div class="col-4">
-			<h2 class="featurette-heading mt-2 text-center text-muted">Read</h2>
-		</div>
-		<div class="col-4">
-			<h2 class="featurette-heading mt-2 text-center">Connect</h2>
-		</div>
-
-
-
-
-	</div>
-
-	<hr class="featurette-divider">
-
-	<div class="row featurette">
-		<div class="col-md-7 order-md-2">
-			<h2 class="featurette-heading mt-2">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-			<p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-		</div>
-		<div class="col-md-5 order-md-1">
-		<img class="featurette-image img-fluid mx-auto" width="300" height="300" th:src="@{/img/book1.png}" alt="">
+					<div class="carousel-caption d-none d-md-block bg-secondary p-2 text-dark bg-opacity-25 text-white">
+						<h5>Read books</h5>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img th:src="@{~/img/carousel-book2.jpg}" class="d-block w-100" alt="bookshelf">
+					<div class="carousel-caption d-none d-md-block bg-secondary p-2 text-dark bg-opacity-25 text-white">
+						<h5>Trade Books</h5>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img th:src="@{~/img/carousel-book3.jpg}" class="d-block w-100" alt="books">
+					<div class="carousel-caption d-none d-md-block bg-secondary p-2 text-dark bg-opacity-25 text-white">
+						<h5>Connect with people</h5>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
 		</div>
 	</div>
+	<!--Carousel end-->
+	<hr>
+	<!-- START THE FEATURETTES -->
+	<div class="container marketing">
 
-	<hr class="featurette-divider">
-
-	<div class="row featurette">
-		<div class="col-md-7">
-			<h2 class="featurette-heading">Our users favorite book.</h2>
-			<p class="lead">The book <span th:text="${book.getTitle()}"></span> has been read <span text="37">37</span> times by our users.</p>
+		<div class="row featurette">
+			<div class="col-4">
+				<h2 class="featurette-heading mt-2 text-center">Explore</h2>
+			</div>
+			<div class="col-4">
+				<h2 class="featurette-heading mt-2 text-center text-muted">Read</h2>
+			</div>
+			<div class="col-4">
+				<h2 class="featurette-heading mt-2 text-center">Connect</h2>
+			</div>
 		</div>
-		<div class="col-md-5">
-			<img class="featurette-image img-fluid mx-auto" width="300" height="300" th:src="${book.getBookImg()}" alt="book cover">
-		</div>
-	</div>
-
-	<hr class="divider">
-</div>
-<!-- /END THE FEATURETTES -->
-
-
-<!--Start featured choice 2-->
-<div class="container">
-<div class="row">
-
-	<div class="col-md-3">
-		<img th:src="${book.getBookImg()}" class="img-fluid" alt="...">
-	</div>
-	<div class="col ">
-		<div class="featured-card">
-			<div class="card-body">
+		<!-- Featured Book: Connect to Reviews and Reads-->
+		<hr class="featurette-divider">
+		<div class="row featurette">
+			<div class="col-md-3 text-center">
+				<img class="featurette-image img-fluid mx-auto feature-image" th:src="${reviewbook.getBookImg()}" alt="book cover">
+			</div>
+			<div class="col-md-6">
+				<h3 class="featurette-heading header-center mt-1">Our Favorite Books!</h3>
+				<h4 class="mt-3">Our users favorite book.</h4>
+				<p class="lead">The book <span th:text="${reviewbook.getTitle()}"></span> has been read <span text="37">37</span> times by our users.</p>
 				<h4>Our users favorite book.</h4>
-				<h5 class="card-title mt-3" th:text="${book.getTitle()}">Card title</h5>
-				<p class="card-text">The book <span th:text="${book.getTitle()}"></span> has been read <span text="37">37</span> times by our users.</p>
-<!--				<a href="#" class="btn btn-primary">Go somewhere</a>-->
+				<p class="lead">The book <span th:text="${readbook.getTitle()}"></span> has been read <span text="37">37</span> times by our users.</p>
+			</div>
+			<div class="col-md-3 text-center">
+				<img class="featurette-image img-fluid mx-auto feature-image" th:src="${readbook.getBookImg()}" alt="book cover">
+			</div>
+		</div>
+		<hr class="featurette-divider">
+		<!-- Featured Users: Connect to Trades and Reads -->
+		<div class="row featurette mb-4">
+			<div class="col-md-7">
+				<h3 class="featurette-heading header-center mt-1">Our Top Users!</h3>
+				<div class="row">
+					<div class="col-6">
+						<h4 class="header-center mt-4">Our Top Librarian</h4>
+						<h5 class="header-center mt-2"><span class="text-primary" th:text="${usertrader.getUsername()}"></span> from <span class="text-muted" th:text="${usertrader.getLocation()}"></span></h5>
+						<p class="lead text-center mt-2"><span th:text="${usertrader.getUsername()}"></span> has been trading!</p>
+						<p class="lead text-center"><span th:text="${totaltrades}"></span> trades with other users so far and counting! There are <span th:text="${totalreads}"></span> more books owned in their library!</p>
+					</div>
+					<div class="col-6">
+						<h4 class="header-center mt-4">Our Top Bookworm</h4>
+						<h5 class="header-center mt-2"><span class="text-primary" th:text="${userreader.getUsername()}"></span> from <span class="text-muted" th:text="${usertrader.getLocation()}"></span></h5>
+						<p class="lead text-center mt-2"><span th:text="${userreader.getUsername()}"></span> has been reading!</p>
+						<p class="lead text-center">So far <span th:text="${totalreads}"></span> of our books have been read and <span th:text="${totalreads}"></span> reviews written by them!</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5 text-center">
+				<img class="featurette-image img-fluid mx-auto feature-image" th:src="@{~/img/book-reader.jpg}" alt="book cover">
 			</div>
 		</div>
 	</div>
-
-	<div class="col">
-		<img class="img-fluid" th:src="@{~/img/book-reader.jpg}" alt="">
-	</div>
-	<div class="col">
-		<div class="featured-card">
-			<div class="card-body">
-				<h4>Featured User</h4>
-				<h5 class="card-title mt-3" th:text="${user.getUsername()}">Card title</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-<!--				<a href="#" class="btn btn-primary">Go somewhere</a>-->
-			</div>
-		</div>
-	</div>
-
+<!-- /END THE FEATURETTES -->
 </div>
-</div>
-<!--End featured choice 2-->
+<!--Close Main Container -->
 
 
-</div>
 
 <footer th:replace="partials :: footer"></footer>
 <body th:include="partials :: scripts-bottom" />
