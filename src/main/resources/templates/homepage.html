@@ -104,7 +104,7 @@
 				<h3 class="featurette-heading header-center mt-1">Our Favorite Books!</h3>
 					<h4 class="mt-3">Our highest rated book.</h4>
 					<p class="lead">The book <span th:text="${reviewbook.getTitle()}"></span> by <span th:text="${reviewbook.getAuthor().getFullname()}"></span>
-						has been reviewed <span th:text="37"></span> times by our users with an average rating of <span th:text="4.7"></span> out of 5. For our newest reviews <a th:href="@{/reviews/}">click here!</a></p>
+						has been reviewed <span th:text="37"></span> times by our users with an average rating of <span th:text="4.7"></span> out of 5. For our newest reviews <a th:href="@{/reviews}">click here!</a></p>
 					<h4 class="header-right">Our favorite book to read again and again!</h4>
 					<p class="lead text-center">The book <span th:text="${readbook.getTitle()}"></span> by <span th:text="${readbook.getAuthor().getFullname()}"></span>
 						has been read <span th:text="53"></span> times by our users and is owned by more than
