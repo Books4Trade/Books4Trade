@@ -1,5 +1,6 @@
 package com.example.books4trade.repositories;
 
+import com.example.books4trade.models.Book;
 import com.example.books4trade.models.Role;
 import com.example.books4trade.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findById(long id);
     User findByUsername(String username);
     User findByEmail(String email);
+
+    @Query("from User u where u.username like %:term%")
+    List<User> searchByUsernameLike(@Param("term") String term);
 }
