@@ -141,7 +141,7 @@ public class BookController {
     @PostMapping("/books/read/{id}")
     public String readThisBook(@PathVariable long id, Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = usersDao.findByUsername(currentUser.getUsername());
+        User user = usersDao.findById(currentUser.getId());
         System.out.println("Reading Book from User:"+user.getUsername());
         Book book = booksDao.findById(id);
         System.out.println("Book That was Read:"+book.getTitle());
