@@ -3,25 +3,17 @@
 <head th:include="partials :: head">
     <meta charset="UTF-8">
     <title>Initiate Trade</title>
-    <!--    <head th:include="partials :: head"/>-->
     <style>
         .book-cover {
             width: 15rem !important;
             height: 17rem !important;
         }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link th:href="@{/css/styles.css}" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/836472cbff.js" crossorigin="anonymous"></script>
-    <script th:src="@{/js/keys2.js}"></script>
 </head>
 <body>
-<!--<nav th:replace="partials :: navbar"></nav>-->
 <header class="p-4">
     <h2 class="text-center">Let's Make a Trade</h2>
 </header>
-
 <main class="container">
     <div class="text-center">
         <img th:src="${ownedbook.getBook().getBookImg()}" class="rounded book-cover" alt="...">
@@ -29,10 +21,16 @@
     </div>
     <form th:action="@{/books/trade/initiate}" th:method="post">
         <div class="mb-3 row">
-            <label for="yourbookid" class="col-sm-2 col-form-label">Enter Book Id:</label>
+            <label for="yourbookid" class="col-sm-2 col-form-label">Your Book To Trade:</label>
+                    <select id="yourbookid" name="yourbookid" class="form-select" th:type="number">
+                        <label>Select Book To Trade</label>
+                        <option th:each="ownedBook : ${mytradables}"
+                                th:value="${ownedBook.getBook().getId()}"
+                                th:text="${ownedBook.getBook().getTitle()}">
+                        </option>
+                    </select>
             <div class="col-sm-10">
                 <input type="hidden" name="theirbookid" id="theirbookid" th:value="${ownedbook.getId()}">
-                <input type="text" class="form-control" name="yourbookid" id="yourbookid" placeholder="ID of book you're sending to your Trade Buddy">
             </div>
         </div>
         <div class="mb-3 row">
@@ -43,25 +41,9 @@
             </div>
         </div>
         <input type="submit" th:value="Submit">
-
-<!--    <form action="" th:method="POST">-->
-<!--        <select class="form-select" th:field="*{percentage}">-->
-<!--            <option selected disabled>Select Book To Trade</option>-->
-<!--            <option th:each="ownedBook : ${}" th:value="${ownedBook.getId()}" th:text="${ownedBook}">-->
-<!--            </option>-->
-<!--        </select>-->
+        <!--NEED TO ADD A CANCEL BUTTON-->
     </form>
 </main>
-
-<!--<script th:include="partials :: scripts-bottom"/>-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<!--    <script th:src="@{/js/books_api.js}"></script>-->
-<!--    <script th:src="@{/js/books_api_refactor.js}"></script>-->
-<script th:src="@{/js/scripts.js}"></script>
-
+<script th:include="partials :: scripts-bottom"/>
 </body>
 </html>
