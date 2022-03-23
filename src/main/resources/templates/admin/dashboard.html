@@ -13,6 +13,7 @@
 
 <h4 class="header-center">Admin Dashboard</h4>
 <br>
+<!--
 <div class="container">
     <div class="row">
         <div class="col">
@@ -53,6 +54,47 @@
         </div>
     </div>
 </div>
+-->
+
+<!-- Tab-Pill Controller -->
+<div class="content">
+    <ul class="nav nav-pills m-2 d-flex justify-content-evenly" id="pills-tab" role="tablist">
+        <li class="nav-item m-2 p-3" role="presentation">
+            <button class="nav-link" id="pills-users-tab" data-bs-toggle="pill" data-bs-target="#pills-users" type="button" role="tab" aria-controls="pills-users" aria-selected="false">
+                Users</button>
+        </li>
+        <li class="nav-item m-2 p-3" role="presentation">
+            <button class="nav-link active" id="pills-admins-tab" data-bs-toggle="pill" data-bs-target="#pills-admins" type="button" role="tab" aria-controls="pills-admins" aria-selected="true">
+                Admins</button>
+        </li>
+        <li class="nav-item m-2 p-3" role="presentation">
+            <button class="nav-link" id="pills-edit-tab" data-bs-toggle="pill" data-bs-target="#pills-edit" type="button" role="tab" aria-controls="pills-edits" aria-selected="false">
+                Editing</button>
+        </li>
+    </ul>
+<!-- Tab Content Container Below -->
+    <br>
+    <div class="tab-content" id="pills-tabContent">
+        <!-- 1st TabPanel pills-users -->
+        <div class="tab-pane fade show active" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                <p>User Search-Info</p>
+            </div>
+            <br>
+        </div>
+        <!-- 2nd TabPanel pills-admins-->
+        <div class="tab-pane fade" id="pills-admins" role="tabpanel" aria-labelledby="pills-admins-tab">
+            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                <p>Show Admins</p>
+            </div>
+        </div>
+        <!-- 3rd TabPanel pills-edits -->
+        <div class="tab-pane fade" id="pills-edit" role="tabpanel" aria-labelledby="pills-edit-tab">
+            <p>Move-Edits Here</p>
+        </div>
+    </div>
+</div>
+
 <br>
 
 

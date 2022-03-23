@@ -167,6 +167,13 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/users")
+    public String showUsersIndex(Model model){
+        model.addAttribute("searched", false);
+        model.addAttribute("allusers", usersDao.findAll());
+        return "users/index";
+    }
+
     @GetMapping("/users/{id}")
     public String showUser(@PathVariable long id, Model model){
         model.addAttribute("usershown", usersDao.getById(id));

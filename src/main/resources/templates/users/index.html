@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+
+
+<br>
+<h2 class="header-center" th:if="${!searched}">Here are all of our Users!</h2>
+<h2 class="header-center" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h2>
+<h3 th:if="${!searched}" class="header-center text-muted">Not finding something? Try the searchbar!</h3>
+<br>
+
+
+<div class="d-flex flex-row flex-wrap justify-content-evenly">
+    <div class="book-card" th:each="user : ${allUsers}">
+        <h3 class="book-headers title-bg" th:text="${user.getUsername()}"/>
+
+        <div class="text-center">
+            <a th:href="|/users/${user.getId()}|">View This User</a>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
+
+</body>
+</html>
