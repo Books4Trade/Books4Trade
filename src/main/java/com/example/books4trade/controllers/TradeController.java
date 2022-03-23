@@ -53,10 +53,11 @@ public class TradeController {
             Model model)
     {
         //  grabbing all tradables and will use condition on front end
-        List<Book> ownedBooks = ownedBooksDao.findAllTradable();
         //  need user for conditional
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findById(currentUser.getId());
+        List<OwnedBook> ownedBooks = ownedBooksDao.findUserTradableBooks(user);
+
         //  need to work on getting logged in user info
         model.addAttribute("ownedbook", ownedBooksDao.findById(ownedBookId));
         model.addAttribute("tradebuddy", usersDao.findById(owner_id));
