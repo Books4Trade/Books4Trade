@@ -103,18 +103,17 @@
     /*height: 50%;*/
 }
 
-.carousel-container {
-    margin: 0 !important;
-    padding: 0!important;
-    box-sizing: border-box;
-}
-
 @media screen and (max-width: 768px) {
     .carousel {
         display: none;
     }
 }
 
+/*Featured Book and User CSS start*/
+.featured-card {
+   width: 18rem;
+}
+/*Featured Book and User CSS start*/
 /*-------------------------------------------------- *!*/
 .container-hero {
     /*background-color: #f9f7f4;*/
