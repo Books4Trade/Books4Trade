@@ -96,15 +96,19 @@ public class UserController {
 
     // REFACTOR THIS TO INCLUDE INFORMATION OTHER USERS CANNOT ACCESS
     @PostMapping("/forgot")
-    public String forgotPasswordSubmit(@RequestParam(name="email") String email, @RequestParam(name="password") String password, @RequestParam(name="username") String username, @RequestParam(name="password-confirm") String passwordConfirm){
-        User user = usersDao.findByEmail(email);
-        if (username.equals(user.getUsername()) && email.equals(user.getEmail())) {
-            String hash = passwordEncoder.encode(password);
+    public String forgotPasswordSubmit(
+            @RequestParam(name="firstname") String firstname, @RequestParam(name="lastname") String lastname,
+            @RequestParam(name="username") String username, @RequestParam(name="email") String email){
+        User user = usersDao.findByUsername(username);
+        if ((email.equals(user.getEmail())) && (lastname.equals(user.getLastName())) && (firstname.equals(user.getFirstName()))) {
+            // Now get the new random password, email it, hash it, and reset the password, then save the user
 
-            if(password.equals(passwordConfirm)){
-                user.setPassword(hash);
-                usersDao.save(user);
-            }
+//            String hash = passwordEncoder.encode(password);
+//
+//            if(password.equals(passwordConfirm)){
+//                user.setPassword(hash);
+//                usersDao.save(user);
+//            }
         }
         return "redirect:/login";
     }
