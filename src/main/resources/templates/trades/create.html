@@ -25,7 +25,7 @@
                     <select id="yourbookid" name="yourbookid" class="form-select" th:type="number">
                         <label>Select Book To Trade</label>
                         <option th:each="ownedBook : ${mytradables}"
-                                th:value="${ownedBook.getBook().getId()}"
+                                th:value="${ownedBook.getId()}"
                                 th:text="${ownedBook.getBook().getTitle()}">
                         </option>
                     </select>
