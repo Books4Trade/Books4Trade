@@ -16,8 +16,7 @@
 				<img th:src="${book.getBookImg()}" alt="">
 			</div>
 
-
-			<form  th:action="|/books/${book.getId()}/createreview|" th:method="POST">
+			<form  th:action="|/books/${book.getId()}/submitreview|" th:method="POST">
 				<div class="container mt-5 mb-5">
 					<div class="mb-3 form-label bold-text">
 						<label for="title">Title</label>
@@ -25,13 +24,15 @@
 					</div>
 
 					<div class="mb-3form-label bold-text">
-						<label for="body" class="">Review</label>
+						<label for="body" >Review</label>
 						<textarea class="form-control" id="body" rows="3" name="body" placeholder="Your Detailed Review Goes Here" minlength="3"></textarea>
 					</div>
 
 					<div class="mb-3 form-label bold-text">
-						<label for="rating" class="">Rate Book (1-5)</label>
+						<label for="rating" >Rate Book (1-5)</label>
 						<input type="number" class="form-control" id="rating" name="rating" min="1" max="5">
+
+			
 					</div>
 
 					<button type="submit" class="btn btn-primary">Submit</button>
