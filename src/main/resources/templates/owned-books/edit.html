@@ -7,40 +7,60 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
+<div class="back-img">
+	<div class="container shadow p-3 mb-5 mt-5 bg-body rounded h-50 w-50">
+		<div class="row">
+			<div class="col">
+				<h2 class="text-center">Edit Your Copy of <span th:text="${ownedbook.getBook().getTitle()}"></span></h2>
+				<div class="text-center mt-2">
+<!--					<img th:src="${book.getBookImg()}" alt="">-->
+				</div>
 
-<h1 class="text-center">Edit Your Copy of <span th:text="${ownedbook.getBook().getTitle()}"></span></h1>
 
-<form th:action="|/copies/${ownedbook.getId()}/edit|" th:method="POST" style="margin: auto; height: 300px;width: 750px;">
-	<div class="text-center">
-		<label for="bookcondition" class="xx-large text-center">Choose book condition:</label><br>
-		<select name="bookcondition" id="bookcondition">
-			<option name="bookcondition" value="poor">Poor</option>
-			<option name="bookcondition" value="fair">Fair</option>
-			<option name="bookcondition" value="better">Better</option>
-			<option name="bookcondition" value="new">New</option>
-		</select>
-	</div>
+				<form th:action="|/copies/${ownedbook.getId()}/edit|" th:method="POST">
+					<div class="mt-5 mb-5">
+						<div class="text-center">
+							<label for="bookcondition" class="xx-large text-center">Choose book condition:</label><br>
+							<select name="bookcondition" id="bookcondition">
+								<option name="bookcondition" value="poor">Poor</option>
+								<option name="bookcondition" value="fair">Fair</option>
+								<option name="bookcondition" value="better">Better</option>
+								<option name="bookcondition" value="new">New</option>
+							</select>
+						</div>
 
-	<div class="text-center">
-		<label for="istradeable" class="xx-large text-center">Is the book tradeable?</label><br>
-		<select name="istradeable" id="istradeable">
-			<option name="istradeable" value="true">Yes</option>
-			<option name="istradeable" value="false">No</option>
-		</select>
-	</div>
+					<br>
 
-	<div class="text-center">
-		<label for="booktype" class="xx-large text-center">Choose book type:</label><br>
-		<select name="booktype" id="booktype">
-			<option name="booktype" value="1">Paperback</option>
-			<option name="booktype" value="2">Hardback</option>
-			<option name="booktype" value="3">e-Book</option>
-		</select>
+					<div class="text-center">
+						<label for="istradeable">Is the book tradeable?</label><br>
+						<select name="istradeable" id="istradeable">
+							<option name="istradeable" value="true">Yes</option>
+							<option name="istradeable" value="false">No</option>
+						</select>
+					</div>
+
+					<div class="text-center">
+						<label for="booktype">Choose book type:</label><br>
+						<select name="booktype" id="booktype">
+							<option name="booktype" value="1">Paperback</option>
+							<option name="booktype" value="2">Hardback</option>
+							<option name="booktype" value="3">e-Book</option>
+						</select>
+					</div>
+
+
+					<div class="mt-5 mb-5 text-center">
+						<button type="submit" class="button-style">Submit Changes</button>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-	<div class="text-center">
-		<button type="submit" class="button-style">Submit Changes</button>
-	</div>
-</form>
+</div>
+
+
+
 
 
 <footer th:replace="partials :: footer"/>
