@@ -39,20 +39,22 @@ public class BookReviewController {
 //  /BOOKS/{ID} referencing the work to be reviewed
     @GetMapping("/books/{id}/addreview")
     public String showCreateReviewForm(@PathVariable long id, Model model) {
-        model.addAttribute("book", booksDao.getById(id));
+        model.addAttribute("book", booksDao.findById(id));
         return "reviews/create";
     }
-    @PostMapping("/books/{id}/addreview")
-    public String submitCreateReview(@PathVariable long id,
-                               @RequestParam(name="title") String title,
-                               @RequestParam(name="body") String body,
-                               @RequestParam(name="rating") long rating){
+    @PostMapping("/books/{id}/submitreview")
+    public String submitCreateReview(@PathVariable(name="id") long id,
+                                     @RequestParam(name="title") String title,
+                                     @RequestParam(name="body") String body,
+                                     @RequestParam(name="rating") long rating){
+        System.out.println("Posting to /submitreview with bookreview data; Title: "+ title + ", Body: " + body);
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      //  User user = usersDao.getById(currentUser.getId());  LEAVE FOR THE SAKE OF LEARNING getBy vs findBy
+        //  User user = usersDao.getById(currentUser.getId());  LEAVE FOR THE SAKE OF LEARNING getBy vs findBy default methods vs defined methods
         User user = usersDao.findByUsername(currentUser.getUsername());
         LocalDate today = LocalDate.now();
-        BookReview newReview = new BookReview(title, body, rating, today.toString(), user, booksDao.getById(id));
-
+        System.out.println("User Attempting to Add Review, User ID:" + user.getId()+ ", Book ID: "+id);
+        BookReview newReview = new BookReview(title, body, rating, today.toString(), user, booksDao.findById(id));
+        System.out.println("New Review Model Attempting Save:" + newReview.getTitle() +" from user:"+ newReview.getUser().getId());
         BookReview createdReview = bookReviewsDao.save(newReview);
         return "redirect:/reviews/" + createdReview.getId();
     }

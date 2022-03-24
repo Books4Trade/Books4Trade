@@ -67,14 +67,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         //  Profile, Edit Profile, Reset Password
                         "/profile", "/profile/edit", "/profile/passwordreset",
                         // Book Creation, Reading
-                        "/books/create", "/books/read/{id}",
+                        "/books/create", "/books/{id}/read",
 
                         // Add, Edit, Delete an Owned Book - Users Only
                         "/copies/all", "/books/{id}/copies", "/books/{id}/addcopy",
                         "/copies/{copyid}","/copies/{copyid}/edit", "/copies/{id}/delete",
 
                         // Add, Edit, Delete a Review - Users Only
-                        "/books/{id}/addreview","/reviews/{id}/edit", "/reviews/{id}/delete",
+                        "/books/{id}/addreview", "/books/{id}/submitreview","/reviews/{id}/edit", "/reviews/{id}/delete",
                         // View User Index, Search Users
                         "/users","/users/{id}", "/users/search"
                 ).hasAuthority("USER")
