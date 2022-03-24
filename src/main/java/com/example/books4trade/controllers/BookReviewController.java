@@ -38,12 +38,15 @@ public class BookReviewController {
 //  BookReviews must be based on a book in the DB, Hence the creation of a review uses
 //  /BOOKS/{ID} referencing the work to be reviewed
     @GetMapping("/books/{id}/addreview")
-    public String showReviewForm(@PathVariable long id, Model model) {
+    public String showCreateReviewForm(@PathVariable long id, Model model) {
         model.addAttribute("book", booksDao.getById(id));
         return "reviews/create";
     }
-    @PostMapping("/books/{id}/createreview")
-    public String createReview(@PathVariable long id, @RequestParam(name="title") String title, @RequestParam(name="body") String body, @RequestParam(name="rating") long rating){
+    @PostMapping("/books/{id}/addreview")
+    public String submitCreateReview(@PathVariable long id,
+                               @RequestParam(name="title") String title,
+                               @RequestParam(name="body") String body,
+                               @RequestParam(name="rating") long rating){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       //  User user = usersDao.getById(currentUser.getId());  LEAVE FOR THE SAKE OF LEARNING getBy vs findBy
         User user = usersDao.findByUsername(currentUser.getUsername());
@@ -64,9 +67,7 @@ public class BookReviewController {
         List<Like> likes = likesDao.findLikesByReviews(review);
         //  pulling logged in user for conditional
         boolean isOwner = false;
-        if(review.getUser().getId() == user.getId()){
-            isOwner = true;
-        }
+        if(review.getUser().getId() == user.getId()){isOwner = true;}
         model.addAttribute("isOwner", isOwner);
         model.addAttribute("review", review);
         model.addAttribute("likes", likes);
