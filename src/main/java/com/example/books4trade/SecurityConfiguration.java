@@ -74,7 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/copies/{copyid}","/copies/{copyid}/edit", "/copies/{id}/delete",
 
                         // Add, Edit, Delete a Review - Users Only
-                        "/books/{id}/addreview","/reviews/{id}/edit", "/reviews/{id}/delete",
+                        "/books/{id}/addreview", "/books/{id}/submitreview","/reviews/{id}/edit", "/reviews/{id}/delete",
                         // View User Index, Search Users
                         "/users","/users/{id}", "/users/search"
                 ).hasAuthority("USER")
