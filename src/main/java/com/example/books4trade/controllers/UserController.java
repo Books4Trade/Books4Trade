@@ -1,7 +1,9 @@
 package com.example.books4trade.controllers;
 
 import com.example.books4trade.models.Role;
+import com.example.books4trade.models.Trade;
 import com.example.books4trade.models.User;
+import com.example.books4trade.repositories.TradeRepository;
 import com.example.books4trade.services.SendGridMail;
 import com.example.books4trade.services.Utils;
 import com.example.books4trade.repositories.OwnedBookRepository;
@@ -27,14 +29,17 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
    // private EmailService emailService;
     private SendGridMail sendGridMail;
+    private TradeRepository tradesDao;
 
-    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao, SendGridMail sendGridMail) {
+    public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao,
+                          SendGridMail sendGridMail, TradeRepository tradesDao) {
         this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
     //    this.emailService = emailService;
         this.sendGridMail = sendGridMail;
+        this.tradesDao = tradesDao;
     }
 
     @GetMapping("/register")
@@ -69,6 +74,9 @@ public class UserController {
     public String showProfile(Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(currentUser.getUsername());
+        List<Trade> userTrades = tradesDao.findTradeByUser(user);
+
+        model.addAttribute("trades", userTrades);
         model.addAttribute("user", user);
         model.addAttribute("usersBooks", user.getOwnedBooks());
         model.addAttribute("usersReviews", user.getReviews());
