@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8" />`
+	<meta charset="UTF-8" />
 	<title>Edit a Review</title>
 	<head th:include="partials :: head" />
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
 <form th:action="|/reviews/${bookReview.getId()}/edit|" th:method="POST" th:object="${bookReview}">
-
-	<div class="container mt-5 mb-5">
-		<h2 class="mb-3">Edit review</h2>
-
-		<div class="mb-3">
-			<label for="title" class="form-label">Title</label>
-			<input th:field="*{title}" type="text" class="form-control" id="title" name="title" th:value="${bookReview.getTitle()}" minlength="3" maxlength="255">
-		</div>
-
-		<div class="mb-3">
-			<label for="body" class="form-label">Write a review</label>
-			<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body" th:value="${bookReview.getBody()}" minlength="3"></textarea>
-		</div>
-
-		<div class="mb-3">
-			<label for="rating" class="form-label">Rate book (1-5)</label>
-			<input th:field="*{rating}" type="number" class="form-control" id="rating" name="rating" th:value="${bookReview.getRating()}" min="1" max="5">
-		</div>
-
-		<button type="submit" class="btn btn-primary">Submit</button>
-	</div>
-</form>
+	<section class="edit-review">
+		<form th:action="|/reviews/${bookReview.getId()}/edit|" th:method="POST" th:object="${bookReview}">
+			<div class="container mt-5 mb-5 w-50 edit-review-container shadow p-3 mb-5 bg-body rounded">
+				<h2 class="mb-3">Editing review></span> </h2>
+				<div class="mb-3">
+					<label for="title" class="form-label">Edit title</label>
+					<input th:field="*{title}" type="text" class="form-control" id="title" name="title"
+					       th:value="${bookReview.getTitle()}" minlength="3" maxlength="255">
+				</div>
+				<div class="mb-3">
+					<label for="body" class="form-label">Edit review</label>
+					<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body"
+					          th:value="${bookReview.getBody()}" minlength="3"></textarea>
+				</div>
+				<div class="mb-3">
+					<label for="rating" class="form-label">Rate book (1-5)</label>
+					<input th:field="*{rating}" type="number" class="form-control w-25" id="rating" name="rating"
+					       th:value="${bookReview.getRating()}" min="1" max="5">
+				</div>
+				<button type="submit" class="btn btn-dark">Submit</button>
+			</div>
+		</form>
+	</section>
 
 <footer th:include="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" />
