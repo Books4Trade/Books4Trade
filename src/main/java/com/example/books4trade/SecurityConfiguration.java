@@ -54,8 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/reviews", "/reviews/search", "/reviews/{id}", "/reviews/book/{id}",
                         // Owned Books Mappings - Views - Public
                         "/books/{id}/copies", "/books/{id}/copies/{id}",
-                        // Users and Trades - Views - Public
-                        "/users","/users/{id}","/trades"
+                        // Trades - Views - Public
+                        "/trades"
                         )
                 .permitAll()
                 .and().authorizeRequests()
@@ -73,8 +73,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/books/{id}/addcopy", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit",
                         "/books/{id}/copies/{copyid}/delete",
                         // Add, Edit, Delete a Review - Users Only
-                        "/books/{id}/createreview","/books/{id}/addreview","/reviews/{id}/edit", "/reviews/{id}/delete"
-
+                        "/books/{id}/createreview","/books/{id}/addreview","/reviews/{id}/edit", "/reviews/{id}/delete",
+                        // View User Index, Search Users
+                        "/users","/users/{id}", "/users/search"
                 ).hasAuthority("USER")
                 // Any Unspecified Mapping is available to ADMIN
                 .and().authorizeRequests().anyRequest().hasAuthority("ADMIN");

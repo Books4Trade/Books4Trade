@@ -178,8 +178,8 @@ public class UserController {
 
     @PostMapping("/users/search")
     public String searchBooks(@RequestParam(name = "query") String query, Model model){
-        model.addAttribute("allBooks", usersDao.searchByUsernameLike(query));
-        model.addAttribute("searchedBy", "Title: " + query);
+        model.addAttribute("allusers", usersDao.searchByUsernameLike(query));
+        model.addAttribute("searchedby", query);
         model.addAttribute("searchedquery", query);
         model.addAttribute("searched", true);
         return "users/index";
