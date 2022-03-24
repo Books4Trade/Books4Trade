@@ -5,6 +5,7 @@
     --home-bg-color: antiquewhite;
 }
 
+
 .main-bg{
     background: rgb(242,238,203);
     /*background: var(--main-bg-color)*/
@@ -15,6 +16,9 @@
     margin: 0;
     width: 100%;
     text-align: center;
+}
+.header-right{
+    text-align: right;
 }
 /*Used in show and profile html */
 .content{
@@ -102,6 +106,9 @@
     width: 100%;
     /*height: 50%;*/
 }
+.feature-image{
+    height: 296px;
+}
 
 @media screen and (max-width: 768px) {
     .carousel {
@@ -144,7 +151,7 @@
 ------------------------- */
 
 .featurette-divider {
-    margin: 4rem 0; /* Space out the Bootstrap <hr> more */
+    margin: 2.25em 0; /* Space out the Bootstrap <hr> more */
     }
 
 /* Thin out the marketing headings */
