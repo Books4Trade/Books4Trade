@@ -10,6 +10,8 @@ import java.util.List;
 public interface TradeRepository extends JpaRepository<Trade, Long> {
     List<Trade> findAll();
 
-    @Query("from Trade t where t.item1.user = ?1")
+    //  add an or statement or t.item2.user = ?1
+    @Query("from Trade t where t.item1.user = ?1 or t.item2.user = ?1")
     List<Trade> findTradeByUser(User user);
+
 }
