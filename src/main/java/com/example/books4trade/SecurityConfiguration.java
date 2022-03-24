@@ -67,7 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         //  Profile, Edit Profile, Reset Password
                         "/profile", "/profile/edit", "/profile/passwordreset",
                         // Book Creation, Reading
-                        "/books/create", "/books/read/{id}",
+                        "/books/create", "/books/{id}/read",
 
                         // Add, Edit, Delete an Owned Book - Users Only
                         "/copies/all", "/books/{id}/copies", "/books/{id}/addcopy",

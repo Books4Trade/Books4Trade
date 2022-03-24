@@ -26,9 +26,11 @@
         <p>See Reviews / See Owned Copies For Trade/ See Users that have read this Book</p>
     <div>
         <div class="text-center">
-            <form  th:method="POST" th:object="${book}">
-                <input type="hidden" th:field="*{id}" th:value="${book.getId()}">
-                <button class="btn btn-secondary m-2" th:formaction="|/books/read/${book.getId()}|" type="submit" >Mark as Read</button>
+
+
+            <form th:action="@{/books/{id}/read (id=${book.getId()})}" th:method="POST" class="text-center">
+                <input type="hidden" th:value="${book.getId()}" id="read" name="read">
+                <button type="submit" class="btn btn-secondary m-2">Mark as Read</button>
             </form>
             <form th:method="GET">
                 <!-- <button th:formaction="">Add to Watchlist</button><br> -->

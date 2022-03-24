@@ -138,12 +138,12 @@ public class BookController {
         return "books/show";
     }
 
-    @PostMapping("/books/read/{id}")
-    public String readThisBook(@PathVariable long id, @ModelAttribute Book book){
+    @PostMapping("/books/{id}/read")
+    public String readThisBook(@PathVariable long id, @RequestParam(name="read") String readId){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findById(currentUser.getId());
         System.out.println("Adding Book-Read by User:"+user.getUsername());
-        Book bookread = booksDao.findById(book.getId());
+        Book bookread = booksDao.findById(id);
         System.out.println("Book That was Read:"+bookread.getTitle());
         List<User> usersRead = bookread.getReaders();
         usersRead.add(user);
