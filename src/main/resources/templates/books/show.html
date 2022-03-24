@@ -18,16 +18,13 @@
             <img th:src="${book.getBookImg()}">
         </div>
         <h3 class="header-center">By: <span th:text="${book.getAuthor().getFullname()}"></span></h3>
-        <p class="text-center" th:text="${book.summary}">Summary</p>
-        <!--    <h3>Avg Rating <span th:text="${book.getRating}"></span></h3>-->
-        <p>Read by X Users, owned by X users, Reviewed by X Users</p>
+        <p class="text-center" th:text="${book.getSummary()}">Summary</p>
+        <p class="text-center">Average Rating <span th:text="${book.getRating()}"></span></p>
+<!--        <p>Read by X Users, owned by X users, Reviewed by X Users</p>-->
     </div>
 
-        <p>See Reviews / See Owned Copies For Trade/ See Users that have read this Book</p>
     <div>
         <div class="text-center">
-
-
             <form th:action="@{/books/{id}/read (id=${book.getId()})}" th:method="POST" class="text-center">
                 <input type="hidden" th:value="${book.getId()}" id="read" name="read">
                 <button type="submit" class="btn btn-secondary m-2">Mark as Read</button>

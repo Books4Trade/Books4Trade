@@ -6,6 +6,7 @@ import com.example.books4trade.repositories.BookRepository;
 import com.example.books4trade.repositories.BookReviewRepository;
 import com.example.books4trade.repositories.LikeRepository;
 import com.example.books4trade.repositories.UserRepository;
+import com.example.books4trade.services.Utils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,9 +54,19 @@ public class BookReviewController {
         User user = usersDao.findByUsername(currentUser.getUsername());
         LocalDate today = LocalDate.now();
         System.out.println("User Attempting to Add Review, User ID:" + user.getId()+ ", Book ID: "+id);
-        BookReview newReview = new BookReview(title, body, rating, today.toString(), user, booksDao.findById(id));
+        Book book = booksDao.findById(id);
+        BookReview newReview = new BookReview(title, body, rating, today.toString(), user, book);
         System.out.println("New Review Model Attempting Save:" + newReview.getTitle() +" from user:"+ newReview.getUser().getId());
         BookReview createdReview = bookReviewsDao.save(newReview);
+        // Take the Rating and Recalculate the Book Rating
+        List<BookReview> thisBooksReviews = bookReviewsDao.findByBook(book);
+        List<Long> allRatings = Utils.reviewRatings(thisBooksReviews);
+        allRatings.add(rating);
+        long sum = Utils.reviewSum(allRatings);
+        double bookRating = (double) (sum / allRatings.size());
+        double roundedRating = (double) (Math.round(bookRating*10)/10);
+        book.setRating(roundedRating);
+        Book savedBook = booksDao.save(book);
         return "redirect:/reviews/" + createdReview.getId();
     }
 
