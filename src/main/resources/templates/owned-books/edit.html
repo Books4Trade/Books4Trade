@@ -10,7 +10,7 @@
 
 <h1 class="text-center">Edit Your Copy of <span th:text="${ownedbook.getBook().getTitle()}"></span></h1>
 
-<form th:action="|/books/${ownedbook.getBook().getId()}/copies/${ownedbook.getId()}/edit|" th:method="POST" style="margin: auto; height: 300px;width: 750px;">
+<form th:action="|/copies/${ownedbook.getId()}/edit|" th:method="POST" style="margin: auto; height: 300px;width: 750px;">
 	<div class="text-center">
 		<label for="bookcondition" class="xx-large text-center">Choose book condition:</label><br>
 		<select name="bookcondition" id="bookcondition">

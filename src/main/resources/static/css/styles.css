@@ -20,6 +20,10 @@
 .header-right{
     text-align: right;
 }
+.navbar-brand{
+    font-size: 1.35rem !important;
+}
+
 /*Used in show and profile html */
 .content{
     max-width: 92%;

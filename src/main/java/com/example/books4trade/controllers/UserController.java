@@ -1,5 +1,7 @@
 package com.example.books4trade.controllers;
 
+import com.example.books4trade.models.Author;
+import com.example.books4trade.models.Book;
 import com.example.books4trade.models.Role;
 import com.example.books4trade.models.User;
 import com.example.books4trade.services.SendGridMail;
@@ -165,6 +167,22 @@ public class UserController {
 
         }
         return "redirect:/login";
+    }
+
+    @GetMapping("/users")
+    public String showUsersIndex(Model model){
+        model.addAttribute("searched", false);
+        model.addAttribute("allusers", usersDao.findAll());
+        return "users/index";
+    }
+
+    @PostMapping("/users/search")
+    public String searchBooks(@RequestParam(name = "query") String query, Model model){
+        model.addAttribute("allusers", usersDao.searchByUsernameLike(query));
+        model.addAttribute("searchedby", query);
+        model.addAttribute("searchedquery", query);
+        model.addAttribute("searched", true);
+        return "users/index";
     }
 
     @GetMapping("/users/{id}")

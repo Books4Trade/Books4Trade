@@ -8,27 +8,28 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<h1 class="header-center title-bg">Showing copy of <span th:text="${book.getTitle()}"></span></h1>
+<h1 class="header-center title-bg">Showing copy of <span th:text="${ownedBook.getBook.getTitle()}"></span></h1>
 
 <div class="d-flex flex-row flex-wrap justify-content-evenly">
 	<div class="book card" style="width: 18rem;" >
-		<img th:src="${book.getBookImg()}" class="card-img-top" alt="book">
+		<img th:src="${ownedBook.getBook.getBookImg()}" class="card-img-top" alt="book">
 		<div class="card-body">
-			<p class="card-text">Condition: <span th:text="${showBook.getBookCondition()}"></span></p>
-			<p class="card-text">Type: <span th:text="${showBook.getType().getName()}"></span></p>
+			<p class="card-text">Condition: <span th:text="${ownedBook.getBookCondition()}"></span></p>
+			<p class="card-text">Type: <span th:text="${ownedBook.getType().getName()}"></span></p>
 			<p class="card-text">Available for Trade:
-				<span th:if="${showBook.isTradable()}" class="text-success">Yes</span>
-				<span th:if="${!showBook.isTradable()}" class="text-danger">No</span>
+				<span th:if="${ownedBook.isTradable()}" class="text-success">Yes</span>
+				<span th:if="${!ownedBook.isTradable()}" class="text-danger">No</span>
 			</p>
-			<p class="card-text">Owner: <span th:text="${showBook.getUser().getUsername()}"></span></p>
+			<p class="card-text">Owner: <span th:text="${ownedBook.getUser().getUsername()}"></span></p>
     			<!-- NEED REFACTOR BELOW TO COMPARE AUTH PRINCIPAL ID TO OWNER ID-->
 			<div th:if="${isOwner}">
 				<form th:method="get" >
-					<button type="submit" th:formaction="|/books/${book.getId()}/copies/${showBook.getId()}/edit|">Edit</button>
+					<button type="submit" th:formaction="|/copies/${ownedBook.getId()}/edit|">Edit</button>
 				</form>
 
-				<form th:method="delete">
-					<button type="submit"  th:formaction="|/books/${book.getId()}/copies/${showBook.getId()}/delete|">Delete</button>
+				<form th:action="|/copies/${ownedBook.getId()}/delete|" th:method="POST">
+<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
+					<button type="submit" >Delete</button>
 				</form>
 			</div>
 		</div>

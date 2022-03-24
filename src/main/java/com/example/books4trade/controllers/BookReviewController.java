@@ -79,7 +79,7 @@ public class BookReviewController {
 
     // Edit an Individual Book Review
     @GetMapping("reviews/{id}/edit")
-    public String editForm(@PathVariable long id, Model model) {
+    public String showReviewEditForm(@PathVariable long id, Model model) {
         // Add a Check and Redirect if not the owner of the review
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BookReview bookReview = bookReviewsDao.findById(id);
@@ -94,7 +94,7 @@ public class BookReviewController {
     }
 
     @PostMapping("/reviews/{id}/edit")
-        public String submitEdit(@PathVariable long id, @ModelAttribute BookReview editedReview){
+        public String submitReviewEditForm(@PathVariable long id, @ModelAttribute BookReview editedReview){
             User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User user = usersDao.findById(currentUser.getId());
             BookReview thisReview = bookReviewsDao.findById(id);
@@ -110,8 +110,9 @@ public class BookReviewController {
      @PostMapping("/reviews/{id}/delete")
      public String deleteReview(@PathVariable long id) {
          User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+         User user = usersDao.findById(currentUser.getId());
          BookReview reviewToDelete = bookReviewsDao.getById(id);
-         if(reviewToDelete.getUser().getId() == currentUser.getId()){
+         if(reviewToDelete.getUser().getId() == user.getId()){
              bookReviewsDao.deleteById(id);
          }
         return "redirect:/reviews";

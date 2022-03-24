@@ -57,7 +57,7 @@
                             <img th:src="${ownedBook.getBook().getBookImg()}">
                     </div>
                     <p class="text-center">
-                        <a th:href="|/books/${ownedBook.getBook.getId()}/copy/${ownedBook.getId()}|">View this Copy</a>
+                        <a th:href="|/copies/${ownedBook.getId()}|">View this Copy</a>
                     </p>
               </div>
             </div>
