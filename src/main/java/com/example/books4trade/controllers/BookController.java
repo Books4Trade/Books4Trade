@@ -151,6 +151,7 @@ public class BookController {
         Book saved = booksDao.save(bookread);
         System.out.println("Book added this User to the list of readers, BookID:"+saved.getId()+", User ID:"+ user.getId());
         return "redirect:/books/" + saved.getId();
+        // HERE LIES MY LOVE FOR SQL
     }
 
 
