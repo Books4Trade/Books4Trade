@@ -26,7 +26,7 @@
         <p>See Reviews / See Owned Copies For Trade/ See Users that have read this Book</p>
     <div>
         <div class="text-center">
-            <form  th:method="POST">
+            <form  th:method="POST" th:object>
                 <button class="btn btn-secondary m-2" th:formaction="|/books/read/${book.getId()}|" type="submit" >Mark as Read</button>
             </form>
             <form th:method="GET">

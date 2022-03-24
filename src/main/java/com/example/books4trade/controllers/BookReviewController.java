@@ -40,19 +40,16 @@ public class BookReviewController {
     @GetMapping("/books/{id}/addreview")
     public String showCreateReviewForm(@PathVariable long id, Model model) {
         model.addAttribute("book", booksDao.getById(id));
+        model.addAttribute("bookreview", new BookReview());
         return "reviews/create";
     }
     @PostMapping("/books/{id}/addreview")
-    public String submitCreateReview(@PathVariable long id,
-                               @RequestParam(name="title") String title,
-                               @RequestParam(name="body") String body,
-                               @RequestParam(name="rating") long rating){
+    public String submitCreateReview(@PathVariable long id, @ModelAttribute BookReview bookreview){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      //  User user = usersDao.getById(currentUser.getId());  LEAVE FOR THE SAKE OF LEARNING getBy vs findBy
+        //  User user = usersDao.getById(currentUser.getId());  LEAVE FOR THE SAKE OF LEARNING getBy vs findBy default methods vs defined methods
         User user = usersDao.findByUsername(currentUser.getUsername());
         LocalDate today = LocalDate.now();
-        BookReview newReview = new BookReview(title, body, rating, today.toString(), user, booksDao.getById(id));
-
+        BookReview newReview = new BookReview(bookreview.getTitle(), bookreview.getBody(), bookreview.getRating(), today.toString(), user, booksDao.getById(id));
         BookReview createdReview = bookReviewsDao.save(newReview);
         return "redirect:/reviews/" + createdReview.getId();
     }
