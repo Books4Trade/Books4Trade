@@ -91,7 +91,7 @@ public class TradeController {
         User user = usersDao.findById(currentUser.getId());
         OwnedBook userBook = ownedBooksDao.findById(yourbookid);
         System.out.println("Userbook from DAO: " + userBook.getId());
-        TradeItem trade1 = new TradeItem(userBook, user, createdTrade, false);
+        TradeItem trade1 = new TradeItem(userBook, user, createdTrade);
         TradeItem item1 = tradeItemsDao.save(trade1);
         createdTrade.setItem1(item1);
         System.out.println("Trade item1: " + item1 + "userbook: " + userBook.getId() + "trade item1 bookID: " + item1.getOwnedBook());
@@ -100,7 +100,7 @@ public class TradeController {
         //  BookBuddy trading with (assuming email and agreement was made prior to initiating trade)
         User bookBuddy = usersDao.findById(buddyid);
         OwnedBook buddyBook = ownedBooksDao.findById(theirbookid);
-        TradeItem trade2 = new TradeItem(buddyBook, bookBuddy, createdTrade, false);
+        TradeItem trade2 = new TradeItem(buddyBook, bookBuddy, createdTrade);
         TradeItem item2 = tradeItemsDao.save(trade2);
         createdTrade.setItem2(item2);
         System.out.println("Trade item2: " + trade2);
