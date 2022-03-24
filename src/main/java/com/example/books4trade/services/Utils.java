@@ -1,5 +1,7 @@
 package com.example.books4trade.services;
 
+import com.example.books4trade.models.BookReview;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,22 @@ public class Utils {
     public static int randomInt(int max){
         int randomNum = (int) (Math.random() * max);
         return randomNum;
+    }
+
+    public static List<Long> reviewRatings(List<BookReview> bookreviews){
+        List<Long> allratings = new ArrayList<>();
+        for(BookReview review : bookreviews ){
+            allratings.add(review.getRating());
+        }
+        return allratings;
+    }
+
+    public static long reviewSum(List<Long> ratings){
+        long sum = 0;
+        for(long rating : ratings){
+            sum += rating;
+        }
+        return sum;
     }
 
 }
