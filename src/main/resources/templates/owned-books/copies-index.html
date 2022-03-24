@@ -8,7 +8,8 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<h1>Here are all copies of <span th:text="${book.getTitle()}"></span> our users own.</h1>
+<h1 th:if="${!individual}"> Here are all of the copies of all books our users have.</h1>
+<h1 th:if="${individual}">Here are all copies of <span th:text="${book.getTitle()}"></span> our users own.</h1>
 
 <div class="d-flex flex-row flex-wrap justify-content-evenly">
     <div class="book-card" th:each="ownedbook : ${allBooks}">
@@ -19,7 +20,7 @@
             <span th:if="${!ownedbook.isTradable()}" class="red">No</span>
         </div>
         <div class="card-body">
-            <a th:href="|/books/${book.getId()}/copies/${ownedbook.getId()}|">View This Copy</a>
+            <a th:href="|/copies/${ownedbook.getId()}|">View This Copy</a>
         </div>
     </div>
 

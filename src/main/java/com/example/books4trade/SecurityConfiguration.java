@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         // Reviews Mappings - Views- Public
                         "/reviews", "/reviews/search", "/reviews/{id}", "/reviews/book/{id}",
                         // Owned Books Mappings - Views - Public
-                        "/books/{id}/copies", "/books/{id}/copies/{id}",
+
                         // Trades - Views - Public
                         "/trades"
                         )
@@ -70,8 +70,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/books/create", "/books/read/{id}",
 
                         // Add, Edit, Delete an Owned Book - Users Only
-                        "/books/{id}/addcopy", "/books/{id}/copies/{copyid}/delete", "/books/{id}/copies/{copyid}/edit",
-                        "/books/{id}/copies/{copyid}/delete",
+                        "/copies/all", "/books/{id}/copies", "/books/{id}/addcopy",
+                        "/copies/{copyid}","/copies/{copyid}/edit", "/copies/{id}/delete",
+
                         // Add, Edit, Delete a Review - Users Only
                         "/books/{id}/createreview","/books/{id}/addreview","/reviews/{id}/edit", "/reviews/{id}/delete",
                         // View User Index, Search Users
