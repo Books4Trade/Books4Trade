@@ -12,14 +12,28 @@
 <br>
 <div>
 	<h5 class="header-center" th:text="${review.getTitle()}"></h5>
-	<p class="text-center" th:text="${review.getBody()}"></p>
-	<p class="text-center">Rating: <span th:text="${review.getRating()}"></span> of 5</p>
-	<p class="text-center">Posted on: <span th:text="${review.getCreatedDate()}"></span></p>
+		<p class="text-center" th:text="${review.getBody()}"></p>
+		<p class="text-center">Rating: <span th:text="${review.getRating()}"></span> of 5</p>
+		<p class="text-center">Posted on: <span th:text="${review.getCreatedDate()}"></span></p>
 	<div class="text-center">
 		<img th:src="${review.getBook().getBookImg()}">
 	</div>
+	<div sec:authorize="isAuthenticated()">
+		<div th:if="${isOwner}">
+			<form th:method="GET" >
+				<button type="submit" th:formaction="|/reviews/${review.getId()}/edit|">Edit</button>
+			</form>
+
+			<form th:action="|/reviews/${review.getId()}/delete|" th:method="POST">
+				<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
+				<button type="submit" >Delete</button>
+			</form>
+		</div>
+	</div>
+
 			<!--like and dislike work but need to add conditionals-->
 			<!--liking a review-->
+	<div class="text-center">
 			<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post">
 				<input type="submit" th:value="Like">
 			</form>

@@ -58,11 +58,16 @@ public class BookReviewController {
     @GetMapping("/reviews/{id}")
     public String showIndividualReview(@PathVariable long id, Model model) {
         BookReview review = bookReviewsDao.getById(id);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findById(currentUser.getId());
         //  need to get likes for conditional
         List<Like> likes = likesDao.findLikesByReviews(review);
         //  pulling logged in user for conditional
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = usersDao.findById(currentUser.getId());
+        boolean isOwner = false;
+        if(review.getUser().getId() == user.getId()){
+            isOwner = true;
+        }
+        model.addAttribute("isOwner", isOwner);
         model.addAttribute("review", review);
         model.addAttribute("likes", likes);
         model.addAttribute("currentUser", user);
