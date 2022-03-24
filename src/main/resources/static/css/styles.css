@@ -189,4 +189,12 @@
         }
     }
 
+/*background Image for Create form */
+.back-img{
+    background-image: url("../img/carousel-book1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 

@@ -5,31 +5,42 @@
 	<title>All reviews</title>
 	<head th:include="partials :: head" />
 </head>
-<body>
+<body class="bg-primary back-img">
 <nav th:replace="partials :: navbar" />
-<h2 class="header-center">Creating a New Review of <span th:text="${book.getTitle()}"></span></h2>
+<div class="container shadow p-3 mb-5 mt-3 bg-body rounded h-25 w-25 p-3">
+	<div class="row">
+		<div class="col">
+			<h2 class="header-center">Create a Review of <span th:text="${book.getTitle()}"></span></h2>
+			<div class="text-center mt-2">
+				<img th:src="${book.getBookImg()}" alt="">
+			</div>
 
-<form th:action="|/books/${book.getId()}/createreview|" th:method="POST">
-	<div class="container mt-5 mb-5">
-		<div class="mb-3">
-			<label for="title" class="form-label">Title</label>
-			<input type="text" class="form-control" id="title" name="title" placeholder="Your Review Title" minlength="3" maxlength="255">
+
+			<form class= th:action="|/books/${book.getId()}/createreview|" th:method="POST">
+				<div class="container mt-5 mb-5">
+					<div class="mb-3">
+						<label for="title" class="form-label bold-text">Title</label>
+						<input type="text" class="form-control" id="title" name="title" placeholder="Your Review Title" minlength="3" maxlength="255">
+					</div>
+
+					<div class="mb-3">
+						<label for="body" class="form-label bold-text">Review</label>
+						<textarea class="form-control" id="body" rows="3" name="body" placeholder="Your Detailed Review Goes Here" minlength="3"></textarea>
+					</div>
+
+					<div class="mb-3">
+						<label for="rating" class="form-label bold-text">Rate Book (1-5)</label>
+						<input type="number" class="form-control" id="rating" name="rating" min="1" max="5">
+					</div>
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
 		</div>
-
-		<div class="mb-3">
-			<label for="body" class="form-label">Review</label>
-			<textarea class="form-control" id="body" rows="3" name="body" placeholder="Your Detailed Review Goes Here" minlength="3"></textarea>
-		</div>
-
-		<div class="mb-3">
-			<label for="rating" class="form-label">Rate Book (1-5)</label>
-			<input type="number" class="form-control" id="rating" name="rating" min="1" max="5">
-		</div>
-
-		<button type="submit" class="btn btn-primary">Submit</button>
 	</div>
-</form>
 
+
+</div>
 <footer th:replace="partials :: footer"/>
 
 <body th:include="partials :: scripts-bottom" />
