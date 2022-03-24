@@ -19,12 +19,11 @@
 		<img th:src="${review.getBook().getBookImg()}">
 	</div>
 	<div sec:authorize="isAuthenticated()">
-		<div th:if="${isOwner}">
-			<form th:method="GET" >
+		<div th:if="${isOwner}" class="row justify-content-center mt-2 mb-2">
+			<form th:method="GET" class="col-1 text-center">
 				<button type="submit" th:formaction="|/reviews/${review.getId()}/edit|">Edit</button>
 			</form>
-
-			<form th:action="|/reviews/${review.getId()}/delete|" th:method="POST">
+			<form th:action="|/reviews/${review.getId()}/delete|" th:method="POST" class="col-1 text-center">
 				<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
 				<button type="submit" >Delete</button>
 			</form>
@@ -33,12 +32,12 @@
 
 			<!--like and dislike work but need to add conditionals-->
 			<!--liking a review-->
-	<div class="text-center">
-			<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post">
+	<div class="row mt-2 mb-2 justify-content-center">
+			<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post" class="col-1 text-center">
 				<input type="submit" th:value="Like">
 			</form>
 			<!--disliking a review-->
-			<form th:action="@{/reviews/{id}/dislike (id=${review.getId()})}" th:method="post">
+			<form th:action="@{/reviews/{id}/dislike (id=${review.getId()})}" th:method="post" class="col-1 text-center">
 				<input type="submit" th:value="Dislike">
 			</form>
 	</div>
