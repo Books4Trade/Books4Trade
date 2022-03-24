@@ -17,7 +17,7 @@
 			</div>
 
 
-			<form class= th:action="|/books/${book.getId()}/createreview|" th:method="POST">
+			<form class="" th:method="POST">
 				<div class="container mt-5 mb-5">
 					<div class="form-label bold-text mb-3">
 						<label for="title" class="">Title</label><br>
@@ -34,7 +34,7 @@
 						<input type="number"  id="rating" name="rating" min="1" max="5">
 					</div>
 
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button th:formaction="|/books/${book.getId()}/createreview|" type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</form>
 		</div>
