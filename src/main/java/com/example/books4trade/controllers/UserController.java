@@ -1,16 +1,9 @@
 package com.example.books4trade.controllers;
 
-import com.example.books4trade.models.Author;
-import com.example.books4trade.models.Book;
-import com.example.books4trade.models.Role;
-import com.example.books4trade.models.Trade;
-import com.example.books4trade.models.User;
-import com.example.books4trade.repositories.TradeRepository;
+import com.example.books4trade.models.*;
+import com.example.books4trade.repositories.*;
 import com.example.books4trade.services.SendGridMail;
 import com.example.books4trade.services.Utils;
-import com.example.books4trade.repositories.OwnedBookRepository;
-import com.example.books4trade.repositories.RoleRepository;
-import com.example.books4trade.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -32,9 +25,10 @@ public class UserController {
    // private EmailService emailService;
     private SendGridMail sendGridMail;
     private TradeRepository tradesDao;
+    private TradeItemsRepository tradeItemsDao;
 
     public UserController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, OwnedBookRepository ownedBooksDao,
-                          SendGridMail sendGridMail, TradeRepository tradesDao) {
+                          SendGridMail sendGridMail, TradeRepository tradesDao, TradeItemsRepository tradeItemsDao) {
         this.usersDao = usersDao;
         this.rolesDao = rolesDao;
         this.ownedBooksDao = ownedBooksDao;
@@ -42,6 +36,7 @@ public class UserController {
     //    this.emailService = emailService;
         this.sendGridMail = sendGridMail;
         this.tradesDao = tradesDao;
+        this.tradeItemsDao = tradeItemsDao;
     }
 
     @GetMapping("/register")
@@ -76,9 +71,9 @@ public class UserController {
     public String showProfile(Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(currentUser.getUsername());
-        List<Trade> userTrades = tradesDao.findTradeByUser(user);
+        List<TradeItem> userTrades = tradeItemsDao.findTradeItemsByNotSentByUser(user);
 
-        model.addAttribute("trades", userTrades);
+        model.addAttribute("tradeItems", userTrades);
         model.addAttribute("user", user);
         model.addAttribute("usersBooks", user.getOwnedBooks());
         model.addAttribute("usersReviews", user.getReviews());

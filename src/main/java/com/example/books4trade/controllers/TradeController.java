@@ -110,4 +110,24 @@ public class TradeController {
 
         return "redirect:/profile";
     }
+
+    //  Mapping to setOwnedBook to logged in user and removing from TradeBuddy
+    @PostMapping("/trade/received")
+    public String tradeReceived(
+        @RequestParam(name = "mybookid") long mybookid,
+        @RequestParam(name = "item") long itemid)
+    {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findById(currentUser.getId());
+        OwnedBook myOwnedBook = ownedBooksDao.findById(mybookid);
+        TradeItem myItem = tradeItemsDao.findById(itemid);
+        TradeItem buddyItem = tradeItemsDao.findCorrespondingTradeItem(myItem.getTrade(), myItem);
+
+        myItem.setConfirm_sent(true);
+        myOwnedBook.setUser(buddyItem.getUser());
+        tradeItemsDao.save(myItem);
+        ownedBooksDao.save(myOwnedBook);
+
+        return "redirect:/profile";
+    }
 }
