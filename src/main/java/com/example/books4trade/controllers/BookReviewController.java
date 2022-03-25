@@ -55,18 +55,26 @@ public class BookReviewController {
         LocalDate today = LocalDate.now();
         System.out.println("User Attempting to Add Review, User ID:" + user.getId()+ ", Book ID: "+id);
         Book book = booksDao.findById(id);
-        BookReview newReview = new BookReview(title, body, rating, today.toString(), user, book);
-        System.out.println("New Review Model Attempting Save:" + newReview.getTitle() +" from user:"+ newReview.getUser().getId());
-        BookReview createdReview = bookReviewsDao.save(newReview);
+         BookReview createdReview = bookReviewsDao.save(new BookReview(title, body, rating, today.toString(), user, book));
+        System.out.println("New Review Saved:" + createdReview.getTitle() +" from user:"+ createdReview.getUser().getId());
+
         // Take the Rating and Recalculate the Book Rating
         List<BookReview> thisBooksReviews = bookReviewsDao.findByBook(book);
+        System.out.println("Starting Review Rating assignment to Book ID: "+book.getId());
+        System.out.println("This book returns Review QTY:" + thisBooksReviews.size());
         List<Long> allRatings = Utils.reviewRatings(thisBooksReviews);
         allRatings.add(rating);
+        System.out.println("This Rating was: "+rating);
         long sum = Utils.reviewSum(allRatings);
-        double bookRating = (double) (sum / allRatings.size());
-        double roundedRating = (double) (Math.round(bookRating*10)/10);
+        System.out.println("Sum of all review ratings:"+sum);
+        System.out.println("Size:" + allRatings.size());
+        double bookRating = (double) ( ((double) sum) / ((double) allRatings.size()));
+        System.out.println("The new book rating is: "+ bookRating);
+        double roundedRating =  (Math.round(bookRating*100))/ ((double) 100);
+        System.out.println("The rating has been rounded to: "+ roundedRating);
         book.setRating(roundedRating);
         Book savedBook = booksDao.save(book);
+        System.out.println("The book has been saved with the rating, bookid: "+savedBook.getId()+", rating: "+savedBook.getRating());
         return "redirect:/reviews/" + createdReview.getId();
     }
 
