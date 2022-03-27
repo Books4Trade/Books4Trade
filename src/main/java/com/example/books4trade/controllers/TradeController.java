@@ -114,15 +114,12 @@ public class TradeController {
     //  Mapping to setOwnedBook to logged in user and removing from TradeBuddy
     @PostMapping("/trade/received")
     public String tradeReceived(
-        @RequestParam(name = "mybookid") long mybookid,
-        @RequestParam(name = "item") long itemid,
-        @RequestParam(name = "buddyId") User buddyId)
+        @RequestParam(name = "mybookid") long mybookid,     //  mybookid represents my book I'm trying
+        @RequestParam(name = "item") long itemid,           //  item is the tradeitem currently completing
+        @RequestParam(name = "buddyId") User buddyId)       //  buddyid is id of tradebuddy
     {
-        //  mybookid == trade_items.sent_book_id
-        System.out.println("My book_id: " + mybookid);
-        //  itemid == trade_item_id
-        System.out.println("My tradeItem Id: " + itemid);
 
+        //  getting logged in user
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findById(currentUser.getId());
 
@@ -131,11 +128,9 @@ public class TradeController {
         TradeItem myItem = tradeItemsDao.findById(itemid);
         myItem.setConfirm_sent(true);
         tradeItemsDao.save(myItem);
-        System.out.println(myItem.isConfirm_sent());
 
         //  setting OwnedBook user to Tradebuddy
         OwnedBook mySentBook = ownedBooksDao.findById(mybookid);
-        System.out.println("Book I'm sending to my TradeBuddy: " + mySentBook.getBook().getTitle());
         mySentBook.setUser(buddyId);
         ownedBooksDao.save(mySentBook);
 
