@@ -8,21 +8,42 @@
 <body>
 
 <nav th:replace="partials :: navbar" />
-<h1 class="mb-3 header-center title-bg">List of all reviews</h1>
+<section class="book-index-container mt-1 py-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6">
+				<h1 class="mb-3 header-center title-bg">List of all reviews</h1>
 
-<div class="d-flex flex-row flex-wrap justify-content-evenly">
-	<div class="book-card" th:each="review : ${allReviews}">
-		<h3 class="book-headers title-bg" th:text="${review.getTitle()}"/>
-		<h5 class="book-headers"> By User: <span th:text="${review.getUser().getUsername()}"></span></h5>
-		<p class="text-center"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p>
-		<p class="text-center"> Written On: <span th:text="${review.getCreatedDate()}"></span></p>
-		<p class="text-center">
-			Book Reviewed: <span th:text="${review.getBook().getTitle()}"></span>, by:<span th:text="${review.getBook().getAuthor().getFullname()}"></span>
-		</p>
-		<p class="text-center"> <img th:src="${review.getBook.getBookImg()}"></p>
-		<a class="text-center" th:href="|/reviews/${review.getId()}|">See this Review</a>
-	</div>
-</div>
+				<!--Review Card-->
+				<div class="d-flex flex-wrap justify-content-evenly py-2">
+					<div class="book-card shadow-sm p-3 mb-5 bg-body rounded" th:each="review : ${allReviews}">
+						<div>
+							<h5 class="book-headers">
+								<span th:text="${review.getBook().getTitle()}"></span><br>
+							</h5>
+									<p>By: <span th:text="${review.getBook().getAuthor().getFullname()}"></span></p>
+
+							<img class="img-fluid mb-1" th:src="${review.getBook.getBookImg()}">
+							<p class="card-title"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5   </p>
+
+						</div>
+
+							<h4 class="title-bg mb-0" th:text="${review.getTitle()}"/>
+							<h5 class=""> By User: <span th:text="${review.getUser().getUsername()}"></span></h5>
+							<p class="">Written On: <span th:text="${review.getCreatedDate()}"></span> </p>
+
+
+
+						<a class="" th:href="|/reviews/${review.getId()}|">See this Review</a>
+					</div>
+				</div>
+
+			</div>
+			</div>
+		</div>
+
+</section>
+
 
 <footer th:replace="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" />
