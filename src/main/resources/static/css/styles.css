@@ -1,3 +1,21 @@
+/*
+Color:
+
+#E63946
+#F1FAEE
+#A8DADC
+#457B9D
+#1D3557
+
+FONTS:
+
+Header
+-font-family: 'Sriracha', cursive;
+Book Title / Page Title / Labels of Inputs
+-font-family: 'Mate', serif;
+Paragraph
+-font-family: 'Inter', sans-serif;
+*/
 
 
 :root {
@@ -199,9 +217,103 @@
     background-size: cover;
 }
 
-/* BOOK INDEX CSS
--------------------------------------------------- */
-
-.book-index-container {
-    background-color: #f9f7f4;
+/*************** BOOKS-INDEX CSS START ********************/
+.img-size {
+    width: 186px;
+    height: 256px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid #1D3557;
+    text-align: center;
 }
+
+.card-text {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.title-bg{
+    /*padding: .2em;*/
+    /*background-color: lightgray;*/
+    /*width: 100%;*/
+    }
+
+.book-card{
+    width: 24%;
+    display: flex;
+    flex-direction: column;
+    }
+
+.book-index-headers{
+    color: #1D3557;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Mate', serif;
+    }
+
+.book-index-header-top {
+    font-family: 'Sriracha', serif;
+    background: #A8DADC;
+    color: #1D3557;
+    /*font-weight: bold;*/
+    /*margin: 0;*/
+    /*text-align: center;*/
+    width: 100%;
+    }
+    
+.card-link {
+    font-family: 'Inter', sans-serif;
+    }
+
+.read-more {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    opacity: 0;
+    transition: opacity .2s, visibility .2s;
+}
+
+.img-size:hover .read-more {
+    opacity: 1;
+}
+
+@media screen and (max-width: 471px ) {
+.test-media {
+    align-items: center;
+}
+    }
+
+/*-input and search field - header-search*/
+.select-field {
+height: 30px;
+}
+.input-field {
+ width: 250px;
+ border: none;
+ padding: 6px 13px;
+ border-radius: 6px;
+}
+.input-field::placeholder {
+   font-family: Inter, sans-serif;
+}
+.input-field-container {
+  border: 1px solid #DDD;
+}
+.search-field-container {
+}
+
+.select-field {
+    border-radius: 6px;
+}
+.form-container {
+    background: #1D3557;
+    font-family: Inter, sans-serif;
+}
+.header-search {
+    font-size: 48px;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+}
+/*************** BOOKS-INDEX CSS END ********************/
+
+/*************** BOOKS-SHOW CSS START *******************/
+/*************** BOOKS-SHOW CSS END ********************/
