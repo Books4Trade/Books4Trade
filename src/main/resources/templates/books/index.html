@@ -8,57 +8,51 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<section class="book-index-container mt-1 py-3">
-
-<!--BOOK INFORMATION CONTAINER-->
-<div class="container">
-	<!--TEXT HEADING-->
-	<h2 class="header-center" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h2>
-	<h4 th:if="${!searched}" class="header-center text-muted">Not finding something? Try the searchbar!</h4>
+<section class="search-area-container">
 	<!--SEARCH-BAR-->
-	<div class="container form-container shadow-sm p-3 mb-5 bg-body rounded w-50">
-		<form th:action="@{/books/search}" th:method="POST" class="">
-			<label for="param" class="fw-bold">Search By:</label>
-			<select name="param" id="param">
-				<option value="title" selected>Title</option>
-				<option value="author">Author</option>
-			</select><br>
-			<label for="query" class="fw-bold">Search For:</label>
-			<input id="query" name="query" type="text">
-			<button type="submit" class="btn btn-dark">Search</button>
-		</form>
-	</div>
-	<h1 class="header-center ml-2 fw-bold" th:if="${!searched}">Here are all of our Books!</h1>
-<!--BOOK CARD-->
-	<div class="d-flex flex-row flex-wrap justify-content-evenly py-2">
-		<div class="book-card shadow-sm p-3 mb-5 bg-body rounded" th:each="book : ${allBooks}">
-			<div class="">
-				<img class="img-fluid mb-1" th:src="${book.getBookImg()}">
+	<div class="d-flex flex-column form-container mt-3 p-2 py-5 text-center ">
+	<!--TEXT HEADING-->
+			<div class="header-search text-light">
+				<h2 th:if="${!searched}" >Not finding something? Try the searchbar!</h2>
 			</div>
-			<h4 class="book-headers title-bg mb-0" th:text="${book.title}"/>
-			<p class="card-title " th:text="'By' + ' ' + ${book.getAuthor().getFullname()}"></p>
-			<div class="mt-auto">
-				<a class="text-decoration-none " th:href="|/books/${book.getId()}|"><small>check out this book..</small></a>
+			<div class="d-inline">
+				<form th:action="@{/books/search}" th:method="POST" class="">
+					<!--<label for="param" class="fw-bold">Search By:</label>-->
+					<div class="search-field-container p-1">
+						<select name="param" id="param" class="select-field">
+							<option value="title" selected>Title</option>
+							<option value="author">Author</option>
+						</select>
+						<!--<label for="query" class="fw-bold">Search For:</label>-->
+						<input  id="query" name="query" type="text" placeholder="Search for Title or Author" class="input-field ">
+						<button type="submit" class="btn btn-warning">Search books</button>
+					</div>
+				</form>
+			</div>
+	</div>
+</section>
+
+<section class="book-cards-header">
+	<h1 class="book-index-header-top fw-bold text-center w-auto" th:if="${!searched}">Here are all of our Books!</h1>
+	<h1 class="" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h1>
+</section>
+
+<section class="book-cards">
+	<!--BOOK CARD-->
+	<div class="shadow-sm p-3 mb-5 bg-white rounded">
+		<div class="row test-media">
+			<div class="col-md book-individual-card mb-2" th:each="book : ${allBooks}" >
+				<div class="img-size d-flex align-items-end justify-content-center" th:style="'background-image:url(' +${book.getBookImg()}+')'">
+					<a class="read-more text-decoration-none fw-light btn btn-success mb-3" th:href="|/books/${book.getId()}|"><small>Read More</small></a>
+				</div>
+				<h6 class="book-index-headers title-bg mt-2 mb-auto" th:text="${book.title}"></h6>
+				<span class="span-by"><small>By: </small></span><p class="card-text text-success d-inline" th:text="${book.getAuthor().getFullname()}"></p>
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 
-<!--original book card code-->
-<!--		<div class="d-flex flex-row flex-wrap justify-content-evenly">-->
-<!--			<div class="book-card" th:each="book : ${allBooks}">-->
-<!--				<h3 class="book-headers title-bg" th:text="${book.title}"/>-->
-<!--				<h4 class="book-headers" th:text="${book.getAuthor().getFullname()}"></h4>-->
-<!--				<div class="text-center">-->
-<!--					<img th:src="${book.getBookImg()}">-->
-<!--				</div>-->
-<!--				&lt;!&ndash;<h5 class="card-rating" th:text="${book.getRating}"></h5> &ndash;&gt;-->
-<!--				<div class="text-center">-->
-<!--					<a th:href="|/books/${book.getId()}|">View This Book</a>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
-
+<section class="text-after-searching-for-books">
 <!--IF FUNCTION FOR NO RESULT-->
 	<div th:if="${searched}" class="d-flex flex-row justify-content-center">
 		<form th:action="@{/books/search/api}" th:method="GET">
@@ -74,7 +68,6 @@
 </section>
 
 <footer th:replace="partials :: footer"/>
-<body th:include="partials :: scripts-bottom" />
-
+<body th:include="partials :: scripts-bottom"/>
 </body>
 </html>
