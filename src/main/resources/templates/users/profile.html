@@ -105,13 +105,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="trade : ${trades}">
-                        <form action="">
-                            <th scope="row">1</th>
-                            <td>MyBook To Trade: <span th:text="${trade.getItem1().getOwnedBook().getBook().getTitle()}"></span> <br> TradeBuddy
-                                Book To
-                                Trade: <span th:text="${trade.getItem2().getOwnedBook().getBook().getTitle()}"></span> </td>
-                            <td><a href="#" class="btn btn-sm btn-primary">Received</a></td>
+                    <tr th:each="item : ${tradeItems}">
+                        <form th:action="@{/books/trade/received}" th:method="post">
+                            <th scope="row" th:text="${item.getTrade().getItem2().getUser().getUsername()}"></th>
+                            <td>MyBook To Trade: <span th:text="${item.getOwnedBook().getBook().getTitle()}"></span></td>
+                            <input type="hidden" name="mybookid" id="mybookid" th:value="${item.getOwnedBook().getId()}">
+                            <input type="hidden" name="item" id="item" th:value="${item.getId()}">
+                            <input type="hidden" name="buddyId" id="buddyId" th:value="${item.getTrade().getItem2().getUser().getId()}">
+                            <td><input type="submit" class="btn btn-sm btn-primary" value="Sent"></td>
                         </form>
                     </tr>
                 </tbody>
