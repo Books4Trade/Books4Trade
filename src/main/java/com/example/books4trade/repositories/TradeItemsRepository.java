@@ -16,8 +16,5 @@ public interface TradeItemsRepository extends JpaRepository <TradeItem, Long> {
     @Query("from TradeItem t where t.user = ?1 and t.confirm_sent = false")
     List<TradeItem> findTradeItemsByNotSentByUser(User user);
 
-    @Query("from TradeItem t where t.trade = ?1 and t.id <> ?2")
-    TradeItem findCorrespondingTradeItem(Trade trade, TradeItem tradeItem);
-
     TradeItem findById(long id);
 }
