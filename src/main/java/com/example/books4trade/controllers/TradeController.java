@@ -115,18 +115,29 @@ public class TradeController {
     @PostMapping("/trade/received")
     public String tradeReceived(
         @RequestParam(name = "mybookid") long mybookid,
-        @RequestParam(name = "item") long itemid)
+        @RequestParam(name = "item") long itemid,
+        @RequestParam(name = "buddyId") User buddyId)
     {
+        //  mybookid == trade_items.sent_book_id
+        System.out.println("My book_id: " + mybookid);
+        //  itemid == trade_item_id
+        System.out.println("My tradeItem Id: " + itemid);
+
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findById(currentUser.getId());
-        OwnedBook myOwnedBook = ownedBooksDao.findById(mybookid);
-        TradeItem myItem = tradeItemsDao.findById(itemid);
-        TradeItem buddyItem = tradeItemsDao.findCorrespondingTradeItem(myItem.getTrade(), myItem);
 
+
+        //  setting confirm_sent to true
+        TradeItem myItem = tradeItemsDao.findById(itemid);
         myItem.setConfirm_sent(true);
-        myOwnedBook.setUser(buddyItem.getUser());
         tradeItemsDao.save(myItem);
-        ownedBooksDao.save(myOwnedBook);
+        System.out.println(myItem.isConfirm_sent());
+
+        //  setting OwnedBook user to Tradebuddy
+        OwnedBook mySentBook = ownedBooksDao.findById(mybookid);
+        System.out.println("Book I'm sending to my TradeBuddy: " + mySentBook.getBook().getTitle());
+        mySentBook.setUser(buddyId);
+        ownedBooksDao.save(mySentBook);
 
         return "redirect:/profile";
     }
