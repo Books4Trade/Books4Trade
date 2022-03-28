@@ -72,12 +72,13 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(currentUser.getUsername());
         List<TradeItem> userTrades = tradeItemsDao.findTradeItemsByNotSentByUser(user);
-
+        List<Book> allUserReads = user.getBooksread();
+        List<Book> usersReads = Utils.removeDuplicates(allUserReads);
         model.addAttribute("tradeItems", userTrades);
         model.addAttribute("user", user);
         model.addAttribute("usersBooks", user.getOwnedBooks());
         model.addAttribute("usersReviews", user.getReviews());
-        model.addAttribute("usersReads", user.getBooksread());
+        model.addAttribute("usersReads", usersReads);
     //      Add Trades, Other Tab Info
     //      model.addAttribute("usersNotifications", currentUser.getNotifications());
         return "users/profile";
