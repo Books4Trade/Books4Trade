@@ -21,7 +21,9 @@
             <label for="password-confirm">Confirm New Password</label>
             <input class="form-control" id="password-confirm" name="password-confirm" type="password"/>
         </div>
-        <button class="btn btn-primary" type="submit">Activate My Account</button>
+        <small th:if="${activatefail}" class="text-danger">Your new passwords did not match.</small>
+
+        <button class="btn btn-primary mb-2" type="submit">Activate My Account</button>
     </form>
 </div>
 <br>

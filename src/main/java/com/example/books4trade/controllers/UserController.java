@@ -77,7 +77,7 @@ public class UserController {
 
         // add attribute to inform user of success and direct them to their email for temp pass
         model.addAttribute("registrationsuccess", true);
-        return "redirect:/login";
+        return "users/login";
     }
 
     @GetMapping("/profile")
@@ -175,6 +175,7 @@ public class UserController {
     public String activateUserSubmit(@RequestParam(name="password") String password,@RequestParam(name="password-confirm") String passwordconfirm, Model model){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(loggedInUser.getUsername());
+
         if(password.equals(passwordconfirm)){
             String hash = passwordEncoder.encode(password);
             List<Role> UserRoles = new ArrayList<>();
@@ -184,10 +185,12 @@ public class UserController {
             System.out.println("Save Attempt For User Activation");
             User saved = usersDao.save(user);
             System.out.println("Saved user with ID:" + saved.getId());
-           // User saved = usersDao.save(user);
 
+        }else{
+            model.addAttribute("activatefail", true);
+            return "users/activate";
         }
-        return "redirect:/login";
+        return "redirect:/session-invalidate";
     }
 
     @GetMapping("/users")

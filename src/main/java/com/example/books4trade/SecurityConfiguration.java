@@ -47,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // Static File Paths
                 .antMatchers( "/js/**","/img/**", "/css/**",
                         // Registration, Banned Pages - Public
-                        "/", "/banned", "/register", "/about",
+                        "/", "/banned", "/register", "/about", "/session-invalidate",
                         // Book Mappings, Inc Search - Public
                         "/books", "/books/{id}", "/books/search", "/books/search/api",
                         // Reviews Mappings - Views- Public
