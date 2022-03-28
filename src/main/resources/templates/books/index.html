@@ -45,6 +45,7 @@
 				<div class="img-size d-flex align-items-end justify-content-center" th:style="'background-image:url(' +${book.getBookImg()}+')'">
 					<a class="read-more text-decoration-none fw-light btn btn-success mb-3" th:href="|/books/${book.getId()}|"><small>Read More</small></a>
 				</div>
+				<p class="text-center">Average Rating <span th:text="${book.getRating()}"></span></p>
 				<h6 class="book-index-headers title-bg mt-2 mb-auto" th:text="${book.title}"></h6>
 				<span class="span-by"><small>By: </small></span><p class="card-text text-success d-inline" th:text="${book.getAuthor().getFullname()}"></p>
 			</div>
