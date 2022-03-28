@@ -11,40 +11,55 @@
 <nav th:replace="partials :: navbar" />
 
 
-<h1 class="header-center title-bg" th:text="${book.title}">Book Title</h1>
+<section class="books-show p-5 text-center text-md-start">
+	<div class="container header-button-image-main-container">
+		<div class="d-sm-flex justify-content-center">
+			<div class="image-header-button-sub-container">
+				<h1 class="book-title" th:text="${book.title}">Mockingjay</h1>
+				<div class="image-container-mobile-breakpoint d-sm-none d-block d-flex justify-content-center">
+					<img th:src="${book.getBookImg()}" alt="" class="img-fluid img-itself">
+				</div>
+				<p class="author">by <span class="text-success fw-bold" th:text="${book.getAuthor().getFullname()}">Suzanne Collins</span></p>
+				<hr>
+				<form th:action="@{/books/{id}/read (id=${book.getId()})}" th:method="POST" class="d-inline">
+					<input type="hidden" th:value="${book.getId()}" id="read" name="read">
+					<button type="submit" class="btn show-btn btn-light m-2"><i class="bi bi-check"></i>Mark as Read</button>
+				</form>
+				<form th:method="GET" class="d-inline">
+					<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/books/${book.getId()}/addcopy|"><i
+					  class="bi bi-plus"></i>Add A
+						Copy You Own</button>
+				</form>
+				<form th:method="GET" class="second-form-button-container">
+					<!-- <button th:formaction="">Add to Watchlist</button><br> -->
+					<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/books/trade/${book.getId()}|"><i
+					  class="bi bi-layers"></i> See Copies
+						Available</button>
+					<br>
+					<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/reviews/book/${book.getId()}|"><i
+					  class="bi bi-file-text"></i>See
+						Reviews</button>
+					<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/books/${book.getId()}/addreview|"><i
+					  class="bi bi-pencil-square"></i>Add
+						Your Review</button>
+				</form>
+			</div>
+			<div class="div-middle-spacer mx-5">
+			</div>
+			<div class="image-container">
+				<img th:src="${book.getBookImg()}" alt="" class="img-fluid show-img d-none d-sm-block">
+			</div>
+		</div>
+	</div>
+	<div class="container summary-container w-75 shadow-sm p-3 mb-5 rounded mt-3 p-2 bg-white ">
+		<h5 class="fw-bold">Summary</h5>
+		<p class="" th:text="${book.getSummary()}">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+			Expedita voluptatibus vel veniam dolorum qui delectus totam illum maxime at similique minus et natus cumque
+			architecto, blanditiis aspernatur, praesentium id eius?</p>
+	</div>
+</section>
 
-    <div>
-        <div class="text-center">
-            <img th:src="${book.getBookImg()}">
-        </div>
-        <h3 class="header-center">By: <span th:text="${book.getAuthor().getFullname()}"></span></h3>
-        <p class="text-center" th:text="${book.getSummary()}">Summary</p>
-        <p class="text-center">Average Rating <span th:text="${book.getRating()}"></span></p>
-<!--        <p>Read by X Users, owned by X users, Reviewed by X Users</p>-->
-    </div>
 
-    <div>
-        <div class="text-center">
-            <form th:action="@{/books/{id}/read (id=${book.getId()})}" th:method="POST" class="text-center">
-                <input type="hidden" th:value="${book.getId()}" id="read" name="read">
-                <button type="submit" class="btn btn-secondary m-2">Mark as Read</button>
-            </form>
-            <form th:method="GET">
-                <!-- <button th:formaction="">Add to Watchlist</button><br> -->
-                <button class="btn btn-secondary m-2" type="submit" th:formaction="|/books/trade/${book.getId()}|">See Copies Available</button>
-                <button class="btn btn-secondary m-2" type="submit" th:formaction="|/reviews/book/${book.getId()}|">See Reviews</button>
-            </form>
-        </div>
-
-        <form class="text-center" th:method="GET">
-            <!-- <button th:formaction="">Add to Watchlist</button><br> -->
-            <button class="btn btn-secondary m-2" type="submit" th:formaction="|/books/${book.getId()}/addcopy|">Add A Copy You Own</button>
-            <button class="btn btn-secondary m-2" type="submit" th:formaction="|/books/${book.getId()}/addreview|">Add Your Review</button>
-        </form>
-    </div>
-<br>
-
-    
 <footer th:replace="partials :: footer"/>
 <script th:include="partials :: scripts-bottom" />
 </body>

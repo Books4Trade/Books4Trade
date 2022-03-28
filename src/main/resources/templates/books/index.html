@@ -24,8 +24,8 @@
 							<option value="author">Author</option>
 						</select>
 						<!--<label for="query" class="fw-bold">Search For:</label>-->
-						<input  id="query" name="query" type="text" placeholder="Search for Title or Author" class="input-field ">
-						<button type="submit" class="btn btn-warning">Search books</button>
+						<input  id="query" name="query" type="text" placeholder="Search for Title or Author" class="input-field">
+						<button type="submit" class="btn btn-warning m-1">Search books</button>
 					</div>
 				</form>
 			</div>
@@ -41,7 +41,7 @@
 	<!--BOOK CARD-->
 	<div class="shadow-sm p-3 mb-5 bg-white rounded">
 		<div class="row test-media">
-			<div class="col-md book-individual-card mb-2" th:each="book : ${allBooks}" >
+			<div class="col-md book-individual-card mb-2 shadow-sm p-3 mb-3 bg-white rounded" th:each="book : ${allBooks}" >
 				<div class="img-size d-flex align-items-end justify-content-center" th:style="'background-image:url(' +${book.getBookImg()}+')'">
 					<a class="read-more text-decoration-none fw-light btn btn-success mb-3" th:href="|/books/${book.getId()}|"><small>Read More</small></a>
 				</div>
