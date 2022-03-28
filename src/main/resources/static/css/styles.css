@@ -338,7 +338,7 @@ height: 30px;
 /*-input and search field - header-search*/
 /*************** BOOKS-INDEX CSS END ********************/
 
-<<<<<<< HEAD
+
 /*************** BOOKS-SHOW CSS START *******************/
 /*************** BOOKS-SHOW CSS END ********************/
 
@@ -361,7 +361,7 @@ height: 30px;
     opacity: 0.6;
 }
 /*Create a Review End*/
-=======
+
 /********** BOOK-SHOW.HTML-START ************************/
 .books-show {
     background-color: var(--white);
@@ -417,4 +417,4 @@ height: 30px;
         }
     }
 /********** BOOK-SHOW.HTML-END ***********************/
->>>>>>> 17ef53d36ecde1c9d0c613a0ddd71245e6e934f9
+
