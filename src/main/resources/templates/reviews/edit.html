@@ -7,30 +7,34 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-<form th:action="|/reviews/${bookReview.getId()}/edit|" th:method="POST" th:object="${bookReview}">
-	<section class="edit-review">
+
+<div class="back-img">
+	<div class="container form-shadow form-color mb-5 bg-body rounded h-50 w-50">
 		<form th:action="|/reviews/${bookReview.getId()}/edit|" th:method="POST" th:object="${bookReview}">
-			<div class="container mt-5 mb-5 w-50 edit-review-container shadow p-3 mb-5 bg-body rounded">
-				<h2 class="mb-3">Editing review></span> </h2>
+				<h2 class="mb-3 text-center book-index-header-top">Editing review</span> </h2>
 				<div class="mb-3">
-					<label for="title" class="form-label">Edit title</label>
+					<label for="title" class="form-label book-index-headers">Edit title</label>
 					<input th:field="*{title}" type="text" class="form-control" id="title" name="title"
-					       th:value="${bookReview.getTitle()}" minlength="3" maxlength="255">
+						   th:value="${bookReview.getTitle()}" minlength="3" maxlength="255">
 				</div>
-				<div class="mb-3">
+
+				<div class="mb-3 book-index-headers">
 					<label for="body" class="form-label">Edit review</label>
 					<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body"
-					          th:value="${bookReview.getBody()}" minlength="3"></textarea>
+							  th:value="${bookReview.getBody()}" minlength="3"></textarea>
 				</div>
-				<div class="mb-3">
+				<div class="mb-3 book-index-headers">
 					<label for="rating" class="form-label">Rate book (1-5)</label>
-					<input th:field="*{rating}" type="number" class="form-control w-25" id="rating" name="rating"
-					       th:value="${bookReview.getRating()}" min="1" max="5">
+					<input th:field="*{rating}" type="number" class="form-control select-sizing" id="rating" name="rating"
+						   th:value="${bookReview.getRating()}" min="1" max="5">
 				</div>
-				<button type="submit" class="btn btn-dark">Submit</button>
-			</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
-	</section>
+		</section>
+	</div>
+
+</div>
+
 
 <footer th:replace="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" />

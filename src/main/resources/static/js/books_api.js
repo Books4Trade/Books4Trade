@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     const renderBooks = (data) => {
         let booksHTML = "";
-        booksHTML = '<div class="d-flex flex-row flex-wrap justify-content-evenly">';
+        booksHTML = '<div class="row test-media">';
         for (let i = 0; i < data.items.length; i++){
             let item = data.items[i],
                 title = item.volumeInfo.title,
@@ -63,15 +63,13 @@ $(document).ready(function() {
            //     }
 
             booksHTML +=
-                '<form class="book-card" action="/books/create" method="GET">'+
-                    '<h3 class="book-headers title-bg">' + title + '</h3>' +
-                    '<h4 class="book-headers">Author:' + author + '</h4>' +
-                    '<div class="text-center">'+
-                        '<img src="' + img + '" alt="book cover"/>' +
+                '<form class="col-md book-individual-card mb-2 shadow-sm p-3 mb-3 bg-white rounded" action="/books/create" method="GET">'+
+                    '<div class="img-size d-flex align-items-end justify-content-center" style="background-image: url('+img+')">'+
+                        '<a class="read-more text-decoration-none fw-light btn btn-success mb-3" target="_blank" href="' + preview + '" >Preview Book</a>'+
                     '</div>'+
-                    '<div class="text-center">' +
-                        '<a href="' + preview + '" target="_blank" >Preview Book</a>' +
-                    '</div>' +
+                    '<h6 class="book-index-headers title-bg mt-2 mb-auto">' + title+' </h6>'+
+                    '<span class="span-by"><small>By:</small></span>'+
+                    '<p class="card-text text-success d-inline">' + author + '</p>'+
                     '<input type="hidden" name="title" id="title" value="'+ title +'">'+
                     '<input type="hidden" name="author" id="author" value="'+ author +'">'+
                     '<input type="hidden" name="imagesrc" id="imagesrc" value="'+ img+'">'+
