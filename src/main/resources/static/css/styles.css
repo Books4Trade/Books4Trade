@@ -417,7 +417,6 @@ height: 30px;
         width: 100%;
         }
     }
-
 /********** BOOK-SHOW.HTML-END ***********************/
 
 /*Create Book Start*/
@@ -437,4 +436,46 @@ font-family: 'Inter', sans-serif;
 .form-shadow{
     box-shadow: 20px 20px 20px rgb(0 0 0);
 }
+
+/********** REVIEWS-INDEX.HTML-START *****************/
+.title-user-createDAte-container {
+    overflow-wrap: break-word;
+}
+
+.review-card-main {
+    width: 239px;
+    margin-right: 1px;
+}
+
+.review-index-container {
+    background-color: var(--white);
+}
+
+.review-img {
+    width: 95px;
+}
+
+
+@media screen and (max-width: 576px) {
+    .title-user-createDAte-container, .title-author-img-container {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .review-cards-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+    }
+
+@media screen and (min-width: 768px) {
+    .review-cards-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        }
+    }
+/********** REVIEWS-INDEX.HTML-END *******************/
 
