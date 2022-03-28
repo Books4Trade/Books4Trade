@@ -20,7 +20,6 @@ public class AdminController {
     private BookReviewRepository reviewsDao;
     private OwnedBookRepository ownedBooksDao;
     private PasswordEncoder passwordEncoder;
-  //  private EmailService emailService;
     private SendGridMail sendGridMail;
 
     public AdminController(UserRepository usersDao, RoleRepository rolesDao, PasswordEncoder passwordEncoder, BookRepository booksDao, BookReviewRepository reviewsDao, OwnedBookRepository ownedBooksDao, SendGridMail sendGridMail) {
@@ -30,7 +29,6 @@ public class AdminController {
         this.reviewsDao = reviewsDao;
         this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
-      //  this.emailService = emailService;
         this.sendGridMail = sendGridMail;
     }
 
