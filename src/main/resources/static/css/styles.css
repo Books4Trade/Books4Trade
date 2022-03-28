@@ -42,7 +42,7 @@ Paragraph
 .header-center {
     /*margin: 0;*/
     width: 100%;
-    /*text-align: center;*/
+    text-align: center;
 }
 .header-right{
     text-align: right;
@@ -285,9 +285,12 @@ Paragraph
     opacity: 1;
 }
 
-@media screen and (max-width: 471px ) {
+@media screen and (max-width: 768px ) {
 .test-media {
-    align-items: center;
+    text-align: center;
+}
+.img-size {
+    margin: 0 auto;
 }
     }
 
@@ -322,7 +325,76 @@ height: 30px;
     font-family: Inter, sans-serif;
     font-weight: bold;
 }
+
+@media screen and (max-width: 493px) {
+    .select-field {
+       display: block;
+       margin: 0 auto;
+        margin-bottom: 6px;
+    }
+    
+    .input-field {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 5px;
+        
+    }
+}
+/*-input and search field - header-search*/
 /*************** BOOKS-INDEX CSS END ********************/
 
-/*************** BOOKS-SHOW CSS START *******************/
-/*************** BOOKS-SHOW CSS END ********************/
+/********** BOOK-SHOW.HTML-START ************************/
+.books-show {
+    background-color: var(--white);
+    /*height: 100vh;*/
+    }
+
+.btn > i {
+    margin-right: 5px;
+    font-weight: bold;
+    }
+
+.show-btn:hover {
+    background-color: #e63946;
+    color: white;
+    }
+
+/* .show-img:hover {
+  margin: -2px;
+}
+
+.show-img:hover {
+  border: 2px solid red;
+  overflow: hidden;
+} */
+
+.img-itself:hover {
+    margin: -2px;
+    }
+.img-itself:hover {
+    border: 2px solid red;
+    overflow: hidden;
+    }
+
+.book-title {
+    font-family: var(--title-font);
+    font-weight: bold;
+    color: var(--dark-blue);
+    font-size: 2rem;
+    }
+
+.summary-container {
+    border: 1px solid black;
+    font-family: var(--main-font);
+    overflow: hidden;
+    }
+
+@media screen and (min-width: 559px) {
+    .image-container {
+        width: 220px;
+        }
+    .image-container img {
+        width: 100%;
+        }
+    }
+/********** BOOK-SHOW.HTML-END ***********************/
