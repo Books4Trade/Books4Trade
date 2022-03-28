@@ -320,6 +320,9 @@ height: 30px;
     font-family: Inter, sans-serif;
     font-weight: bold;
 }
+.center-form >  {
+    margin: 0 auto;
+}
 
 @media screen and (max-width: 493px) {
     .select-field {
@@ -375,18 +378,13 @@ height: 30px;
     }
 
 .show-btn:hover {
-    background-color: #e63946;
+    background-color: var(--dark-blue);
     color: white;
     }
-
-/* .show-img:hover {
-  margin: -2px;
+    
+.show-btn {
+    width: 240px;
 }
-
-.show-img:hover {
-  border: 2px solid red;
-  overflow: hidden;
-} */
 
 .img-itself:hover {
     margin: -2px;

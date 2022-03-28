@@ -31,11 +31,6 @@
 						Copy You Own</button>
 				</form>
 				<form th:method="GET" class="second-form-button-container">
-					<!-- <button th:formaction="">Add to Watchlist</button><br> -->
-					<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/books/trade/${book.getId()}|"><i
-					  class="bi bi-layers"></i> See Copies
-						Available</button>
-					<br>
 					<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/reviews/book/${book.getId()}|"><i
 					  class="bi bi-file-text"></i>See
 						Reviews</button>
@@ -43,6 +38,14 @@
 					  class="bi bi-pencil-square"></i>Add
 						Your Review</button>
 				</form>
+				<div class="div center-form">
+					<form th:method="GET" class="d-inline center-form">
+						<!-- <button th:formaction="">Add to Watchlist</button><br> -->
+						<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/books/trade/${book.getId()}|"><i
+						  class="bi bi-layers"></i> See Copies
+							Available</button>
+					</form>
+				</div>
 			</div>
 			<div class="div-middle-spacer mx-5">
 			</div>
