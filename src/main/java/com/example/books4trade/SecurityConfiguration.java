@@ -80,6 +80,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/users","/users/{id}", "/users/search"
                 ).hasAuthority("USER")
                 // Any Unspecified Mapping is available to ADMIN
-                .and().authorizeRequests().anyRequest().hasAuthority("ADMIN");
+                .and().authorizeRequests().anyRequest().hasAuthority("ADMIN"); // Admin
     }
 }
