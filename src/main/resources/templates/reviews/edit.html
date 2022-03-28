@@ -9,7 +9,7 @@
 <nav th:replace="partials :: navbar" />
 
 <div class="back-img">
-	<div class="container shadow p-3 mb-5 mt-5 bg-body rounded h-50 w-50">
+	<div class="container form-shadow form-color mb-5 bg-body rounded h-50 w-50">
 		<form th:action="|/reviews/${bookReview.getId()}/edit|" th:method="POST" th:object="${bookReview}">
 				<h2 class="mb-3 text-center book-index-header-top">Editing review</span> </h2>
 				<div class="mb-3">
@@ -17,6 +17,7 @@
 					<input th:field="*{title}" type="text" class="form-control" id="title" name="title"
 						   th:value="${bookReview.getTitle()}" minlength="3" maxlength="255">
 				</div>
+
 				<div class="mb-3 book-index-headers">
 					<label for="body" class="form-label">Edit review</label>
 					<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body"

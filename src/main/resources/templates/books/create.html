@@ -7,7 +7,7 @@
 <body>
 <nav th:replace="partials :: navbar" />
 <div class="back-img">
-    <div class="container shadow p-3 mb-5 mt-5 bg-body rounded h-50 w-50">
+    <div class="container form-shadow form-color mb-5 bg-body rounded h-50 w-50">
         <h2 class="text-center book-index-header-top">Do you want to add this book?</h2>
         <div>
             <form th:action="@{/books/create}" th:method="POST">

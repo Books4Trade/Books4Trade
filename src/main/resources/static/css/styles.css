@@ -425,3 +425,13 @@ height: 30px;
 .summary-font{
 font-family: 'Inter', sans-serif;
 }
+.solid-border{
+    border-color: darkblue;
+    border-style: solid;
+}
+.form-color{
+    background-color: #f9f7f4;;
+}
+.form-shadow{
+    box-shadow: 20px 20px 20px rgb(0 0 0);
+}
