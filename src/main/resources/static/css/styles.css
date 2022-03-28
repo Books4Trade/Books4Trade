@@ -219,12 +219,7 @@ Paragraph
     }
 
 /*background Image for Create form */
-.back-img{
-    background-image: url("../img/carousel-book1.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
+
 
 /*************** BOOKS-INDEX CSS START ********************/
 .img-size {
@@ -327,7 +322,22 @@ height: 30px;
 /*************** BOOKS-SHOW CSS START *******************/
 /*************** BOOKS-SHOW CSS END ********************/
 
-/*Create a Review select*/
+/*Create a Review Start*/
+.back-img{
+    background-image: url("../img/carousel-book1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+/*.back-img .container{*/
+/*    opacity: 0.6;*/
+/*}*/
 .select-sizing{
     width:75px;
 }
+
+.img-opacity{
+    opacity: 0.6;
+}
+/*Create a Review End*/

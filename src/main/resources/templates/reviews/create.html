@@ -7,11 +7,12 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
+
 <div class="back-img">
 <div class="container shadow p-3 mb-5 mt-5 bg-body rounded h-50 w-50">
 	<div class="row">
 		<div class="col">
-			<h2 class=" text-center book-index-header-top">Create a Review of <span th:text="${book.getTitle()}"></span></h2>
+			<h2 class="text-center book-index-header-top">Create a Review of <span th:text="${book.getTitle()}"></span></h2>
 			<div class="text-center mt-2">
 				<img th:src="${book.getBookImg()}" alt="">
 			</div>
