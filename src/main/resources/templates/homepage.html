@@ -14,7 +14,7 @@
 
 <div>
 <!--register/login start-->
-	<div class="container px-3 py-0">
+	<div  sec:authorize="isAnonymous()" class="container px-3 py-0">
 		<div class="row justify-content-evenly py-0">
 			<div class="col-lg-6 text-center text-lg-start px-4 pt-5">
 				<h1 class="header-center display-4 fw-bold lh-1 mb-2 p-2">Swap-a-Book</h1>

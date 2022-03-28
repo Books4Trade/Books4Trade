@@ -42,7 +42,7 @@
 <!--        <li class="nav-item m-2 p-3" role="presentation">-->
 <!--            <button class="nav-link" id="pills-mywatchlist-tab" data-bs-toggle="pill" data-bs-target="#pills-mywatchlist" type="button" role="tab" aria-controls="pills-mywatchlist" aria-selected="false">-->
 <!--                My Watchlist</button>-->
-        </li>
+<!--        </li>-->
 
     </ul>
     <!-- Tab Content Container Below -->
@@ -56,7 +56,7 @@
                                  th:each="ownedBook : ${usersBooks}" >
                                 <div class="img-size d-flex justify-content-center align-items-end"
                                      th:style="'background-image:url(' +${ownedBook.getBook().getBookImg()}+')'">
-                                    <a class="read-more text-decoration-none fw-light btn btn-success mb-3" th:href="|/books/${ownedBook.getId()}|"><small>Read
+                                    <a class="read-more text-decoration-none fw-light btn btn-success mb-3" th:href="|/copies/${ownedBook.getId()}|"><small>Read
                                         More</small></a>
                                 </div>
                                 <h6 class="book-index-headers title-bg mt-2 mb-auto" th:text="${ownedBook.getBook().getTitle()}"></h6>
