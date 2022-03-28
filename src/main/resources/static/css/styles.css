@@ -362,6 +362,7 @@ height: 30px;
 }
 /*Create a Review End*/
 
+
 /********** BOOK-SHOW.HTML-START ************************/
 .books-show {
     background-color: var(--white);
@@ -416,6 +417,7 @@ height: 30px;
         width: 100%;
         }
     }
+
 /********** BOOK-SHOW.HTML-END ***********************/
 
 /*Create Book Start*/
@@ -435,3 +437,4 @@ font-family: 'Inter', sans-serif;
 .form-shadow{
     box-shadow: 20px 20px 20px rgb(0 0 0);
 }
+
