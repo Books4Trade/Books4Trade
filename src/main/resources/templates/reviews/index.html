@@ -6,45 +6,31 @@
 	<head th:include="partials :: head" />
 </head>
 <body>
-
 <nav th:replace="partials :: navbar" />
-<section class="book-index-container mt-1 py-3">
+<section class="review-index-container">
+	<h1 class="mb-3 book-index-header-top fw-bold text-center w-auto">List of all reviews</h1>
 	<div class="container">
-		<div class="row">
-			<div class="col-xs-6">
-				<h1 class="mb-3 header-center title-bg">List of all reviews</h1>
-
 				<!--Review Card-->
-				<div class="d-flex flex-wrap justify-content-evenly py-2">
-					<div class="book-card shadow-sm p-3 mb-5 bg-body rounded" th:each="review : ${allReviews}">
-						<div>
-							<h5 class="book-headers">
-								<span th:text="${review.getBook().getTitle()}"></span><br>
-							</h5>
-									<p>By: <span th:text="${review.getBook().getAuthor().getFullname()}"></span></p>
-
-							<img class="img-fluid mb-1" th:src="${review.getBook.getBookImg()}">
-							<p class="card-title"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5   </p>
-
+				<div class="row flex-wrap review-cards-container">
+					<div class="col-sm-4 review-card-main shadow-sm p-3 mb-2 bg-body rounded" th:each="review : ${allReviews}">
+						<div class="title-author-img-container">
+							<h6 class="book-index-headers mb-1"><span th:text="${review.getBook().getTitle()}"></span><br></h6>
+							<small><p>By: <span class="text-success" th:text="${review.getBook().getAuthor().getFullname()}"></span></p></small>
+							<img class="review-img mb-1" th:src="${review.getBook.getBookImg()}">
+							<small><p class="mb-1 text-danger"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p></small>
 						</div>
-
-							<h4 class="title-bg mb-0" th:text="${review.getTitle()}"/>
-							<h5 class=""> By User: <span th:text="${review.getUser().getUsername()}"></span></h5>
-							<p class="">Written On: <span th:text="${review.getCreatedDate()}"></span> </p>
-
-
-
-						<a class="" th:href="|/reviews/${review.getId()}|">See this Review</a>
+						<div class="title-user-createDAte-container">
+							<p class="mb-1 fw-bold fst-italic" th:text="${review.getTitle()}"></p>
+							<small>
+							<p class="text-muted mb-1"> By User: <span th:text="${review.getUser().getUsername()}"></span></p>
+							<p class="text-muted mb-1">Written On: <span th:text="${review.getCreatedDate()}"></span> </p>
+							</small>
+							<a class="" th:href="|/reviews/${review.getId()}|"><small>See this Review</small></a>
+						</div>
 					</div>
 				</div>
-
-			</div>
-			</div>
-		</div>
-
+	</div>
 </section>
-
-
 <footer th:replace="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" />
 </body>
