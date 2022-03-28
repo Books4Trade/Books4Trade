@@ -418,3 +418,10 @@ height: 30px;
     }
 /********** BOOK-SHOW.HTML-END ***********************/
 
+/*Create Book Start*/
+.font-size{
+    font-size: 20px;
+}
+.summary-font{
+font-family: 'Inter', sans-serif;
+}
