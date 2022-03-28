@@ -8,24 +8,39 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-    <br>
-      <!-- Below is the target for the javascript values in the search if another search is repeated-->
-       <label for="param">Search By:</label>
-        <select name="param" id="param">
-            <option value="title" selected>Title</option>
-            <option value="author">Author</option>
-        </select>
-        <label for="query">Search For:</label>
-        <input id="query" name="query" type="text">
-        <!-- javascript search function target is this button id -->
-        <button type="submit" id="searchsubmit" class="btn btn-secondary">Search</button>
+
+<section class="search-area-container">
+    <!--SEARCH-BAR-->
+    <div class="d-flex flex-column form-container mt-3 p-2 py-5 text-center ">
+        <!--TEXT HEADING-->
+        <div class="d-inline">
+            <!--<label for="param" class="fw-bold">Search By:</label>-->
+            <div class="search-field-container p-1">
+                <select name="param" id="param" class="select-field">
+                    <option value="title" selected>Title</option>
+                    <option value="author">Author</option>
+                </select>
+                <input id="query" name="query" type="text" class="input-field">
+                <!-- javascript search function target is this button id -->
+                <button type="submit" id="searchsubmit" class="btn btn-success m-1">Search</button>
+                <!--<label for="query" class="fw-bold">Search For:</label>-->
+            </div>
+        </div>
+    </div>
+</section>
     <br>
 <!-- searchedparam and searcehdquery set the initial values passed to the api for search-->
     <h3 class="header-center">Search by: <span th:text="${searchedparam}" id="searchedparam"></span>, with term: <span th:text="${searchedquery}" id="searchedquery"></span>.</h3>
     <h3 class="header-center text-secondary">Choose the result that best matches your search, or search again</h3>
     <br>
 <!-- Target for populating the search results through js-->
-<div id="search-results"></div>
+<section class="book-cards">
+    <!--BOOK CARD-->
+    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="row test-media" id="search-results">
+        </div>
+    </div>
+</section>
 
 <input id="key1" name="key1" type="hidden" th:value="${key1}">
 <script th:inline="javascript">
