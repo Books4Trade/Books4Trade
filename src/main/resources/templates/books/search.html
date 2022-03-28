@@ -25,7 +25,13 @@
     <h3 class="header-center text-secondary">Choose the result that best matches your search, or search again</h3>
     <br>
 <!-- Target for populating the search results through js-->
-<div id="search-results"></div>
+<section class="book-cards">
+    <!--BOOK CARD-->
+    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="row test-media" id="search-results">
+        </div>
+    </div>
+</section>
 
 <input id="key1" name="key1" type="hidden" th:value="${key1}">
 <script th:inline="javascript">
