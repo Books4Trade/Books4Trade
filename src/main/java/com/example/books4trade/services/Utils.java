@@ -1,5 +1,6 @@
 package com.example.books4trade.services;
 
+import com.example.books4trade.models.Book;
 import com.example.books4trade.models.BookReview;
 
 import java.util.ArrayList;
@@ -63,6 +64,16 @@ public class Utils {
             sum += rating;
         }
         return sum;
+    }
+
+    public static List<Book> removeDuplicates(List<Book> readList){
+        List<Book> books = new ArrayList<>();
+        for(Book book : readList){
+            if(!books.contains(book)){
+                books.add(book);
+            }
+        }
+        return books;
     }
 
 }

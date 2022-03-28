@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @Controller
 public class UserController {
@@ -22,7 +22,6 @@ public class UserController {
     private RoleRepository rolesDao;
     private OwnedBookRepository ownedBooksDao;
     private PasswordEncoder passwordEncoder;
-   // private EmailService emailService;
     private SendGridMail sendGridMail;
     private TradeRepository tradesDao;
     private TradeItemsRepository tradeItemsDao;
@@ -33,7 +32,6 @@ public class UserController {
         this.rolesDao = rolesDao;
         this.ownedBooksDao = ownedBooksDao;
         this.passwordEncoder = passwordEncoder;
-    //    this.emailService = emailService;
         this.sendGridMail = sendGridMail;
         this.tradesDao = tradesDao;
         this.tradeItemsDao = tradeItemsDao;
@@ -60,7 +58,6 @@ public class UserController {
             submittedUser.setEnabled(true);
             User newUser = usersDao.save(submittedUser);
             sendGridMail.accountRegistrationSG(newUser.getUsername(), newUser.getEmail(), random);
-           // emailService.accountRegistration(user);
 
         //}// put else Error Here if passwords do not match
         // add attribute to inform user of success and direct them to their email for temp pass
@@ -72,12 +69,13 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findByUsername(currentUser.getUsername());
         List<TradeItem> userTrades = tradeItemsDao.findTradeItemsByNotSentByUser(user);
-
+        List<Book> allUserReads = user.getBooksread();
+        List<Book> usersReads = Utils.removeDuplicates(allUserReads);
         model.addAttribute("tradeItems", userTrades);
         model.addAttribute("user", user);
         model.addAttribute("usersBooks", user.getOwnedBooks());
         model.addAttribute("usersReviews", user.getReviews());
-        model.addAttribute("usersReads", user.getBooksread());
+        model.addAttribute("usersReads", usersReads);
     //      Add Trades, Other Tab Info
     //      model.addAttribute("usersNotifications", currentUser.getNotifications());
         return "users/profile";
