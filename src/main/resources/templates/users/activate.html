@@ -3,16 +3,16 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>You Were Banned</title>
+    <title>User Activation</title>
     <head th:include="partials :: head" />
 </head>
-<body>
+<body class="main-bg">
 <nav th:replace="partials :: navbar" />
-<h3 class="header-center title-bg">User Activation</h3>
 <br>
 <div class="container subcontainer bg-white mt-5">
     <form class="text-center" th:action="@{/users/activate}" th:method="POST">
         <h4 class="header-center">Activating User: <span th:text="${useractivate.getUsername()}"></span></h4>
+        <p class="text-center text-success">Once your password is reset you will be logged out of the application and need to login with your new password.</p>
         <div class="mb-3 mt-3">
             <label for="password">Enter A New Password</label>
             <input class="form-control" id="password" name="password" type="password" minlength="6" maxlength="25" />
@@ -21,7 +21,9 @@
             <label for="password-confirm">Confirm New Password</label>
             <input class="form-control" id="password-confirm" name="password-confirm" type="password"/>
         </div>
-        <button class="btn btn-primary" type="submit">Activate My Account</button>
+        <small th:if="${activatefail}" class="text-danger">Your new passwords did not match.</small>
+
+        <button class="btn btn-primary mb-2" type="submit">Activate My Account</button>
     </form>
 </div>
 <br>
