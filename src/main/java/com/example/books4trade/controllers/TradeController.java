@@ -90,6 +90,8 @@ public class TradeController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findById(currentUser.getId());
         OwnedBook userBook = ownedBooksDao.findById(yourbookid);
+        userBook.setTradable(false);
+        ownedBooksDao.save(userBook);
         System.out.println("Userbook from DAO: " + userBook.getId());
         TradeItem trade1 = new TradeItem(userBook, user, createdTrade);
         TradeItem item1 = tradeItemsDao.save(trade1);
@@ -100,6 +102,8 @@ public class TradeController {
         //  BookBuddy trading with (assuming email and agreement was made prior to initiating trade)
         User bookBuddy = usersDao.findById(buddyid);
         OwnedBook buddyBook = ownedBooksDao.findById(theirbookid);
+        buddyBook.setTradable(false);
+        ownedBooksDao.save(buddyBook);
         TradeItem trade2 = new TradeItem(buddyBook, bookBuddy, createdTrade);
         TradeItem item2 = tradeItemsDao.save(trade2);
         createdTrade.setItem2(item2);
