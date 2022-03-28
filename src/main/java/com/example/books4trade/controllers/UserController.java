@@ -44,11 +44,19 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String submitRegistrationForm(@ModelAttribute User user) throws IOException {
+    public String submitRegistrationForm(@ModelAttribute User user, Model model) throws IOException {
 
-        // add username check for unique username
-        //if(user.getPassword().equals(passwordConfirm)){
+        // Username  & Email Check for unique username
         User submittedUser = user;
+        boolean emailInUse = false;
+        boolean usernameExists = false;
+        if(usersDao.findByUsername(user.getUsername()) != null){
+            usernameExists = true;
+        }
+        if(usersDao.findByEmail(user.getEmail()) != null){
+            emailInUse = true;
+        }
+        if((!emailInUse) && (!usernameExists)) {
             List<Role> defaultRoles = new ArrayList<>();
             defaultRoles.add(rolesDao.getById(5L));
             String random = Utils.buildRandomString();
@@ -58,9 +66,17 @@ public class UserController {
             submittedUser.setEnabled(true);
             User newUser = usersDao.save(submittedUser);
             sendGridMail.accountRegistrationSG(newUser.getUsername(), newUser.getEmail(), random);
+        } else if(usernameExists) {
+            model.addAttribute("userExists", true);
+            return "users/register";
 
-        //}// put else Error Here if passwords do not match
+        } else if(emailInUse) {
+            model.addAttribute("emailExists", true);
+            return "users/register";
+        }
+
         // add attribute to inform user of success and direct them to their email for temp pass
+        model.addAttribute("registrationsuccess", true);
         return "redirect:/login";
     }
 
