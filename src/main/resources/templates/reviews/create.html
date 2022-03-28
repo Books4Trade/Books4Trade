@@ -11,27 +11,27 @@
 <div class="container shadow p-3 mb-5 mt-5 bg-body rounded h-50 w-50">
 	<div class="row">
 		<div class="col">
-			<h2 class="header-center">Create a Review of <span th:text="${book.getTitle()}"></span></h2>
+			<h2 class=" text-center book-index-header-top">Create a Review of <span th:text="${book.getTitle()}"></span></h2>
 			<div class="text-center mt-2">
 				<img th:src="${book.getBookImg()}" alt="">
 			</div>
 
 			<form  th:action="|/books/${book.getId()}/submitreview|" th:method="POST">
 				<div class="container mt-5 mb-5">
-					<div class="mb-3 form-label bold-text">
+					<div class="book-index-headers mb-3 form-label">
 						<label for="title">Title</label>
 						<input type="text" class="form-control" id="title" name="title" placeholder="Your Review Title" minlength="3" maxlength="255">
 					</div>
 
 
-					<div class="mb-3 form-label bold-text">
+					<div class="mb-3 form-label book-index-headers">
 						<label for="body" class="">Review</label>
 						<textarea class="form-control" id="body" rows="3" name="body" placeholder="Your Detailed Review Goes Here" minlength="3"></textarea>
 					</div>
 
-					<div class="mb-3 form-label bold-text">
+					<div class="mb-3 form-label book-index-headers">
 						<label for="rating" >Rate Book (1-5)</label>
-						<input type="number" class="form-control" id="rating" name="rating" min="1" max="5">
+						<input type="number" class="form-control select-sizing" id="rating" name="rating" min="1" max="5">
 
 			
 					</div>

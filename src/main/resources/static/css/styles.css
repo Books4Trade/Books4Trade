@@ -326,3 +326,8 @@ height: 30px;
 
 /*************** BOOKS-SHOW CSS START *******************/
 /*************** BOOKS-SHOW CSS END ********************/
+
+/*Create a Review select*/
+.select-sizing{
+    width:75px;
+}
