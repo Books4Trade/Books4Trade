@@ -41,7 +41,24 @@ Paragraph
     /*background: var(--main-bg-color)*/
     //background-color: #f9f7f4;
 }
+.headers-font {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Mate', serif; !important;
+}
+.light-blue-bg{
+    background-color: #A8DADC;
 
+}
+.dark-blue-bg{
+    background-color: #1D3557;
+}
+.txt-dark-blue{
+    color: #1D3557;
+}
+.txt-light-blue{
+    color: #A8DADC;
+}
 .header-center {
     /*margin: 0;*/
     width: 100%;
@@ -59,6 +76,9 @@ Paragraph
     max-width: 92%;
     margin-left: auto;
     margin-right: auto;
+}
+.min-height{
+    min-height: 492px !important;
 }
 /*Used in activate and login html*/
 .subcontainer {
@@ -247,6 +267,7 @@ Paragraph
     display: flex;
     flex-direction: column;
     }
+
 
 .book-index-headers{
     color: #1D3557;
