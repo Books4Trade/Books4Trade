@@ -4,22 +4,18 @@
     <meta charset="UTF-8">
     <title>Welcome to Books4Trade!</title>
     <head th:include="partials:: head">
-
-
-<body class="about-us p-5 back-img">
-
+<body class="about-us">
 <nav th:replace="partials :: navbar"></nav>
-<h1 class="text-center">The Green Team</h1>
+<h1 class="text-center fw-bold p-4 text-dark">Swap-A-Book Team</h1>
 
-<div class="about-us-div container d-flex d-md-flex flex-wrap justify-content-center">
-	<div class="card mx-2 px-1">
+<div class="about-us-div  w-auto d-flex d-md-flex flex-wrap justify-content-center">
+	<div class="card card-div mx-2 px-1">
 		<img th:src="@{~/img/adam-Cropped.jpg}" class="card-img-top" alt="...">
 		<div class="card-body">
 			<h5 class="card-title fw-bold">Adam Chappell</h5>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
+			<p class="card-text-about">Is a Dad, US Army Veteran, and an excited new Full-Stack Software Developer. He loves applying the logic and concepts of languages and frameworks to new situations, with a stronger focus on back-end development.</p>
 			<div class="btn-group btn-grp-div">
-				<a href="mailto: charles.aggasid01@gmail.com" target="_blank" class="btn btn-outline-success"><i
+				<a href="mailto: adam.chappell00@gmail.com" target="_blank" class="btn btn-outline-success"><i
 				  class="bi bi-envelope"></i></a>
 				<a href="https://www.linkedin.com/in/adamschappell/" target="_blank" class="btn btn-outline-primary"><i
 				  class="bi bi-linkedin"></i></a>
@@ -29,14 +25,13 @@
 		</div>
 	</div>
 
-	<div class="card mx-2 px-1">
+	<div class="card card-div mx-2 px-1">
 		<img th:src="@{~/img/julian-Cropped.jpg}" class="card-img-top" alt="...">
 		<div class="card-body">
 			<h5 class="card-title fw-bold">Julian Martinez</h5>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
+			<p class="card-text-about">Is a husband, father of 2 boys, and US Army Veteran taking a leap of faith making a career change after spending 10+ years as a recruiter. Experienced as a Full-Stack Software Developer, Julian enjoys working with databases and back-end development. </p>
 			<div class="btn-group btn-grp-div">
-				<a href="mailto: charles.aggasid01@gmail.com" target="_blank" class="btn btn-outline-success"><i
+				<a href="mailto: julianmartinez1830@gmail.com" target="_blank" class="btn btn-outline-success"><i
 				  class="bi bi-envelope"></i></a>
 				<a href="https://www.linkedin.com/in/julian-martinez-fullstackdeveloper/" target="_blank"
 				   class="btn btn-outline-primary"><i class="bi bi-linkedin"></i></a>
@@ -46,14 +41,13 @@
 		</div>
 	</div>
 
-	<div class="card mx-2 px-1">
+	<div class="card card-div mx-2 px-1">
 		<img th:src="@{~/img/michael-Cropped.jpg}" class="card-img-top" alt="...">
 		<div class="card-body">
 			<h5 class="card-title fw-bold">Michael Galimore</h5>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
+			<p class="card-text-about">Is a husband and a father of 4. Looking forward to a new career as a Full-Stack Developer. Michael enjoys working on the front-end. </p>
 			<div class="btn-group btn-grp-div">
-				<a href="mailto: charles.aggasid01@gmail.com" target="_blank" class="btn btn-outline-success"><i
+				<a href="mailto: michaelgalimore82@gmail.com" target="_blank" class="btn btn-outline-success"><i
 				  class="bi bi-envelope"></i></a>
 				<a href="https://www.linkedin.com/in/michael-galimore/" target="_blank" class="btn btn-outline-primary"><i
 				  class="bi bi-linkedin"></i></a>
@@ -63,12 +57,12 @@
 		</div>
 	</div>
 
-	<div class="card mx-2 px-1">
+	<div class="card card-div mx-2 px-1">
 		<img th:src="@{~/img/charles-Cropped.jpg}" class="card-img-top" alt="...">
 		<div class="card-body">
 			<h5 class="card-title fw-bold">Charles Aggasid</h5>
-			<p class="card-text">"Always learning."</p>
-			<div class="btn-group btn-grp-div mt-auto">
+			<p class="card-text-about">"Always learning something new. Charles enjoys designing beautiful and responsive websites."</p>
+			<div class="btn-group btn-grp-div">
 				<a href="mailto: charles.aggasid01@gmail.com" target="_blank" class="btn btn-outline-success"><i
 				  class="bi bi-envelope"></i></a>
 				<a href="https://www.linkedin.com/in/charles-jazper/" target="_blank" class="btn btn-outline-primary"><i
@@ -79,14 +73,6 @@
 		</div>
 	</div>
 </div>
-
-
-    <div>
-        <a href="https://github.com/Books4Trade/Books4Trade">Swap-A-Book Repo</a>
-    </div>
-
-
-
 
 
 <footer th:replace="partials :: footer"></footer>
