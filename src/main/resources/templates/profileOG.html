@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+<h2 class="header-center title-bg mb-2">Hello <span th:text="${user.getUsername()}"/>!</h2>
+<hr>
+<!-- Main Page Container Below -->
+<div class="content">
+
+    <!-- Tab-Pill Controller -->
+    <ul class="nav nav-pills mx-5 mt-2 mb-1" id="pills-tab" role="tablist">
+        <li class="nav-item mx-4 p-3" role="presentation">
+            <button class="nav-link" id="pills-myaccount-tab" data-bs-toggle="pill" data-bs-target="#pills-myaccount" type="button" role="tab" aria-controls="pills-myaccount" aria-selected="false">
+                My Account</button>
+        </li>
+        <li class="nav-item mx-5 p-3" role="presentation">
+            <button class="nav-link" id="pills-mybooks-tab" data-bs-toggle="pill" data-bs-target="#pills-mybooks" type="button" role="tab" aria-controls="pills-mybooks" aria-selected="true">
+                My Books</button>
+        </li>
+        <li class="nav-item mx-5 p-3" role="presentation">
+            <button class="nav-link active" id="pills-mytrades-tab" data-bs-toggle="pill" data-bs-target="#pills-mytrades" type="button" role="tab" aria-controls="pills-mytrades" aria-selected="false">
+                My Trades</button>
+        </li>
+        <li class="nav-item mx-5 p-3" role="presentation">
+            <button class="nav-link" id="pills-myreviews-tab" data-bs-toggle="pill" data-bs-target="#pills-myreviews" type="button" role="tab" aria-controls="pills-myreviews" aria-selected="false">
+                My Reviews</button>
+        </li>
+        <li class="nav-item mx-5 p-3" role="presentation">
+            <button class="nav-link" id="pills-myreads-tab" data-bs-toggle="pill" data-bs-target="#pills-myreads" type="button" role="tab" aria-controls="pills-myreads" aria-selected="false">
+                My Reads</button>
+        </li>
+<!--        <li class="nav-item m-2 p-3" role="presentation">-->
+<!--            <button class="nav-link" id="pills-mynotifications-tab" data-bs-toggle="pill" data-bs-target="#pills-mynotifications" type="button" role="tab" aria-controls="pills-mynotificatios" aria-selected="false">-->
+<!--                My Notifications</button>-->
+<!--        </li>-->
+<!--        <li class="nav-item m-2 p-3" role="presentation">-->
+<!--            <button class="nav-link" id="pills-mywatchlist-tab" data-bs-toggle="pill" data-bs-target="#pills-mywatchlist" type="button" role="tab" aria-controls="pills-mywatchlist" aria-selected="false">-->
+<!--                My Watchlist</button>-->
+<!--        </li>-->
+
+    </ul>
+    <!-- Tab Content Container Below -->
+    <div class="tab-content" id="pills-tabContent">
+        <!-- 1st TabPanel pills-mybooks -->
+            <div class="tab-pane fade" id="pills-mybooks" role="tabpanel" aria-labelledby="pills-mybooks-tab">
+                <!--BOOK CARD-->
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="row test-media justify-content-evenly">
+                            <div class="col-md-2 text-center mx-2 shadow-sm p-3 mb-3 bg-white rounded"
+                                 th:each="ownedBook : ${usersBooks}" >
+                                <div class="img-size d-flex justify-content-center align-items-end"
+                                     th:style="'background-image:url(' +${ownedBook.getBook().getBookImg()}+')'">
+                                    <a class="read-more text-decoration-none fw-light btn btn-success mb-3" th:href="|/copies/${ownedBook.getId()}|"><small>Read
+                                        More</small></a>
+                                </div>
+                                <h6 class="book-index-headers title-bg mt-2 mb-auto" th:text="${ownedBook.getBook().getTitle()}"></h6>
+                                <span class="span-by"><small>By: </small></span><p class="card-text text-success d-inline" th:text="${ownedBook.getBook().getAuthor().getFullname()}"></p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+        <!-- 2nd TabPanel pills-myreviews-->
+        <div class="tab-pane fade" id="pills-myreviews" role="tabpanel" aria-labelledby="pills-myreviews-tab">
+            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                <div th:each="review : ${usersReviews}">
+                    <h3 class="book-headers title-bg" th:text="${review.getTitle()}"/>
+                    <p class="text-center"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p>
+                    <p class="text-center"> Written On: <span th:text="${review.getCreatedDate()}"></span></p>
+                    <p class="text-center">
+                        Book Reviewed: <span th:text="${review.getBook().getTitle()}"></span>, by:<span th:text="${review.getBook().getAuthor().getFullname()}"></span>
+                    </p>
+                    <p class="text-center"> <img th:src="${review.getBook.getBookImg()}"></p>
+                    <p class="text-center"><a th:href="|/reviews/${review.getId()}|">See this Review</a>
+                </div>
+            </div>
+        </div>
+        <!-- 3rd TabPanel pills-myreads -->
+         <div class="tab-pane fade" id="pills-myreads" role="tabpanel" aria-labelledby="pills-myreads-tab">
+             <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                 <h4 class="text-muted header-center">What You've Read</h4>
+                 <div class="book-card" th:each="book : ${usersReads}">
+
+                     <h3 class="book-headers title-bg" th:text="${book.getTitle()}"/>
+                     <h4 class="book-headers" th:text="${book.getAuthor().getFullname()}"></h4>
+                     <div class="text-center">
+                         <img th:src="${book.getBookImg()}">
+                     </div>
+                         // Add a Remove Option
+                 </div>
+             </div>
+         </div>
+        <!-- 4th TabPanel pills-mytrades-->
+        <div class="tab-pane fade show active" id="pills-mytrades" role="tabpanel" aria-labelledby="pills-mytrades-tab">
+            <h3>Trades</h3>
+            <table class="table table-sm align-middle">
+                <thead>
+                <tr>
+                    <th scope="col">TradeBuddy<br>Username</th>
+                    <th scope="col">Books<br>Trading</th>
+                    <th scope="col">Confirm</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${tradeItems}">
+                        <form th:action="@{/books/trade/received}" th:method="post">
+                            <th scope="row" th:text="${item.getTrade().getItem2().getUser().getUsername()}"></th>
+                            <td>MyBook To Trade: <span th:text="${item.getOwnedBook().getBook().getTitle()}"></span></td>
+                            <input type="hidden" name="mybookid" id="mybookid" th:value="${item.getOwnedBook().getId()}">
+                            <input type="hidden" name="item" id="item" th:value="${item.getId()}">
+                            <input type="hidden" name="buddyId" id="buddyId" th:value="${item.getTrade().getItem2().getUser().getId()}">
+                            <td><input type="submit" class="btn btn-sm btn-primary" value="Sent"></td>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 5th TabPanel pills-mynotifications -->
+<!--        <div class="tab-pane fade" id="pills-mynotifications" role="tabpanel" aria-labelledby="pills-mynotificaitons-tab">-->
+<!--            <h3>Notifications</h3>-->
+         <!--   <div th:each="notification : ${userNotifications}">
+
+
+            </div> -->
+<!--            <p>stuff about the notifications</p>-->
+<!--        </div>-->
+        <!-- 6th TabPanel pills-mywatchlist -->
+<!--        <div class="tab-pane fade" id="pills-mywatchlist" role="tabpanel" aria-labelledby="pills-mywatchlist-tab">-->
+<!--            <h3>Watchlisted Books</h3>-->
+
+
+<!--        </div>-->
+        <!-- 7th TabPanel pills-myaccount -->
+        <div class="tab-pane fade" id="pills-myaccount" role="tabpanel" aria-labelledby="pills-myaccount-tab">
+            <h3>Account Details</h3>
+            <p>Username: <span th:text="${user.getUsername()}"></span></p>
+            <p>First Name: <span th:text="${user.getFirstName()}"></span></p>
+            <p>Last Name: <span th:text="${user.getLastName()}"></span></p>
+            <p>Email: <span th:text="${user.getEmail()}"></span></p>
+            <p>Location: <span th:text="${user.getLocation()}"></span></p>
+            <form class="text-center" th:action="@{/profile/edit}" th:method="GET">
+                <button type="submit">Edit My Profile</button>
+            </form>
+            <form class="text-center" th:action="@{/profile/passwordreset}" th:method="GET">
+                <button type="submit">Change My Password</button>
+            </form>
+            <br>
+        </div>
+
+    </div>
+</div>
+<footer th:replace="partials :: footer"/>
+<body th:include="partials :: scripts-bottom" />
+</body>
+</html>

@@ -9,38 +9,33 @@
 <body>
 <nav th:replace="partials :: navbar" />
 
-<h1>Edit Your Information</h1>
+<div class="back-img">
+    <div class="container form-shadow mb-5 bg-body rounded h-50 w-50 mt-3">
+        <div class="row">
+            <div class="col form-color">
+                <h2 class="header-center book-index-header-top">Edit Your Details</h2>
 <!--<form th:action="|/users/${user.getId()}/edit|"  th:method="POST">-->
-<form th:action="@{/profile/edit}" th:method="POST">
-    <div class="mb-3 mt-3">
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstname" name="firstname" th:value="${user.getFirstName()}">
+                <form th:action="@{/profile/edit}" th:method="POST" class="container bg-white">
+                    <div class="mb-3 mt-3">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstname" name="firstname" class="form-control" th:value="${user.getFirstName()}">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastname" name="lastname" class="form-control" th:value="${user.getLastName()}">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" class="form-control" th:value="${user.getLocation}">
+                    </div>
+                    <div class="text-center">
+                        <button class="btn edit-btn mb-2" type="submit">Submit Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="mb-3 mt-3">
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastname" name="lastname" th:value="${user.getLastName()}">
-    </div>
-    <div class="mb-3 mt-3">
-        <label for="location">Location</label>
-        <input type="text" id="location" name="location" th:value="${user.getLocation}">
-    </div>
-    <!--<div class="mb-3 mt-3">
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" th:value="">
-    </div>-->
-
-
-    <!--<label for="password">Password</label>
-    <input type="text" id="password" placeholder="Enter New Password">-->
-
-    <!--<label for="userName">Username</label>
-    <input type="text" id="userName" placeholder="Enter New Username">-->
-
-
-
-    <button type="submit">Submit Changes</button>
-</form>
-
+</div>
 <footer th:replace="partials :: footer"/>
 <body th:include="partials :: scripts-bottom" />
 </body>

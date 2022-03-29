@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to Books4Trade!</title>
-    <head th:include="partials:: head"></head>
-</head>
+    <head th:include="partials:: head">
 
-<body class="about-us">
+
+<body class="about-us p-5 back-img">
+
 <nav th:replace="partials :: navbar"></nav>
+<h1 class="text-center">The Green Team</h1>
 
 <div class="about-us-div container d-flex d-md-flex flex-wrap justify-content-center">
 	<div class="card mx-2 px-1">
@@ -77,6 +79,16 @@
 		</div>
 	</div>
 </div>
+
+
+    <div>
+        <a href="https://github.com/Books4Trade/Books4Trade">Swap-A-Book Repo</a>
+    </div>
+
+
+
+
+
 <footer th:replace="partials :: footer"></footer>
 <body th:include="partials :: scripts-bottom" />
 </body>
