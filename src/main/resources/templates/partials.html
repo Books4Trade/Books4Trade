@@ -42,8 +42,8 @@
 
 			</ul>
 			<ul sec:authorize="isAnonymous()" class ="nav navbar-nav mb-2 mb-lg-0">
-				<li class="nav-item mr-3 pr-3"><a class="nav-link btn login-btn text-white mx-2 fw-bold" th:href="@{/login}">Login </a></li>
-				<li class="nav-item mr-2"><a class="nav-link btn btn-success text-white fw-bold" th:href="@{/register}">Register</a></li>
+				<li class="nav-item mr-3 pr-3"><a class="nav-link btn login-btn text-white mx-2" th:href="@{/login}">Login </a></li>
+				<li class="nav-item mr-2"><a class="nav-link btn btn-success text-white" th:href="@{/register}">Register</a></li>
 			</ul>
 			<ul sec:authorize="isAuthenticated()" class="nav navbar-nav mb-2 mb-lg-0">
 				<li class="nav-item dropdown ">
