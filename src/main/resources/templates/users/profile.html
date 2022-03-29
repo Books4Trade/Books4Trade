@@ -6,12 +6,12 @@
     <title>Profile</title>
     <head th:include="partials :: head" />
 </head>
-<body>
+<body class="main-bg">
 <nav th:replace="partials :: navbar" />
-<h2 class="header-center title-bg mb-2">Hello <span th:text="${user.getUsername()}"/>!</h2>
-<hr>
+<h2 class="fw-bold text-center w-auto dark-blue-bg txt-light-blue headers-font">Hello <span class="headers-font" th:text="${user.getUsername()}"></span>!</h2>
+
 <!-- Main Page Container Below -->
-<div class="content min-height col justify-content-center">
+<div class="content min-height col justify-content-center bg-white">
 
     <!--SMALL BREAKPOINT-->
     <!--Tab-Pill Controller SM Screens-->
@@ -262,19 +262,19 @@
 
             <h3 class="book-index-header-top fw-bold text-center w-auto" >Here are your account details!</h3>
             <div>
-                <div class="row justify-content-center back-img">
-                    <div class="subcontainer form-color">
-                        <p>Username: <span th:text="${user.getUsername()}"></span></p>
-                        <p>First Name: <span th:text="${user.getFirstName()}"></span></p>
-                        <p>Last Name: <span th:text="${user.getLastName()}"></span></p>
-                        <p>Email: <span th:text="${user.getEmail()}"></span></p>
-                        <p>Location: <span th:text="${user.getLocation()}"></span></p>
+                <div class="row justify-content-center">
+                    <div class="container subcontainer form-shadow mb-5 bg-body rounded h-50 w-50 mt-3 p-3 form-color">
+                        <p class="summary-font m-2">Username: <span  class="summary-font txt-dark-blue" th:text="${user.getUsername()}"></span></p>
+                        <p class="summary-font m-2">First Name: <span class="summary-font txt-dark-blue" th:text="${user.getFirstName()}"></span></p>
+                        <p class="summary-font m-2">Last Name: <span class="summary-font txt-dark-blue" th:text="${user.getLastName()}"></span></p>
+                        <p class="summary-font m-2">Email: <span class="summary-font txt-dark-blue" th:text="${user.getEmail()}"></span></p>
+                        <p class="summary-font m-2">Location: <span class="summary-font txt-dark-blue" th:text="${user.getLocation()}"></span></p>
                         <div class="row justify-content-center">
                             <form class="col-2 justify-content-center" th:action="@{/profile/edit}" th:method="GET">
-                                <button class="submit-btn" type="submit">Edit Profile</button>
+                                <button class="btn submit-btn" type="submit">Edit Profile</button>
                             </form>
                             <form class="col-2 justify-content-center" th:action="@{/profile/passwordreset}" th:method="GET">
-                                <button class="submit-btn" type="submit">Change Password</button>
+                                <button class="btn submit-btn" type="submit">Change Password</button>
                             </form>
                         </div>
                     </div>
