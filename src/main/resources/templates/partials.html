@@ -20,7 +20,7 @@
 		<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 icon-logo" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 		  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
 		</svg>
-		<a class="navbar-brand font-weight-bold mx-2" href="/">swap-a-book</a>
+		<a class="navbar-brand font-weight-bold mx-2 headers-font" href="/">swap-a-book</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon custom-toggler"></span>
 		</button>
@@ -36,14 +36,14 @@
 						<li><a class="dropdown-item" th:href="@{/books}">Books</a></li>
 						<li><a class="dropdown-item" th:href="@{/books/trades}">Trades</a></li>
 						<li><a class="dropdown-item" th:href="@{/reviews}">Reviews</a></li>
-						<li sec:authorize="isAuthenticated()"><a class="dropdown-item" th:href="@{/users}">User</a></li>
+<!--						<li sec:authorize="isAuthenticated()"><a class="dropdown-item" th:href="@{/users}">User</a></li>-->
 					</ul>
 				</li>
 
 			</ul>
 			<ul sec:authorize="isAnonymous()" class ="nav navbar-nav mb-2 mb-lg-0">
-				<li class="nav-item mr-3 pr-3"><a class="nav-link btn login-btn text-white mx-2" th:href="@{/login}">Login </a></li>
-				<li class="nav-item mr-2"><a class="nav-link btn btn-success text-white" th:href="@{/register}">Register</a></li>
+				<li class="nav-item mr-3 pr-3"><a class="nav-link btn login-btn text-white px-2 mx-2 my-2" th:href="@{/login}">Login </a></li>
+				<li class="nav-item mr-2"><a class="nav-link btn btn-success text-white my-2" th:href="@{/register}">Register</a></li>
 			</ul>
 			<ul sec:authorize="isAuthenticated()" class="nav navbar-nav mb-2 mb-lg-0">
 				<li class="nav-item dropdown ">

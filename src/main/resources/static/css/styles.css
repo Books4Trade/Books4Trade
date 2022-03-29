@@ -76,7 +76,7 @@ Paragraph
     margin-right: auto;
 }
 .min-height{
-    min-height: 492px !important;
+    min-height: 524px !important;
 }
 /*Used in activate and login html*/
 .subcontainer {
@@ -399,7 +399,7 @@ height: 30px;
     }
     
 .show-btn {
-    width: 211px;
+    width: 244px;
     border: 2px solid #1D3557;
 }
 
