@@ -31,6 +31,9 @@ Paragraph
     --title-font: 'Mate', serif;            /*to be used on book titles/section titles*/
     --main-font: 'Inter', sans-serif;       /*to be used as main font of paragraph/summary/review content*/
 }
+* {
+    font-family: 'Inter', sans-serif;
+}
 
 
 .main-bg{
@@ -320,9 +323,6 @@ height: 30px;
     font-family: Inter, sans-serif;
     font-weight: bold;
 }
-.center-form >  {
-    margin: 0 auto;
-}
 
 @media screen and (max-width: 493px) {
     .select-field {
@@ -384,6 +384,7 @@ height: 30px;
     
 .show-btn {
     width: 240px;
+    border: 2px solid #1D3557;
 }
 
 .img-itself:hover {
@@ -415,6 +416,13 @@ height: 30px;
         width: 100%;
         }
     }
+ @media screen and (max-width: 320px) {
+     .show-btn {
+        width: 180px;
+         border: 2px solid #1D3557;
+        
+     }
+ }
 /********** BOOK-SHOW.HTML-END ***********************/
 
 /*Create Book Start*/
@@ -476,4 +484,35 @@ font-family: 'Inter', sans-serif;
         }
     }
 /********** REVIEWS-INDEX.HTML-END *******************/
+
+/********** BUTTONS --START ******************/
+.login-btn {
+   background-color: #1D3557;
+}
+
+.submit-btn {
+    background-color: var(--blue);
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #034694;
+    color: black;
+}
+
+.edit-btn {
+    background-color: var(--sky-blue);
+    color: black;
+}
+
+.delete-btn {
+    background-color: var(--red);
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: #034694;
+    color: black;
+}
+/********** BUTTONS --END  *******************/
 
