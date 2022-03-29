@@ -7,44 +7,55 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
+<div class="back-img">
+	<div class="container form-shadow mb-5 bg-body rounded h-50 w-50 mt-3">
+		<div class="row">
+			<div class="col form-color">
+				<h2 class="header-center book-index-header-top"><span th:text="${review.getUser().getUsername()}"> </span>'s review of <span th:text="${review.getBook().getTitle()}"></span> by <span th:text="${review.getBook().getAuthor().getFullname()}"></span> </h2>
+				<br>
+				<div>
+					<div class="text-center">
+						<img th:src="${review.getBook().getBookImg()}">
+					</div>
+					<p class="text-center summary-font">Rating: <span th:text="${review.getRating()}"></span> of 5</p>
+					<br>
+					<h5 class="header-center summary-font" th:text="${review.getTitle()}"></h5>
+					<p class="text-center summary-font" th:text="${review.getBody()}"></p>
 
-<h2 class="header-center"><span th:text="${review.getUser().getUsername()}"> </span>'s review of <span th:text="${review.getBook().getTitle()}"></span> by <span th:text="${review.getBook().getAuthor().getFullname()}"></span> </h2>
-<br>
-<div>
-	<h5 class="header-center" th:text="${review.getTitle()}"></h5>
-		<p class="text-center" th:text="${review.getBody()}"></p>
-		<p class="text-center">Rating: <span th:text="${review.getRating()}"></span> of 5</p>
-		<p class="text-center">Posted on: <span th:text="${review.getCreatedDate()}"></span></p>
-	<div class="text-center">
-		<img th:src="${review.getBook().getBookImg()}">
-	</div>
-	<div sec:authorize="isAuthenticated()">
-		<div th:if="${isOwner}" class="row justify-content-center mt-2 mb-2">
-			<form th:method="GET" class="col-1 text-center">
-				<button type="submit" th:formaction="|/reviews/${review.getId()}/edit|">Edit</button>
-			</form>
-			<form th:action="|/reviews/${review.getId()}/delete|" th:method="POST" class="col-1 text-center">
-				<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
-				<button type="submit" >Delete</button>
-			</form>
+					<p class="text-center summary-font">Posted on: <span th:text="${review.getCreatedDate()}"></span></p>
+
+					<div sec:authorize="isAuthenticated()">
+						<div th:if="${isOwner}" class="row justify-content-center mt-2 mb-2">
+							<form th:method="GET" class="col-1 text-center">
+								<button type="submit" class="btn edit-btn"th:formaction="|/reviews/${review.getId()}/edit|">Edit</button>
+							</form>
+							<form th:action="|/reviews/${review.getId()}/delete|" th:method="POST" class="col-1 text-center">
+								<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
+								<button type="submit" class="btn delete-btn">Delete</button>
+							</form>
+						</div>
+					</div>
+			</div>
 		</div>
 	</div>
+</div>
+</div>
 
 			<!--like and dislike work but need to add conditionals-->
 			<!--liking a review-->
-	<div class="row mt-2 mb-2 justify-content-center">
-			<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post" class="col-1 text-center">
-				<input type="submit" th:value="Like">
-			</form>
-			<!--disliking a review-->
-			<form th:action="@{/reviews/{id}/dislike (id=${review.getId()})}" th:method="post" class="col-1 text-center">
-				<input type="submit" th:value="Dislike">
-			</form>
-	</div>
+<!--	<div class="row mt-2 mb-2 justify-content-center">-->
+<!--			<form th:action="@{/reviews/{id}/like (id=${review.getId()})}" th:method="post" class="col-1 text-center">-->
+<!--				<input type="submit" th:value="Like">-->
+<!--			</form>-->
+<!--			&lt;!&ndash;disliking a review&ndash;&gt;-->
+<!--			<form th:action="@{/reviews/{id}/dislike (id=${review.getId()})}" th:method="post" class="col-1 text-center">-->
+<!--				<input type="submit" th:value="Dislike">-->
+<!--			</form>-->
+<!--	</div>-->
 
 	<!-- See more reviews of this book-->
 	<!-- See more reviews by this user-->
-</div>
+
 
 
 
