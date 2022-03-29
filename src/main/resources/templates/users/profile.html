@@ -146,6 +146,7 @@
         <!-- 1st TabPanel pills-mybooks -->
             <div class="tab-pane fade" id="pills-mybooks" role="tabpanel" aria-labelledby="pills-mybooks-tab">
                 <!--BOOK CARD-->
+                <h3 class="book-index-header-top fw-bold text-center w-auto" >Here are the books you own!</h3>
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="row test-media justify-content-evenly">
                             <div class="col-md-2 text-center mx-2 shadow-sm p-3 mb-3 bg-white rounded"
@@ -164,6 +165,7 @@
 
         <!-- 2nd TabPanel pills-myreviews-->
         <div class="tab-pane fade" id="pills-myreviews" role="tabpanel" aria-labelledby="pills-myreviews-tab">
+            <h3 class="book-index-header-top fw-bold text-center w-auto" >Here are your reviews!</h3>
             <div class="d-flex flex-row flex-wrap justify-content-evenly">
 <!--NEEDS TO BE DELETED ON CLEAN UP-->
 <!--                <div th:each="review : ${usersReviews}">-->
@@ -177,6 +179,7 @@
 <!--                    <p class="text-center"><a th:href="|/reviews/${review.getId()}|">See this Review</a>-->
 <!--                </div>-->
                 <!--Review Card-->
+
                 <div class="row flex-wrap review-cards-container">
                     <div class="col-sm-4 review-card-main shadow-sm p-3 mb-2 bg-body rounded" th:each="review : ${usersReviews}">
                         <div class="title-author-img-container">
