@@ -520,3 +520,34 @@ font-family: 'Inter', sans-serif;
     text-shadow: 1px 2px 7px rgba(206,89,55,0.71);
 }
 /*********** reviewOfBook.html **************/
+
+/*********** about.html start **************/
+
+img {
+    clip-path: circle();
+    }
+
+.card {
+    width: 300px;
+    margin: 10px;
+    }
+
+.about-us-div {
+    padding: 20px;
+    }
+
+.about-us-div > div {
+    background: #1d3557;
+    color: white;
+    border: 1px solid white;
+    }
+
+.btn-grp-div > a {
+    margin: 0 3px 0 3px;
+    }
+    
+    .about-us {
+        background: var(--white);
+    }
+
+/*********** about.html end **************/
