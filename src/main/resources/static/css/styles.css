@@ -523,12 +523,12 @@ font-family: 'Inter', sans-serif;
 
 /*********** about.html start **************/
 
-img {
+.card-div > img {
     clip-path: circle();
     }
 
-.card {
-    width: 300px;
+.card-div {
+    width: 350px;
     margin: 10px;
     }
 
@@ -537,7 +537,7 @@ img {
     }
 
 .about-us-div > div {
-    background: #1d3557;
+    background: var(--dark-blue);
     color: white;
     border: 1px solid white;
     }
@@ -549,5 +549,5 @@ img {
     .about-us {
         background: var(--white);
     }
-
+    
 /*********** about.html end **************/
