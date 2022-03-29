@@ -32,8 +32,7 @@
 					<label for="password" class="form-label">Password</label>
 					<input type="password" name="password"  class="form-control" id="password">
 				</div>
-				<small th:if="${param.error}" class="text-danger mb-2">Invalid username and password.</small><br>
-
+				<p class="mb-2"><small th:if="${param.error}"  class="text-danger">Invalid username or password.</small></p>
 				<button type="submit" class="btn btn-primary mb-3">Login</button>
 			</form>
 		</div>
