@@ -9,22 +9,27 @@
 <body class="main-bg">
 <nav th:replace="partials :: navbar" />
 <br>
-<div class="container subcontainer bg-white mt-5">
-    <form class="text-center" th:action="@{/users/activate}" th:method="POST">
-        <h4 class="header-center">Activating User: <span th:text="${useractivate.getUsername()}"></span></h4>
-        <p class="text-center text-success">Once your password is reset you will be logged out of the application and need to login with your new password.</p>
-        <div class="mb-3 mt-3">
-            <label for="password">Enter A New Password</label>
-            <input class="form-control" id="password" name="password" type="password" minlength="6" maxlength="25" />
-        </div>
-        <div class="mb-3 mt-3">
-            <label for="password-confirm">Confirm New Password</label>
-            <input class="form-control" id="password-confirm" name="password-confirm" type="password"/>
-        </div>
-        <small th:if="${activatefail}" class="text-danger">Your new passwords did not match.</small>
 
-        <button class="btn btn-primary mb-2" type="submit">Activate My Account</button>
-    </form>
+<div class="back-img">
+    <div class="container subcontainer form-shadow mb-5 bg-body rounded h-50 w-50 mt-3">
+        <div class="row">
+            <form class="form-color text-center" th:action="@{/users/activate}" th:method="POST">
+                <h4 class="header-center book-index-header-top p-2">Activating User: <span  class="book-index-header-top" th:text="${useractivate.getUsername()}"></span></h4>
+                <p class="text-center text-success">Once your password is reset you will be logged out of the application and need to login with your new password.</p>
+                <div class="mb-3 mt-3">
+                    <label for="password" class="form-label">Enter A New Password</label>
+                    <input class="form-control" id="password" name="password" type="password" minlength="6" maxlength="25" />
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="password-confirm" class="form-label">Confirm New Password</label>
+                    <input class="form-control" id="password-confirm" name="password-confirm" type="password"/>
+                </div>
+                <small th:if="${activatefail}" class="text-danger">Your new passwords did not match.</small>
+
+                <button class="btn btn-primary mb-2" type="submit">Activate My Account</button>
+            </form>
+        </div>
+    </div>
 </div>
 <br>
 
