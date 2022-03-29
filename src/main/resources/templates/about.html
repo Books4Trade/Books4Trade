@@ -5,77 +5,86 @@
     <title>Welcome to Books4Trade!</title>
     <head th:include="partials:: head">
 
-    </head>
 
+<body class="about-us p-5 back-img">
 
-
-<body class="back-img p-5">
 <nav th:replace="partials :: navbar"></nav>
 <h1 class="text-center">The Green Team</h1>
-<div class="">
-    <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-3">
-            <div class="card mx-auto">
-                <img th:src="@{~/img/adam.jpg}" alt="Adam Chappell" class="img-circle profile-img mx-auto">
-                <h5 class="text-center">Adam Chappell</h5>
-                <h4 class="text-center">Title</h4>
-                <p class="title-user-createDAte-container summary-font text-center">Something About Me</p>
-                <div class="text-center">
-                    <a href="https://github.com/adamchappell00">GitHub</a><i class="fa-brands fa-github text-center"></i>
-                    <a href="https://www.linkedin.com/in/adamschappell/">LinkedIn <i class="fa-brands fa-linkedin text-center"></i></a>
-                </div>
 
-            </div>
-        </div>
+<div class="about-us-div container d-flex d-md-flex flex-wrap justify-content-center">
+	<div class="card mx-2 px-1">
+		<img th:src="@{~/img/adam-Cropped.jpg}" class="card-img-top" alt="...">
+		<div class="card-body">
+			<h5 class="card-title fw-bold">Adam Chappell</h5>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+				content.</p>
+			<div class="btn-group btn-grp-div">
+				<a href="mailto: charles.aggasid01@gmail.com" target="_blank" class="btn btn-outline-success"><i
+				  class="bi bi-envelope"></i></a>
+				<a href="https://www.linkedin.com/in/adamschappell/" target="_blank" class="btn btn-outline-primary"><i
+				  class="bi bi-linkedin"></i></a>
+				<a href="https://github.com/adamchappell00" target="_blank" class="btn btn-outline-secondary"><i
+				  class="bi bi-github"></i></a>
+			</div>
+		</div>
+	</div>
 
+	<div class="card mx-2 px-1">
+		<img th:src="@{~/img/julian-Cropped.jpg}" class="card-img-top" alt="...">
+		<div class="card-body">
+			<h5 class="card-title fw-bold">Julian Martinez</h5>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+				content.</p>
+			<div class="btn-group btn-grp-div">
+				<a href="mailto: charles.aggasid01@gmail.com" target="_blank" class="btn btn-outline-success"><i
+				  class="bi bi-envelope"></i></a>
+				<a href="https://www.linkedin.com/in/julian-martinez-fullstackdeveloper/" target="_blank"
+				   class="btn btn-outline-primary"><i class="bi bi-linkedin"></i></a>
+				<a href="https://github.com/Julian-H-Martinez" target="_blank" class="btn btn-outline-secondary"><i
+				  class="bi bi-github"></i></a>
+			</div>
+		</div>
+	</div>
 
-        <div class="col-sm-12 col-md-6 col-lg-3">
-            <div class="card mx-auto">
-                <img th:src="@{~/img/julian.jpg}" alt="Julian Martinez" class="img-circle profile-img mx-auto">
-                <h5 class="text-center">Julian Martinez</h5>
-                <h4 class="text-center">Title</h4>
-                <p class="title-user-createDAte-container summary-font text-center">Something about me</p>
-                <div class="text-center">
-                    <a href="https://github.com/Julian-H-Martinez">GitHub</a><i class="fa-brands fa-github"></i>
-                    <a href="https://www.linkedin.com/in/julian-martinez-fullstackdeveloper/">LinkedIn <i class="fa-brands fa-linkedin"></i></a>
-                </div>
+	<div class="card mx-2 px-1">
+		<img th:src="@{~/img/michael-Cropped.jpg}" class="card-img-top" alt="...">
+		<div class="card-body">
+			<h5 class="card-title fw-bold">Michael Galimore</h5>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+				content.</p>
+			<div class="btn-group btn-grp-div">
+				<a href="mailto: charles.aggasid01@gmail.com" target="_blank" class="btn btn-outline-success"><i
+				  class="bi bi-envelope"></i></a>
+				<a href="https://www.linkedin.com/in/michael-galimore/" target="_blank" class="btn btn-outline-primary"><i
+				  class="bi bi-linkedin"></i></a>
+				<a href="https://github.com/michael-galimore" target="_blank" class="btn btn-outline-secondary"><i
+				  class="bi bi-github"></i></a>
+			</div>
+		</div>
+	</div>
 
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-3">
-            <div class="card mx mx-auto">
-                <img th:src="@{~/img/charles.jpg}" alt="Charles Aggasid" class="img-circle profile-img mx-auto">
-                <h5 class="text-center">Charles Aggasid</h5>
-                <h4 class="text-center">Title</h4>
-                <p class="title-user-createDAte-container summary-font text-center">Something About Me</p>
-                <div class="text-center">
-                    <a href="https://github.com/charlesaggasid">GitHub</a><i class="fa-brands fa-github"></i>
-                    <a href="https://www.linkedin.com/in/charles-jazper/">LinedIn</a><i class="fa-brands fa-linkedin"></i>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="col-sm-12 col-md-6 col-lg-3">
-            <div class="card mx mx-auto">
-                <img th:src="@{~/img/codeup10210126.jpg}" alt="Michael Galimore" class="img-circle profile-img mx-auto">
-                <h5 class="text-center">Michael Galimore</h5>
-                <h4 class="text-center">Title</h4>
-                <p class="title-user-createDAte-container summary-font text-center">Something About Me</p>
-                <div class="text-center">
-                    <a href="https://github.com/michael-galimore">GitHub</a><i class="fa-brands fa-github"></i>
-                    <a href="https://www.linkedin.com/in/michael-galimore/">LinkedIn</a><i class="fa-brands fa-linkedin"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="card mx-2 px-1">
+		<img th:src="@{~/img/charles-Cropped.jpg}" class="card-img-top" alt="...">
+		<div class="card-body">
+			<h5 class="card-title fw-bold">Charles Aggasid</h5>
+			<p class="card-text">"Always learning."</p>
+			<div class="btn-group btn-grp-div mt-auto">
+				<a href="mailto: charles.aggasid01@gmail.com" target="_blank" class="btn btn-outline-success"><i
+				  class="bi bi-envelope"></i></a>
+				<a href="https://www.linkedin.com/in/charles-jazper/" target="_blank" class="btn btn-outline-primary"><i
+				  class="bi bi-linkedin"></i></a>
+				<a href="https://github.com/charlesaggasid" target="_blank" class="btn btn-outline-secondary"><i
+				  class="bi bi-github"></i></a>
+			</div>
+		</div>
+	</div>
 </div>
+
 
     <div>
         <a href="https://github.com/Books4Trade/Books4Trade">Swap-A-Book Repo</a>
     </div>
+
 
 
 
