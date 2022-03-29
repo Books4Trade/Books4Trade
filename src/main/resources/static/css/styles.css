@@ -125,9 +125,6 @@ Paragraph
 .footer {
     display: block;
 }
-.mt-auto {
-    margin-top: auto!important;
-}
 .py-3 {
     padding-top: 1rem!important;
     padding-bottom: 1rem!important;
@@ -255,7 +252,7 @@ Paragraph
     color: #1D3557;
     font-size: 18px;
     font-weight: 400;
-    font-family: 'Mate', serif;
+    font-family: 'Mate', serif; !important;
     }
 
 .book-index-header-top {
@@ -516,3 +513,10 @@ font-family: 'Inter', sans-serif;
 }
 /********** BUTTONS --END  *******************/
 
+/*********** reviewOfBook.html **************/
+.span-book-title {
+    font-size: 25px;
+    font-family: 'Sriracha',sans-serif;
+    text-shadow: 1px 2px 7px rgba(206,89,55,0.71);
+}
+/*********** reviewOfBook.html **************/
