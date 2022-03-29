@@ -22,9 +22,9 @@ Paragraph
     --main-bg-color: linear-gradient(90deg, rgba(242,238,203,1) 2%, rgba(255,252,222,1) 46%, rgba(246,242,197,0.989233193277311) 100%);
     --home-bg-color: antiquewhite;
     /*main colors for site; please utilize these variables when adding color*/
-    --red: rgba(230, 57, 70, 0.35);
+    --red: #881C24;
     --white: #F1FAEE;
-    --sky-blue: #A8DADC;
+    --sky-blue: #a8dde0;
     --blue: #457B9D;
     --dark-blue: #1D3557;
     --header-font: 'Sriracha', cursive;     /*to be used on page headers*/
@@ -508,16 +508,21 @@ font-family: 'Inter', sans-serif;
 }
 
 .submit-btn {
-    background-color: var(--blue);
+    background-color: var(--dark-blue);
     color: white;
 }
 
 .submit-btn:hover {
-    background-color: #034694;
-    color: black;
+    background-color: #02132a;
+    color: white;
 }
 
 .edit-btn {
+    background-color: var(--sky-blue);
+    color: black;
+}
+
+.edit-btn:hover {
     background-color: var(--sky-blue);
     color: black;
 }
@@ -527,9 +532,14 @@ font-family: 'Inter', sans-serif;
     color: white;
 }
 
+.delete-btn:hover {
+    background: #ef5959;
+    color: white;
+}
+
 .login-btn:hover {
     background-color: #034694;
-    color: black;
+    color: white;
 }
 /********** BUTTONS --END  *******************/
 
