@@ -3,47 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to Books4Trade!</title>
-    <head th:include="partials:: head"></head>
-</head>
+    <head th:include="partials:: head">
 
-<body style="background: antiquewhite">
+    </head>
+
+
+
+<body class="back-img p-5">
 <nav th:replace="partials :: navbar"></nav>
+<h1 class="text-center">The Green Team</h1>
+<div class="">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="card mx-auto">
+                <img th:src="@{~/img/adam.jpg}" alt="Adam Chappell" class="img-circle profile-img mx-auto">
+                <h5 class="text-center">Adam Chappell</h5>
+                <h4 class="text-center">Title</h4>
+                <p class="title-user-createDAte-container summary-font text-center">Something About Me</p>
+                <div class="text-center">
+                    <a href="https://github.com/adamchappell00">GitHub</a><i class="fa-brands fa-github text-center"></i>
+                    <a href="https://www.linkedin.com/in/adamschappell/">LinkedIn <i class="fa-brands fa-linkedin text-center"></i></a>
+                </div>
+
+            </div>
+        </div>
 
 
-<div class="d-flex flex-row flex-wrap justify-content-evenly">
-    <div class="book-card">
-        <img class="img-circle profile-img" src="" alt="">
-        <h5>Adam Chappell</h5>
-        <a href="https://github.com/adamchappell00">GitHub</a><i class="fa-brands fa-github"></i>
-        <a href="https://www.linkedin.com/in/adamschappell/">LinkedIn <i class="fa-brands fa-linkedin"></i></a>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="card mx-auto">
+                <img th:src="@{~/img/julian.jpg}" alt="Julian Martinez" class="img-circle profile-img mx-auto">
+                <h5 class="text-center">Julian Martinez</h5>
+                <h4 class="text-center">Title</h4>
+                <p class="title-user-createDAte-container summary-font text-center">Something about me</p>
+                <div class="text-center">
+                    <a href="https://github.com/Julian-H-Martinez">GitHub</a><i class="fa-brands fa-github"></i>
+                    <a href="https://www.linkedin.com/in/julian-martinez-fullstackdeveloper/">LinkedIn <i class="fa-brands fa-linkedin"></i></a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="card mx mx-auto">
+                <img th:src="@{~/img/charles.jpg}" alt="Charles Aggasid" class="img-circle profile-img mx-auto">
+                <h5 class="text-center">Charles Aggasid</h5>
+                <h4 class="text-center">Title</h4>
+                <p class="title-user-createDAte-container summary-font text-center">Something About Me</p>
+                <div class="text-center">
+                    <a href="https://github.com/charlesaggasid">GitHub</a><i class="fa-brands fa-github"></i>
+                    <a href="https://www.linkedin.com/in/charles-jazper/">LinedIn</a><i class="fa-brands fa-linkedin"></i>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="card mx mx-auto">
+                <img th:src="@{~/img/codeup10210126.jpg}" alt="Michael Galimore" class="img-circle profile-img mx-auto">
+                <h5 class="text-center">Michael Galimore</h5>
+                <h4 class="text-center">Title</h4>
+                <p class="title-user-createDAte-container summary-font text-center">Something About Me</p>
+                <div class="text-center">
+                    <a href="https://github.com/michael-galimore">GitHub</a><i class="fa-brands fa-github"></i>
+                    <a href="https://www.linkedin.com/in/michael-galimore/">LinkedIn</a><i class="fa-brands fa-linkedin"></i>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="book-card">
-        <img class="img-circle profile-img" src="" alt="">
-        <h5>Julian Martinez</h5>
-        <a href="https://github.com/Julian-H-Martinez">GitHub</a><i class="fa-brands fa-github"></i>
-        <a href="https://www.linkedin.com/in/julian-martinez-fullstackdeveloper/">LinkedIn <i class="fa-brands fa-linkedin"></i></a>
-    </div>
-
-    <div class="book-card">
-        <img class="img-circle profile-img" src="" alt="">
-        <h5>Charles Aggasid</h5>
-        <a href="https://github.com/charlesaggasid">GitHub</a><i class="fa-brands fa-github"></i>
-        <a href="https://www.linkedin.com/in/charles-jazper/">LinedIn</a><i class="fa-brands fa-linkedin"></i>
-    </div>
-
-    <div class="book-card">
-        <img th:src="@{~/img/codeup10210126.jpg}" alt="MichaelGalimore" class="img-circle profile-img">
-        <h5 clase="text-center">Michael Galimore</h5>
-        <p><a href="https://github.com/michael-galimore">GitHub</a><i class="fa-brands fa-github"></i>
-        <a href="https://www.linkedin.com/in/michael-galimore/">LinkedIn</a><i class="fa-brands fa-linkedin"></i>
-    </div>
-
 </div>
 
-<div>
-    <a href="https://github.com/Books4Trade/Books4Trade">Swap-A-Book Repo</a>
-</div>
+    <div>
+        <a href="https://github.com/Books4Trade/Books4Trade">Swap-A-Book Repo</a>
+    </div>
+
+
 
 
 <footer th:replace="partials :: footer"></footer>
