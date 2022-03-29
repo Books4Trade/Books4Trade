@@ -19,6 +19,9 @@
 				<div class="image-container-mobile-breakpoint d-sm-none d-block d-flex justify-content-center">
 					<img th:src="${book.getBookImg()}" alt="" class="img-fluid img-itself">
 				</div>
+				<div class="rating-div">
+					<p class="mb-1"><small>Average Rating: <span th:text="${book.getRating()}"></span></small></p>
+				</div>
 				<p class="author">by <span class="text-success fw-bold" th:text="${book.getAuthor().getFullname()}">Suzanne Collins</span></p>
 				<hr>
 				<form th:action="@{/books/{id}/read (id=${book.getId()})}" th:method="POST" class="d-inline">
@@ -38,8 +41,8 @@
 					  class="bi bi-pencil-square"></i>Add
 						Your Review</button>
 				</form>
-				<div class="div center-form">
-					<form th:method="GET" class="d-inline center-form">
+				<div class="center-form d-md-flex justify-content-md-center">
+					<form th:method="GET" class="">
 						<!-- <button th:formaction="">Add to Watchlist</button><br> -->
 						<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/books/trade/${book.getId()}|"><i
 						  class="bi bi-layers"></i> See Copies
