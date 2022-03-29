@@ -42,9 +42,8 @@ Paragraph
     //background-color: #f9f7f4;
 }
 .headers-font {
-    font-size: 18px;
     font-weight: 400;
-    font-family: 'Mate', serif; !important;
+    font-family: 'Sriracha', sans-serif; !important;
 }
 .light-blue-bg{
     background-color: #A8DADC;
@@ -251,8 +250,8 @@ Paragraph
 }
 
 .card-text {
-    font-size: 12px;
-    font-weight: bold;
+    /*font-size: 12px;*/
+    /*font-weight: bold;*/
 }
 
 .title-bg{
@@ -400,7 +399,7 @@ height: 30px;
     }
     
 .show-btn {
-    width: 240px;
+    width: 211px;
     border: 2px solid #1D3557;
 }
 
@@ -439,6 +438,11 @@ height: 30px;
          border: 2px solid #1D3557;
         
      }
+  @media screen and (max-width: 984px) {
+      .center-form {
+        display: block;
+      }
+   }
  }
 /********** BOOK-SHOW.HTML-END ***********************/
 
