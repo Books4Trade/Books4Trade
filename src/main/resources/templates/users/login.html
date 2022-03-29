@@ -22,7 +22,7 @@
 				<h1 class="text-center">Swap-A-Book</h1>
 				<p class="text-center">Add your favorite books! Then: review, rate, and trade them!</p>
 				<p class="text-center">Find your book here at Swap A Book!</p>
-				<p class="text-center"><small th:if="${registrationsuccess}" class="text-success text-center">Your registration was successful, please check your email for login information.</small></p>
+				<p class="text-center mb-1"><small th:if="${registrationsuccess}" class="text-success text-center">Your registration was successful, please check your email for login information.</small></p>
 
 				<div class="mb-3 mt-3">
 					<label for="username" class="form-label">Username</label>
@@ -32,7 +32,7 @@
 					<label for="password" class="form-label">Password</label>
 					<input type="password" name="password"  class="form-control" id="password">
 				</div>
-				<small th:if="${param.error}" class="text-danger">Invalid username and password.</small><br>
+				<small th:if="${param.error}" class="text-danger mb-2">Invalid username and password.</small><br>
 
 				<button type="submit" class="btn btn-primary mb-3">Login</button>
 			</form>
