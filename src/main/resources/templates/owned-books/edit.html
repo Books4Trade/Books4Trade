@@ -8,19 +8,19 @@
 <body>
 <nav th:replace="partials :: navbar" />
 <div class="back-img">
-	<div class="container shadow p-3 mb-5 mt-5 bg-body rounded h-50 w-50">
+	<div class="container form-shadow mb-5 bg-body rounded h-50 w-50">
 		<div class="row">
-			<div class="col">
-				<h2 class="text-center">Edit Your Copy of <span th:text="${ownedbook.getBook().getTitle()}"></span></h2>
+			<div class="col form-color">
+				<h2 class="header-center book-index-header-top">Edit Your Copy of <span th:text="${ownedbook.getBook().getTitle()}"></span></h2>
 				<div class="text-center mt-2">
-<!--					<img th:src="${book.getBookImg()}" alt="">-->
+					<img th:src="${ownedbook.getBook().getBookImg()}" alt="">
 				</div>
 
 
 				<form th:action="|/copies/${ownedbook.getId()}/edit|" th:method="POST">
 					<div class="mt-5 mb-5">
 						<div class="text-center">
-							<label for="bookcondition" class="xx-large text-center">Choose book condition:</label><br>
+							<label for="bookcondition" class="summary-font">Choose book condition:</label><br>
 							<select name="bookcondition" id="bookcondition">
 								<option name="bookcondition" value="poor">Poor</option>
 								<option name="bookcondition" value="fair">Fair</option>
@@ -39,8 +39,10 @@
 						</select>
 					</div>
 
+						<br>
+
 					<div class="text-center">
-						<label for="booktype">Choose book type:</label><br>
+						<label for="booktype" class="summary-font">Choose book type:</label><br>
 						<select name="booktype" id="booktype">
 							<option name="booktype" value="1">Paperback</option>
 							<option name="booktype" value="2">Hardback</option>
@@ -50,7 +52,7 @@
 
 
 					<div class="mt-5 mb-5 text-center">
-						<button type="submit" class="button-style">Submit Changes</button>
+						<button type="submit" class="btn submit-btn">Submit Changes</button>
 					</div>
 					</div>
 				</form>
