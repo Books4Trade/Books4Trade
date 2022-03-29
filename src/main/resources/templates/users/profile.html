@@ -206,11 +206,11 @@
         <div class="tab-pane fade show active" id="pills-mytrades" role="tabpanel" aria-labelledby="pills-mytrades-tab">
             <h3 class="book-index-header-top fw-bold text-center w-auto" >Here are your trades!</h3>
             <div class="row justify-content-center">
-                <table class="table table-sm align-middle">
+                <table class="table table-sm align-middle content">
                     <thead>
                     <tr>
-                        <th scope="col">TradeBuddy<br>Username</th>
-                        <th scope="col">Books<br>Trading</th>
+                        <th scope="col">TradeBuddy Username</th>
+                        <th scope="col">Book Trading</th>
                         <th scope="col">Confirm</th>
                     </tr>
                     </thead>
@@ -222,7 +222,7 @@
                                 <input type="hidden" name="mybookid" id="mybookid" th:value="${item.getOwnedBook().getId()}">
                                 <input type="hidden" name="item" id="item" th:value="${item.getId()}">
                                 <input type="hidden" name="buddyId" id="buddyId" th:value="${item.getTrade().getItem2().getUser().getId()}">
-                                <td><input type="submit" class="btn btn-sm btn-primary" value="Sent"></td>
+                                <td><input type="submit" class="btn btn-sm submit-btn" value="Confirm Trade"></td>
                             </form>
                         </tr>
                     </tbody>
