@@ -46,7 +46,7 @@
 					<a class="read-more text-decoration-none fw-light btn btn-success mb-3" th:href="|/books/${book.getId()}|"><small>Read More</small></a>
 				</div>
 				<div class="rating-div">
-
+<!--					<p th:if="${book.getRating()==null}"> <span  th:text=”${"Not Yet Reviewed"}”></span></p>-->
 					<p class=""><small>Average Rating: <span th:text="${book.getRating()}"></span></small></p>
 				</div>
 				<h6 class="book-index-headers title-bg mt-2 mb-auto" th:text="${book.title}"></h6>
