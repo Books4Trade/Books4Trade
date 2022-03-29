@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Make A Trade</title>
+    <title>Available Trades</title>
     <head th:include="partials :: head"></head>
+    <link th:href="@{/css/trades.css}" rel="stylesheet">
     <style>
         .book-cover{
             width: 3rem !important;
@@ -11,12 +12,12 @@
         }
     </style>
 </head>
-<body>
+<body class="trade-bg">
 <nav th:replace="partials :: navbar"></nav>
-<main class="container">
-    <h1 class="text-center">Viewing All Owned Books</h1>
-    <table class="table table-striped table-hover">
-        <thead>
+<h1 class="text-center tradeTitle m-1 p-3">Available Books for Trade</h1>
+<main class="container trades">
+    <table class="table table-hover rounded-1 tradesTable">
+        <thead class="tableHead text-center">
         <tr>
             <th scope="col">Book Cover</th>
             <th scope="col">Book Title</th>
@@ -24,7 +25,7 @@
             <th scope="col">Action</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="tableBody text-center">
             <tr th:each="tradableBook : ${tradables}">
                 <form action="">
                     <td>
@@ -43,6 +44,8 @@
     </table>
 </main>
 
+
+<footer th:replace="partials :: footer"></footer>
 <script th:include="partials :: scripts-bottom"></script>
 </body>
 </html>

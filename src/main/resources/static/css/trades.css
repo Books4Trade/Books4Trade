@@ -1,0 +1,33 @@
+/**{*/
+/*    margin: 5px;*/
+/*    padding: 10px;*/
+/*}*/
+.trade-bg{
+    background-image: linear-gradient(var(--blue), var(--dark-blue), var(--blue));
+    background-repeat: no-repeat;
+    min-height: 975px;
+}
+
+.trades{
+    background-color: var(--red);
+    min-height: 1250px;
+}
+.tradesTable{
+    color: white;
+}
+.tableHead{
+    font-family: var(--header-font);
+    font-size: 24px;
+}
+.tableBody{
+    font-family: var(--main-font);
+    font-size: 18px;
+}
+.tradeImg{
+    height: 3.5rem;
+    width: 2rem;
+}
+.tradeTitle{
+    font-family: var(--header-font);
+    color: white;
+}
