@@ -165,15 +165,36 @@
         <!-- 2nd TabPanel pills-myreviews-->
         <div class="tab-pane fade" id="pills-myreviews" role="tabpanel" aria-labelledby="pills-myreviews-tab">
             <div class="d-flex flex-row flex-wrap justify-content-evenly">
-                <div th:each="review : ${usersReviews}">
-                    <h3 class="book-headers title-bg" th:text="${review.getTitle()}"/>
-                    <p class="text-center"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p>
-                    <p class="text-center"> Written On: <span th:text="${review.getCreatedDate()}"></span></p>
-                    <p class="text-center">
-                        Book Reviewed: <span th:text="${review.getBook().getTitle()}"></span>, by:<span th:text="${review.getBook().getAuthor().getFullname()}"></span>
-                    </p>
-                    <p class="text-center"> <img th:src="${review.getBook.getBookImg()}"></p>
-                    <p class="text-center"><a th:href="|/reviews/${review.getId()}|">See this Review</a>
+<!--NEEDS TO BE DELETED ON CLEAN UP-->
+<!--                <div th:each="review : ${usersReviews}">-->
+<!--                    <h3 class="book-headers title-bg" th:text="${review.getTitle()}"/>-->
+<!--                    <p class="text-center"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p>-->
+<!--                    <p class="text-center"> Written On: <span th:text="${review.getCreatedDate()}"></span></p>-->
+<!--                    <p class="text-center">-->
+<!--                        Book Reviewed: <span th:text="${review.getBook().getTitle()}"></span>, by:<span th:text="${review.getBook().getAuthor().getFullname()}"></span>-->
+<!--                    </p>-->
+<!--                    <p class="text-center"> <img th:src="${review.getBook.getBookImg()}"></p>-->
+<!--                    <p class="text-center"><a th:href="|/reviews/${review.getId()}|">See this Review</a>-->
+<!--                </div>-->
+                <!--Review Card-->
+                <div class="row flex-wrap review-cards-container">
+                    <div class="col-sm-4 review-card-main shadow-sm p-3 mb-2 bg-body rounded" th:each="review : ${usersReviews}">
+                        <div class="title-author-img-container">
+                            <h6 class="book-index-headers mb-1"><span th:text="${review.getBook().getTitle()}"></span><br></h6>
+                            <small><p>By: <span class="text-success" th:text="${review.getBook().getAuthor().getFullname()}"></span></p></small>
+                            <img th:src="${review.getBook().getBookImg()}" th:alt="${review.getBook().getTitle()} + ' book cover.'"
+                                 class="review-img mb-1">
+                            <small><p class="mb-1">Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p></small>
+                        </div>
+                        <div class="title-user-createDAte-container">
+                            <p class="mb-1 fw-bold fst-italic" th:text="${review.getTitle()}"></p>
+                            <small>
+                                <p class="text-muted mb-1">By User: <span th:text="${review.getUser().getUsername()}"></span></p>
+                                <p class="text-muted mb-1">Written On: <span th:text="${review.getCreatedDate()}"></span></p>
+                            </small>
+                            <a th:href="|/reviews/${review.getId()}|"><small>See this Review</small></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
