@@ -13,7 +13,7 @@
 		<form th:action="|/reviews/${bookReview.getId()}/edit|" th:method="POST" th:object="${bookReview}">
 				<h2 class="mb-3 text-center book-index-header-top">Editing review</span> </h2>
 				<div class="mb-3">
-					<label for="title" class="form-label book-index-headers">Edit title</label>
+					<label for="title" class="form-label">Edit title</label>
 					<input th:field="*{title}" type="text" class="form-control" id="title" name="title"
 						   th:value="${bookReview.getTitle()}" minlength="3" maxlength="255">
 				</div>
@@ -23,12 +23,15 @@
 					<textarea th:field="*{body}" class="form-control" id="body" rows="3" name="body"
 							  th:value="${bookReview.getBody()}" minlength="3"></textarea>
 				</div>
-				<div class="mb-3 book-index-headers">
+				<div class="mb-3">
 					<label for="rating" class="form-label">Rate book (1-5)</label>
 					<input th:field="*{rating}" type="number" class="form-control select-sizing" id="rating" name="rating"
 						   th:value="${bookReview.getRating()}" min="1" max="5">
 				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
+			<div class="text-center">
+				<button type="submit" class="btn submit-btn text-center mb-5">Submit</button>
+			</div>
+
 		</form>
 		</section>
 	</div>
