@@ -85,13 +85,13 @@
 
 		<div class="row featurette">
 			<div class="col-4">
-				<h2 class="featurette-heading mt-2 text-center">Explore</h2>
+				<h2 class="featurette-heading headers-font mt-2 text-center">Explore</h2>
 			</div>
 			<div class="col-4">
-				<h2 class="featurette-heading mt-2 text-center text-muted">Read</h2>
+				<h2 class="featurette-heading headers-font mt-2 text-center text-muted">Read</h2>
 			</div>
 			<div class="col-4">
-				<h2 class="featurette-heading mt-2 text-center">Connect</h2>
+				<h2 class="featurette-heading headers-font mt-2 text-center">Connect</h2>
 			</div>
 		</div>
 		<!-- Featured Book: Connect to Reviews and Reads-->
@@ -101,7 +101,7 @@
 				<img class="featurette-image img-fluid mx-auto feature-image" th:src="${reviewbook.getBookImg()}" alt="book cover">
 			</div>
 			<div class="col-md-6">
-				<h3 class="featurette-heading header-center mt-1">Our Favorite Books!</h3>
+				<h3 class="featurette-heading headers-font header-center mt-1">Our Favorite Books!</h3>
 					<h4 class="mt-3"><i class="fa-solid fa-circle-arrow-left"></i> Our highest rated book.</h4>
 					<p class="lead">The book <span th:text="${reviewbook.getTitle()}"></span> by <span th:text="${reviewbook.getAuthor().getFullname()}"></span>
 						has been reviewed <span th:text="37"></span> times by our users with an average rating of <span th:text="4.7"></span> out of 5. For our newest reviews <a th:href="@{/reviews}">click here!</a></p>
@@ -118,7 +118,7 @@
 		<!-- Featured Users: Connect to Trades and Reads -->
 		<div class="row featurette mb-4">
 			<div class="col-md-7">
-				<h3 class="featurette-heading header-center mt-1">Our Top Users!</h3>
+				<h3 class="featurette-heading headers-font header-center mt-1">Our Top Users!</h3>
 				<div class="row">
 					<div class="col-6">
 						<h4 class="header-center mt-4">Our Top Librarian</h4>

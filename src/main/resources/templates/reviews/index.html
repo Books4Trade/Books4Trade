@@ -8,24 +8,26 @@
 <body>
 <nav th:replace="partials :: navbar" />
 <section class="review-index-container">
-	<h1 class="mb-3 book-index-header-top fw-bold text-center w-auto">List of all reviews</h1>
+	<h1 class="mb-3 book-index-header-top fw-bold text-center w-auto">All Reviews</h1>
 	<div class="container">
 				<!--Review Card-->
 				<div class="row flex-wrap review-cards-container">
-					<div class="col-sm-4 review-card-main shadow-sm p-3 mb-2 bg-body rounded" th:each="review : ${allReviews}">
+					<div class="col-sm-4  review-card-main shadow-sm p-3 mb-2 bg-body rounded" th:each="review : ${allReviews}">
 						<div class="title-author-img-container">
-							<h6 class="book-index-headers mb-1"><span th:text="${review.getBook().getTitle()}"></span><br></h6>
+							<h6 class="book-index-headers mb-1"><span class="" th:text="${review.getBook().getTitle()}"></span><br></h6>
 							<small><p>By: <span class="text-success" th:text="${review.getBook().getAuthor().getFullname()}"></span></p></small>
 							<img class="review-img mb-1" th:src="${review.getBook.getBookImg()}">
 							<small><p class="mb-1 text-danger"> Rating: <span th:text="${review.getRating()}"></span> Out Of 5</p></small>
 						</div>
-						<div class="title-user-createDAte-container">
+						<div class="title-user-createDAte-container d-flex flex-column">
 							<p class="mb-1 fw-bold fst-italic" th:text="${review.getTitle()}"></p>
 							<small>
 							<p class="text-muted mb-1"> By User: <span th:text="${review.getUser().getUsername()}"></span></p>
 							<p class="text-muted mb-1">Written On: <span th:text="${review.getCreatedDate()}"></span> </p>
 							</small>
-							<a class="" th:href="|/reviews/${review.getId()}|"><small>See this Review</small></a>
+							<div class="index-review-button align-self-start mt-auto">
+							<a class="btn submit-btn" th:href="|/reviews/${review.getId()}|"><small>See this review</small></a>
+							</div>
 						</div>
 					</div>
 				</div>

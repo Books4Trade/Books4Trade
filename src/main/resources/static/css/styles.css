@@ -270,8 +270,8 @@ Paragraph
 .book-index-headers{
     color: #1D3557;
     font-size: 18px;
-    font-weight: 400;
-    font-family: 'Mate', serif; !important;
+    /*font-weight: 400;*/
+    /*font-family: 'Mate', serif; !important;*/
     }
 
 .book-index-header-top {
@@ -467,7 +467,7 @@ font-family: 'Inter', sans-serif;
 
 /********** REVIEWS-INDEX.HTML-START *****************/
 .title-user-createDAte-container {
-    overflow-wrap: break-word;
+    /*overflow-wrap: break-word;*/
 }
 
 .review-card-main {
