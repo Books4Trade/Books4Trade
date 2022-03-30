@@ -558,7 +558,7 @@ font-family: 'Inter', sans-serif;
 
 /*********** about.html start **************/
 
-.card-div > img {
+.card-img {
     clip-path: circle();
     }
 
