@@ -33,8 +33,8 @@
 </section>
 
 <section class="book-cards-header">
-	<h1 class="book-index-header-top fw-bold text-center w-auto mb-0" th:if="${!searched}">Here are all of our Books!</h1>
-	<h1 class="book-index-header-top fw-bold text-center w-auto mb-0" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h1>
+	<h1 class="book-index-header-top text-center w-auto mb-0" th:if="${!searched}">Here are all of our Books!</h1>
+	<h1 class="book-index-header-top text-center w-auto mb-0" th:if="${searched}">Here are our books matching <span class="headers-font" th:text="${searchedBy}"></span></h1>
 </section>
 
 <section class="book-cards mt-0 review-index-container">
