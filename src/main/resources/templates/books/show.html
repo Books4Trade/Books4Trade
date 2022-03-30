@@ -24,9 +24,13 @@
 				</div>
 				<p class="author">by <span class="text-success fw-bold" th:text="${book.getAuthor().getFullname()}">Suzanne Collins</span></p>
 				<hr>
-				<form th:action="@{/books/{id}/read (id=${book.getId()})}" th:method="POST" class="d-inline">
+				<form th:if="${!hasread}"  th:action="@{/books/{id}/read (id=${book.getId()})}" th:method="POST" class="d-inline">
 					<input type="hidden" th:value="${book.getId()}" id="read" name="read">
 					<button type="submit" class="btn show-btn btn-light m-2"><i class="bi bi-check"></i>Mark as Read</button>
+				</form>
+				<form th:if="${hasread}"  th:action="@{/books/{id}/unread (id=${book.getId()})}" th:method="POST" class="d-inline">
+					<input type="hidden" th:value="${book.getId()}" id="unread" name="unread">
+					<button type="submit" class="btn show-btn btn-light m-2"><i class="bi bi-check"></i>Mark as Unread</button>
 				</form>
 				<form th:method="GET" class="d-inline">
 					<button class="btn show-btn btn-light m-2" type="submit" th:formaction="|/books/${book.getId()}/addcopy|"><i
@@ -59,9 +63,7 @@
 	</div>
 	<div class="container summary-container w-75 shadow-sm p-3 mb-5 rounded mt-3 p-2 bg-white ">
 		<h5 class="fw-bold">Summary</h5>
-		<p class="" th:text="${book.getSummary()}">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-			Expedita voluptatibus vel veniam dolorum qui delectus totam illum maxime at similique minus et natus cumque
-			architecto, blanditiis aspernatur, praesentium id eius?</p>
+		<p class="" th:text="${book.getSummary()}"></p>
 	</div>
 </section>
 
