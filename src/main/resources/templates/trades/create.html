@@ -12,10 +12,11 @@
 </head>
 <body>
 <header class="p-4">
-    <h2 class="header-center book-index-header-top">Let's Make a Trade</h2>
+
 </header>
 <div class="back-img">
     <div class="container form-shadow mb-5 bg-body rounded h-50 w-50 mt-3">
+        <h2 class="header-center headers-font light-blue-bg">Let's Make a Trade</h2>
         <div class="col form-color">
             <div class="text-center">
                 <img th:src="${ownedbook.getBook().getBookImg()}" class="rounded book-cover" alt="...">
@@ -23,7 +24,7 @@
             </div>
             <form th:action="@{/books/trade/initiate}" th:method="post">
                 <div class="text-center">
-                    <label for="yourbookid" class="summary-font text-center">Your Book To Trade:</label>
+                    <label for="yourbookid" class="text-center">Your Book To Trade:</label>
                     <select id="yourbookid" name="yourbookid" class="text-center mb-3" style="width: auto" th:type="number">
                         <option th:each="ownedBook : ${mytradables}"
                                 th:value="${ownedBook.getId()}"
@@ -38,7 +39,7 @@
                 <div class="text-center">
                     <div class="col-sm-12">
                         <input type="hidden" name="buddyid" id="buddyid" th:value="${tradebuddy.getId()}">
-                        <p class="summary-font text-center">TradeBuddy Username: <span th:text="${tradebuddy.getUsername()}"></span>
+                        <p class="text-center">TradeBuddy Username: <span th:text="${tradebuddy.getUsername()}"></span>
                         </p>
                     </div>
                 </div>
