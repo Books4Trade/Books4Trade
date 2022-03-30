@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-4 text-center">
                         <h2 class="tradeBookTitle" th:text="${book.title}">Title</h2>
-                        <small class="main-content p-1"><b>Author: <span th:text="${book.getAuthor().getFullname()}">Author</span></small></b>
+                        <small class="main-content p-1"><b>Author: <span th:text="${book.getAuthor().getFullname()}">Author</span></b></small>
                         <p class="main-content" th:text="${book.getSummary()}">Book Summary</p>
                         <p class="main-content" th:text="${book.getRating()}">Book Rating</p>
                     </div>
@@ -61,7 +61,7 @@
                             <input id="tradeBuddy" name="tradeBuddy" class="form-control" th:type="hidden" th:value="${ownedCopy.getUser().getId()}">
                             <!--change to href-->
                             <a th:href="|/users/${ownedCopy.getUser().getId()}|"></a>
-                            <input type="submit" class="btn btn-primary btn-sm" value="Request A Trade">
+                            <input type="submit" class="submit-btn" value="Request A Trade">
                         </td>
                     </form>
                 </span>
