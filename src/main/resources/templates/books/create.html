@@ -6,34 +6,37 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-<div class="back-img">
-    <div class="container form-shadow form-color mb-5 bg-body rounded h-50 w-50">
-        <h2 class="text-center book-index-header-top">Do you want to add this book?</h2>
-        <div>
-            <form th:action="@{/books/create}" th:method="POST">
-                <h2 class="header-center book-title" th:text="${title}"></h2>
-                <p class="book-title text-center font-size text-success">By: <span th:text="${author}"></span></p>
-                <div class="text-center">
-                    <img th:src="${imagesrc}">
-                </div>
-                <div class="container summary-container w-75 shadow-sm p-3 mb-5 rounded mt-3 p-2 bg-white ">
-                    <p class="summary-font" th:text="${summary}"></p>
-                </div>
+<div class="min-height">
+    <div class="back-img">
+        <div class="container form-shadow form-color mb-5 bg-body rounded h-50 w-50">
+            <h2 class="text-center headers-font light-blue-bg">Do you want to add this book?</h2>
+            <div>
+                <form th:action="@{/books/create}" th:method="POST">
+                    <h2 class="header-center book-title" th:text="${title}"></h2>
+                    <p class="book-title text-center font-size text-success">By: <span th:text="${author}"></span></p>
+                    <div class="text-center">
+                        <img th:src="${imagesrc}">
+                    </div>
+                    <div class="container summary-container w-75 shadow-sm p-3 mb-5 rounded mt-3 p-2 bg-white ">
+                        <p class="summary-font" th:text="${summary}"></p>
+                    </div>
 
 
-                <input id="title" name="title" class="form-control" type="hidden" th:value="${title}">
-                <input id="author" name="author" class="form-control" type="hidden" th:value="${author}">
-                <input id="image" name="image" class="form-control" type="hidden" th:value="${imagesrc}">
-                <input id="summary" name="summary" class="form-control" type="hidden" th:value="${summary}">
-                <!-- Add Select for Categories, Grade Level -->
-                <div class="text-center">
-                    <button class="btn submit-btn" type="submit">Add This Book</button>
-                </div>
-            </form>
+                    <input id="title" name="title" class="form-control" type="hidden" th:value="${title}">
+                    <input id="author" name="author" class="form-control" type="hidden" th:value="${author}">
+                    <input id="image" name="image" class="form-control" type="hidden" th:value="${imagesrc}">
+                    <input id="summary" name="summary" class="form-control" type="hidden" th:value="${summary}">
+                    <!-- Add Select for Categories, Grade Level -->
+                    <div class="text-center">
+                        <button class="mb-5 btn submit-btn" type="submit">Add This Book</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
+    </div>
 </div>
+
 
 
 <footer th:replace="partials :: footer"/>

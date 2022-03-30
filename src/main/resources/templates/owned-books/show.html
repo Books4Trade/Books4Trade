@@ -7,42 +7,45 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-<div class="back-img">
-	<div class="container form-shadow mb-5 bg-body rounded h-50 w-50">
-		<div class="row">
-			<div class="col form-color p-0">
-				<h2 class="headers-font text-center light-blue-bg p-3">Showing copy of <span class="headers-font" th:text="${ownedBook.getBook.getTitle()}"></span></h2>
+<div>
+	<div class="back-img">
+		<div class="container form-shadow mb-5 bg-body rounded h-50 w-50">
+			<div class="row">
+				<div class="col form-color p-0">
+					<h2 class="headers-font text-center light-blue-bg p-3">Showing copy of <span class="headers-font" th:text="${ownedBook.getBook.getTitle()}"></span></h2>
 					<div class="text-center mt-2">
 						<img th:src="${ownedBook.getBook.getBookImg()}" alt="book">
 					</div>
 
-						<div class="text-center">
-							<p>Condition: <span th:text="${ownedBook.getBookCondition()}"></span></p>
-							<p>Type: <span th:text="${ownedBook.getType().getName()}"></span></p>
-							<p>Available for Trade:
-								<span th:if="${ownedBook.isTradable()}" class="text-success">Yes</span>
-								<span th:if="${!ownedBook.isTradable()}" class="text-danger">No</span>
-							</p>
-							<p class="card-text">Owner: <span th:text="${ownedBook.getUser().getUsername()}"></span></p>
-							<!-- NEED REFACTOR BELOW TO COMPARE AUTH PRINCIPAL ID TO OWNER ID-->
-							<div class="row justify-content-center mt-2 mb-2" th:if="${isOwner}">
+					<div class="text-center">
+						<p>Condition: <span th:text="${ownedBook.getBookCondition()}"></span></p>
+						<p>Type: <span th:text="${ownedBook.getType().getName()}"></span></p>
+						<p>Available for Trade:
+							<span th:if="${ownedBook.isTradable()}" class="text-success">Yes</span>
+							<span th:if="${!ownedBook.isTradable()}" class="text-danger">No</span>
+						</p>
+						<p class="card-text">Owner: <span th:text="${ownedBook.getUser().getUsername()}"></span></p>
+						<!-- NEED REFACTOR BELOW TO COMPARE AUTH PRINCIPAL ID TO OWNER ID-->
+						<div class="row justify-content-center mt-2 mb-2" th:if="${isOwner}">
 
-								<form th:method="get" class="col-1 text-center">
-									<button type="submit" class="btn edit-btn" th:formaction="|/copies/${ownedBook.getId()}/edit|">Edit</button>
-								</form>
+							<form th:method="get" class="col-1 text-center">
+								<button type="submit" class="btn edit-btn" th:formaction="|/copies/${ownedBook.getId()}/edit|">Edit</button>
+							</form>
 
-								<form th:action="|/copies/${ownedBook.getId()}/delete|" th:method="POST" class="col-1 text-center">
-									<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
-									<button type="submit" class="btn delete-btn">Delete</button>
-								</form>
-							</div>
+							<form th:action="|/copies/${ownedBook.getId()}/delete|" th:method="POST" class="col-1 text-center">
+								<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
+								<button type="submit" class="btn delete-btn">Delete</button>
+							</form>
 						</div>
+					</div>
 
 
 
+				</div>
 			</div>
 		</div>
 	</div>
+
 </div>
 
 
