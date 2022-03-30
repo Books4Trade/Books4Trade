@@ -25,7 +25,7 @@
 						</select>
 						<!--<label for="query" class="fw-bold">Search For:</label>-->
 						<input  id="query" name="query" type="text" placeholder="Search for Title or Author" class="input-field">
-						<button type="submit" class="btn btn-warning m-1">Search books</button>
+						<button type="submit" class="btn edit-btn m-1">Search Books</button>
 					</div>
 				</form>
 			</div>
@@ -33,21 +33,21 @@
 </section>
 
 <section class="book-cards-header">
-	<h1 class="book-index-header-top fw-bold text-center w-auto" th:if="${!searched}">Here are all of our Books!</h1>
-	<h1 class="book-index-header-top fw-bold text-center w-auto" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h1>
+	<h1 class="book-index-header-top fw-bold text-center w-auto mb-0" th:if="${!searched}">Here are all of our Books!</h1>
+	<h1 class="book-index-header-top fw-bold text-center w-auto mb-0" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h1>
 </section>
 
-<section class="book-cards">
+<section class="book-cards mt-0 review-index-container">
 	<!--BOOK CARD-->
-	<div class="shadow-sm p-3 mb-5 bg-white rounded">
-		<div class="row test-media">
-			<div class="col-md book-individual-card mb-2 shadow-sm p-3 mb-3 bg-white rounded" th:each="book : ${allBooks}" >
+	<div class="p-3">
+		<div class="row flex-wrap review-cards-container">
+			<div class="col-sm-4 review-card-main shadow-sm p-3 mb-2 bg-body rounded justify-content-center" th:each="book : ${allBooks}" >
 				<div class="img-size d-flex align-items-end justify-content-center" th:style="'background-image:url(' +${book.getBookImg()}+')'">
 					<a class="read-more text-decoration-none fw-light btn btn-success mb-3" th:href="|/books/${book.getId()}|"><small>Read More</small></a>
 				</div>
 				<div class="rating-div">
-<!--					<p th:if="${book.getRating()==null}"> <span  th:text=”${"Not Yet Reviewed"}”></span></p>-->
-					<p class=""><small>Average Rating: <span th:text="${book.getRating()}"></span></small></p>
+					<p th:if="${book.getRating() ne null}"><small>Average Rating: <span th:text="${book.getRating()}"></span></small></p>
+					<p th:unless="${book.getRating() ne null}"><small>Not Yet Reviewed</small></p>
 				</div>
 				<h6 class="book-index-headers title-bg mt-2 mb-auto" th:text="${book.title}"></h6>
 				<span class="span-by"><small>By: </small></span><p class="card-text text-success d-inline" th:text="${book.getAuthor().getFullname()}"></p>

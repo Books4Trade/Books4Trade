@@ -310,13 +310,17 @@ Paragraph
 
 /*-input and search field - header-search*/
 .select-field {
-height: 30px;
+    height: 36px;
+    border: 1px solid blue;
+    padding-left: 13px;
+    border-radius: 6px;
 }
 .input-field {
- width: 250px;
- border: none;
- padding: 6px 13px;
- border-radius: 6px;
+    height: 36px;
+    width: 250px;
+    border: 1px solid blue;
+    padding: 4px 13px;
+    border-radius: 6px;
 }
 .input-field::placeholder {
    font-family: Inter, sans-serif;
@@ -327,9 +331,6 @@ height: 30px;
 .search-field-container {
 }
 
-.select-field {
-    border-radius: 6px;
-}
 .form-container {
     background: #1D3557;
     font-family: Inter, sans-serif;
