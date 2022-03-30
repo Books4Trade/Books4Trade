@@ -6,7 +6,7 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-<div class="back-img">
+<div class="back-img min-height">
     <div class="container form-shadow form-color mb-5 bg-body rounded h-50 w-50">
         <h2 class="text-center book-index-header-top">Do you want to add this book?</h2>
         <div>
@@ -27,7 +27,7 @@
                 <input id="summary" name="summary" class="form-control" type="hidden" th:value="${summary}">
                 <!-- Add Select for Categories, Grade Level -->
                 <div class="text-center">
-                    <button class="btn submit-btn" type="submit">Add This Book</button>
+                    <button class="btn submit-btn mb-2" type="submit">Add This Book</button>
                 </div>
             </form>
         </div>
