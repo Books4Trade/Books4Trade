@@ -133,7 +133,18 @@ public class BookController {
 //    Read
     @GetMapping("/books/{id}")
     public String individualBook(@PathVariable long id, Model model){
-        model.addAttribute("book", booksDao.getById(id));
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findById(currentUser.getId());
+        Book book = booksDao.findById(id);
+        boolean hasread;
+        List<User> readers = book.getReaders();
+        if(readers.contains(user)){
+            hasread = true;
+        } else {
+            hasread = false;
+        }
+        model.addAttribute("hasread", hasread);
+        model.addAttribute("book", book);
         System.out.println("Showing Individual Book ID:" + id);
         return "books/show";
     }
@@ -153,7 +164,20 @@ public class BookController {
         return "redirect:/books/" + saved.getId();
         // HERE LIES MY LOVE FOR SQL
     }
-
+    @PostMapping("/books/{id}/unread")
+    public String unreadThisBook(@PathVariable long id, @RequestParam(name="unread") String unreadId){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.findById(currentUser.getId());
+        System.out.println("Removing Book Read by User:"+user.getUsername());
+        Book bookunread = booksDao.findById(id);
+        System.out.println("Book That was Un-read:"+bookunread.getTitle());
+        List<User> usersRead = bookunread.getReaders();
+        usersRead.remove(user);
+        bookunread.setReaders(usersRead);
+        Book saved = booksDao.save(bookunread);
+        System.out.println("Book removed this User to the list of readers, BookID:"+saved.getId()+", User ID:"+ user.getId());
+        return "redirect:/books/" + saved.getId();
+    }
 
 //    Update
     @GetMapping("/books/{id}/edit")

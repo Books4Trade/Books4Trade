@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         // Registration, Banned Pages - Public
                         "/", "/banned", "/register", "/about", "/session-invalidate",
                         // Book Mappings, Inc Search - Public
-                        "/books", "/books/{id}", "/books/search", "/books/search/api",
+                        "/books",  "/books/search", "/books/search/api",
                         // Reviews Mappings - Views- Public
                         "/reviews", "/reviews/search", "/reviews/book/{id}",
                         // Owned Books Mappings - Views - Public
@@ -67,7 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         //  Profile, Edit Profile, Reset Password
                         "/profile", "/profile/edit", "/profile/passwordreset",
                         // Book Creation, Reading
-                        "/books/create", "/books/{id}/read",
+                        "/books/{id}", "/books/create", "/books/{id}/read", "/books/{id}/unread",
 
                         // Add, Edit, Delete an Owned Book - Users Only
                         "/copies/all", "/books/{id}/copies", "/books/{id}/addcopy",
