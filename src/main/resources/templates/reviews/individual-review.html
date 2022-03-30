@@ -27,10 +27,10 @@
 
 						<div sec:authorize="isAuthenticated()">
 							<div th:if="${isOwner}" class="row justify-content-center mt-2 mb-2">
-								<form th:method="GET" class="col-1 text-center">
-									<button type="submit" class="btn edit-btn mb-5"th:formaction="|/reviews/${review.getId()}/edit|">Edit</button>
+								<form th:method="GET" class="col-md-2 col-xs-4 text-center">
+									<button type="submit" class="btn submit-btn mb-5"th:formaction="|/reviews/${review.getId()}/edit|">Edit</button>
 								</form>
-								<form th:action="|/reviews/${review.getId()}/delete|" th:method="POST" class="col-1 text-center">
+								<form th:action="|/reviews/${review.getId()}/delete|" th:method="POST" class="col-md-2 col-xs-4 text-center">
 									<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
 									<button type="submit" class="btn delete-btn mb-5">Delete</button>
 								</form>
