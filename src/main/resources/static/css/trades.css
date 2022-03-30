@@ -32,8 +32,31 @@
     color: white;
 }
 
+.tradeHeader{
+    font-family: var(--header-font);
+    background-color: var(--sky-blue);
+    color: var(--dark-blue);
+    font-size: 24px;
+}
+.main-content {
+    font-family: var(--main-font);
+    overflow: hidden;
+}
+.tradeBookTitle{
+    font-family: var(--header-font);
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin-bottom: 4px;
+}
+
+
+
 /*TRADABLE BOOK SHOW PAGE*/
 body{
+    min-height: 1080px;
+}
+
+article{
     min-height: 1080px;
 }
 
