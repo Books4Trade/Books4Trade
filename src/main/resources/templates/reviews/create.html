@@ -7,12 +7,11 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-
 <div class="back-img">
 <div class="container form-shadow mb-3 bg-body rounded h-50 w-50">
 	<div class="row form-color">
 		<div class="col">
-			<h2 class="text-center book-index-header-top">Create a Review of <span th:text="${book.getTitle()}"></span></h2>
+			<h2 class="text-center headers-font light-blue-bg">Create a Review of <span class="headers-font" th:text="${book.getTitle()}"></span></h2>
 			<div class="text-center mt-2">
 				<img th:src="${book.getBookImg()}" alt="">
 			</div>
@@ -37,7 +36,7 @@
 			
 					</div>
 
-					<button type="submit" class="btn btn-submit">Submit</button>
+					<button type="submit" class="btn submit-btn">Submit</button>
 				</div>
 			</form>
 		</div>
