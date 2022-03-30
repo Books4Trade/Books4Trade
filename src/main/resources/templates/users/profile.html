@@ -14,75 +14,51 @@
 <div class="content min-height col justify-content-center bg-white mt-0">
 
     <!--SMALL BREAKPOINT-->
-    <!--Tab-Pill Controller SM Screens-->
-    <ul class="d-xs-block d-sm-none nav nav-pills mx-5 mb-1 " id="pills-tab-sm" role="tablist">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">Dashboard</a>
+    <!--Tab-Pill Controller XS and SM Screens-->
+    <ul class="d-xs-flex d-sm-flex d-md-none row justify-content-center nav nav-pills mx-5 mb-1 " id="pills-tab-sm" role="tablist">
+        <li class="nav-item dropdown col-xs-8 col-sm-4 justify-content-center">
+            <a class="nav-link dropdown-toggle text-center" data-bs-toggle="dropdown" role="button">Dashboard</a>
             <ul class="dropdown-menu">
                 <li role="presentation"><a class="dropdown-item" id="pills-myaccount-tab-sm" data-bs-toggle="pill" data-bs-target="#pills-myaccount"
-                                           role="tab" aria-controls="pills-myaccount" aria-selected="false">My Account</a></li>
+                                           role="tab" aria-controls="pills-myaccount" aria-selected="false">Account</a></li>
                 <li role="presentation"><a class="dropdown-item" id="pills-mybooks-tab-sm" data-bs-toggle="pill" data-bs-target="#pills-mybooks"
-                                           type="button" role="tab" aria-controls="pills-mybooks" aria-selected="true">My Books</a></li>
+                                           type="button" role="tab" aria-controls="pills-mybooks" aria-selected="true">Books</a></li>
                 <li role="presentation"><a class="dropdown-item" id="pills-mytrades-tab-sm" data-bs-toggle="pill" data-bs-target="#pills-mytrades"
-                                           type="button" role="tab" aria-controls="pills-mytrades" aria-selected="false">My Trades</a></li>
+                                           type="button" role="tab" aria-controls="pills-mytrades" aria-selected="false">Trades</a></li>
                 <li role="presentation"><a class="dropdown-item" id="pills-myreviews-tab-sm" data-bs-toggle="pill" data-bs-target="#pills-myreviews"
-                                           type="button" role="tab" aria-controls="pills-myreviews" aria-selected="false">My Reviews</a></li>
+                                           type="button" role="tab" aria-controls="pills-myreviews" aria-selected="false">Reviews</a></li>
                 <li role="presentation"><a class="dropdown-item" id="pills-myreads-tab-sm" data-bs-toggle="pill" data-bs-target="#pills-myreads"
-                                           type="button" role="tab" aria-controls="pills-myreads" aria-selected="false">My Reads</a></li>
+                                           type="button" role="tab" aria-controls="pills-myreads" aria-selected="false">Reads</a></li>
             </ul>
         </li>
     </ul>
 
-    <!--MEDIUM BREAKPOINT-->
-    <!--Tab-Pill Controller MD Screens-->
-    <ul class="d-none d-sm-block d-md-block d-lg-none nav nav-pills mx-5 mb-1 " id="pills-tab-md" role="tablist">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">Dashboard</a>
-            <ul class="dropdown-menu">
-                <li role="presentation"><a class="dropdown-item" id="pills-myaccount-tab-md" data-bs-toggle="pill" data-bs-target="#pills-myaccount"
-                                           role="tab" aria-controls="pills-myaccount" aria-selected="false">My Account</a></li>
-                <li role="presentation"><a class="dropdown-item" id="pills-mytrades-tab-md" data-bs-toggle="pill" data-bs-target="#pills-mytrades"
-                                           type="button" role="tab" aria-controls="pills-mytrades" aria-selected="false">My Trades</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">My Library</a>
-            <ul class="dropdown-menu">
-                <li role="presentation"><a class="dropdown-item" id="pills-mybooks-tab-md" data-bs-toggle="pill" data-bs-target="#pills-mybooks"
-                                           type="button" role="tab" aria-controls="pills-mybooks" aria-selected="true">My Books</a></li>
-                <li role="presentation"><a class="dropdown-item" id="pills-myreviews-tab-md" data-bs-toggle="pill" data-bs-target="#pills-myreviews"
-                                           type="button" role="tab" aria-controls="pills-myreviews" aria-selected="false">My Reviews</a></li>
-                <li role="presentation"><a class="dropdown-item" id="pills-myreads-tab-md" data-bs-toggle="pill" data-bs-target="#pills-myreads"
-                                           type="button" role="tab" aria-controls="pills-myreads" aria-selected="false">My Reads</a></li>
-            </ul>
-        </li>
-    </ul>
 
-    <!--Large Breakpoint-->
-    <!--Tab-Pill Controller LG Screens-->
-    <div class="d-none d-lg-block d-xl-none">
-        <ul class="nav nav-pills mx-2 mb-1" id="pills-tab-lg" role="tablist">
-            <li class="nav-item mx-2 p-3" role="presentation">
+    <!--Medium Breakpoint-->
+    <!--Tab-Pill Controller Medium and Above Screens-->
+    <div class="d-none d-md-flex row justify-content-center">
+        <ul class="nav nav-pills m-2 col-12 justify-content-evenly" id="pills-tab-lg" role="tablist">
+            <li class="nav-item p-2" role="presentation">
                 <button class="nav-link" id="pills-myaccount-tab-lg" data-bs-toggle="pill" data-bs-target="#pills-myaccount" type="button" role="tab"
                         aria-controls="pills-myaccount" aria-selected="false">
-                    My Account</button>
+                    Account</button>
             </li>
-            <li class="nav-item mx-2 p-3" role="presentation">
+            <li class="nav-item p-2" role="presentation">
                 <button class="nav-link" id="pills-mybooks-tab-lg" data-bs-toggle="pill" data-bs-target="#pills-mybooks" type="button" role="tab"
                         aria-controls="pills-mybooks" aria-selected="true">
-                    My Books</button>
+                    Books</button>
             </li>
-            <li class="nav-item mx-2 p-3" role="presentation">
+            <li class="nav-item p-2" role="presentation">
                 <button class="nav-link active" id="pills-mytrades-tab-lg" data-bs-toggle="pill" data-bs-target="#pills-mytrades" type="button"
                         role="tab" aria-controls="pills-mytrades" aria-selected="false">
-                    My Trades</button>
+                    Trades</button>
             </li>
-            <li class="nav-item mx-2 p-3" role="presentation">
+            <li class="nav-item p-2" role="presentation">
                 <button class="nav-link" id="pills-myreviews-tab-lg" data-bs-toggle="pill" data-bs-target="#pills-myreviews" type="button" role="tab"
                         aria-controls="pills-myreviews" aria-selected="false">
-                    My Reviews</button>
+                    Reviews</button>
             </li>
-            <li class="nav-item mx-2 p-3" role="presentation">
+            <li class="nav-item p-2" role="presentation">
                 <button class="nav-link" id="pills-myreads-tab-lg" data-bs-toggle="pill" data-bs-target="#pills-myreads" type="button" role="tab"
                         aria-controls="pills-myreads" aria-selected="false">
                     My Reads</button>
@@ -99,46 +75,7 @@
         </ul>
     </div>
 
-    <!--X-Large Breakpoint-->
-    <!--Tab-Pill Controller XL Screens-->
-    <div class="d-none d-xl-block">
-        <ul class="nav nav-pills mx-4 mb-1" id="pills-tab-xl" role="tablist">
-            <li class="nav-item mx-4 p-2" role="presentation">
-                <button class="nav-link" id="pills-myaccount-tab-xl" data-bs-toggle="pill" data-bs-target="#pills-myaccount" type="button" role="tab"
-                        aria-controls="pills-myaccount" aria-selected="false">
-                    My Account</button>
-            </li>
-            <li class="nav-item mx-4 p-2" role="presentation">
-                <button class="nav-link" id="pills-mybooks-tab-xl" data-bs-toggle="pill" data-bs-target="#pills-mybooks" type="button" role="tab"
-                        aria-controls="pills-mybooks" aria-selected="true">
-                    My Books</button>
-            </li>
-            <li class="nav-item mx-4 p-2" role="presentation">
-                <button class="nav-link active" id="pills-mytrades-tab-xl" data-bs-toggle="pill" data-bs-target="#pills-mytrades" type="button"
-                        role="tab" aria-controls="pills-mytrades" aria-selected="false">
-                    My Trades</button>
-            </li>
-            <li class="nav-item mx-4 p-2" role="presentation">
-                <button class="nav-link" id="pills-myreviews-tab-xl" data-bs-toggle="pill" data-bs-target="#pills-myreviews" type="button" role="tab"
-                        aria-controls="pills-myreviews" aria-selected="false">
-                    My Reviews</button>
-            </li>
-            <li class="nav-item mx-4 p-2" role="presentation">
-                <button class="nav-link" id="pills-myreads-tab-xl" data-bs-toggle="pill" data-bs-target="#pills-myreads" type="button" role="tab"
-                        aria-controls="pills-myreads" aria-selected="false">
-                    My Reads</button>
-            </li>
-            <!--        <li class="nav-item m-2 p-3" role="presentation">-->
-            <!--            <button class="nav-link" id="pills-mynotifications-tab" data-bs-toggle="pill" data-bs-target="#pills-mynotifications" type="button" role="tab" aria-controls="pills-mynotificatios" aria-selected="false">-->
-            <!--                My Notifications</button>-->
-            <!--        </li>-->
-            <!--        <li class="nav-item m-2 p-3" role="presentation">-->
-            <!--            <button class="nav-link" id="pills-mywatchlist-tab" data-bs-toggle="pill" data-bs-target="#pills-mywatchlist" type="button" role="tab" aria-controls="pills-mywatchlist" aria-selected="false">-->
-            <!--                My Watchlist</button>-->
-            <!--        </li>-->
 
-        </ul>
-    </div>
 
 
     <!-- Tab Content Container Below -->
