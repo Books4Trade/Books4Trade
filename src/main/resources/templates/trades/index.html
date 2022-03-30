@@ -14,9 +14,9 @@
 </head>
 <body class="trade-bg">
 <nav th:replace="partials :: navbar"></nav>
-<h1 class="text-center tradeTitle m-1 p-3">Available Books for Trade</h1>
+<h1 class="text-center headers-font tradeTitle mb-2 m-1 p-2 w-auto">Available Books for Trade</h1>
 <main class="container trades">
-    <table class="table table-hover rounded-1 tradesTable">
+    <table class="table table-hover rounded-1 tradesTable shadow p-2 mb-3 bg-body rounded">
         <thead class="tableHead text-center">
         <tr>
             <th scope="col">Book Cover</th>
@@ -25,7 +25,7 @@
             <th scope="col">Action</th>
         </tr>
         </thead>
-        <tbody class="tableBody text-center">
+        <tbody class="tableBody text-center table-striped">
             <tr th:each="tradableBook : ${tradables}">
                 <form action="">
                     <td>
@@ -34,7 +34,7 @@
                     <td class="align-middle" th:text="${tradableBook.getTitle()}"></td>
                     <td class="align-middle" th:text="${tradableBook.getAuthor().getFullname()}"></td>
                     <td class="align-middle justify-content-between">
-                        <input type="submit" class="btn btn-primary btn-sm" value="View"
+                        <input type="submit" class="btn trade-index-btn btn-sm" value="View"
                                th:formaction="@{/books/trade/{id}(id=${tradableBook.getId()})}"
                                th:formtarget="_blank">
                     </td>
