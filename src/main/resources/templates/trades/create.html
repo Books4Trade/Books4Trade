@@ -11,7 +11,8 @@
     </style>
 </head>
 <body>
-<header class="p-4">
+<nav th:replace="partials :: navbar"></nav>
+<header class="">
     <h2 class="header-center book-index-header-top">Let's Make a Trade</h2>
 </header>
 <div class="back-img">
@@ -21,9 +22,9 @@
                 <img th:src="${ownedbook.getBook().getBookImg()}" class="rounded book-cover" alt="...">
                 <figcaption class="figure-caption text-center summary-font mb-3" th:text="${ownedbook.getBook().getTitle()}">A caption for the above image.</figcaption>
             </div>
-            <form th:action="@{/books/trade/initiate}" th:method="post">
+            <form th:action="@{/books/trade/initiate}" th:method="post" class="pb-4">
                 <div class="text-center">
-                    <label for="yourbookid" class="summary-font text-center">Your Book To Trade:</label>
+                    <label for="yourbookid" class="summary-font text-center">Your Book To Trade:</label><br>
                     <select id="yourbookid" name="yourbookid" class="text-center mb-3" style="width: auto" th:type="number">
                         <option th:each="ownedBook : ${mytradables}"
                                 th:value="${ownedBook.getId()}"
@@ -43,7 +44,8 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <input type="submit" class="btn submit-btn text-center" th:value="Submit">
+                    <input type="submit" class="btn submit-btn text-center m-1" th:value="Submit">
+	                <input type="submit" class="btn submit-btn text-center m-1" th:value="Cancel">
                 </div>
 
                 <!--NEED TO ADD A CANCEL BUTTON-->
