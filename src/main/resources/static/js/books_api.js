@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     const renderBooks = (data) => {
         let booksHTML = "";
-        booksHTML = '<div class="row test-media">';
+        booksHTML = '<div class="row flex-wrap review-cards-container">';
         for (let i = 0; i < data.items.length; i++){
             let item = data.items[i],
                 title = item.volumeInfo.title,
@@ -63,21 +63,29 @@ $(document).ready(function() {
            //     }
 
             booksHTML +=
-                '<form class="col-md book-individual-card mb-2 shadow-sm p-3 mb-3 bg-white rounded" action="/books/create" method="GET">'+
-                    '<div class="img-size d-flex align-items-end justify-content-center" style="background-image: url('+img+')">'+
-                        '<a class="read-more text-decoration-none fw-light btn btn-success mb-3" target="_blank" href="' + preview + '" >Preview Book</a>'+
-                    '</div>'+
-                    '<h6 class="book-index-headers title-bg mt-2 mb-auto">' + title+' </h6>'+
-                    '<span class="span-by"><small>By:</small></span>'+
-                    '<p class="card-text text-success d-inline">' + author + '</p>'+
+                '<form class="col-sm-4 review-card-main shadow-sm p-3 mb-2 bg-body rounded justify-content-center" action="/books/create" method="GET">'+
+                    '<div class="img-size d-flex align-items-end justify-content-center" style="background-image:url(' +img+')">'+
+                        '<a class="read-more text-decoration-none fw-light btn btn-success mb-3" href="'+preview+'" target="_blank"><small>Preview</small></a>'+
+                    '</div>' +
+                    '<h6 class="book-index-headers title-bg mt-2 mb-auto">'+ title +'</h6>'+
+                    '<span class="span-by"><small>By: </small></span><p class="card-text text-success d-inline">'+author+'</p>'+
+
+
+            // '<div class="img-size d-flex align-items-end justify-content-center" style="background-image: url('+img+')">'+
+                    //     '<a class="read-more text-decoration-none fw-light btn btn-success mb-3" target="_blank" href="' + preview + '" >Preview Book</a>'+
+                    // '</div>'+
+                    // '<h6 class="book-index-headers title-bg mt-2 mb-auto">' + title+' </h6>'+
+                    // '<span class="span-by"><small>By:</small></span>'+
+                    // '<p class="card-text text-success d-inline">' + author + '</p>'+
                     '<input type="hidden" name="title" id="title" value="'+ title +'">'+
                     '<input type="hidden" name="author" id="author" value="'+ author +'">'+
                     '<input type="hidden" name="imagesrc" id="imagesrc" value="'+ img+'">'+
                     '<input type="hidden" name="summary" id="summary" value ="'+ summary +'">'+
-                    '<br>'+
-                    '<div class="text-center">'+
-                        '<button type="submit" class="btn btn-primary">Add Book</button>' +
-                    '</div>' +
+                    '<div class="card-body d-flex flex-column mt-auto">'+
+                        '<div class="btn-group btn-grp-div mx-auto mt-auto">'+
+                            '<button type="submit" class="btn submit-btn">Add Book</button>' +
+                        '</div>' +
+                    '</div>'+
                 '</form>';
         }
         booksHTML += '</div>';
