@@ -12,7 +12,7 @@
 		<div class="container form-shadow mb-5 bg-body rounded h-50 w-50 mt-3">
 			<div class="row">
 				<div class="col form-color">
-					<h2 class="header-center headers-font light-blue-bg p-3">Add Copy  <span class="headers-font" th:text="${book.getTitle()}"></span></h2>
+					<h2 class="header-center headers-font light-blue-bg p-3">Add Copy:  <span class="headers-font" th:text="${book.getTitle()}"></span></h2>
 					<div class="text-center mt-2">
 						<img th:src="${book.getBookImg()}" alt="">
 					</div>
@@ -20,9 +20,9 @@
 
 					<form th:action="|/books/${book.getId()}/addcopy|" th:method="POST">
 						<div class="mt-5 mb-5">
-							<div class="text-center">
-								<label for="bookCondition">Choose book condition:</label><br>
-								<select name="bookCondition" id="bookCondition">
+							<div class="">
+								<label class="fw-bold p-2" for="bookCondition">Choose book condition:</label><br>
+								<select class="form-select" name="bookCondition" id="bookCondition">
 									<option name="bookCondition" value="poor">Poor</option>
 									<option name="bookCondition" value="fair">Fair</option>
 									<option name="bookCondition" value="better">Better</option>
@@ -33,9 +33,9 @@
 							<br>
 
 
-							<div class="text-center">
-								<label for="isTradeable">Is the book tradeable?</label><br>
-								<select name="isTradeable" id="isTradeable">
+							<div class="">
+								<label class="fw-bold p-2" for="isTradeable">Is the book tradeable?</label><br>
+								<select class="form-select" name="isTradeable" id="isTradeable">
 									<option name="isTradeable" value="true">Yes</option>
 									<option name="isTradeable" value="false">No</option>
 								</select>
@@ -46,9 +46,9 @@
 
 
 
-							<div class="text-center">
-								<label for="bookType">Choose book type:</label><br>
-								<select name="bookType" id="bookType">
+							<div class="">
+								<label class="fw-bold p-2" for="bookType">Choose book type:</label><br>
+								<select class="form-select" name="bookType" id="bookType">
 									<option name="bookType" value="1">Paperback</option>
 									<option name="bookType" value="2">Hardback</option>
 									<option name="bookType" value="3">e-Book</option>
