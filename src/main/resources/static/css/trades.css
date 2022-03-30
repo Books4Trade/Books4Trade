@@ -3,25 +3,28 @@
 /*    padding: 10px;*/
 /*}*/
 .trade-bg{
-    background-image: linear-gradient(var(--blue), var(--dark-blue), var(--blue));
-    background-repeat: no-repeat;
+    background-color: #F1FAEE;
+    /*background-repeat: no-repeat;*/
     min-height: 975px;
 }
 
 .trades{
-    background-color: var(--red);
+    /*background-color: var(--red);*/
     min-height: 1250px;
 }
 .tradesTable{
-    color: white;
+    color: black;
+    font-family: Inter, sans-serif;
+    /*min-height: 1250px;*/
 }
 .tableHead{
     font-family: var(--header-font);
-    font-size: 24px;
+    font-size: 15px;
 }
 .tableBody{
     font-family: var(--main-font);
-    font-size: 18px;
+    font-size: 13px;
+    color: black;
 }
 .tradeImg{
     height: 3.5rem;
@@ -29,9 +32,14 @@
 }
 .tradeTitle{
     font-family: var(--header-font);
-    color: white;
+    color: var(--dark-blue);
+    background-color: var(--sky-blue);
 }
 
+.trade-index-btn {
+    background-color: var(--dark-blue);
+    color: white;
+}
 /*TRADABLE BOOK SHOW PAGE*/
 body{
     min-height: 1080px;
