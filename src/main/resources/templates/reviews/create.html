@@ -7,43 +7,46 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar" />
-<div class="back-img">
-<div class="container form-shadow mb-3 bg-body rounded h-50 w-50">
-	<div class="row form-color">
-		<div class="col">
-			<h2 class="text-center headers-font light-blue-bg">Create a Review of <span class="headers-font" th:text="${book.getTitle()}"></span></h2>
-			<div class="text-center mt-2">
-				<img th:src="${book.getBookImg()}" alt="">
-			</div>
-
-			<form  th:action="|/books/${book.getId()}/submitreview|" th:method="POST">
-				<div class="container mt-5 mb-5">
-					<div class="book-index-headers mb-3 form-label">
-						<label for="title">Title</label>
-						<input type="text" class="form-control" id="title" name="title" placeholder="Your Review Title" minlength="3" maxlength="255">
+<div class="min-height">
+	<div class="back-img">
+		<div class="container form-shadow mb-3 bg-body rounded h-50 w-50">
+			<div class="row form-color">
+				<div class="col">
+					<h2 class="text-center headers-font light-blue-bg">Create a Review of <span class="headers-font" th:text="${book.getTitle()}"></span></h2>
+					<div class="text-center mt-2">
+						<img th:src="${book.getBookImg()}" alt="">
 					</div>
 
+					<form  th:action="|/books/${book.getId()}/submitreview|" th:method="POST">
+						<div class="container mt-5 mb-5">
+							<div class="book-index-headers mb-3 form-label">
+								<label for="title">Title</label>
+								<input type="text" class="form-control" id="title" name="title" placeholder="Your Review Title" minlength="3" maxlength="255">
+							</div>
 
-					<div class="mb-3 form-label book-index-headers">
-						<label for="body" class="">Review</label>
-						<textarea class="form-control" id="body" rows="3" name="body" placeholder="Your Detailed Review Goes Here" minlength="3"></textarea>
-					</div>
 
-					<div class="mb-3 form-label book-index-headers">
-						<label for="rating" >Rate Book (1-5)</label>
-						<input type="number" class="form-control select-sizing" id="rating" name="rating" min="1" max="5">
+							<div class="mb-3 form-label book-index-headers">
+								<label for="body" class="">Review</label>
+								<textarea class="form-control" id="body" rows="3" name="body" placeholder="Your Detailed Review Goes Here" minlength="3"></textarea>
+							</div>
 
-			
-					</div>
+							<div class="mb-3 form-label book-index-headers">
+								<label for="rating" >Rate Book (1-5)</label>
+								<input type="number" class="form-control select-sizing" id="rating" name="rating" min="1" max="5">
 
-					<button type="submit" class="btn submit-btn">Submit</button>
+
+							</div>
+
+							<button type="submit" class="btn submit-btn">Submit</button>
+						</div>
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
+
 	</div>
 </div>
 
-</div>
 <footer th:replace="partials :: footer"/>
 
 <body th:include="partials :: scripts-bottom" />
