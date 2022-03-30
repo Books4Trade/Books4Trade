@@ -11,7 +11,7 @@
 
 <section class="search-area-container">
     <!--SEARCH-BAR-->
-    <div class="d-flex flex-column form-container mt-3 p-2 py-5 text-center ">
+    <div class="d-flex flex-column form-container mt-0 p-2 py-5 text-center ">
         <!--TEXT HEADING-->
         <div class="d-inline">
             <!--<label for="param" class="fw-bold">Search By:</label>-->
@@ -22,27 +22,29 @@
                 </select>
                 <input id="query" name="query" type="text" class="input-field">
                 <!-- javascript search function target is this button id -->
-                <button type="submit" id="searchsubmit" class="btn btn-success m-1">Search</button>
+                <button type="submit" id="searchsubmit" class="btn edit-btn m-1">Search</button>
                 <!--<label for="query" class="fw-bold">Search For:</label>-->
             </div>
         </div>
     </div>
 </section>
-    <br>
+<section class="book-cards-header">
 <!-- searchedparam and searcehdquery set the initial values passed to the api for search-->
-    <h3 class="header-center">Search by: <span th:text="${searchedparam}" id="searchedparam"></span>, with term: <span th:text="${searchedquery}" id="searchedquery"></span>.</h3>
-    <h3 class="header-center text-secondary">Choose the result that best matches your search, or search again</h3>
-    <br>
+    <h3 class="book-index-header-top header-center w-auto mb-0">Search by: <span class="headers-font" th:text="${searchedparam}" id="searchedparam"></span>, with term: <span class="headers-font" th:text="${searchedquery}" id="searchedquery"></span>.</h3>
+    <h3 class="book-index-header-top header-center w-auto mb-0">Choose the result that best matches your search, or search again</h3>
+</section>
 <!-- Target for populating the search results through js-->
-<section class="book-cards">
+<section class="book-cards mt-0 review-index-container">
     <!--BOOK CARD-->
-    <div class="shadow-sm p-3 mb-5 bg-white rounded">
-        <div class="row test-media" id="search-results">
+    <div class="p-3">
+        <div class="row flex-wrap review-cards-container" id="search-results">
         </div>
     </div>
 </section>
 
 <input id="key1" name="key1" type="hidden" th:value="${key1}">
+
+<footer th:replace="partials :: footer"/>
 <script th:inline="javascript">
     var GB_API = [[${key1}]];
 </script>
