@@ -33,8 +33,8 @@
 </section>
 
 <section class="book-cards-header">
-	<h1 class="book-index-header-top fw-bold text-center w-auto mb-0" th:if="${!searched}">Here are all of our Books!</h1>
-	<h1 class="book-index-header-top fw-bold text-center w-auto mb-0" th:if="${searched}">Here are our books matching <span th:text="${searchedBy}"></span></h1>
+	<h1 class="book-index-header-top text-center w-auto mb-0" th:if="${!searched}">Here are all of our Books!</h1>
+	<h1 class="book-index-header-top text-center w-auto mb-0" th:if="${searched}">Here are our books matching <span class="headers-font" th:text="${searchedBy}"></span></h1>
 </section>
 
 <section class="book-cards mt-0 review-index-container">
@@ -56,7 +56,7 @@
 	</div>
 </section>
 
-<section class="text-after-searching-for-books">
+<section class="text-after-searching-for-books review-index-container">
 <!--IF FUNCTION FOR NO RESULT-->
 	<div th:if="${searched}" class="d-flex flex-row justify-content-center">
 		<form th:action="@{/books/search/api}" th:method="GET">
@@ -64,7 +64,7 @@
 			<input th:value="${searchedquery}" name="query" id="query" type="hidden">
 			<h3 class="text-center">Not seeing your search result? Click here to add a new book!</h3>
 			<div class="text-center">
-				<button class="btn submit-btn" type="submit">Submit</button>
+				<button class="btn submit-btn" type="submit">Find New Book</button>
 			</div>
 			<br>
 		</form>
