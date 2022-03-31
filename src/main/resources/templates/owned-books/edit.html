@@ -11,7 +11,7 @@
 	<div class="container form-shadow mb-5 bg-body rounded h-50 w-50">
 		<div class="row">
 			<div class="col form-color">
-				<h2 class="header-center book-index-header-top">Edit Your Copy of <span th:text="${ownedbook.getBook().getTitle()}"></span></h2>
+				<h2 class="headers-font header-center book-index-header-top">Edit Your Copy of <span class="headers-font" th:text="${ownedbook.getBook().getTitle()}"></span></h2>
 				<div class="text-center mt-2">
 					<img th:src="${ownedbook.getBook().getBookImg()}" alt="">
 				</div>
@@ -19,9 +19,9 @@
 
 				<form th:action="|/copies/${ownedbook.getId()}/edit|" th:method="POST">
 					<div class="mt-5 mb-5">
-						<div class="text-center">
-							<label for="bookcondition" class="summary-font">Choose book condition:</label><br>
-							<select name="bookcondition" id="bookcondition">
+						<div class="">
+							<label for="bookcondition" class="summary-font fw-bold p-2">Choose book condition:</label><br>
+							<select class="form-select" name="bookcondition" id="bookcondition">
 								<option name="bookcondition" value="poor">Poor</option>
 								<option name="bookcondition" value="fair">Fair</option>
 								<option name="bookcondition" value="better">Better</option>
@@ -31,9 +31,9 @@
 
 					<br>
 
-					<div class="text-center">
-						<label for="istradeable">Is the book tradeable?</label><br>
-						<select name="istradeable" id="istradeable">
+					<div class="">
+						<label class="fw-bold p-2 summary-font" for="istradeable">Is the book tradeable?</label><br>
+						<select class="form-select" name="istradeable" id="istradeable">
 							<option name="istradeable" value="true">Yes</option>
 							<option name="istradeable" value="false">No</option>
 						</select>
@@ -41,9 +41,9 @@
 
 						<br>
 
-					<div class="text-center">
-						<label for="booktype" class="summary-font">Choose book type:</label><br>
-						<select name="booktype" id="booktype">
+					<div class="">
+						<label for="booktype" class="summary-font fw-bold p-2">Choose book type:</label><br>
+						<select class="form-select" name="booktype" id="booktype">
 							<option name="booktype" value="1">Paperback</option>
 							<option name="booktype" value="2">Hardback</option>
 							<option name="booktype" value="3">e-Book</option>
