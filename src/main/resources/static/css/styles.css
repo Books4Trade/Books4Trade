@@ -75,6 +75,9 @@ Paragraph
     margin-left: auto;
     margin-right: auto;
 }
+.width-20{
+    width: 20% !important;
+}
 .min-height{
     min-height: 524px !important;
 }
@@ -571,7 +574,7 @@ font-family: 'Inter', sans-serif;
     padding: 20px;
     }
 
-.about-us-div > div {
+.about-us-person {
     background: var(--dark-blue);
     color: white;
     border: 1px solid white;
