@@ -28,11 +28,11 @@
 						<!-- NEED REFACTOR BELOW TO COMPARE AUTH PRINCIPAL ID TO OWNER ID-->
 						<div class="row justify-content-center mt-2 mb-2" th:if="${isOwner}">
 
-							<form th:method="get" class="col-1 text-center">
-								<button type="submit" class="btn edit-btn" th:formaction="|/copies/${ownedBook.getId()}/edit|">Edit</button>
+							<form th:method="get" class="col-md-2 col-xs-4 mb-2 text-center">
+								<button type="submit" class="btn submit-btn" th:formaction="|/copies/${ownedBook.getId()}/edit|">Edit</button>
 							</form>
 
-							<form th:action="|/copies/${ownedBook.getId()}/delete|" th:method="POST" class="col-1 text-center">
+							<form th:action="|/copies/${ownedBook.getId()}/delete|" th:method="POST" class="col-md-2 col-xs-4 text-center mb-2">
 								<!--					<input type="hidden" id="copytodelete" name="copytodelete" th:value="${ownedBook.getId()}">-->
 								<button type="submit" class="btn delete-btn">Delete</button>
 							</form>
