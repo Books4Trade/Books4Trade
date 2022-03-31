@@ -21,32 +21,39 @@
         <div class="col form-color">
             <div class="text-center">
                 <img th:src="${ownedbook.getBook().getBookImg()}" class="rounded book-cover" alt="...">
-                <figcaption class="figure-caption text-center summary-font mb-3" th:text="${ownedbook.getBook().getTitle()}">A caption for the above image.</figcaption>
+                <figcaption class="figure-caption text-center summary-font mb-3" th:text="${ownedbook.getBook().getTitle()}">A caption for the
+                                                                                                                                above image.</figcaption>
             </div>
-            <form th:action="@{/books/trade/initiate}" th:method="post" class="pb-4">
-                <div class="text-center">
-                    <label for="yourbookid" class="summary-font text-center">Your Book To Trade:</label><br>
-                    <select id="yourbookid" name="yourbookid" class="text-center mb-3" style="width: auto" th:type="number">
-                        <option th:each="ownedBook : ${mytradables}"
-                                th:value="${ownedBook.getId()}"
-                                th:text="${ownedBook.getBook().getTitle()}">
-                        </option>
-                    </select>
-                        <div class="text-center">
+            <form th:action="@{/books/trade/initiate}" th:method="post">
+                <div class="mt-5 mb-5">
+                    <div>
+                        <label for="yourbookid" class="fw-bold p-2">Your Book To Trade:</label><br>
+                        <select id="yourbookid" name="yourbookid" class="form-select">
+                            <option th:each="ownedBook : ${mytradables}"
+                                    th:value="${ownedBook.getId()}"
+                                    th:text="${ownedBook.getBook().getTitle()}">
+                            </option>
+                        </select>
+                        <div>
                             <input type="hidden" name="theirbookid" id="theirbookid" th:value="${ownedbook.getId()}">
                         </div>
-                </div>
-                <div class="text-center">
-                    <div class="col-sm-12">
-                        <input type="hidden" name="buddyid" id="buddyid" th:value="${tradebuddy.getId()}">
-                        <p class="text-center">TradeBuddy Username: <span th:text="${tradebuddy.getUsername()}"></span>
-                        </p>
+                    </div>
+
+                    <div>
+                        <div class="col-sm-12">
+                            <input type="hidden" name="buddyid" id="buddyid" th:value="${tradebuddy.getId()}">
+                            <label for="buddyid" class="fw-bold p-2">TradeBuddy Username:
+                                <span th:text="${tradebuddy.getUsername()}"></span></label><br>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 mb-5 text-center">
+                        <input type="submit" class="btn submit-btn text-center m-1" th:value="Submit">
+                        <a th:href="|/books/trades|" class="btn delete-btn text-center m-1">Cancel</a>
                     </div>
                 </div>
-                <div class="text-center">
-                    <input type="submit" class="btn submit-btn text-center m-1" th:value="Submit">
-                    <a th:href="|/books/trades|" class="btn delete-btn text-center m-1">Cancel</a>
-                </div>
+
+
              </form>
             </div>
         </div>
