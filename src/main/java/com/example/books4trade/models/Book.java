@@ -156,7 +156,7 @@ public class Book {
         this.ownedBooks = ownedBooks;
     }
 
-    public Book(long id, String title, String summary, Double rating, String book_img, Author author, GradeLevel grade, List<OwnedBook> ownedBooks) {
+    public Book(long id, String title, String summary, Double rating, String book_img, Author author, GradeLevel grade, List<OwnedBook> ownedBooks, List<BookReview> reviews) {
         this.id = id;
         this.title = title;
         this.summary = summary;
@@ -165,6 +165,7 @@ public class Book {
         this.author = author;
         this.grade = grade;
         this.ownedBooks = ownedBooks;
+        this.reviews = reviews;
     }
 
     //  GETTERS/SETTERS
@@ -226,7 +227,6 @@ public class Book {
     public List<User> getReaders() {
         return readers;
     }
-
     public void setReaders(List<User> readers) {
         this.readers = readers;
     }
@@ -237,4 +237,7 @@ public class Book {
     public void setOwnedBooks(List<OwnedBook> ownedBooks) {
         this.ownedBooks = ownedBooks;
     }
+
+    public List<BookReview> getReviews(){return reviews;}
+    public void setReviews(List<BookReview> reviews){ this.reviews = reviews;}
 }
