@@ -32,7 +32,7 @@ public class HomeController {
         User reader = usersDao.findById(3);
         User trader = usersDao.findById(2);
         List<User> allUsers = usersDao.findAll();
-        User topReader;
+        User topReader = usersDao.findById(3);
         int numberRead = 0;
         User topTrader;
         int numberTraded = 0;
@@ -66,17 +66,19 @@ public class HomeController {
                 numberRead  = usersRead.size();
                 mostReadBook = book;
             }
-            if(book.getRating() > highestRating){
-                highestRating = book.getRating();
-                numberOfReviews = reviewsOfBook.size();
-                topRatedBook = book;
+            if(book.getRating() != null){
+                if(book.getRating() > highestRating) {
+                    highestRating = book.getRating();
+                    numberOfReviews = reviewsOfBook.size();
+                    topRatedBook = book;
+                }
             }
         }
 
         model.addAttribute("readbook", booksDao.findById(1));
         model.addAttribute("reviewbook", booksDao.findById(2));
         model.addAttribute("usertrader", trader);
-        model.addAttribute("userreader", reader);
+        model.addAttribute("userreader", topReader);
         model.addAttribute("totaltrades", totaltrades);
         model.addAttribute("totalreads", totalreads);
         return "homepage";
