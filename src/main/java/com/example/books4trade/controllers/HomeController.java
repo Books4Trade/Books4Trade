@@ -30,6 +30,8 @@ public class HomeController {
     @GetMapping("/")
     public String homepage(Model model) {
 
+        // Setting an admin as the default User for the "Top Reader" and "Top Trader" for the Homepage
+        // With their number of Books Read and Books Traded as the Top Numbers
         User topReader = usersDao.findById(3);
         int numberUserHasRead = topReader.getBooksread().size();
         int numberReviewed = topReader.getReviews().size();
@@ -38,13 +40,15 @@ public class HomeController {
         int numberTraded = tradeItemsDao.findTradeItemsByUser(topTrader).size();
         int numberOwned = topTrader.getOwnedBooks().size();
 
+        // Iterator for All Users, if they have read or traded more than the default users, they replace them with their
+        // Count of Reads/Reviews and Trades/OwnedBooks
+        // topTrader is the User with the most trades, topReader is the User with the most books read.
         List<User> allUsers = usersDao.findAll();
         for(User user : allUsers){
             if(user.getBooksread().size() > numberUserHasRead){
                 topReader = user;
                 numberUserHasRead  = user.getBooksread().size();
                 numberReviewed = user.getReviews().size();
-
             }
             if(tradeItemsDao.findTradeItemsByUser(user).size() > numberTraded){
                 topTrader = user;
@@ -52,30 +56,24 @@ public class HomeController {
                 numberOwned = user.getOwnedBooks().size();
             }
         }
-        List<Book> checkReadersList = topReader.getBooksread();
-        System.out.println("Top Reader:" + topReader.getUsername() + " has read "+ numberUserHasRead + "books.");
-        for(Book book : checkReadersList){
-            System.out.println(book.getTitle());
-        }
 
-
-
+        // Repeating process for Top Books by setting a default book for the Most Read Book and the Highest Rated Book
         Book mostReadBook = booksDao.findById(1);
         int numberOfReads = mostReadBook.getReaders().size();
         int numberOfCopies = mostReadBook.getOwnedBooks().size();
 
         Book topRatedBook = booksDao.findById(2);
+        double highestRating = topRatedBook.getRating();
+        int numberOfReviews = topRatedBook.getReviews().size();
 
-
-        double highestRating = 0;
-        int numberOfReviews = 0;
+        // Iterator for determining Top Books by Number of Times Read (mostReadBook) & Highest Rating value (topRatedBook)
         List<Book> allBooks = booksDao.findAll();
         for(Book book : allBooks){
             List<BookReview> reviewsOfBook = book.getReviews();
             if(book.getReaders().size() > numberOfReads){
                 mostReadBook = book;
                 numberOfReads  = book.getReaders().size();
-
+                numberOfCopies = book.getOwnedBooks().size();
             }
             if(book.getRating() != null){
                 if(book.getRating() > highestRating) {
@@ -86,18 +84,23 @@ public class HomeController {
             }
         }
 
-        model.addAttribute("mostreadbook", mostReadBook);
-        model.addAttribute("reviewbook", booksDao.findById(2));
-
+        // Top Reader and Top Trader attributes assignment
         model.addAttribute("topreader", topReader);
-        model.addAttribute("totalreads", numberUserHasRead);
-        model.addAttribute("totalreviews", numberReviewed);
+        model.addAttribute("totalreadsforuser", numberUserHasRead);
+        model.addAttribute("totalreviewsforuser", numberReviewed);
 
         model.addAttribute("toptrader", topTrader);
         model.addAttribute("totaltrades", numberTraded);
         model.addAttribute("totalowned", numberOwned);
 
-        model.addAttribute("");
+        // Most Read and Highest Rated Book attributes assignment
+        model.addAttribute("mostreadbook", mostReadBook);
+        model.addAttribute("totalreadsforbook", numberOfReads);
+        model.addAttribute("totalcopiesforbook", numberOfCopies);
+
+        model.addAttribute("highestratedbook", topRatedBook);
+        model.addAttribute("highestrating", highestRating);
+        model.addAttribute("totalreviewsforbook", numberOfReviews);
 
         return "homepage";
     }
