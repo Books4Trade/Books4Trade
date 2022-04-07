@@ -29,42 +29,53 @@ public class HomeController {
 
     @GetMapping("/")
     public String homepage(Model model) {
-        User reader = usersDao.findById(3);
-        User trader = usersDao.findById(2);
-        List<User> allUsers = usersDao.findAll();
+
         User topReader = usersDao.findById(3);
-        int numberRead = 0;
-        User topTrader;
-        int numberTraded = 0;
+        int numberUserHasRead = topReader.getBooksread().size();
+        int numberReviewed = topReader.getReviews().size();
+
+        User topTrader = usersDao.findById(2);
+        int numberTraded = tradeItemsDao.findTradeItemsByUser(topTrader).size();
+        int numberOwned = topTrader.getOwnedBooks().size();
+
+        List<User> allUsers = usersDao.findAll();
         for(User user : allUsers){
-            List<Book> booksRead = user.getBooksread();
-            List<TradeItem> tradersItems = tradeItemsDao.findTradeItemsByUser(user);
-            if(booksRead.size() > numberRead){
-                numberRead  = booksRead.size();
+            if(user.getBooksread().size() > numberUserHasRead){
                 topReader = user;
+                numberUserHasRead  = user.getBooksread().size();
+                numberReviewed = user.getReviews().size();
+
             }
-            if(tradersItems.size() > numberTraded){
-                numberTraded = tradersItems.size();
+            if(tradeItemsDao.findTradeItemsByUser(user).size() > numberTraded){
                 topTrader = user;
+                numberTraded = tradeItemsDao.findTradeItemsByUser(user).size();
+                numberOwned = user.getOwnedBooks().size();
             }
         }
-        List<Book> reads = reader.getBooksread();
-        // List<TradeItem> trades = ;
-        int totalreads = reads.size();
-        int totaltrades = 6; //trades.size();
+        List<Book> checkReadersList = topReader.getBooksread();
+        System.out.println("Top Reader:" + topReader.getUsername() + " has read "+ numberUserHasRead + "books.");
+        for(Book book : checkReadersList){
+            System.out.println(book.getTitle());
+        }
 
-        List<Book> allBooks = booksDao.findAll();
-        Book mostReadBook;
-        int numberOfReads = 0;
-        Book topRatedBook;
+
+
+        Book mostReadBook = booksDao.findById(1);
+        int numberOfReads = mostReadBook.getReaders().size();
+        int numberOfCopies = mostReadBook.getOwnedBooks().size();
+
+        Book topRatedBook = booksDao.findById(2);
+
+
         double highestRating = 0;
         int numberOfReviews = 0;
+        List<Book> allBooks = booksDao.findAll();
         for(Book book : allBooks){
-            List<User> usersRead = book.getReaders();
             List<BookReview> reviewsOfBook = book.getReviews();
-            if(usersRead.size() > numberOfReads){
-                numberRead  = usersRead.size();
+            if(book.getReaders().size() > numberOfReads){
                 mostReadBook = book;
+                numberOfReads  = book.getReaders().size();
+
             }
             if(book.getRating() != null){
                 if(book.getRating() > highestRating) {
@@ -75,12 +86,19 @@ public class HomeController {
             }
         }
 
-        model.addAttribute("readbook", booksDao.findById(1));
+        model.addAttribute("mostreadbook", mostReadBook);
         model.addAttribute("reviewbook", booksDao.findById(2));
-        model.addAttribute("usertrader", trader);
-        model.addAttribute("userreader", topReader);
-        model.addAttribute("totaltrades", totaltrades);
-        model.addAttribute("totalreads", totalreads);
+
+        model.addAttribute("topreader", topReader);
+        model.addAttribute("totalreads", numberUserHasRead);
+        model.addAttribute("totalreviews", numberReviewed);
+
+        model.addAttribute("toptrader", topTrader);
+        model.addAttribute("totaltrades", numberTraded);
+        model.addAttribute("totalowned", numberOwned);
+
+        model.addAttribute("");
+
         return "homepage";
     }
     @GetMapping("/about")
