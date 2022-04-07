@@ -98,20 +98,20 @@
 		<hr class="featurette-divider">
 		<div class="row featurette">
 			<div class="col-md-3 text-center">
-				<img class="featurette-image img-fluid mx-auto feature-image" th:src="${reviewbook.getBookImg()}" alt="book cover">
+				<img class="featurette-image img-fluid mx-auto feature-image" th:src="${highestratedbook.getBookImg()}" alt="book cover">
 			</div>
 			<div class="col-md-6">
 				<h3 class="featurette-heading headers-font header-center mt-1">Our Favorite Books!</h3>
 					<h4 class="mt-3"><i class="fa-solid fa-circle-arrow-left"></i> Our highest rated book.</h4>
-					<p class="lead">The book <span th:text="${reviewbook.getTitle()}"></span> by <span th:text="${reviewbook.getAuthor().getFullname()}"></span>
-						has been reviewed <span th:text="37"></span> times by our users with an average rating of <span th:text="4.7"></span> out of 5. For our newest reviews <a th:href="@{/reviews}">click here!</a></p>
+					<p class="lead">The book <span th:text="${highestratedbook.getTitle()}"></span> by <span th:text="${highestratedbook.getAuthor().getFullname()}"></span>
+						has been reviewed <span th:text="${totalreviewsforbook}"></span> times by our users with an average rating of <span th:text="${highestrating}"></span> out of 5. For our newest reviews <a th:href="@{/reviews}">click here!</a></p>
 					<h4 class="header-right">Our favorite book to read again and again! <i class="fa-solid fa-circle-arrow-right"></i></h4>
-					<p class="lead text-center">The book <span th:text="${readbook.getTitle()}"></span> by <span th:text="${readbook.getAuthor().getFullname()}"></span>
-						has been read <span th:text="53"></span> times by our users and is owned by more than
-						<span th:text="17"></span> of them. If you haven't read it, <a th:href="|/books/${readbook.getId()}|">go here!</a></p>
+					<p class="lead text-center">The book <span th:text="${mostreadbook.getTitle()}"></span> by <span th:text="${mostreadbook.getAuthor().getFullname()}"></span>
+						has been read <span th:text="${totalreadsforbook}"></span> times by our users and is owned by more than
+						<span th:text="${totalcopiesforbook}"></span> of them. If you haven't read it, <a th:href="|/books/${mostreadbook.getId()}|">go here!</a></p>
 			</div>
 			<div class="col-md-3 text-center">
-				<img class="featurette-image img-fluid mx-auto feature-image" th:src="${readbook.getBookImg()}" alt="book cover">
+				<img class="featurette-image img-fluid mx-auto feature-image" th:src="${mostreadbook.getBookImg()}" alt="book cover">
 			</div>
 		</div>
 		<hr class="featurette-divider">
@@ -122,15 +122,15 @@
 				<div class="row">
 					<div class="col-6">
 						<h4 class="header-center mt-4">Our Top Librarian</h4>
-						<h5 class="header-center mt-2"><span class="text-primary" th:text="${usertrader.getUsername()}"></span> from <span class="text-muted" th:text="${usertrader.getLocation()}"></span></h5>
+						<h5 class="header-center mt-2"><span class="text-primary" th:text="${toptrader.getUsername()}"></span> from <span class="text-muted" th:text="${toptrader.getLocation()}"></span></h5>
 						<p class="lead text-center mt-2">Has been trading more than any user!</p>
-						<p class="lead text-center"><span th:text="${totaltrades}"></span> trades with other users so far and counting! There are <span th:text="${totalreads}"></span> more books owned in their library!</p>
+						<p class="lead text-center"><span th:text="${totaltrades}"></span> trades with other users so far and counting! There are <span th:text="${totalowned}"></span> more books owned in their library!</p>
 					</div>
 					<div class="col-6">
 						<h4 class="header-center mt-4">Our Top Bookworm</h4>
-						<h5 class="header-center mt-2"><span class="text-primary" th:text="${userreader.getUsername()}"></span> from <span class="text-muted" th:text="${usertrader.getLocation()}"></span></h5>
+						<h5 class="header-center mt-2"><span class="text-primary" th:text="${topreader.getUsername()}"></span> from <span class="text-muted" th:text="${topreader.getLocation()}"></span></h5>
 						<p class="lead text-center mt-2">Has read more here than anyone!</p>
-						<p class="lead text-center">So far <span th:text="${totalreads}"></span> of our books have been read and <span th:text="${totalreads}"></span> reviews written by them!</p>
+						<p class="lead text-center">So far <span th:text="${totalreadsforuser}"></span> of our books have been read and <span th:text="${totalreviewsforuser}"></span> reviews written by them!</p>
 					</div>
 				</div>
 			</div>

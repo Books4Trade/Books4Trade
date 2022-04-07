@@ -29,56 +29,79 @@ public class HomeController {
 
     @GetMapping("/")
     public String homepage(Model model) {
-        User reader = usersDao.findById(3);
-        User trader = usersDao.findById(2);
+
+        // Setting an admin as the default User for the "Top Reader" and "Top Trader" for the Homepage
+        // With their number of Books Read and Books Traded as the Top Numbers
+        User topReader = usersDao.findById(3);
+        int numberUserHasRead = topReader.getBooksread().size();
+        int numberReviewed = topReader.getReviews().size();
+
+        User topTrader = usersDao.findById(2);
+        int numberTraded = tradeItemsDao.findTradeItemsByUser(topTrader).size();
+        int numberOwned = topTrader.getOwnedBooks().size();
+
+        // Iterator for All Users, if they have read or traded more than the default users, they replace them with their
+        // Count of Reads/Reviews and Trades/OwnedBooks
+        // topTrader is the User with the most trades, topReader is the User with the most books read.
         List<User> allUsers = usersDao.findAll();
-        User topReader;
-        int numberRead = 0;
-        User topTrader;
-        int numberTraded = 0;
         for(User user : allUsers){
-            List<Book> booksRead = user.getBooksread();
-            List<TradeItem> tradersItems = tradeItemsDao.findTradeItemsByUser(user);
-            if(booksRead.size() > numberRead){
-                numberRead  = booksRead.size();
+            if(user.getBooksread().size() > numberUserHasRead){
                 topReader = user;
+                numberUserHasRead  = user.getBooksread().size();
+                numberReviewed = user.getReviews().size();
             }
-            if(tradersItems.size() > numberTraded){
-                numberTraded = tradersItems.size();
+            if(tradeItemsDao.findTradeItemsByUser(user).size() > numberTraded){
                 topTrader = user;
+                numberTraded = tradeItemsDao.findTradeItemsByUser(user).size();
+                numberOwned = user.getOwnedBooks().size();
             }
         }
-        List<Book> reads = reader.getBooksread();
-        // List<TradeItem> trades = ;
-        int totalreads = reads.size();
-        int totaltrades = 6; //trades.size();
 
+        // Repeating process for Top Books by setting a default book for the Most Read Book and the Highest Rated Book
+        Book mostReadBook = booksDao.findById(1);
+        int numberOfReads = mostReadBook.getReaders().size();
+        int numberOfCopies = mostReadBook.getOwnedBooks().size();
+
+        Book topRatedBook = booksDao.findById(2);
+        double highestRating = topRatedBook.getRating();
+        int numberOfReviews = topRatedBook.getReviews().size();
+
+        // Iterator for determining Top Books by Number of Times Read (mostReadBook) & Highest Rating value (topRatedBook)
         List<Book> allBooks = booksDao.findAll();
-        Book mostReadBook;
-        int numberOfReads = 0;
-        Book topRatedBook;
-        double highestRating = 0;
-        int numberOfReviews = 0;
         for(Book book : allBooks){
-            List<User> usersRead = book.getReaders();
             List<BookReview> reviewsOfBook = book.getReviews();
-            if(usersRead.size() > numberOfReads){
-                numberRead  = usersRead.size();
+            if(book.getReaders().size() > numberOfReads){
                 mostReadBook = book;
+                numberOfReads  = book.getReaders().size();
+                numberOfCopies = book.getOwnedBooks().size();
             }
-            if(book.getRating() > highestRating){
-                highestRating = book.getRating();
-                numberOfReviews = reviewsOfBook.size();
-                topRatedBook = book;
+            if(book.getRating() != null){
+                if(book.getRating() > highestRating) {
+                    highestRating = book.getRating();
+                    numberOfReviews = reviewsOfBook.size();
+                    topRatedBook = book;
+                }
             }
         }
 
-        model.addAttribute("readbook", booksDao.findById(1));
-        model.addAttribute("reviewbook", booksDao.findById(2));
-        model.addAttribute("usertrader", trader);
-        model.addAttribute("userreader", reader);
-        model.addAttribute("totaltrades", totaltrades);
-        model.addAttribute("totalreads", totalreads);
+        // Top Reader and Top Trader attributes assignment
+        model.addAttribute("topreader", topReader);
+        model.addAttribute("totalreadsforuser", numberUserHasRead);
+        model.addAttribute("totalreviewsforuser", numberReviewed);
+
+        model.addAttribute("toptrader", topTrader);
+        model.addAttribute("totaltrades", numberTraded);
+        model.addAttribute("totalowned", numberOwned);
+
+        // Most Read and Highest Rated Book attributes assignment
+        model.addAttribute("mostreadbook", mostReadBook);
+        model.addAttribute("totalreadsforbook", numberOfReads);
+        model.addAttribute("totalcopiesforbook", numberOfCopies);
+
+        model.addAttribute("highestratedbook", topRatedBook);
+        model.addAttribute("highestrating", highestRating);
+        model.addAttribute("totalreviewsforbook", numberOfReviews);
+
         return "homepage";
     }
     @GetMapping("/about")
