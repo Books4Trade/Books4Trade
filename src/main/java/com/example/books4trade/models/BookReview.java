@@ -29,7 +29,9 @@ public class BookReview {
     @Column
     private String createdDate;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviews")
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviews")
+//    private List<Like> likes;
+    @ManyToMany(mappedBy = "reviews")
     private List<Like> likes;
 
     @ManyToOne
