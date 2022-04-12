@@ -147,28 +147,28 @@ public class BookReviewController {
 
     //  Liking a review
     //  Need to set count;
-    @PostMapping("/reviews/{id}/like")
-    public String likeReview(@PathVariable long id){
-         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-         User user = usersDao.getById(currentUser.getId());
-         BookReview bookReview = bookReviewsDao.getById(id);
-        //  create a new like
-         Like newLike = new Like(true, user, bookReview);
-         likesDao.save(newLike);
-        return "redirect:/reviews/" + id;
-     }
+//    @PostMapping("/reviews/{id}/like")
+//    public String likeReview(@PathVariable long id){
+//         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//         User user = usersDao.getById(currentUser.getId());
+//         BookReview bookReview = bookReviewsDao.getById(id);
+//        //  create a new like
+//         Like newLike = new Like(true, user, bookReview);
+//         likesDao.save(newLike);
+//        return "redirect:/reviews/" + id;
+//     }
 
     //  Disliking a review
     //  Need to set count;
-    @PostMapping("/reviews/{id}/dislike")
-    public  String dislikeReview(@PathVariable long id){
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = usersDao.getById(currentUser.getId());
-        BookReview bookReview = bookReviewsDao.getById(id);
-        //  create a new like
-        Like newDislike = new Like(false, user, bookReview);
-        likesDao.save(newDislike);
-
-        return "redirect:/reviews/" + id;
-    }
+//    @PostMapping("/reviews/{id}/dislike")
+//    public  String dislikeReview(@PathVariable long id){
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = usersDao.getById(currentUser.getId());
+//        BookReview bookReview = bookReviewsDao.getById(id);
+//        //  create a new like
+//        Like newDislike = new Like(false, user, bookReview);
+//        likesDao.save(newDislike);
+//
+//        return "redirect:/reviews/" + id;
+//    }
 }
