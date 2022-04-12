@@ -1,6 +1,7 @@
 package com.example.books4trade.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "likes")
@@ -17,9 +18,16 @@ public class Like {
     @JoinColumn (name = "users_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn (name = "reviews_id")
-    private BookReview reviews;
+//    @ManyToOne
+//    @JoinColumn (name = "reviews_id")
+//    private BookReview reviews;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "review_like",
+            joinColumns = {@JoinColumn(name = "like_id")},
+            inverseJoinColumns = {@JoinColumn(name = "review_id")}
+    )
+    private List<BookReview> reviews;
 
     //  CONSTRUCTORS
     public Like() {
@@ -29,18 +37,18 @@ public class Like {
         this.isLiked = isLiked;
     }
 
-    public Like(User user, BookReview reviews) {
+    public Like(User user, List<BookReview> reviews) {
         this.user = user;
         this.reviews = reviews;
     }
 
-    public Like(boolean isLiked, User user, BookReview reviews) {
+    public Like(boolean isLiked, User user, List<BookReview> reviews) {
         this.isLiked = isLiked;
         this.user = user;
         this.reviews = reviews;
     }
 
-    public Like(long id, boolean isLiked, User user, BookReview reviews) {
+    public Like(long id, boolean isLiked, User user, List<BookReview> reviews) {
         this.id = id;
         this.isLiked = isLiked;
         this.user = user;
@@ -66,10 +74,10 @@ public class Like {
     public void setUser(User user) {
         this.user = user;
     }
-    public BookReview getReviews() {
+    public List<BookReview> getReviews() {
         return reviews;
     }
-    public void setReviews(BookReview reviews) {
+    public void setReviews(List<BookReview> reviews) {
         this.reviews = reviews;
     }
 }
